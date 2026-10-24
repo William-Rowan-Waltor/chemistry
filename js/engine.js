@@ -270,11 +270,131 @@
   var CUSTOM_DATA_KEY = "hoa11_12_custom_data_v2";
   var ORIGINAL_DATA = null;
 
+  var cloudSyncTimer = null;
+  var cloudSyncStatus = (typeof location !== "undefined" && location.protocol && location.protocol.startsWith("http")) ? "synced" : "local";
+
+  function cloudSyncLabel() {
+    if (cloudSyncStatus === "syncing") return "Đang lưu...";
+    if (cloudSyncStatus === "synced") return "Vercel DB ✓";
+    if (cloudSyncStatus === "local") return "Cục bộ";
+    if (cloudSyncStatus === "offline") return "Offline";
+    return "Đồng bộ";
+  }
+
+  function updateCloudIndicator(status, text) {
+    cloudSyncStatus = status;
+    var el = document.getElementById("cloudSyncStatus");
+    if (!el) return;
+    var icon = (status === "syncing") ? "⏳" : (status === "offline" ? "📡" : (status === "local" ? "💻" : "☁️"));
+    el.innerHTML = icon + ' <small id="cloudSyncText">' + (text || cloudSyncLabel()) + '</small>';
+    el.className = "stat pill cloud-pill " + status;
+  }
+
+  function scheduleCloudSync() {
+    if (typeof location === "undefined" || !location.protocol || !location.protocol.startsWith("http")) return;
+    if (cloudSyncTimer) clearTimeout(cloudSyncTimer);
+    updateCloudIndicator("syncing", "Đang lưu...");
+    cloudSyncTimer = setTimeout(function () {
+      pushToCloud();
+    }, 1200);
+  }
+
+  function pushToCloud() {
+    if (typeof location === "undefined" || !location.protocol || !location.protocol.startsWith("http")) {
+      updateCloudIndicator("local", "Cục bộ");
+      return;
+    }
+    try {
+      var customRaw = localStorage.getItem(CUSTOM_DATA_KEY);
+      var payload = {
+        user: { username: "William-Rowan-Waltor", name: "William Rowan Waltor" },
+        profile: store.get(),
+        customData: customRaw ? JSON.parse(customRaw) : null,
+        clientTimestamp: Date.now()
+      };
+      fetch("/api/user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(function (r) {
+        if (r.ok) {
+          updateCloudIndicator("synced", "Vercel DB ✓");
+        } else {
+          updateCloudIndicator("error", "Lỗi sync");
+        }
+      })
+      .catch(function () {
+        updateCloudIndicator("offline", "Offline");
+      });
+    } catch (e) {
+      console.warn("pushToCloud error", e);
+    }
+  }
+
+  function syncFromCloud(callback) {
+    if (typeof location === "undefined" || !location.protocol || !location.protocol.startsWith("http")) {
+      updateCloudIndicator("local", "Cục bộ");
+      if (callback) callback(false);
+      return;
+    }
+    updateCloudIndicator("syncing", "Đang tải DB...");
+    fetch("/api/user")
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (res && res.ok && res.data) {
+          var cloudData = res.data;
+          var localProfile = store.get();
+          var updated = false;
+
+          // Merge profile if cloud has data
+          if (cloudData.profile) {
+            var cloudXP = cloudData.profile.xp || 0;
+            var localXP = localProfile.xp || 0;
+            if (!localXP || cloudXP > localXP) {
+              store.setSilent(cloudData.profile);
+              updated = true;
+            } else if (localXP > cloudXP) {
+              // Local is ahead (user solved quizzes offline), sync up to cloud
+              scheduleCloudSync();
+            }
+          }
+
+          // Merge customData
+          if (cloudData.customData && cloudData.customData.chapters) {
+            var localCustomRaw = localStorage.getItem(CUSTOM_DATA_KEY);
+            if (!localCustomRaw) {
+              localStorage.setItem(CUSTOM_DATA_KEY, JSON.stringify(cloudData.customData));
+              Object.assign(DATA, cloudData.customData);
+              updated = true;
+            }
+          }
+
+          updateCloudIndicator("synced", "Vercel DB ✓");
+          if (callback) callback(updated);
+        } else {
+          updateCloudIndicator("synced", "Vercel DB ✓");
+          if (callback) callback(false);
+        }
+      })
+      .catch(function (err) {
+        console.info("Cloud DB offline or local mode:", err.message);
+        updateCloudIndicator("offline", "Offline");
+        if (callback) callback(false);
+      });
+  }
+
   var store = {
     get: function () {
       try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch (e) { return {}; }
     },
-    set: function (s) { try { localStorage.setItem(LS_KEY, JSON.stringify(s)); } catch (e) {} }
+    set: function (s) {
+      try { localStorage.setItem(LS_KEY, JSON.stringify(s)); } catch (e) {}
+      scheduleCloudSync();
+    },
+    setSilent: function (s) {
+      try { localStorage.setItem(LS_KEY, JSON.stringify(s)); } catch (e) {}
+    }
   };
   function todayStr() {
     var d = new Date();
@@ -334,6 +454,7 @@
   function saveCustomData() {
     try {
       localStorage.setItem(CUSTOM_DATA_KEY, JSON.stringify(DATA));
+      scheduleCloudSync();
     } catch (e) {
       console.error("saveCustomData error", e);
     }
@@ -784,6 +905,7 @@
         "</a>" +
         '<div class="stats">' +
           editToggleBtn +
+          '<span class="stat pill cloud-pill ' + cloudSyncStatus + '" id="cloudSyncStatus" data-act="cloudSyncNow" title="Cơ sở dữ liệu Vercel cá nhân (Nhấp để đồng bộ ngay)">☁️ <small id="cloudSyncText">' + cloudSyncLabel() + '</small></span>' +
           '<span class="stat pill" title="Điểm luyện tập">' + ico("flame") + ' <b data-xp>' + s.xp + '</b> <i>XP</i></span>' +
           '<span class="stat pill" title="Số ngày luyện liên tiếp">' + ico("cal") + ' <b data-streak>' + s.streak.days + '</b> <i>ngày</i></span>' +
         "</div>" +
@@ -2564,6 +2686,10 @@
     var act = el.getAttribute("data-act");
 
     switch (act) {
+      case "cloudSyncNow":
+        showMiniToast("Đang đồng bộ dữ liệu với Vercel...");
+        pushToCloud();
+        break;
       case "home": state.chapter = null; state.mode = "theory"; window.scrollTo({ top: 0, behavior: "smooth" }); render(false); break;
       case "grade": setGrade(el.getAttribute("data-g")); break;
       case "mode": setMode(el.getAttribute("data-m")); break;
@@ -3137,6 +3263,13 @@
     headerEl.id = "topbar";
     document.body.insertBefore(headerEl, document.body.firstChild);
     render();
+
+    // Background cloud sync for single user (William-Rowan-Waltor)
+    syncFromCloud(function (hasUpdates) {
+      if (hasUpdates) {
+        renderShell();
+      }
+    });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

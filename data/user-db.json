@@ -1,0 +1,39 @@
+{
+  "user": {
+    "username": "William-Rowan-Waltor",
+    "name": "William Rowan Waltor",
+    "role": "Single User Owner",
+    "createdAt": "2026-10-24T00:00:00.000Z"
+  },
+  "profile": {
+    "streak": {
+      "last": "2026-10-24",
+      "days": 1
+    },
+    "xp": 150,
+    "xpByCh": {
+      "g12c1": 50,
+      "g12c2": 50,
+      "g12c3": 50
+    },
+    "deck": {},
+    "solved": {},
+    "tests": {
+      "g12t1": 10
+    },
+    "fav": {
+      "n": {},
+      "e": {}
+    },
+    "notes": [
+      {
+        "id": "welcome_note",
+        "t": "Chào mừng trở lại!",
+        "b": "Cơ sở dữ liệu người dùng đã được đồng bộ hóa thành công trên Vercel. Mọi tiến trình học tập, XP và thẻ ghi nhớ sẽ được tự động lưu trữ trên đám mây.",
+        "ts": 1792843200000
+      }
+    ]
+  },
+  "customData": null,
+  "updatedAt": "2026-10-24T11:22:00.000Z"
+}

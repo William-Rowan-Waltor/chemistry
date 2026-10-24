@@ -1599,6 +1599,39 @@ button, .btn, .chip, .tab, .stab, .ch-card, .note, .checkpoint-opt, .mcq-opt, .t
   box-shadow: 0 3px 10px rgba(47, 37, 27, 0.08);
 }
 
+/* — Cloud DB Status Pill — */
+.stats .cloud-pill {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+}
+.stats .cloud-pill small {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.stats .cloud-pill.synced {
+  border-color: rgba(30, 112, 104, 0.3);
+}
+.stats .cloud-pill.synced small {
+  color: var(--teal, #1e7068);
+}
+.stats .cloud-pill.syncing {
+  border-color: rgba(217, 160, 91, 0.5);
+  animation: pulse-sync 1.2s infinite ease-in-out;
+}
+.stats .cloud-pill.syncing small {
+  color: #b45309;
+}
+@keyframes pulse-sync {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(0.98); }
+}
+
 /* — Smooth Accordion Hint Transitions — */
 .coach-hint-item {
   transition: background-color 0.2s ease, border-color 0.2s ease;
