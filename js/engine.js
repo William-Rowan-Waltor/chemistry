@@ -26,12 +26,12 @@
     document.body.appendChild(badge);
 
     gsap.fromTo(badge,
-      { xPercent: -50, yPercent: -50, scale: 0.6, opacity: 1 },
+      { xPercent: -50, yPercent: -50, scale: 0.85, opacity: 0.95 },
       {
-        y: y - 50,
-        scale: 1.15,
+        y: y - 24,
+        scale: 1.0,
         opacity: 0,
-        duration: 1.0,
+        duration: 0.6,
         ease: "power2.out",
         onComplete: function () { badge.remove(); }
       }
@@ -1619,6 +1619,9 @@
   }
   function bankPick(pick) {
     var bs = state.bank;
+    if (bs.answered) return; // Prevent spam clicking XP!
+    bs.answered = true;
+
     var it = bs.items[bs.i];
     var fb = $("#qFeedback");
     var correct = false;
@@ -1638,19 +1641,57 @@
     if (correct) { addXP(s, it.ch, 10); } else { bs.wrong.push(it); s.xp += 1; }
     save(s);
 
+    // Disable all options immediately to prevent re-picking
+    $(".mcq-opt, .tf-opt, .num-in, .num-row button").forEach(function(btn) {
+      btn.disabled = true;
+    });
+
+    if (it.k === "m" || it.k === "tf") {
+      $(".mcq-opt, .tf-opt").forEach(function(btn) {
+        var p = btn.getAttribute("data-p");
+        if (p === String(it.a)) {
+          btn.classList.add("reveal-correct");
+          btn.insertAdjacentHTML("beforeend", ' <span class="opt-badge-correct">✓ Đáp án đúng</span>');
+        }
+        if (p === String(pick)) {
+          btn.classList.add("picked");
+          btn.classList.add(correct ? "good" : "warn");
+          if (!correct) {
+            btn.insertAdjacentHTML("beforeend", ' <span class="opt-badge-wrong">✗ Lựa chọn của bạn</span>');
+          }
+        }
+      });
+    }
+
+    var opts = parseOpts(it.o);
+    var pickedObj = opts.find(function(o){ return o.k === pick; }) || { t: pick };
+    var correctObj = opts.find(function(o){ return o.k === it.a; }) || { t: it.a };
+
     var msg = correct
-      ? '<div class="fb ok"><b>' + ico("ok") + " Chính xác!</b> " + (it.e ? fmt(it.e) : "") + "</div>"
-      : '<div class="fb bad"><b>' + ico("no") + " Chưa đúng.</b> " + (it.e ? fmt(it.e) : "") + "</div>";
+      ? '<div class="fb ok">' +
+          '<div class="fb-header"><span class="fb-badge ok">✓ Chính xác!</span> <b>(+10 XP)</b></div>' +
+          (it.e ? '<div class="fb-section-box exp"><div class="fb-sec-title">💡 <b>Giải thích chi tiết:</b></div><div class="fb-sec-desc">' + fmt(it.e) + '</div></div>' : '') +
+        '</div>'
+      : '<div class="fb bad">' +
+          '<div class="fb-header"><span class="fb-badge bad">✗ Chưa chính xác</span> <b>Phân tích lỗi sai:</b></div>' +
+          '<div class="fb-comparison">' +
+            '<div class="fb-comp-row correct"><span class="fb-comp-label">✓ Đáp án đúng:</span><span class="fb-comp-val"><b>' + esc(it.a) + (it.k === "m" ? '. ' + fmt(correctObj.t) : '') + '</b></span></div>' +
+            '<div class="fb-comp-row wrong"><span class="fb-comp-label">✗ Bạn đã chọn:</span><span class="fb-comp-val"><b>' + esc(pick) + (it.k === "m" ? '. ' + fmt(pickedObj.t) : '') + '</b></span></div>' +
+          '</div>' +
+          (it.e ? '<div class="fb-section-box exp"><div class="fb-sec-title">💡 <b>Phân tích & Lỗi sai cần tránh:</b></div><div class="fb-sec-desc">' + fmt(it.e) + '</div></div>' : '') +
+        '</div>';
+
     fb.innerHTML = msg;
     fb.classList.add("show");
     var nextBar = '<div class="q-next"><button class="btn primary" data-act="bankNext">Câu tiếp theo →</button></div>';
     if (bs.i + 1 >= bs.items.length) nextBar = '<div class="q-next"><button class="btn primary" data-act="bankFinish">Xem kết quả</button></div>';
     fb.insertAdjacentHTML("beforeend", nextBar);
     activity();
-    updateHeaderStats();
+    updateHeaderStats(correct);
   }
   function bankNext() {
     var bs = state.bank;
+    bs.answered = false;
     bs.i++;
     renderPracticeOnly();
     var bq = $(".bank-q");
@@ -1911,27 +1952,27 @@
 
     var checkOptsHtml = checkOpts.map(function (o) {
       var cls = "checkpoint-opt";
-      if (pickedOpt === o.k) {
-        cls += " picked " + (o.k === check.a ? "correct" : "wrong");
+      var badge = "";
+      if (isChecked) {
+        if (o.k === check.a) {
+          cls += " reveal-correct";
+          badge = ' <span class="opt-badge-correct">✓ Đáp án đúng</span>';
+        }
+        if (pickedOpt === o.k) {
+          cls += " picked " + (o.k === check.a ? "correct" : "wrong");
+          if (o.k !== check.a) {
+            badge = ' <span class="opt-badge-wrong">✗ Lựa chọn của bạn</span>';
+          }
+        }
       }
-      return '<button class="' + cls + '" data-act="guidedPick" data-k="' + esc(o.k) + '">' +
-        '<b>' + esc(o.k) + '.</b> ' + fmt(o.t) +
+      return '<button class="' + cls + '" data-act="guidedPick" data-k="' + esc(o.k) + '" ' + (isChecked ? 'disabled' : '') + '>' +
+        '<b>' + esc(o.k) + '.</b> ' + fmt(o.t) + badge +
       '</button>';
     }).join("");
 
     var feedbackHtml = "";
     if (isChecked) {
-      if (isCorrect) {
-        feedbackHtml = '<div class="checkpoint-feedback ok">' +
-          '<b>' + ico("ok") + ' Xuất sắc! Bạn đã hiểu đúng bản chất.</b> ' + fmt(check.exp) +
-          '<div style="margin-top:12px"><button class="btn primary small" data-act="guidedNextStage">Chặng tiếp theo →</button></div>' +
-        '</div>';
-      } else {
-        feedbackHtml = '<div class="checkpoint-feedback bad">' +
-          '<b>' + ico("no") + ' Chưa chính xác.</b> Gợi ý tư duy: <i>' + fmt(check.hint) + '</i>' +
-          '<div style="margin-top:8px"><small>Hãy suy nghĩ lại và bấm chọn phương án khác nhé.</small></div>' +
-        '</div>';
-      }
+      feedbackHtml = buildGuidedFeedback(curStage, check, checkOpts, pickedOpt, isCorrect);
     }
 
     return renderEditPromptBar("chặng học có hướng dẫn Feynman") + '<div class="guided-container">' +
@@ -1973,72 +2014,118 @@
     '</div>';
   }
 
+  function buildGuidedFeedback(curStage, check, checkOpts, pickedOpt, isCorrect) {
+    var pickedObj = checkOpts.find(function (o) { return o.k === pickedOpt; }) || { t: pickedOpt };
+    var correctObj = checkOpts.find(function (o) { return o.k === check.a; }) || { t: check.a };
+
+    if (isCorrect) {
+      return '<div class="checkpoint-feedback ok">' +
+        '<div class="fb-header"><span class="fb-badge ok">✓ Chính xác!</span> <b>Bạn đã hiểu đúng bản chất câu hỏi. (+25 XP)</b></div>' +
+        '<div class="fb-section-box exp">' +
+          '<div class="fb-sec-title">💡 <b>Bản chất cốt lõi & Cơ chế đúng:</b></div>' +
+          '<div class="fb-sec-desc">' + fmt(check.exp) + '</div>' +
+        '</div>' +
+        '<div class="fb-action"><button class="btn primary small" data-act="guidedNextStage">Chặng tiếp theo →</button></div>' +
+      '</div>';
+    } else {
+      return '<div class="checkpoint-feedback bad">' +
+        '<div class="fb-header"><span class="fb-badge bad">✗ Chưa chính xác</span> <b>Phân tích lỗi sai & Chẩn đoán tư duy:</b></div>' +
+        '<div class="fb-comparison">' +
+          '<div class="fb-comp-row correct">' +
+            '<span class="fb-comp-label">✓ Đáp án đúng:</span>' +
+            '<span class="fb-comp-val"><b>' + esc(check.a) + '.</b> ' + fmt(correctObj.t) + '</span>' +
+          '</div>' +
+          '<div class="fb-comp-row wrong">' +
+            '<span class="fb-comp-label">✗ Bạn đã chọn:</span>' +
+            '<span class="fb-comp-val"><b>' + esc(pickedOpt) + '.</b> ' + fmt(pickedObj.t) + '</span>' +
+          '</div>' +
+        '</div>' +
+        (curStage.trap ? '<div class="fb-section-box flaw">' +
+          '<div class="fb-sec-title">⚠️ <b>Chỉ ra lỗi sai & Bẫy phương án ' + esc(pickedOpt) + ':</b></div>' +
+          '<div class="fb-sec-desc">' + fmt(curStage.trap) + '</div>' +
+        '</div>' : '') +
+        (check.hint ? '<div class="fb-section-box hint">' +
+          '<div class="fb-sec-title">🔍 <b>Gợi ý tư duy đúng hướng:</b></div>' +
+          '<div class="fb-sec-desc">' + fmt(check.hint) + '</div>' +
+        '</div>' : '') +
+        '<div class="fb-section-box exp">' +
+          '<div class="fb-sec-title">💡 <b>Bản chất khoa học & Giải thích:</b></div>' +
+          '<div class="fb-sec-desc">' + fmt(check.exp) + '</div>' +
+        '</div>' +
+        '<div class="fb-action"><button class="btn primary small" data-act="guidedNextStage">Chặng tiếp theo →</button></div>' +
+      '</div>';
+    }
+  }
+
   function guidedPick(k) {
-    state.guided.pickedOpt = k;
-    state.guided.checked = true;
     var curCh = state.guided.ch;
     var ch = DATA[curCh];
     var stages = (ch && ch.guidedStages) || DEFAULT_GUIDED_STAGES[curCh] || DEFAULT_GUIDED_STAGES.g12c1;
-    var curStage = stages[state.guided.stageIdx || 0];
+    var stageIdx = state.guided.stageIdx || 0;
+    var curStage = stages[stageIdx];
     var checkObj = curStage.check || curStage;
-    if (k === (checkObj.a || checkObj.ans)) {
+    var correctAns = (checkObj.a || checkObj.ans || "A");
+
+    // BUG FIX 1: Lock stage once answered to completely prevent spam-clicking XP!
+    state.guided.answeredStages = state.guided.answeredStages || {};
+    var stageKey = curCh + "_" + stageIdx;
+    if (state.guided.answeredStages[stageKey]) {
+      return; // Already answered and locked!
+    }
+
+    var isCorrect = (k === correctAns);
+    state.guided.pickedOpt = k;
+    state.guided.checked = true;
+    state.guided.answeredStages[stageKey] = { picked: k, isCorrect: isCorrect };
+
+    if (isCorrect) {
       addXP(profile(), curCh, 25);
     }
-    
-    // In-place update: Absolutely NO page reflow or scroll jump!
+
+    // In-place update: zero scroll movement or reflow
     var box = $(".checkpoint-box");
     if (box) {
       var check = curStage.check || {
         q: curStage.q || "",
         opts: typeof curStage.opts === "string" ? curStage.opts : (Array.isArray(curStage.opts) ? curStage.opts.map(function(o){ return o.k + "=" + o.t; }).join(";") : ""),
-        a: curStage.ans || curStage.a || "A",
+        a: correctAns,
         exp: curStage.explain || curStage.exp || "",
-        hint: curStage.hint || "Xem lại phần bản chất cốt lõi bên trên."
+        hint: curStage.hint || ""
       };
       var checkOpts = parseOpts(check.opts);
-      var isChecked = true;
-      var pickedOpt = k;
-      var isCorrect = pickedOpt === check.a;
 
+      // BUG FIX 2: When wrong, reveal the correct answer and lock buttons permanently
       var checkOptsHtml = checkOpts.map(function (o) {
         var cls = "checkpoint-opt";
-        if (pickedOpt === o.k) {
-          cls += " picked " + (o.k === check.a ? "correct" : "wrong");
+        var badge = "";
+        if (o.k === check.a) {
+          cls += " reveal-correct";
+          badge = ' <span class="opt-badge-correct">✓ Đáp án đúng</span>';
         }
-        return '<button class="' + cls + '" data-act="guidedPick" data-k="' + esc(o.k) + '">' +
-          '<b>' + esc(o.k) + '.</b> ' + fmt(o.t) +
+        if (k === o.k) {
+          cls += " picked " + (o.k === check.a ? "correct" : "wrong");
+          if (o.k !== check.a) {
+            badge = ' <span class="opt-badge-wrong">✗ Lựa chọn của bạn</span>';
+          }
+        }
+        return '<button class="' + cls + '" data-act="guidedPick" data-k="' + esc(o.k) + '" disabled>' +
+          '<b>' + esc(o.k) + '.</b> ' + fmt(o.t) + badge +
         '</button>';
       }).join("");
 
-      var feedbackHtml = isCorrect
-        ? '<div class="checkpoint-feedback ok">' +
-            '<b>' + ico("ok") + ' Xuất sắc! Bạn đã hiểu đúng bản chất.</b> ' + fmt(check.exp) +
-            '<div style="margin-top:12px"><button class="btn primary small" data-act="guidedNextStage">Chặng tiếp theo →</button></div>' +
-          '</div>'
-        : '<div class="checkpoint-feedback bad">' +
-            '<b>' + ico("no") + ' Chưa chính xác.</b> Gợi ý tư duy: <i>' + fmt(check.hint) + '</i>' +
-            '<div style="margin-top:8px"><small>Hãy suy nghĩ lại và bấm chọn phương án khác nhé.</small></div>' +
-          '</div>';
+      var feedbackHtml = buildGuidedFeedback(curStage, check, checkOpts, k, isCorrect);
 
       box.innerHTML = '<div class="checkpoint-q">' + fmt(check.q) + '</div>' +
         '<div class="checkpoint-opts">' + checkOptsHtml + '</div>' +
         feedbackHtml;
 
+      // MOTION POLISH: Calm, non-intrusive subtle animation (no violent shaking or cartoon elastic)
       var clickedBtn = $('[data-act="guidedPick"][data-k="' + k + '"]', box);
       if (clickedBtn && hasGSAP && !prefersReduced) {
-        if (isCorrect) {
-          spawnXPParticle(clickedBtn, 25);
-          updateHeaderStats(true);
-          gsap.fromTo(clickedBtn, { scale: 0.95 }, { scale: 1, duration: 0.35, ease: "elastic.out(1, 0.4)", clearProps: "transform" });
-          gsap.fromTo($(".checkpoint-feedback", box), { opacity: 0, y: 12, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power2.out" });
-        } else {
-          updateHeaderStats(false);
-          gsap.fromTo(clickedBtn, { x: -6 }, { x: 6, duration: 0.07, repeat: 3, yoyo: true, ease: "power1.inOut", onComplete: function () { gsap.set(clickedBtn, { x: 0 }); } });
-          gsap.fromTo($(".checkpoint-feedback", box), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" });
-        }
-      } else {
-        updateHeaderStats(isCorrect);
+        gsap.fromTo(clickedBtn, { scale: 0.98 }, { scale: 1, duration: 0.2, ease: "power2.out", clearProps: "transform" });
+        gsap.fromTo($(".checkpoint-feedback", box), { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out" });
       }
+      updateHeaderStats(isCorrect);
     } else {
       render();
     }
@@ -2159,13 +2246,24 @@
     var card = $(".coach-test-card");
     if (card) {
       var opts = parseOpts(cur.o);
+      var pickedObj = opts.find(function(o){ return o.k === p; }) || { t: p };
+      var correctObj = opts.find(function(o){ return o.k === cur.a; }) || { t: cur.a };
+
       var optsHtml = opts.map(function (o) {
         var cls = "mcq-opt";
+        var badge = "";
+        if (o.k === cur.a) {
+          cls += " reveal-correct";
+          badge = ' <span class="opt-badge-correct">✓ Đáp án đúng</span>';
+        }
         if (p === o.k) {
           cls += " picked " + (o.k === cur.a ? " good" : " warn");
+          if (o.k !== cur.a) {
+            badge = ' <span class="opt-badge-wrong">✗ Lựa chọn của bạn</span>';
+          }
         }
         return '<button class="' + cls + '" data-act="coachTestPick" data-p="' + esc(o.k) + '" disabled>' +
-          '<b>' + esc(o.k) + '.</b> ' + fmt(o.t) +
+          '<b>' + esc(o.k) + '.</b> ' + fmt(o.t) + badge +
         '</button>';
       }).join("");
 
@@ -2173,14 +2271,43 @@
       if (optsContainer) optsContainer.innerHTML = optsHtml;
 
       var diagContainer = $(".diagnostic-feedback", card);
-      var diagHtml = '<div class="diagnostic-feedback">' +
-        '<h4>' + (ok ? '✓ Đáp án chính xác!' : '✗ Chưa đúng — Phân tích chẩn đoán sai lầm:') + '</h4>' +
-        '<p>' + fmt(cur.exp) + '</p>' +
-        '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">' +
-          '<button class="btn primary small" data-act="coachTestNext">Câu tiếp theo →</button>' +
-          (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">📖 Xem lại lý thuyết chương này →</button>' : '') +
-        '</div>' +
-      '</div>';
+      var diagHtml = ok
+        ? '<div class="diagnostic-feedback ok-diag">' +
+            '<div class="fb-header"><span class="fb-badge ok">✓ Chính xác!</span> <b>Bạn đã nắm chắc kiến thức (+15 XP)</b></div>' +
+            '<div class="fb-section-box exp">' +
+              '<div class="fb-sec-title">💡 <b>Bản chất cốt lõi & Giải thích:</b></div>' +
+              '<div class="fb-sec-desc">' + fmt(cur.exp) + '</div>' +
+            '</div>' +
+            '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">' +
+              '<button class="btn primary small" data-act="coachTestNext">Câu tiếp theo →</button>' +
+              (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">📖 Xem lại lý thuyết chương này →</button>' : '') +
+            '</div>' +
+          '</div>'
+        : '<div class="diagnostic-feedback bad-diag">' +
+            '<div class="fb-header"><span class="fb-badge bad">✗ Chưa chính xác</span> <b>Phân tích lỗi sai & Chẩn đoán bẫy:</b></div>' +
+            '<div class="fb-comparison">' +
+              '<div class="fb-comp-row correct">' +
+                '<span class="fb-comp-label">✓ Đáp án đúng:</span>' +
+                '<span class="fb-comp-val"><b>' + esc(cur.a) + '.</b> ' + fmt(correctObj.t) + '</span>' +
+              '</div>' +
+              '<div class="fb-comp-row wrong">' +
+                '<span class="fb-comp-label">✗ Bạn đã chọn:</span>' +
+                '<span class="fb-comp-val"><b>' + esc(p) + '.</b> ' + fmt(pickedObj.t) + '</span>' +
+              '</div>' +
+            '</div>' +
+            (cur.h3 ? '<div class="fb-section-box flaw">' +
+              '<div class="fb-sec-title">⚠️ <b>Chỉ ra lỗi sai & Bẫy phương án ' + esc(p) + ':</b></div>' +
+              '<div class="fb-sec-desc">' + fmt(cur.h3) + '</div>' +
+            '</div>' : '') +
+            '<div class="fb-section-box exp">' +
+              '<div class="fb-sec-title">💡 <b>Bản chất khoa học & Giải thích:</b></div>' +
+              '<div class="fb-sec-desc">' + fmt(cur.exp) + '</div>' +
+            '</div>' +
+            '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">' +
+              '<button class="btn primary small" data-act="coachTestNext">Câu tiếp theo →</button>' +
+              (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">📖 Xem lại lý thuyết chương này →</button>' : '') +
+            '</div>' +
+          '</div>';
 
       if (diagContainer) {
         diagContainer.outerHTML = diagHtml;
@@ -2190,19 +2317,10 @@
 
       var pickedBtn = $('[data-act="coachTestPick"][data-p="' + p + '"]', card);
       if (pickedBtn && hasGSAP && !prefersReduced) {
-        if (ok) {
-          spawnXPParticle(pickedBtn, 15);
-          updateHeaderStats(true);
-          gsap.fromTo(pickedBtn, { scale: 0.95 }, { scale: 1, duration: 0.35, ease: "elastic.out(1, 0.4)", clearProps: "transform" });
-          gsap.fromTo($(".diagnostic-feedback", card), { opacity: 0, y: 12, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power2.out" });
-        } else {
-          updateHeaderStats(false);
-          gsap.fromTo(pickedBtn, { x: -6 }, { x: 6, duration: 0.07, repeat: 3, yoyo: true, ease: "power1.inOut", onComplete: function () { gsap.set(pickedBtn, { x: 0 }); } });
-          gsap.fromTo($(".diagnostic-feedback", card), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" });
-        }
-      } else {
-        updateHeaderStats(ok);
+        gsap.fromTo(pickedBtn, { scale: 0.98 }, { scale: 1, duration: 0.2, ease: "power2.out", clearProps: "transform" });
+        gsap.fromTo($(".diagnostic-feedback", card), { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out" });
       }
+      updateHeaderStats(ok);
     } else {
       render();
     }
@@ -2630,14 +2748,10 @@
         var obj = { val: curVal };
         gsap.to(obj, {
           val: s.xp,
-          duration: 0.7,
+          duration: 0.4,
           ease: "power2.out",
           onUpdate: function () { x.textContent = Math.round(obj.val); }
         });
-        var pill = x.closest(".pill");
-        if (pill) {
-          gsap.fromTo(pill, { scale: 1.25 }, { scale: 1, duration: 0.45, ease: "elastic.out(1, 0.4)", clearProps: "transform" });
-        }
       } else {
         x.textContent = s.xp;
       }
