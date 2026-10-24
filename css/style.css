@@ -1449,3 +1449,196 @@ body.edit-mode-active [data-inline-edit]:focus {
   from { opacity: 0; transform: translateY(14px) scale(0.95); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
+
+/* ═══════════ TASTE & MOTION SYSTEM (GSAP / HUASHU / TASTE-SKILL) ═══════════ */
+
+/* — Smooth interactive transitions on all interactive elements — */
+button, .btn, .chip, .tab, .stab, .ch-card, .note, .checkpoint-opt, .mcq-opt, .tf-opt {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* — Tactile button polish — */
+.btn {
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.18s cubic-bezier(0.2, 0, 0, 1), background-color 0.15s ease, border-color 0.15s ease;
+}
+.btn:hover {
+  transform: translateY(-1.5px);
+}
+.btn:active {
+  transform: scale(0.975);
+}
+.btn.primary {
+  background: linear-gradient(180deg, #a86438 0%, #904f27 100%);
+  border: 1px solid rgba(115, 60, 25, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 2px 6px rgba(155, 91, 50, 0.24);
+  color: #fffdf8;
+}
+.btn.primary:hover {
+  background: linear-gradient(180deg, #b36e40 0%, #99552c 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 18px rgba(155, 91, 50, 0.32);
+}
+.btn.good {
+  background: linear-gradient(180deg, #539453 0%, #447a44 100%);
+  border: 1px solid rgba(45, 95, 45, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 2px 6px rgba(79, 138, 79, 0.22);
+}
+.btn.good:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 16px rgba(79, 138, 79, 0.3);
+}
+
+/* — Elevated Chapter Cards (Depth & Scholarly Texture) — */
+.ch-card {
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1), border-color 0.22s ease;
+  will-change: transform, box-shadow;
+}
+.ch-card:hover {
+  transform: translateY(-3.5px);
+  border-color: var(--warm);
+  box-shadow: 0 4px 12px rgba(47, 37, 27, 0.05), 0 18px 36px -4px rgba(47, 37, 27, 0.11);
+}
+.ch-card:active {
+  transform: scale(0.99) translateY(-1px);
+}
+
+/* — Note Cards (Tactile Paper Elevation) — */
+.note {
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.22s cubic-bezier(0.2, 0, 0, 1), border-color 0.2s ease;
+  box-shadow: 0 1px 3px rgba(47, 37, 27, 0.04), 0 8px 24px -4px rgba(47, 37, 27, 0.06);
+}
+.note:hover {
+  border-color: var(--line);
+  box-shadow: 0 2px 6px rgba(47, 37, 27, 0.05), 0 14px 32px -4px rgba(47, 37, 27, 0.09);
+}
+
+/* — Guided Checkpoint & Multiple Choice Option Cards — */
+.checkpoint-opt, .mcq-opt, .tf-opt {
+  position: relative;
+  transition: transform 0.16s cubic-bezier(0.2, 0, 0, 1), border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+  will-change: transform, box-shadow;
+  box-shadow: 0 1px 3px rgba(47, 37, 27, 0.04), 0 3px 8px rgba(47, 37, 27, 0.02);
+}
+.checkpoint-opt:hover, .mcq-opt:hover, .tf-opt:hover {
+  transform: translateY(-1.5px);
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 4px 14px rgba(47, 37, 27, 0.07);
+}
+.checkpoint-opt:active, .mcq-opt:active, .tf-opt:active {
+  transform: scale(0.985);
+}
+.checkpoint-opt.picked.correct, .mcq-opt.picked.good {
+  background: #f0f8ee !important;
+  border-color: #38a169 !important;
+  color: #1a4d2e !important;
+  box-shadow: 0 0 0 1px #38a169, 0 4px 16px rgba(56, 161, 105, 0.18) !important;
+}
+.checkpoint-opt.picked.wrong, .mcq-opt.picked.warn {
+  background: #fdf2f0 !important;
+  border-color: #e53e3e !important;
+  color: #742a2a !important;
+  box-shadow: 0 0 0 1px #e53e3e, 0 4px 16px rgba(229, 62, 62, 0.16) !important;
+}
+
+/* — Flashcard 3D Physical Paper Styling — */
+.flash-card {
+  perspective: 1400px;
+  will-change: transform;
+}
+.flash-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.42s cubic-bezier(0.2, 0.8, 0.25, 1);
+  border-radius: 20px;
+}
+.flash-face {
+  border-radius: 20px;
+  box-shadow: 0 4px 16px -2px rgba(47, 37, 27, 0.07), 0 18px 44px -6px rgba(47, 37, 27, 0.12);
+  border: 1px solid var(--line-soft);
+}
+.flash-face.front {
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.95) 0%, rgba(251, 246, 238, 0.92) 100%);
+}
+.flash-face.back {
+  background: linear-gradient(180deg, rgba(255, 254, 250, 0.98) 0%, rgba(246, 239, 227, 0.94) 100%);
+}
+
+/* — Floating XP Dopamine Badge — */
+.xp-fly-badge {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999999;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.98rem;
+  font-weight: 750;
+  color: #1e5a26;
+  background: #ffffff;
+  border: 1.5px solid #38a169;
+  border-radius: 999px;
+  padding: 6px 16px;
+  box-shadow: 0 6px 22px rgba(56, 161, 105, 0.32);
+  will-change: transform, opacity;
+  font-family: var(--font-body);
+}
+.xp-fly-badge svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+}
+
+/* — Header Stats Pill Bounce — */
+.stats .pill {
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s ease;
+}
+.stats .pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(47, 37, 27, 0.08);
+}
+
+/* — Smooth Accordion Hint Transitions — */
+.coach-hint-item {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+}
+.coach-hint-btn {
+  transition: background-color 0.18s ease;
+}
+.coach-hint-btn:hover {
+  background: rgba(246, 239, 227, 0.6);
+}
+
+/* — Theory Link Direct Pill — */
+.link-theory-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fdf6ec !important;
+  color: #a4612d !important;
+  border: 1px solid #ebd3b4 !important;
+  font-weight: 650 !important;
+  border-radius: 999px !important;
+  padding: 5px 14px !important;
+  font-size: 0.84rem !important;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1) !important;
+}
+.link-theory-btn:hover {
+  background: #9b5b32 !important;
+  color: #ffffff !important;
+  border-color: #9b5b32 !important;
+  transform: translateY(-1px) scale(1.02) !important;
+  box-shadow: 0 4px 12px rgba(155, 91, 50, 0.24) !important;
+}
+
+/* — Respect Reduced Motion for Accessibility — */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -5,6 +5,71 @@
   /* ---------- tiny utils ---------- */
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.from((root || document).querySelectorAll(sel)); };
+    /* ═══════════ GSAP MOTION & TASTE SYSTEM ═══════════ */
+  var hasGSAP = typeof gsap !== "undefined";
+  var prefersReduced = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function spawnXPParticle(originEl, amount) {
+    if (!hasGSAP || prefersReduced || typeof document === "undefined") return;
+    var x = window.innerWidth / 2;
+    var y = window.innerHeight / 2;
+    if (originEl && originEl.getBoundingClientRect) {
+      var rect = originEl.getBoundingClientRect();
+      x = rect.left + rect.width / 2;
+      y = rect.top;
+    }
+    var badge = document.createElement("div");
+    badge.className = "xp-fly-badge";
+    badge.innerHTML = ico("flame") + " +" + (amount || 10) + " XP";
+    badge.style.left = x + "px";
+    badge.style.top = y + "px";
+    document.body.appendChild(badge);
+
+    gsap.fromTo(badge,
+      { xPercent: -50, yPercent: -50, scale: 0.6, opacity: 1 },
+      {
+        y: y - 50,
+        scale: 1.15,
+        opacity: 0,
+        duration: 1.0,
+        ease: "power2.out",
+        onComplete: function () { badge.remove(); }
+      }
+    );
+  }
+
+  function animateViewEntrance() {
+    if (!hasGSAP || prefersReduced || typeof document === "undefined") return;
+    var viewContainer = $("#app > section, #app > .panel, #app > .guided-container, #app > .coach-test-card, #app > .flash-session, #app > .flash-setup");
+    if (viewContainer) {
+      gsap.fromTo(viewContainer,
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.34, ease: "power2.out", clearProps: "transform,opacity" }
+      );
+    }
+    var chCards = $$(".chapter-grid .ch-card");
+    if (chCards.length) {
+      gsap.fromTo(chCards,
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.36, stagger: 0.025, ease: "power2.out", clearProps: "transform,opacity" }
+      );
+    }
+    var notes = $$(".note-grid .note");
+    if (notes.length) {
+      gsap.fromTo(notes,
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.38, stagger: 0.035, ease: "power2.out", clearProps: "transform,opacity" }
+      );
+    }
+    var guidedSecs = $$(".guided-section");
+    if (guidedSecs.length) {
+      gsap.fromTo(guidedSecs,
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.36, stagger: 0.06, ease: "power2.out", clearProps: "transform,opacity" }
+      );
+    }
+  }
+
   var esc = function (s) {
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
@@ -928,6 +993,8 @@
     // PRESERVE SCROLL POSITION: Never arbitrarily pull scrollbar to top!
     if (keepScroll !== false && prevY > 0) {
       window.scrollTo({ top: prevY, behavior: "instant" });
+    } else if (keepScroll === false) {
+      animateViewEntrance();
     }
 
     if (state.mode === "library" && state.lib === "graph") initGraph();
@@ -1262,32 +1329,64 @@
   var FLASH_INTERVALS = [1, 3, 7, 15, 30];
   function markFlash(good) {
     var f = state.flash;
+    if (!f || !f.items) return;
     var it = f.items[f.i];
     if (!it) return;
-    var s = profile();
-    var rec = s.deck[it.key] || { lvl: 0, due: 0 };
-    if (good) {
-      f.good++;
-      rec.lvl = Math.min(rec.lvl + 1, 5);
-      rec.due = Date.now() + FLASH_INTERVALS[rec.lvl - 1] * 24 * 3600 * 1000;
-      addXP(s, it.ch, 10);
+
+    function applyMark() {
+      var s = profile();
+      var rec = s.deck[it.key] || { lvl: 0, due: 0 };
+      if (good) {
+        f.good++;
+        rec.lvl = Math.min(rec.lvl + 1, 5);
+        rec.due = Date.now() + FLASH_INTERVALS[rec.lvl - 1] * 24 * 3600 * 1000;
+        addXP(s, it.ch, 10);
+      } else {
+        f.again++;
+        rec.lvl = 0;
+        rec.due = Date.now() + 5 * 60 * 1000;
+        s.xp += 1; save(s);
+      }
+      s.deck[it.key] = rec;
+      save(s);
+      f.flipped = false;
+      f.i++;
+      if (f.i >= f.items.length) {
+        activity();
+        renderPracticeOnly();
+        updateHeaderStats(good);
+        return;
+      }
+      eventBusChanged();
+      updateHeaderStats(good);
+    }
+
+    var fc = $(".flash-card");
+    if (hasGSAP && !prefersReduced && fc) {
+      var targetX = good ? 160 : -160;
+      var targetRot = good ? 9 : -9;
+      gsap.to(fc, {
+        x: targetX,
+        rotation: targetRot,
+        opacity: 0,
+        scale: 0.94,
+        duration: 0.24,
+        ease: "power2.in",
+        onComplete: function () {
+          gsap.set(fc, { x: 0, rotation: 0, opacity: 1, scale: 1 });
+          applyMark();
+          var newFc = $(".flash-card");
+          if (newFc) {
+            gsap.fromTo(newFc,
+              { x: -targetX * 0.45, rotation: -targetRot * 0.45, opacity: 0, scale: 0.94 },
+              { x: 0, rotation: 0, opacity: 1, scale: 1, duration: 0.34, ease: "back.out(1.25)", clearProps: "all" }
+            );
+          }
+        }
+      });
     } else {
-      f.again++;
-      rec.lvl = 0;
-      rec.due = Date.now() + 5 * 60 * 1000;
-      s.xp += 1; save(s);
+      applyMark();
     }
-    s.deck[it.key] = rec;
-    save(s);
-    f.flipped = false;
-    f.i++;
-    if (f.i >= f.items.length) {
-      activity();
-      renderPracticeOnly();
-      updateHeaderStats();
-      return;
-    }
-    eventBusChanged();
   }
 
   /* ---------- BANK QUIZ ---------- */
@@ -1802,7 +1901,22 @@
       box.innerHTML = '<div class="checkpoint-q">' + fmt(check.q) + '</div>' +
         '<div class="checkpoint-opts">' + checkOptsHtml + '</div>' +
         feedbackHtml;
-      updateHeaderStats();
+
+      var clickedBtn = $('[data-act="guidedPick"][data-k="' + k + '"]', box);
+      if (clickedBtn && hasGSAP && !prefersReduced) {
+        if (isCorrect) {
+          spawnXPParticle(clickedBtn, 25);
+          updateHeaderStats(true);
+          gsap.fromTo(clickedBtn, { scale: 0.95 }, { scale: 1, duration: 0.35, ease: "elastic.out(1, 0.4)", clearProps: "transform" });
+          gsap.fromTo($(".checkpoint-feedback", box), { opacity: 0, y: 12, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power2.out" });
+        } else {
+          updateHeaderStats(false);
+          gsap.fromTo(clickedBtn, { x: -6 }, { x: 6, duration: 0.07, repeat: 3, yoyo: true, ease: "power1.inOut", onComplete: function () { gsap.set(clickedBtn, { x: 0 }); } });
+          gsap.fromTo($(".checkpoint-feedback", box), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" });
+        }
+      } else {
+        updateHeaderStats(isCorrect);
+      }
     } else {
       render();
     }
@@ -1951,7 +2065,22 @@
       } else if (optsContainer) {
         optsContainer.insertAdjacentHTML("afterend", diagHtml);
       }
-      updateHeaderStats();
+
+      var pickedBtn = $('[data-act="coachTestPick"][data-p="' + p + '"]', card);
+      if (pickedBtn && hasGSAP && !prefersReduced) {
+        if (ok) {
+          spawnXPParticle(pickedBtn, 15);
+          updateHeaderStats(true);
+          gsap.fromTo(pickedBtn, { scale: 0.95 }, { scale: 1, duration: 0.35, ease: "elastic.out(1, 0.4)", clearProps: "transform" });
+          gsap.fromTo($(".diagnostic-feedback", card), { opacity: 0, y: 12, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power2.out" });
+        } else {
+          updateHeaderStats(false);
+          gsap.fromTo(pickedBtn, { x: -6 }, { x: 6, duration: 0.07, repeat: 3, yoyo: true, ease: "power1.inOut", onComplete: function () { gsap.set(pickedBtn, { x: 0 }); } });
+          gsap.fromTo($(".diagnostic-feedback", card), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" });
+        }
+      } else {
+        updateHeaderStats(ok);
+      }
     } else {
       render();
     }
@@ -2370,10 +2499,29 @@
       p.innerHTML = bar ? bar.outerHTML + body : body;
     } else { render(); }
   }
-  function updateHeaderStats() {
+  function updateHeaderStats(animate) {
     var s = profile();
-    var x = $("[data-xp]"); if (x) x.textContent = s.xp;
-    var st = $("[data-streak]"); if (st) st.textContent = s.streak.days;
+    var x = $("[data-xp]");
+    if (x) {
+      if (animate && hasGSAP && !prefersReduced) {
+        var curVal = parseInt(x.textContent, 10) || 0;
+        var obj = { val: curVal };
+        gsap.to(obj, {
+          val: s.xp,
+          duration: 0.7,
+          ease: "power2.out",
+          onUpdate: function () { x.textContent = Math.round(obj.val); }
+        });
+        var pill = x.closest(".pill");
+        if (pill) {
+          gsap.fromTo(pill, { scale: 1.25 }, { scale: 1, duration: 0.45, ease: "elastic.out(1, 0.4)", clearProps: "transform" });
+        }
+      } else {
+        x.textContent = s.xp;
+      }
+    }
+    var st = $("[data-streak]");
+    if (st) st.textContent = s.streak.days;
   }
   function eventBusChanged() {
     renderPracticeOnly(); updateHeaderStats();
@@ -2477,7 +2625,12 @@
         if (state.flash && state.flash.items && state.flash.items.length) {
           state.flash.flipped = !state.flash.flipped;
           var fc = $(".flash-card");
-          if (fc) fc.classList.toggle("flipped", state.flash.flipped);
+          if (fc) {
+            fc.classList.toggle("flipped", state.flash.flipped);
+            if (hasGSAP && !prefersReduced) {
+              gsap.fromTo(fc, { scale: 0.975 }, { scale: 1, duration: 0.38, ease: "back.out(1.4)", clearProps: "transform" });
+            }
+          }
         } break;
       case "flashAgain": markFlash(false); break;
       case "flashGood": markFlash(true); break;
