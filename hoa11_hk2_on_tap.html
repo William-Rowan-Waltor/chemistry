@@ -1,0 +1,3473 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hóa 11 HK2 – Tài Liệu Ôn Tập Toàn Diện</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #21262d;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent1: #58a6ff;   /* blue - alkene/alkyne */
+    --accent2: #f78166;   /* orange - arene */
+    --accent3: #d2a8ff;   /* purple - halogen */
+    --accent4: #7ee787;   /* green - alcohol/phenol */
+    --accent5: #ffa657;   /* amber - carbonyl */
+    --accent6: #ff7b72;   /* red - acid */
+    --gold: #e3b341;
+    --highlight: #1f6feb33;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0d1117 0%, #1a1f35 40%, #0d1f0d 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 32px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, #1f6feb22 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, #3fb95022 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #58a6ff, #7ee787, #ffa657);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .hero p { color: var(--muted); font-size: 1rem; }
+  .badge { display:inline-block; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 20px; padding: 4px 14px; font-size: 0.8rem; color: var(--muted); margin: 4px; }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,17,23,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    display: flex; overflow-x: auto; gap: 4px;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display:none; }
+  .nav a {
+    text-decoration: none; white-space: nowrap;
+    padding: 12px 16px; font-size: 0.82rem; font-weight: 600;
+    color: var(--muted); border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav a:hover { color: var(--text); border-color: var(--border); }
+  .nav a.c1 { color: var(--accent1); } .nav a.c1:hover { border-color: var(--accent1); }
+  .nav a.c2 { color: var(--accent2); } .nav a.c2:hover { border-color: var(--accent2); }
+  .nav a.c3 { color: var(--accent3); } .nav a.c3:hover { border-color: var(--accent3); }
+  .nav a.c4 { color: var(--accent4); } .nav a.c4:hover { border-color: var(--accent4); }
+  .nav a.c5 { color: var(--accent5); } .nav a.c5:hover { border-color: var(--accent5); }
+  .nav a.c6 { color: var(--accent6); } .nav a.c6:hover { border-color: var(--accent6); }
+
+  /* LAYOUT */
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 20px 64px; }
+
+  /* CHAPTER HEADERS */
+  .chapter {
+    margin-bottom: 56px;
+    scroll-margin-top: 56px;
+  }
+  .chapter-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .chapter-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; flex-shrink: 0;
+  }
+  .chapter-header h2 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.7rem; font-weight: 700;
+  }
+  .chapter-header small { display: block; color: var(--muted); font-size: 0.82rem; margin-top: 2px; }
+
+  /* SECTION */
+  .section { margin-bottom: 32px; }
+  .section-title {
+    font-size: 1rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-weight: 700; font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  /* FEYNMAN EXPLAIN BOX */
+  .feynman {
+    background: linear-gradient(135deg, #1a2e1a, #1a1f35);
+    border: 1px solid #3fb95044;
+    border-left: 3px solid var(--accent4);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+  }
+  .feynman::before {
+    content: '🧑‍🏫 Thầy giải thích đơn giản:';
+    display: block;
+    color: var(--accent4);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  /* REACTION BOX */
+  .rxn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    margin-bottom: 8px;
+    overflow-x: auto;
+  }
+  .rxn .arrow { color: var(--gold); font-weight: 700; }
+  .rxn .cond { color: var(--muted); font-size: 0.78rem; }
+  .rxn .highlight { color: var(--accent5); font-weight: 600; }
+  .rxn .product { color: var(--accent4); }
+
+  /* FORMULA TABLE */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+  th {
+    background: var(--surface2); color: var(--muted);
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 10px 14px; text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 10px 14px; border-bottom: 1px solid var(--border);
+    font-size: 0.9rem; vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #ffffff06; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+
+  /* RULE BOX */
+  .rule {
+    background: #1f1a0d;
+    border: 1px solid #ffa65744;
+    border-left: 3px solid var(--accent5);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  .rule-title {
+    color: var(--accent5); font-weight: 700; font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+
+  /* TRICK BOX */
+  .trick {
+    background: #1a1535;
+    border: 1px solid #d2a8ff44;
+    border-left: 3px solid var(--accent3);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  .trick-title {
+    color: var(--accent3); font-weight: 700; font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+
+  /* DANGER */
+  .danger {
+    background: #1f0d0d;
+    border: 1px solid #ff7b7244;
+    border-left: 3px solid var(--accent6);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  .danger-title {
+    color: var(--accent6); font-weight: 700; font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+
+  /* EXERCISE */
+  .exercise {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .ex-header {
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .ex-header:hover { background: var(--surface2); }
+  .ex-num {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .ex-q { font-weight: 600; font-size: 0.92rem; flex: 1; }
+  .ex-toggle { color: var(--muted); font-size: 1.1rem; transition: transform 0.2s; }
+  .ex-toggle.open { transform: rotate(180deg); }
+  .ex-body { padding: 18px; display: none; }
+  .ex-body.open { display: block; }
+  .ex-step {
+    display: flex; gap: 14px;
+    margin-bottom: 12px;
+  }
+  .step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent1); color: #000;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78rem; font-weight: 800;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .step-content { flex: 1; }
+  .answer {
+    background: #0d2318;
+    border: 1px solid #7ee78733;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 10px;
+  }
+  .answer-label {
+    color: var(--accent4); font-size: 0.78rem; font-weight: 700;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+
+  /* GRID */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+
+  /* INLINE CHEMISTRY */
+  .chem { font-family: 'JetBrains Mono', monospace; background: var(--surface2);
+    border-radius: 4px; padding: 1px 6px; font-size: 0.88em; }
+
+  /* SUMMARY BADGE */
+  .tag { display:inline-block; font-size:0.72rem; font-weight:700; padding: 2px 8px;
+    border-radius: 4px; margin: 2px; }
+  .tag-blue { background: #1f3a5f; color: var(--accent1); }
+  .tag-green { background: #1a3a1a; color: var(--accent4); }
+  .tag-orange { background: #3a2a0d; color: var(--accent5); }
+  .tag-purple { background: #2a1a3a; color: var(--accent3); }
+  .tag-red { background: #3a1a1a; color: var(--accent6); }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+  /* PROGRESS */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .toc h3 { font-size: 0.85rem; color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.07em; margin-bottom: 14px; }
+  .toc-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+    text-decoration: none; color: var(--text);
+  }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item:hover { color: var(--accent1); }
+  .toc-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .toc-chap { font-weight: 600; font-size: 0.9rem; flex: 1; }
+  .toc-tips { font-size: 0.78rem; color: var(--muted); }
+
+  hr.section-sep { border:none; border-top:2px dashed var(--border); margin:24px 0; }
+
+  /* ══════════════════ QUIZ STYLES ══════════════════ */
+  .quiz-toolbar {
+    position: sticky; top: 50px; z-index: 50;
+    background: rgba(13,17,23,0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 16px 0 24px;
+    display: flex; flex-wrap: wrap;
+    gap: 12px; align-items: center; justify-content: space-between;
+  }
+  .quiz-status {
+    font-size: 0.9rem; color: var(--muted);
+  }
+  .quiz-status strong { color: var(--gold); }
+  .quiz-btn {
+    padding: 9px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: all 0.18s;
+  }
+  .quiz-btn:hover { background: var(--surface); border-color: var(--gold); }
+  .quiz-btn.primary {
+    background: linear-gradient(135deg, var(--accent4), #4cc46d);
+    color: #0d1117;
+    border: none;
+  }
+  .quiz-btn.primary:hover { transform: translateY(-1px); box-shadow: 0 4px 16px #7ee78744; }
+  .quiz-btn.shuffle {
+    background: linear-gradient(135deg, var(--gold), #c89a2c);
+    color: #0d1117;
+    border: none;
+  }
+  .quiz-btn.shuffle:hover { transform: translateY(-1px); box-shadow: 0 4px 16px #e3b34144; }
+  .quiz-btn.reset {
+    background: var(--surface);
+    color: var(--muted);
+  }
+  .quiz-btn.reset:hover { color: var(--accent6); }
+
+  .quiz-section {
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .quiz-section-header {
+    padding: 14px 18px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    font-weight: 700;
+    font-size: 1.05rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .quiz-section-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+  }
+  .quiz-section-body { padding: 16px; }
+
+  .quiz-question {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+  .quiz-question.correct { border-color: var(--accent4); box-shadow: 0 0 0 1px var(--accent4)33; }
+  .quiz-question.wrong { border-color: var(--accent6); box-shadow: 0 0 0 1px var(--accent6)33; }
+  .quiz-question.unanswered.graded { border-color: var(--gold); }
+  .quiz-q-head {
+    display: flex; gap: 10px; align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .quiz-q-num {
+    flex-shrink: 0;
+    background: var(--surface2);
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 0.82rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    min-width: 42px;
+    text-align: center;
+  }
+  .quiz-q-text { flex: 1; color: var(--text); font-size: 0.95rem; line-height: 1.55; }
+  .quiz-options {
+    display: flex; flex-direction: column; gap: 6px;
+    padding-left: 0;
+  }
+  .quiz-opt {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 12px;
+    background: var(--surface2);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 0.92rem;
+  }
+  .quiz-opt:hover { border-color: var(--accent1); }
+  .quiz-opt input[type="radio"] { margin-top: 4px; accent-color: var(--accent4); }
+  .quiz-opt.selected { background: #1f6feb22; border-color: var(--accent1); }
+  .quiz-opt.correct-ans {
+    background: #2da04422;
+    border-color: var(--accent4);
+  }
+  .quiz-opt.wrong-ans {
+    background: #ff7b7222;
+    border-color: var(--accent6);
+  }
+  .quiz-opt-letter {
+    flex-shrink: 0;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 18px;
+  }
+
+  /* T/F sub-statements */
+  .quiz-tf-stem { margin-bottom: 12px; line-height: 1.6; padding: 10px 14px;
+    background: #1f6feb15; border-left: 3px solid var(--accent1);
+    border-radius: 0 6px 6px 0;
+  }
+  .quiz-tf-subs { display: flex; flex-direction: column; gap: 6px; }
+  .quiz-tf-sub {
+    background: var(--surface2);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 10px 14px;
+    transition: all 0.15s;
+  }
+  .quiz-tf-sub.correct-ans { background:#2da04422; border-color: var(--accent4); }
+  .quiz-tf-sub.wrong-ans { background:#ff7b7222; border-color: var(--accent6); }
+  .quiz-tf-sub-row {
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .quiz-tf-letter { color: var(--gold); font-weight: 700; min-width: 22px; }
+  .quiz-tf-text { flex: 1; font-size: 0.92rem; }
+  .quiz-tf-choices {
+    display: flex; gap: 8px; flex-shrink: 0; margin-top: 2px;
+  }
+  .quiz-tf-choice {
+    padding: 3px 11px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .quiz-tf-choice:hover { border-color: var(--accent1); }
+  .quiz-tf-choice.selected.choice-d { background: var(--accent4); color: #0d1117; border-color: var(--accent4); }
+  .quiz-tf-choice.selected.choice-s { background: var(--accent6); color: #0d1117; border-color: var(--accent6); }
+
+  /* Solution box (revealed after grading) */
+  .quiz-solution {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #e3b34115;
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text);
+    display: none;
+  }
+  .quiz-solution.show { display: block; animation: slideDown 0.25s; }
+  @keyframes slideDown { from { opacity:0; transform:translateY(-4px);} to { opacity:1; transform:none;} }
+  .quiz-solution strong.label-correct { color: var(--accent4); }
+  .quiz-solution strong.label-wrong { color: var(--accent6); }
+
+  /* SA (short-answer) input */
+  .quiz-sa-row {
+    display: flex; gap: 10px; align-items: center;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .quiz-sa-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 9px 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.15s;
+  }
+  .quiz-sa-input:focus {
+    outline: none;
+    border-color: var(--accent5);
+    background: var(--bg);
+  }
+  .quiz-sa-input.sa-correct {
+    background: #2da04422;
+    border-color: var(--accent4);
+    color: var(--accent4);
+    font-weight: 700;
+  }
+  .quiz-sa-input.sa-wrong {
+    background: #ff7b7222;
+    border-color: var(--accent6);
+    color: var(--accent6);
+  }
+  .quiz-sa-input.sa-empty {
+    background: #e3b34115;
+    border-color: var(--gold);
+  }
+  .quiz-sa-unit {
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-style: italic;
+  }
+
+  /* Score panel */
+  .quiz-score-panel {
+    background: linear-gradient(135deg, var(--surface2), var(--surface));
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0;
+    display: none;
+    text-align: center;
+  }
+  .quiz-score-panel.show { display: block; animation: slideDown 0.4s; }
+  .quiz-score-big {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--accent4), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .quiz-score-label { color: var(--muted); font-size: 0.95rem; margin-top: 6px; }
+  .quiz-score-detail {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    justify-content: center; margin-top: 16px;
+    font-size: 0.9rem;
+  }
+  .quiz-score-pill {
+    background: var(--bg);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+  }
+  .quiz-score-pill.green { color: var(--accent4); border-color: var(--accent4)55; }
+  .quiz-score-pill.red { color: var(--accent6); border-color: var(--accent6)55; }
+
+  @media (max-width: 600px) {
+    .quiz-toolbar { flex-direction: column; align-items: stretch; }
+    .quiz-tf-sub-row { flex-direction: column; gap: 8px; }
+    .quiz-tf-choices { align-self: flex-end; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>⚗️ Hóa 11 – Học Kỳ 2</h1>
+  <p>Tài liệu ôn tập toàn diện theo phương pháp Feynman — giải thích như dạy cho người chưa biết gì</p>
+  <div style="margin-top:12px;">
+    <span class="badge">📚 7 Chương + Ôn tập</span>
+    <span class="badge">🧪 50+ Phản ứng</span>
+    <span class="badge">✏️ 42 Bài tập có lời giải</span>
+    <span class="badge">🎯 ~130 câu Quiz tự chấm</span>
+    <span class="badge">⚠️ Bẫy thường gặp</span>
+  </div>
+</div>
+
+<nav class="nav">
+  <a href="#overview">📋 Tổng quan</a>
+  <a href="#ch1" class="c1">1. Alkene/Alkyne</a>
+  <a href="#ch2" class="c2">2. Arene</a>
+  <a href="#ch3" class="c3">3. Dẫn xuất Halogen</a>
+  <a href="#ch4" class="c4">4. Alcohol</a>
+  <a href="#ch5" class="c4">5. Phenol</a>
+  <a href="#ch6" class="c5">6. Aldehyde & Ketone</a>
+  <a href="#ch7" class="c6">7. Carboxylic Acid</a>
+  <a href="#ch-ontap" style="color:var(--gold);">🔄 Ôn tập</a>
+  <a href="#ch-quiz" style="color:var(--accent4); font-weight:700;">🎯 Quiz</a>
+</nav>
+
+<div class="container">
+
+<!-- TOC -->
+<div id="overview" class="toc" style="scroll-margin-top:60px;">
+  <h3>📋 Nội dung ôn tập</h3>
+  <a href="#ch1" class="toc-item">
+    <div class="toc-dot" style="background:var(--accent1)"></div>
+    <span class="toc-chap">Chương 1: Hydrocarbon không no (Alkene & Alkyne)</span>
+    <span class="toc-tips">Quy tắc Markovnikov · Trùng hợp · KMnO₄</span>
+  </a>
+  <a href="#ch2" class="toc-item">
+    <div class="toc-dot" style="background:var(--accent2)"></div>
+    <span class="toc-chap">Chương 2: Arene (Hydrocarbon thơm – Benzene)</span>
+    <span class="toc-tips">Nitro hóa · Halogen hóa · Quy tắc thế</span>
+  </a>
+  <a href="#ch3" class="toc-item">
+    <div class="toc-dot" style="background:var(--accent3)"></div>
+    <span class="toc-chap">Chương 3: Dẫn xuất Halogen</span>
+    <span class="toc-tips">Thủy phân · Quy tắc Zaitsev</span>
+  </a>
+  <a href="#ch4" class="toc-item">
+    <div class="toc-dot" style="background:var(--accent4)"></div>
+    <span class="toc-chap">Chương 4: Alcohol</span>
+    <span class="toc-tips">Na · CuO · H₂SO₄ · Liên kết hydrogen</span>
+  </a>
+  <a href="#ch5" class="toc-item">
+    <div class="toc-dot" style="background:var(--accent4)"></div>
+    <span class="toc-chap">Chương 5: Phenol</span>
+    <span class="toc-tips">Tính acid · Br₂ kết tủa trắng</span>
+  </a>
+  <a href="#ch6" class="toc-item">
+    <div class="toc-dot" style="background:var(--accent5)"></div>
+    <span class="toc-chap">Chương 6: Aldehyde & Ketone (Hợp chất carbonyl)</span>
+    <span class="toc-tips">Tráng bạc · Iodoform · Cu(OH)₂</span>
+  </a>
+  <a href="#ch7" class="toc-item">
+    <div class="toc-dot" style="background:var(--accent6)"></div>
+    <span class="toc-chap">Chương 7: Carboxylic Acid</span>
+    <span class="toc-tips">Tính acid · Ester hóa · Điều chế</span>
+  </a>
+  <a href="#ch-ontap" class="toc-item">
+    <div class="toc-dot" style="background:var(--gold)"></div>
+    <span class="toc-chap">🔄 Ôn tập (Bài tập tổng hợp)</span>
+    <span class="toc-tips">Bài tập sử dụng kiến thức ≥ 2 chương</span>
+  </a>
+  <a href="#ch-quiz" class="toc-item">
+    <div class="toc-dot" style="background:var(--accent4)"></div>
+    <span class="toc-chap">🎯 Quiz tự luyện (Trắc nghiệm + Đúng/Sai)</span>
+    <span class="toc-tips">~67 TN + 28 ý Đ-S + 35 trả lời ngắn · Shuffle/Submit/Lời giải</span>
+  </a>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CHAPTER 1: ALKENE / ALKYNE -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="ch1" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-icon" style="background:#1f3a5f; border:1px solid #58a6ff44;">🔗</div>
+    <div>
+      <h2 style="color:var(--accent1)">Chương 1: Hydrocarbon Không No</h2>
+      <small>Alkene (liên kết đôi) & Alkyne (liên kết ba)</small>
+    </div>
+  </div>
+
+  <div class="feynman">
+    Hãy tưởng tượng carbon như những viên gạch nối với nhau. Alkane là những viên gạch nối bằng <strong>1 cây đinh</strong> (liên kết đơn). Alkene thì có <strong>2 cây đinh</strong> ở 1 chỗ (liên kết đôi C=C). Alkyne có <strong>3 cây đinh</strong> (liên kết ba C≡C). Điều thú vị: chỗ nào có 2-3 cây đinh thì "dễ bị tấn công" hơn — đó chính là tại sao alkene và alkyne có <strong>phản ứng cộng</strong>.
+  </div>
+
+  <div class="section">
+    <div class="section-title">📐 Công thức tổng quát</div>
+    <table>
+      <tr>
+        <th>Loại</th>
+        <th>Công thức chung</th>
+        <th>Đặc điểm</th>
+        <th>Ví dụ</th>
+      </tr>
+      <tr>
+        <td><span class="tag tag-blue">Alkene</span></td>
+        <td class="mono">CₙH₂ₙ (n ≥ 2)</td>
+        <td>1 liên kết đôi C=C</td>
+        <td class="mono">C₂H₄ (ethylene), C₃H₆ (propylene)</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-blue">Alkyne</span></td>
+        <td class="mono">CₙH₂ₙ₋₂ (n ≥ 2)</td>
+        <td>1 liên kết ba C≡C</td>
+        <td class="mono">C₂H₂ (acetylene), C₃H₄ (propyne)</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-orange">Alkane</span></td>
+        <td class="mono">CₙH₂ₙ₊₂ (n ≥ 1)</td>
+        <td>Chỉ liên kết đơn (so sánh)</td>
+        <td class="mono">CH₄, C₂H₆, C₃H₈</td>
+      </tr>
+    </table>
+    <div class="trick">
+      <div class="trick-title">🧠 Mẹo nhớ công thức</div>
+      Alkane → Alkene → Alkyne: mỗi lần "bớt" 2H khi hình thành 1 liên kết pi thêm.
+      <br><br>Alkane = 2n+2 H | Alkene = 2n H (bớt 2) | Alkyne = 2n-2 H (bớt thêm 2)
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🔥 Tính chất hoá học quan trọng</div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent1)">1. Phản ứng cộng Br₂ (nhận biết alkene/alkyne)</div>
+      <div class="rxn">
+        CH₂=CH₂ + Br₂ <span class="arrow">→</span> <span class="product">CH₂Br–CH₂Br</span>
+        <br><span class="cond">(dung dịch bromine mất màu cam → mất màu = có liên kết đôi/ba)</span>
+      </div>
+      <div class="rxn">
+        CH≡CH + Br₂ <span class="arrow">→</span> CHBr=CHBr <span class="arrow">+ Br₂ →</span> <span class="product">CHBr₂–CHBr₂</span>
+        <br><span class="cond">(alkyne cộng 2 lần, tổng cộng 2 mol Br₂)</span>
+      </div>
+      <div class="feynman" style="margin-top:10px; margin-bottom:0;">
+        Nhớ: <strong>Alkane KHÔNG làm mất màu Br₂</strong> ở điều kiện thường. Đây là cách phân biệt. Propane + Br₂ → không phản ứng (ở điều kiện thường). Propene + Br₂ → mất màu ngay!
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent1)">2. Phản ứng cộng HX — Quy tắc Markovnikov ⭐</div>
+      <div class="rule">
+        <div class="rule-title">⚖️ Quy tắc Markovnikov (bắt buộc phải nhớ)</div>
+        Khi cộng HX vào alkene bất đối xứng:<br>
+        <strong>H cộng vào C nào nhiều H hơn, X cộng vào C còn lại (ít H hơn)</strong>
+      </div>
+      <div class="rxn">
+        CH₂=CH–CH₃ + HCl
+        <br>H cộng vào CH₂= (nhiều H hơn), Cl vào =CH–CH₃
+        <br><span class="arrow">→</span> <span class="product">CH₃–CHCl–CH₃</span> (sản phẩm chính)
+        <span class="cond">[KHÔNG phải CH₂Cl–CH₂–CH₃]</span>
+      </div>
+      <div class="feynman" style="margin-top:8px; margin-bottom:0;">
+        Cách nhớ dễ nhất: "Nhà giàu thêm giàu" — H đến chỗ đã có nhiều H rồi (giàu H). X đến chỗ ít H (nghèo H).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent1)">3. Phản ứng oxi hóa bằng KMnO₄</div>
+      <div class="rxn">
+        3CH₂=CH₂ + 2KMnO₄ + 4H₂O <span class="arrow">→</span> <span class="product">3HO–CH₂–CH₂–OH</span> + 2MnO₂↓ + 2KOH
+        <br><span class="cond">(dung dịch KMnO₄ màu tím bị mất màu → nhận biết alkene)</span>
+      </div>
+      <div class="danger">
+        <div class="danger-title">⚠️ Phân biệt Br₂ vs KMnO₄</div>
+        Cả hai đều bị mất màu bởi alkene/alkyne. Nhưng Br₂ cũng phản ứng với alkyne theo 2 bước. KMnO₄ oxy hóa cắt đôi liên kết → cho diol hoặc acid/CO₂ tùy điều kiện.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent1)">4. Phản ứng trùng hợp (polymer)</div>
+      <div class="rxn">
+        n CH₂=CH₂ <span class="arrow">→(t°, xt, p)</span> <span class="product">[–CH₂–CH₂–]ₙ</span>
+        <br><span class="cond">(polyethylene – PE, túi nilon)</span>
+      </div>
+      <div class="rxn">
+        n CH₂=CH–CH=CH₂ <span class="arrow">→(Na, t°)</span> <span class="product">[–CH₂–CH=CH–CH₂–]ₙ</span>
+        <br><span class="cond">(polybutadiene – cao su tổng hợp)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent1)">5. Phản ứng đặc biệt của Alkyne (alk-1-yne): thế H linh động ⭐</div>
+      <div class="feynman" style="margin-bottom:10px;">
+        Alkyne có liên kết ba C≡C. Nếu C≡C ở đầu mạch (C-1), thì nguyên tử H gắn vào nó <strong>linh động</strong> — dễ bị thay thế bởi ion kim loại. Đây là phản ứng <strong>đặc trưng chỉ có ở alk-1-yne</strong>.
+      </div>
+      <div class="rxn">
+        CH≡CH + 2AgNO₃ + 2NH₃ <span class="arrow">→</span> <span class="product">AgC≡CAg↓</span> + 2NH₄NO₃
+        <br><span class="cond">(kết tủa vàng nhạt → nhận biết alk-1-yne)</span>
+      </div>
+      <div class="rxn">
+        CH≡C–R + AgNO₃/NH₃ <span class="arrow">→</span> <span class="product">AgC≡C–R↓</span> + NH₄NO₃
+        <br><span class="cond">(propyne, but-1-yne... cũng cho phản ứng này)</span>
+      </div>
+      <div class="danger">
+        <div class="danger-title">⚠️ Bẫy thường gặp</div>
+        But-2-yne (CH₃–C≡C–CH₃) <strong>KHÔNG</strong> có phản ứng này vì C≡C ở giữa mạch, không có H linh động.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent1)">6. Điều chế acetylene (quan trọng cho bài tính toán)</div>
+      <div class="rxn">
+        CaC₂ + 2H₂O <span class="arrow">→</span> <span class="product">Ca(OH)₂ + C₂H₂↑</span>
+        <br><span class="cond">(đất đèn + nước → acetylene; đây là phương pháp phòng thí nghiệm)</span>
+      </div>
+      <div class="rxn">
+        2CH₄ <span class="arrow">→(1500°C, làm lạnh nhanh)</span> <span class="product">C₂H₂ + 3H₂</span>
+        <br><span class="cond">(công nghiệp: nhiệt phân methane)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">✏️ Bài tập có lời giải</div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 1</span>
+        <span class="ex-q">Muốn điều chế 33,6 lít khí acetylene (đktc) cần m gam đất đèn (80% CaC₂). Tính m?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step">
+          <div class="step-num">1</div>
+          <div class="step-content"><strong>Tính số mol C₂H₂ cần điều chế:</strong><br>
+          n(C₂H₂) = V/22,4 = 33,6/22,4 = <strong>1,5 mol</strong></div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">2</div>
+          <div class="step-content"><strong>Phương trình phản ứng:</strong>
+          <div class="rxn">CaC₂ + 2H₂O → Ca(OH)₂ + C₂H₂</div>
+          Theo PT: n(CaC₂) = n(C₂H₂) = 1,5 mol</div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">3</div>
+          <div class="step-content"><strong>Tính khối lượng CaC₂ nguyên chất:</strong><br>
+          M(CaC₂) = 40 + 24 = 64 g/mol<br>
+          m(CaC₂) = 1,5 × 64 = <strong>96 g</strong></div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">4</div>
+          <div class="step-content"><strong>Đất đèn chứa 80% CaC₂, nên:</strong><br>
+          m(đất đèn) = 96 / 0,80 = <strong>120 g</strong></div>
+        </div>
+        <div class="answer"><div class="answer-label">✅ Đáp án</div>m = <strong>120 gam</strong></div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 2</span>
+        <span class="ex-q">Propene (CH₂=CH–CH₃) + HCl → sản phẩm chính là gì? Giải thích quy tắc Markovnikov.</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step">
+          <div class="step-num">1</div>
+          <div class="step-content"><strong>Xác định liên kết đôi và hai carbon:</strong><br>
+          CH₂=CH–CH₃: C1 (=CH₂, có <strong>2H</strong>), C2 (=CH–, có <strong>1H</strong>)</div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">2</div>
+          <div class="step-content"><strong>Áp dụng Markovnikov:</strong><br>
+          H → C nhiều H hơn (C1 = CH₂)<br>
+          Cl → C ít H hơn (C2 = CH–)</div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">3</div>
+          <div class="step-content"><strong>Viết sản phẩm:</strong>
+          <div class="rxn">CH₂=CH–CH₃ + HCl <span class="arrow">→</span> <span class="product">CH₃–CHCl–CH₃</span> (2-chloropropane)</div></div>
+        </div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: A — CH₃–CHCl–CH₃</div>
+        CH₂Cl–CH₂–CH₃ là sản phẩm phụ (Markovnikov bị vi phạm)</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 3</span>
+        <span class="ex-q">Cho but-1-ene và but-2-yne cộng H₂ (Ni, t°) thu được sản phẩm gì? Có giống nhau không?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step">
+          <div class="step-num">1</div>
+          <div class="step-content"><strong>But-1-ene + H₂:</strong>
+          <div class="rxn">CH₂=CH–CH₂–CH₃ + H₂ <span class="arrow">→(Ni,t°)</span> <span class="product">CH₃–CH₂–CH₂–CH₃ (butane)</span></div></div>
+        </div>
+        <div class="ex-step">
+          <div class="step-num">2</div>
+          <div class="step-content"><strong>But-2-yne + 2H₂:</strong>
+          <div class="rxn">CH₃–C≡C–CH₃ + 2H₂ <span class="arrow">→(Ni,t°)</span> <span class="product">CH₃–CH₂–CH₂–CH₃ (butane)</span></div></div>
+        </div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: ĐÚNG — Cả hai đều cho butane</div>
+        But-1-ene (CₙH₂ₙ) + 1H₂ → butane. But-2-yne (CₙH₂ₙ₋₂) + 2H₂ → butane.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 15</span>
+        <span class="ex-q">Trong các chất sau, chất nào KHÔNG làm mất màu dung dịch bromine ở điều kiện thường: propane, propylene, propyne, styrene?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Hãy hình dung Br₂ như "thuốc thử" chỉ "tấn công" vào liên kết bội (đôi C=C hoặc ba C≡C). Nếu chất chỉ có liên kết đơn → Br₂ không có chỗ "cộng vào" → không mất màu.
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Phân tích từng chất:</strong><br>
+          • Propane (CH₃-CH₂-CH₃): chỉ có <strong>liên kết đơn</strong> → KHÔNG mất màu Br₂ ❌<br>
+          • Propylene (CH₂=CH-CH₃): có <strong>C=C</strong> (alkene) → mất màu Br₂ ✅<br>
+          • Propyne (CH≡C-CH₃): có <strong>C≡C</strong> (alkyne) → mất màu Br₂ ✅<br>
+          • Styrene (C₆H₅-CH=CH₂): có <strong>C=C</strong> ngoài vòng benzene → mất màu Br₂ ✅</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phương trình ví dụ với propylene:</strong>
+          <div class="rxn">CH₂=CH-CH₃ + Br₂ <span class="arrow">→</span> <span class="product">CH₂Br-CHBr-CH₃</span> (1,2-dibromopropane)</div></div>
+        </div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: A — propane</div>
+        Quy tắc nhanh: alkane (chỉ liên kết đơn) → KHÔNG mất màu Br₂; alkene/alkyne/styrene → mất màu Br₂.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 16</span>
+        <span class="ex-q">Chất nào tham gia được CẢ 4 phản ứng: cháy O₂, cộng Br₂, cộng H₂ (Ni,t°), thế với AgNO₃/NH₃? (ethane, ethylene, acetylene, cyclopropane)</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Yêu cầu này là một bài "lọc liên tiếp": chất phải vừa <strong>không no</strong> (để cộng Br₂, H₂), vừa có <strong>H linh động ở C≡C đầu mạch</strong> (để thế với Ag⁺). Chỉ alk-1-yne (HC≡C-R) thỏa mãn cả 2 điều này.
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Lọc các phản ứng:</strong>
+          <table>
+            <tr><th>Chất</th><th>Cháy O₂</th><th>Cộng Br₂</th><th>Cộng H₂</th><th>AgNO₃/NH₃</th></tr>
+            <tr><td>Ethane (C₂H₆)</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+            <tr><td>Ethylene (C₂H₄)</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
+            <tr><td><strong>Acetylene (C₂H₂)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+            <tr><td>Cyclopropane</td><td>✅</td><td>~ (chỉ vài đk đặc biệt)</td><td>~</td><td>❌</td></tr>
+          </table></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phản ứng đặc trưng của acetylene:</strong>
+          <div class="rxn">HC≡CH + 2AgNO₃ + 2NH₃ <span class="arrow">→</span> <span class="product">AgC≡CAg↓ + 2NH₄NO₃</span>
+          <br><span class="cond">(kết tủa vàng nhạt — đặc trưng của alk-1-yne)</span></div></div>
+        </div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: C — Acetylene (C₂H₂)</div>
+        Chỉ alk-1-yne (HC≡C-R) tạo kết tủa với AgNO₃/NH₃; alk-2-yne (R-C≡C-R') KHÔNG tạo kết tủa vì không có H ở đầu C≡C.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 17</span>
+        <span class="ex-q">Cho but-1-ene và but-2-ene tác dụng với KMnO₄ loãng (nhiệt độ thường). Sản phẩm diol thu được có mấy nhóm OH bậc nào? Có đồng phân cis-trans không?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          KMnO₄ loãng "hydroxyl hóa" liên kết đôi C=C → biến mỗi C ở liên kết đôi thành C-OH. Bậc của alcohol phụ thuộc vào carbon đó còn mấy H sau khi gắn OH:
+          <br>• C có 2H (=CH₂) → CH₂OH = <strong>bậc 1</strong>
+          <br>• C có 1H (=CH-) → CHOH = <strong>bậc 2</strong>
+          <br>• C có 0H (=C&lt;) → C-OH = <strong>bậc 3</strong>
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>But-1-ene + KMnO₄:</strong>
+          <div class="rxn">3CH₂=CH-CH₂-CH₃ + 2KMnO₄ + 4H₂O <span class="arrow">→</span> <span class="product">3CH₂OH-CHOH-CH₂-CH₃</span> + 2MnO₂↓ + 2KOH</div>
+          → Diol có: 1 nhóm OH bậc 1 (-CH₂OH) + 1 nhóm OH bậc 2 (-CHOH-)</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>But-2-ene + KMnO₄:</strong>
+          <div class="rxn">3CH₃-CH=CH-CH₃ + 2KMnO₄ + 4H₂O <span class="arrow">→</span> <span class="product">3CH₃-CHOH-CHOH-CH₃</span> + 2MnO₂↓ + 2KOH</div>
+          → Diol có: 2 nhóm OH bậc 2 (cả hai C đều là -CHOH-)</div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Đồng phân hình học (cis-trans):</strong><br>
+          • But-1-ene (CH₂=CH-CH₂-CH₃): 1 đầu C=C có 2H giống nhau → <strong>không có cis-trans</strong> ❌<br>
+          • But-2-ene (CH₃-CH=CH-CH₃): mỗi C ở C=C có 2 nhóm khác nhau (H và CH₃) → <strong>có cis-trans</strong> ✅</div></div>
+        <div class="answer"><div class="answer-label">✅ Tổng hợp đáp án (Đ-S):</div>
+        (a) Một diol chứa 2 nhóm OH bậc 1 → <strong>SAI</strong> (but-1-ene cho 1 bậc 1 + 1 bậc 2)<br>
+        (b) Một diol chứa 1 OH bậc 1 + 1 OH bậc 2 → <strong>ĐÚNG</strong> (but-1-ene)<br>
+        (c) Một diol chứa 2 OH bậc 2 → <strong>ĐÚNG</strong> (but-2-ene)<br>
+        (d) Cả hai alkene đều có cis-trans → <strong>SAI</strong> (chỉ but-2-ene có)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CHAPTER 2: ARENE -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="ch2" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-icon" style="background:#2d1a0d; border:1px solid #f7816644;">⬡</div>
+    <div>
+      <h2 style="color:var(--accent2)">Chương 2: Arene (Hydrocarbon Thơm)</h2>
+      <small>Benzene và các dẫn xuất</small>
+    </div>
+  </div>
+
+  <div class="feynman">
+    Benzene (C₆H₆) là vòng 6 carbon, nhìn như một chiếc vòng tròn. Điểm đặc biệt: 6 electron π chia đều cho cả vòng → <strong>vòng thơm rất bền</strong>. Không thích cộng như alkene, mà thích <strong>thế</strong> (thay H bằng thứ khác, giữ nguyên vòng bền).
+  </div>
+
+  <div class="section">
+    <div class="section-title">🏗️ Cấu trúc & tên gọi quan trọng</div>
+    <table>
+      <tr><th>Tên thường</th><th>Công thức</th><th>Cần nhớ</th></tr>
+      <tr><td>Benzene</td><td class="mono">C₆H₆</td><td>Vòng thuần túy</td></tr>
+      <tr><td>Toluene</td><td class="mono">C₆H₅–CH₃</td><td>Benzene + 1 CH₃</td></tr>
+      <tr><td>Styrene</td><td class="mono">C₆H₅–CH=CH₂</td><td>Có liên kết đôi ngoài → làm mất màu Br₂!</td></tr>
+      <tr><td>Naphthalene</td><td class="mono">C₁₀H₈</td><td>2 vòng benzene gộp lại</td></tr>
+    </table>
+    <div class="danger">
+      <div class="danger-title">⚠️ Bẫy: Styrene (C₈H₈)</div>
+      Styrene CÓ làm mất màu Br₂ (do liên kết đôi C=C bên ngoài vòng), còn benzene và toluene thì KHÔNG làm mất màu Br₂ ở điều kiện thường (phải có xúc tác Fe).
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚗️ Phản ứng hoá học</div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent2)">1. Phản ứng nitro hóa (phổ biến nhất trong đề thi)</div>
+      <div class="rxn">
+        C₆H₆ + HNO₃ <span class="arrow">→(H₂SO₄ đặc, ≤50°C)</span> <span class="product">C₆H₅NO₂</span> + H₂O
+        <br><span class="cond">(nitrobenzene — chất lỏng, màu vàng, mùi hạnh nhân)</span>
+      </div>
+      <div class="danger">
+        <div class="danger-title">⚠️ Sai phổ biến</div>
+        Công thức phân tử nitrobenzene là C₆H₅NO₂ (KHÔNG phải C₆H₅NO₃!)<br>
+        Nhóm nitro: –NO₂ (N có 2 O), không phải NO₃.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent2)">2. Phản ứng halogen hóa (thế H trên vòng, cần Fe)</div>
+      <div class="rxn">
+        C₆H₆ + Br₂ <span class="arrow">→(Fe, t°)</span> <span class="product">C₆H₅Br</span> + HBr
+        <br><span class="cond">(bromobenzene; phân biệt với cộng Br₂ của alkene)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent2)">3. Phản ứng cộng H₂ (cần điều kiện khắc nghiệt hơn alkene)</div>
+      <div class="rxn">
+        C₆H₆ + 3H₂ <span class="arrow">→(Ni, 180°C, cao áp)</span> <span class="product">C₆H₁₂ (cyclohexane)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent2)">4. Phản ứng cháy</div>
+      <div class="rxn">
+        2C₆H₆ + 15O₂ <span class="arrow">→(t°)</span> <span class="product">12CO₂ + 6H₂O</span>
+        <br><span class="cond">(cháy tạo nhiều muội đen — do tỉ lệ C:H cao)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">✏️ Bài tập có lời giải</div>
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 4</span>
+        <span class="ex-q">Nitro hóa benzene → nitrobenzene. Công thức phân tử X là gì? X có màu gì? X là chất lỏng hay rắn?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content">C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O<br>
+          Nhóm –NO₂ thế vào H trên vòng benzene.</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content">Tính chất vật lý của nitrobenzene (X):<br>
+          • Chất <strong>lỏng</strong>, sánh như dầu<br>
+          • Màu <strong>vàng</strong><br>
+          • Mùi hạnh nhân<br>
+          • Công thức: <strong>C₆H₅NO₂</strong> (không phải C₆H₅NO₃!)</div></div>
+        <div class="answer"><div class="answer-label">✅ Phát biểu D sai: CTPT là C₆H₅NO₂, không phải C₆H₅NO₃</div></div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 18</span>
+        <span class="ex-q">Công thức phân tử của styrene là gì? Vì sao styrene làm mất màu Br₂ ở điều kiện thường còn benzene thì không?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Styrene = C₆H₅-CH=CH₂ — nó như một <strong>"benzene đeo một cái đuôi alkene"</strong>. Khi gặp Br₂, vòng benzene thì "lười" (cần Fe xúc tác), nhưng cái "đuôi" CH=CH₂ thì rất "tham" → ngay lập tức cộng Br₂ → mất màu.
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Phân tích cấu trúc styrene C₆H₅-CH=CH₂:</strong><br>
+          • Vòng benzene: C₆H₅ → 6C + 5H<br>
+          • Nhánh: CH=CH₂ → 2C + 3H<br>
+          → Tổng: <strong>8C + 8H = C₈H₈</strong></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phản ứng với Br₂ (chỉ vào C=C ngoài vòng):</strong>
+          <div class="rxn">C₆H₅-CH=CH₂ + Br₂ <span class="arrow">→</span> <span class="product">C₆H₅-CHBr-CH₂Br</span> (1-phenyl-1,2-dibromoethane)</div>
+          Vòng benzene KHÔNG tham gia phản ứng (nó bền và chỉ thế khi có Fe).</div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: B — C₈H₈</div>
+        Đặc điểm phải nhớ: <strong>Styrene LÀM mất màu Br₂</strong> (do C=C ngoài vòng), khác hẳn benzene và toluene (KHÔNG mất màu Br₂ ở điều kiện thường).</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 19</span>
+        <span class="ex-q">Từ 1 tấn toluene có thể điều chế được bao nhiêu kg 2,4,6-trinitrotoluene (TNT) biết hiệu suất phản ứng là 62%?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Toluene = C₆H₅-CH₃. Khi nitro hóa với HNO₃ đặc/H₂SO₄ đặc, nhóm CH₃ là nhóm "đẩy electron" → kích hoạt vị trí <strong>ortho và para</strong> → 3 nhóm NO₂ "vào" 3 vị trí 2, 4, 6 → tạo TNT (chất nổ nổi tiếng từ Thế chiến).
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Phương trình:</strong>
+          <div class="rxn">C₆H₅CH₃ + 3HNO₃ <span class="arrow">→(H₂SO₄ đặc)</span> <span class="product">C₆H₂(NO₂)₃CH₃</span> + 3H₂O
+          <br><span class="cond">M(toluene) = 92; M(TNT) = 227</span></div></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Tính theo lý thuyết (H = 100%):</strong><br>
+          n(toluene) = 1000/92 kg/(g/mol) ≈ 10,87 kmol<br>
+          n(TNT) lý thuyết = n(toluene) = 10,87 kmol<br>
+          m(TNT) lý thuyết = 10,87 × 227 = 2 467 kg</div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Tính khối lượng thực tế (H = 62%):</strong><br>
+          m(TNT) thực = 2 467 × 0,62 = <strong>1 529,5 kg ≈ 1 529 kg</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Khối lượng TNT ≈ 1 529 kg</div>
+        Cách nhớ nhanh: m(TNT) = m(toluene) × (227/92) × H = 1000 × 2,467 × 0,62 ≈ 1529 kg</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 20</span>
+        <span class="ex-q">Có thể nhận biết 3 chất benzene, toluene, styrene bằng dung dịch KMnO₄ không? Mô tả hiện tượng từng chất.</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          KMnO₄ là "thuốc thử oxi hóa" có màu tím. Đặc điểm:
+          <br>• Vòng benzene <strong>thuần khiết</strong>: rất bền → không phản ứng với KMnO₄ ở điều kiện thường
+          <br>• Có <strong>H ở C cạnh vòng (C-α)</strong>: khi đun nóng, KMnO₄ oxi hóa CH₃ → COOH
+          <br>• Có <strong>C=C ngoài vòng</strong> (như styrene): mất màu KMnO₄ ngay ở điều kiện thường
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Hiện tượng từng chất:</strong>
+          <table>
+            <tr><th>Chất</th><th>KMnO₄ (đk thường)</th><th>KMnO₄ + đun nóng</th></tr>
+            <tr><td>Benzene (C₆H₆)</td><td>Không phản ứng</td><td>Không phản ứng</td></tr>
+            <tr><td>Toluene (C₆H₅CH₃)</td><td>Không phản ứng</td><td>Mất màu, tạo C₆H₅COOK</td></tr>
+            <tr><td>Styrene (C₆H₅CH=CH₂)</td><td>Mất màu ngay</td><td>Mất màu</td></tr>
+          </table></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Quy trình nhận biết (3 bước):</strong><br>
+          <strong>Bước 1:</strong> Cho KMnO₄ ở điều kiện thường vào 3 ống nghiệm:<br>
+          → Ống mất màu = <strong>styrene</strong><br>
+          → 2 ống còn lại không đổi (benzene và toluene)<br>
+          <strong>Bước 2:</strong> Đun nóng 2 ống còn lại với KMnO₄:<br>
+          → Ống mất màu = <strong>toluene</strong> (CH₃ bị oxi hóa thành COOH)<br>
+          → Ống không đổi = <strong>benzene</strong></div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Phản ứng oxi hóa toluene (đun nóng):</strong>
+          <div class="rxn">C₆H₅-CH₃ + 2KMnO₄ <span class="arrow">→(t°)</span> <span class="product">C₆H₅-COOK</span> + 2MnO₂↓ + KOH + H₂O</div></div>
+        </div>
+        <div class="answer"><div class="answer-label">✅ ĐÚNG — KMnO₄ phân biệt được cả 3 chất</div>
+        Thứ tự ưu tiên phản ứng: C=C ngoài vòng (đk thường) > nhánh CH₃ trên vòng (đun nóng) > vòng benzene thuần (không phản ứng).</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CHAPTER 3: DẪN XUẤT HALOGEN -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="ch3" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-icon" style="background:#2a1a3a; border:1px solid #d2a8ff44;">🧪</div>
+    <div>
+      <h2 style="color:var(--accent3)">Chương 3: Dẫn Xuất Halogen</h2>
+      <small>R–X (X = F, Cl, Br, I)</small>
+    </div>
+  </div>
+
+  <div class="feynman">
+    Dẫn xuất halogen là hydrocarbon bị "thay" 1 hoặc nhiều H bằng halogen (F, Cl, Br, I). Hãy nghĩ như thế này: ban đầu bạn có CH₄ (methane). Thay 1H bằng Cl → CH₃Cl (chloromethane). Tính chất quan trọng nhất: nguyên tử halogen này có thể bị "đẩy đi" bởi OH⁻ hoặc bị "tách ra" cùng HX.
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚗️ Hai phản ứng quan trọng nhất</div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent3)">1. Phản ứng thủy phân (thế –X bằng –OH)</div>
+      <div class="rxn">
+        CH₃CH₂Br + NaOH <span class="arrow">→(H₂O, t°)</span> <span class="product">CH₃CH₂OH + NaBr</span>
+        <br><span class="cond">(dung dịch NaOH, đun nóng — phản ứng thế)</span>
+      </div>
+      <div class="rxn">
+        CH₃CH₂Br + NaOH <span class="arrow">→(cồn, t°)</span> <span class="product">CH₂=CH₂ + NaBr + H₂O</span>
+        <br><span class="cond">(NaOH/cồn, đun nóng — phản ứng tách → cho alkene)</span>
+      </div>
+      <div class="trick">
+        <div class="trick-title">🧠 Mẹo phân biệt điều kiện</div>
+        • NaOH <strong>nước</strong> → phản ứng <strong>thế</strong> → cho alcohol<br>
+        • NaOH <strong>cồn</strong> (alcohol) → phản ứng <strong>tách</strong> → cho alkene
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent3)">2. Phản ứng tách HX — Quy tắc Zaitsev ⭐</div>
+      <div class="rule">
+        <div class="rule-title">⚖️ Quy tắc Zaitsev</div>
+        Khi tách HX khỏi dẫn xuất halogen: X tách ra cùng với H ở <strong>carbon bên cạnh có ít H nhất</strong> → cho alkene có nhiều nhóm thế nhất (bền hơn).
+      </div>
+      <div class="rxn">
+        CH₃–CHBr–CH₂–CH₃ + KOH/cồn <span class="arrow">→</span>
+        <br><span class="product">CH₃–CH=CH–CH₃ (but-2-ene)</span> — sản phẩm chính (Zaitsev)
+        <br><span class="cond">CH₂=CH–CH₂–CH₃ (but-1-ene) — sản phẩm phụ</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">✏️ Bài tập có lời giải</div>
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 5</span>
+        <span class="ex-q">Sự tách HCl của C₄H₉Cl cho 3 alkene đồng phân. X là chất nào?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content">Phân tích các đồng phân C₄H₉Cl:<br>
+          • CH₃CH₂CH₂CH₂Cl (butyl chloride): tách → 1 alkene (but-1-ene)<br>
+          • CH₃CH₂CHClCH₃ (sec-butyl chloride): tách → 2 alkene (but-1-ene + but-2-ene)<br>
+          • (CH₃)₂CHCH₂Cl (iso-butyl chloride): tách → 2 alkene (isobutene + but-1-ene)<br>
+          • (CH₃)₃CCl (tert-butyl chloride): tách → chỉ 1 alkene (isobutylene)</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content">Cần chất cho <strong>3</strong> alkene → xem xét lại sec-butyl chloride:<br>
+          CH₃–CHCl–CH₂–CH₃: Cl gắn vào C2<br>
+          Có thể tách H từ C1 → but-1-ene<br>
+          Có thể tách H từ C3 → but-2-ene (cis + trans = 2 đồng phân)<br>
+          → Tổng: but-1-ene + cis-but-2-ene + trans-but-2-ene = <strong>3 alkene</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: B — sec-butyl chloride (CH₃CHClCH₂CH₃)</div></div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 21</span>
+        <span class="ex-q">Trong thể thao, nhân viên y tế dùng "thuốc xịt" gây tê cục bộ cho vận động viên. Hợp chất chính trong thuốc xịt đó là chất nào? Tại sao nó gây tê?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          "Thuốc xịt lạnh" (freeze spray) hoạt động dựa trên một nguyên lý vật lý đơn giản: chất lỏng có nhiệt độ sôi rất thấp khi xịt ra → bay hơi cực nhanh → <strong>hấp thu nhiệt từ da</strong> → da bị làm lạnh đột ngột → các đầu mút thần kinh bị "đông lạnh" tạm thời → mất cảm giác đau (tê).
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Phân tích các đáp án:</strong><br>
+          • Carbon dioxide (CO₂): khí nén, không thể "xịt lỏng" thông thường<br>
+          • Hydrogen chloride (HCl): khí ăn mòn, gây bỏng → KHÔNG dùng<br>
+          • Chloromethane (CH₃Cl): t°sôi = -24°C, độc<br>
+          • <strong>Chloroethane (C₂H₅Cl):</strong> t°sôi = +12°C, lỏng dễ xịt ra, an toàn ✅</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Cơ chế gây tê:</strong><br>
+          Chloroethane lỏng (đóng trong bình chứa áp suất) khi xịt ra → bay hơi → hấp thu năng lượng từ da → nhiệt độ da giảm xuống ~0°C → tê cục bộ tạm thời → cho phép vận động viên trở lại thi đấu.</div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: D — Chloroethane (C₂H₅Cl)</div>
+        Đây là một ứng dụng thực tế của dẫn xuất halogen trong y học thể thao.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 22</span>
+        <span class="ex-q">Đun nóng CH₃-CH(Br)-CH₂-CH₃ với NaOH/ethanol thu được sản phẩm chính là alkene nào? (Áp dụng quy tắc Zaitsev)</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Quy tắc Zaitsev nói: khi tách HX, X "ưu tiên" tách cùng H ở carbon kế bên có <strong>ít H nhất</strong> (tức nhiều nhóm thế nhất). Vì sao? Vì alkene tạo thành càng <strong>nhiều nhánh</strong> thì càng <strong>bền</strong> → ưu tiên hình thành.
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Vẽ phân tử và đánh số:</strong><br>
+          <span class="chem">CH₃-CH(Br)-CH₂-CH₃</span><br>
+          C1 = CH₃ (3H, kề C2 có Br)<br>
+          C2 = CH-Br (chứa Br)<br>
+          C3 = CH₂ (2H, kề C2 có Br)<br>
+          C4 = CH₃ (cuối mạch)</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Có 2 hướng tách HBr:</strong><br>
+          <strong>Hướng A:</strong> tách Br (C2) + H (C1) → CH₂=CH-CH₂-CH₃ (<strong>but-1-ene</strong>)<br>
+          <strong>Hướng B:</strong> tách Br (C2) + H (C3) → CH₃-CH=CH-CH₃ (<strong>but-2-ene</strong>)</div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Áp dụng Zaitsev:</strong><br>
+          • C1 có 3H (nhiều H) → "kém ưu tiên"<br>
+          • C3 có 2H (ít H hơn) → "ưu tiên" → ưu tiên tách H từ C3<br>
+          → <strong>Sản phẩm chính: but-2-ene</strong> (CH₃-CH=CH-CH₃)<br>
+          → Sản phẩm phụ: but-1-ene (CH₂=CH-CH₂-CH₃)
+          <div class="rxn">CH₃-CHBr-CH₂-CH₃ + NaOH/cồn <span class="arrow">→(t°)</span> <span class="product">CH₃-CH=CH-CH₃</span> (chính) + NaBr + H₂O</div></div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: B — CH₃-CH=CH-CH₃ (but-2-ene)</div>
+        Quy tắc Zaitsev: alkene có nhiều nhóm thế hơn → bền hơn → ưu tiên tạo thành.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CHAPTER 4: ALCOHOL -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="ch4" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-icon" style="background:#1a3a1a; border:1px solid #7ee78744;">🍺</div>
+    <div>
+      <h2 style="color:var(--accent4)">Chương 4: Alcohol</h2>
+      <small>R–OH — nhóm –OH gắn vào carbon no</small>
+    </div>
+  </div>
+
+  <div class="feynman">
+    Alcohol = hydrocarbon + nhóm –OH. Nhóm –OH này như một "cái tay" đặc biệt: nó tạo liên kết hydrogen với nước → alcohol tan tốt và sôi cao hơn alkane cùng khối lượng. Ethanol (C₂H₅OH) trong rượu bia chính là alcohol điển hình nhất.
+  </div>
+
+  <div class="section">
+    <div class="section-title">📐 Phân loại & bậc alcohol</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Alcohol no, đơn chức, mạch hở</div>
+        <div class="rxn">CₙH₂ₙ₊₂O = CₙH₂ₙ₊₁OH (n ≥ 1)</div>
+        Ví dụ: CH₃OH, C₂H₅OH, C₃H₇OH
+      </div>
+      <div class="card">
+        <div class="card-title">Bậc alcohol</div>
+        <strong>Bậc 1:</strong> C mang OH nối với 1 C khác<br>
+        <strong>Bậc 2:</strong> C mang OH nối với 2 C khác<br>
+        <strong>Bậc 3:</strong> C mang OH nối với 3 C khác
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Polyalcohol quan trọng — Glycerol</div>
+      <div class="rxn">HOCH₂–CHOH–CH₂OH (C₃H₈O₃, 3 nhóm OH)</div>
+      Glycerol + Cu(OH)₂ → <span style="color:var(--accent4)"><strong>dung dịch xanh lam đặc trưng</strong></span>
+      (phản ứng đặc trưng của polyalcohol — alcohol có ≥2 nhóm OH kề nhau)
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚗️ Tính chất hoá học</div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent4)">1. Phản ứng với Na (kim loại kiềm)</div>
+      <div class="rxn">
+        2C₂H₅OH + 2Na <span class="arrow">→</span> <span class="product">2C₂H₅ONa + H₂↑</span>
+        <br><span class="cond">(sodium ethoxide + khí hydrogen; phản ứng êm dịu hơn nước + Na)</span>
+      </div>
+      <div class="feynman" style="margin-bottom:0; margin-top:8px;">
+        Nhóm –OH của alcohol giống như nước yếu hơn. Na tác dụng với alcohol giống như Na + H₂O nhưng chậm hơn. Phenol + Na thì nhanh hơn (vì phenol có tính acid mạnh hơn alcohol).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent4)">2. Phản ứng oxi hóa bằng CuO (nhận biết bậc alcohol)</div>
+      <div class="rxn">
+        RCH₂OH + CuO <span class="arrow">→(t°)</span> <span class="product">RCHO + Cu + H₂O</span>
+        <br><span class="cond">(alcohol bậc 1 → aldehyde; CuO màu đen → Cu màu đỏ gạch)</span>
+      </div>
+      <div class="rxn">
+        R–CHOH–R' + CuO <span class="arrow">→(t°)</span> <span class="product">R–CO–R' + Cu + H₂O</span>
+        <br><span class="cond">(alcohol bậc 2 → ketone)</span>
+      </div>
+      <div class="rxn">
+        CH₃OH + CuO <span class="arrow">→(t°)</span> <span class="product">H–CHO (formaldehyde) + Cu + H₂O</span>
+        <br><span class="cond">(methanol là alcohol bậc 1 đặc biệt → cho HCHO)</span>
+      </div>
+      <div class="danger">
+        <div class="danger-title">⚠️ Alcohol bậc 3 KHÔNG bị oxi hóa bởi CuO</div>
+        Bậc 3 không có H trên C mang OH → không phản ứng với CuO ở điều kiện này.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent4)">3. Phản ứng tách nước (H₂SO₄ đặc)</div>
+      <div class="rxn">
+        C₂H₅OH <span class="arrow">→(H₂SO₄ đặc, 170°C)</span> <span class="product">CH₂=CH₂ + H₂O</span>
+        <br><span class="cond">(170°C: tách nước → alkene)</span>
+      </div>
+      <div class="rxn">
+        2C₂H₅OH <span class="arrow">→(H₂SO₄ đặc, 140°C)</span> <span class="product">C₂H₅–O–C₂H₅ + H₂O</span>
+        <br><span class="cond">(140°C: tạo ether diethyl ether)</span>
+      </div>
+      <div class="trick">
+        <div class="trick-title">🧠 Mẹo nhớ nhiệt độ</div>
+        140°C = ether (EtOH + EtOH = Et-O-Et, thấp hơn)<br>
+        170°C = alkene (cao hơn = tách mạnh hơn = cắt ra alkene)
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent4)">4. Phản ứng với HBr (thế –OH bằng –Br)</div>
+      <div class="rxn">
+        C₂H₅OH + HBr <span class="arrow">→(H₂SO₄ đặc, t°)</span> <span class="product">C₂H₅Br + H₂O</span>
+      </div>
+      <div class="danger">
+        <div class="danger-title">⚠️ Bẫy: Phản ứng ĐÚNG vs SAI</div>
+        ✅ C₂H₅OH + HBr → C₂H₅Br + H₂O (ĐÚNG)<br>
+        ❌ C₂H₅OH + NaOH → C₂H₅ONa + H₂O (SAI! Alcohol không phản ứng với NaOH như phenol)<br>
+        ❌ C₂H₅OH + Na → C₂H₅Na + H₂O (SAI! Phải là C₂H₅ONa + H₂)
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">✏️ Bài tập có lời giải</div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 6</span>
+        <span class="ex-q">4,6g alcohol no đơn chức X + Na dư → 1,2395L H₂ (đkc). Tìm CTPT của X.</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content">n(H₂) = 1,2395/24,79 = <strong>0,05 mol</strong><br>
+          (Lưu ý: đkc mới → 1 mol khí = 24,79L; nếu đktc cũ = 22,4L thì = 0,0553 mol)</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content">Phương trình: 2ROH + 2Na → 2RONa + H₂<br>
+          n(ROH) = 2 × n(H₂) = 2 × 0,05 = <strong>0,1 mol</strong></div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content">M(ROH) = 4,6 / 0,1 = <strong>46 g/mol</strong><br>
+          CₙH₂ₙ₊₁OH: M = 14n + 18 = 46 → n = 2<br>
+          CTPT: <strong>C₂H₆O</strong> (ethanol, C₂H₅OH)</div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: A — C₂H₆O (ethanol)</div></div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 7</span>
+        <span class="ex-q">Số đồng phân alcohol có công thức phân tử C₃H₈O là bao nhiêu?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content">C₃H₈O = CₙH₂ₙ₊₂O với n=3: đây là alcohol no đơn chức<br>
+          Mạch carbon 3C có thể là: C–C–C (thẳng) hoặc không thể có nhánh (chỉ 3C)</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content">Đặt –OH vào các vị trí:<br>
+          • HO–CH₂–CH₂–CH₃ = <strong>propan-1-ol</strong> (alcohol bậc 1)<br>
+          • CH₃–CHOH–CH₃ = <strong>propan-2-ol</strong> (alcohol bậc 2)</div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: 2 đồng phân alcohol</div>
+        (Nếu đề hỏi cả ether: C₂H₅–O–CH₃ cũng là C₃H₈O → tổng 3 đồng phân)</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 23</span>
+        <span class="ex-q">X + CuO → H-CHO + Cu + H₂O. Vậy X là chất nào? (methanol, ethanol, glycerol, propyl alcohol)</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Đây là phản ứng "đảo ngược" để tìm chất ban đầu. CuO là <strong>chất oxi hóa</strong>: nó "lấy" 2H từ alcohol → biến alcohol thành aldehyde (hoặc ketone). Cụ thể:
+          <br>• Alcohol bậc 1 (R-CH₂OH) → mất 2H → R-CHO (aldehyde)
+          <br>• Alcohol bậc 2 (R-CHOH-R') → mất 2H → R-CO-R' (ketone)
+          <br>• Alcohol bậc 3 (R-COH(R')(R'')): không phản ứng (không có H ở C-OH)
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Sản phẩm là HCHO (formaldehyde) → ngược lại tìm alcohol:</strong><br>
+          HCHO = H-CHO. Để có aldehyde này, cần R-CH₂OH với R = H<br>
+          → R-CH₂OH = H-CH₂OH = <strong>CH₃OH (methanol)</strong></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phương trình đầy đủ:</strong>
+          <div class="rxn">CH₃OH + CuO <span class="arrow">→(t°)</span> <span class="product">HCHO + Cu + H₂O</span></div>
+          (Mỗi nhóm CH₂OH → CHO mất 2H, đồng thời CuO → Cu mất 1 oxi)</div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: A — Methanol (CH₃OH)</div>
+        Quy tắc oxi hóa nhẹ (CuO, t°): alcohol bậc 1 → aldehyde, alcohol bậc 2 → ketone, alcohol bậc 3 → không phản ứng.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 24</span>
+        <span class="ex-q">Ứng với CTPT C₄H₁₀O có bao nhiêu đồng phân alcohol?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Để tìm đồng phân alcohol, hãy đi theo 2 bước hệ thống:
+          <br><strong>Bước 1:</strong> Vẽ tất cả mạch carbon có thể (mạch thẳng và mạch nhánh)
+          <br><strong>Bước 2:</strong> Đặt -OH vào các vị trí KHÁC NHAU trong từng mạch (chú ý đối xứng)
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Liệt kê khung carbon C₄:</strong><br>
+          • Khung 1: <strong>C-C-C-C</strong> (n-butyl, mạch thẳng)<br>
+          • Khung 2: <strong>C-C(C)-C</strong> (iso-butyl, mạch nhánh)</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Đặt -OH vào khung 1 (C-C-C-C):</strong><br>
+          • C1-OH: HOCH₂-CH₂-CH₂-CH₃ = <strong>butan-1-ol</strong> (bậc 1)<br>
+          • C2-OH: CH₃-CHOH-CH₂-CH₃ = <strong>butan-2-ol</strong> (bậc 2)<br>
+          • C3-OH: CH₃-CH₂-CHOH-CH₃ = giống butan-2-ol (đối xứng)<br>
+          • C4-OH: giống butan-1-ol (đối xứng)<br>
+          → Khung 1 cho <strong>2 đồng phân</strong></div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Đặt -OH vào khung 2 (iso-butyl):</strong><br>
+          • OH ở C đầu: (CH₃)₂CH-CH₂OH = <strong>2-methylpropan-1-ol</strong> (bậc 1, isobutyl alcohol)<br>
+          • OH ở C giữa (C bậc 3): (CH₃)₃C-OH = <strong>2-methylpropan-2-ol</strong> (bậc 3, tert-butyl alcohol)<br>
+          → Khung 2 cho <strong>2 đồng phân</strong></div></div>
+        <div class="ex-step"><div class="step-num">4</div>
+          <div class="step-content"><strong>Tổng hợp:</strong><br>
+          • Butan-1-ol (bậc 1)<br>
+          • Butan-2-ol (bậc 2)<br>
+          • 2-methylpropan-1-ol (bậc 1)<br>
+          • 2-methylpropan-2-ol (bậc 3)<br>
+          → Tổng <strong>4 đồng phân alcohol</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: 4 đồng phân alcohol</div>
+        Lưu ý: nếu đề hỏi đồng phân C₄H₁₀O nói chung (cả ether) → có thêm 3 ether (CH₃-O-CH₂CH₂CH₃, CH₃-O-CH(CH₃)₂, C₂H₅-O-C₂H₅) → tổng 7 đồng phân.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 25</span>
+        <span class="ex-q">Để thu được 460 mL ethanol 50° (d = 0,8 g/mL) từ tinh bột với hiệu suất 50%, cần bao nhiêu gam nếp (chứa 80% tinh bột)?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Đây là dạng bài "đi ngược chuỗi sản xuất". Hãy bắt đầu từ <strong>sản phẩm cuối</strong> (ethanol) → đi ngược lên <strong>nguyên liệu đầu</strong> (tinh bột → nếp). Mỗi bước có hiệu suất, cứ chia ngược dần.
+          <br><br>Sơ đồ: <strong>Tinh bột → glucose → ethanol</strong>
+          <br>(C₆H₁₀O₅)ₙ + nH₂O → nC₆H₁₂O₆ → 2nC₂H₅OH + 2nCO₂
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Tính khối lượng ethanol nguyên chất:</strong><br>
+          Ethanol 50° = 50% thể tích là ethanol nguyên chất<br>
+          V(C₂H₅OH) = 460 × 50/100 = 230 mL<br>
+          m(C₂H₅OH) = 230 × 0,8 = 184 g<br>
+          n(C₂H₅OH) = 184 / 46 = <strong>4 mol</strong></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phương trình tổng quát:</strong>
+          <div class="rxn">(C₆H₁₀O₅)ₙ <span class="arrow">→</span> 2nC₂H₅OH + 2nCO₂</div>
+          Tỉ lệ: 1 đơn vị tinh bột (162 g) tạo 2 mol C₂H₅OH<br>
+          → n(tinh bột, theo đơn vị C₆H₁₀O₅) = 4/2 = <strong>2 mol</strong><br>
+          m(tinh bột lý thuyết) = 2 × 162 = <strong>324 g</strong></div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Áp dụng hiệu suất 50%:</strong><br>
+          Tinh bột thực tế cần = 324 / 0,5 = <strong>648 g</strong></div></div>
+        <div class="ex-step"><div class="step-num">4</div>
+          <div class="step-content"><strong>Tính khối lượng nếp (80% tinh bột):</strong><br>
+          m(nếp) = 648 / 0,8 = <strong>810 g</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Khối lượng nếp cần dùng: 810 g</div>
+        Cách kiểm tra: 810 g nếp × 80% = 648 g tinh bột × 50% (H) → 324 g tinh bột thực dùng → 4 mol C₂H₅OH = 184 g → V = 184/0,8 = 230 mL = 50% × 460 mL ✓</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CHAPTER 5: PHENOL -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="ch5" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-icon" style="background:#1a3a1a; border:1px solid #7ee78744;">⬡OH</div>
+    <div>
+      <h2 style="color:var(--accent4)">Chương 5: Phenol</h2>
+      <small>C₆H₅–OH — nhóm –OH gắn trực tiếp vào vòng benzene</small>
+    </div>
+  </div>
+
+  <div class="feynman">
+    Phenol khác alcohol ở chỗ: nhóm –OH gắn thẳng vào vòng benzene (C₆H₅–OH). Vòng benzene "kéo" electron từ –OH → H trong –OH linh động hơn → <strong>phenol có tính acid</strong> (mạnh hơn alcohol, nhưng yếu hơn H₂CO₃). Vì vậy phenol tác dụng được với NaOH, nhưng không tác dụng được với Na₂CO₃ giải phóng CO₂.
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚗️ Tính chất hoá học đặc trưng</div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent4)">1. Phản ứng thể hiện tính acid (với NaOH và Na)</div>
+      <div class="rxn">
+        C₆H₅OH + NaOH <span class="arrow">→</span> <span class="product">C₆H₅ONa + H₂O</span>
+        <br><span class="cond">(sodium phenoxide — tan trong nước, dung dịch trong suốt)</span>
+      </div>
+      <div class="rxn">
+        2C₆H₅OH + 2Na <span class="arrow">→</span> <span class="product">2C₆H₅ONa + H₂↑</span>
+      </div>
+      <div class="trick">
+        <div class="trick-title">🧠 So sánh tính acid: Phenol vs Alcohol vs Carbonic acid</div>
+        H₂CO₃ > C₆H₅OH > H₂O > ROH<br>
+        → Phenol phản ứng NaOH (có), Na₂CO₃ (KHÔNG thể đẩy CO₂ ra), HCl (không)<br>
+        → Alcohol không phản ứng NaOH
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent4)">2. Phản ứng với nước bromine ⭐ (nhận biết phenol)</div>
+      <div class="rxn">
+        C₆H₅OH + 3Br₂ <span class="arrow">→</span> <span class="product">C₆H₂Br₃OH↓ + 3HBr</span>
+        <br><span class="cond">(2,4,6-tribromophenol: kết tủa TRẮNG — đặc trưng nhận biết phenol)</span>
+      </div>
+      <div class="danger">
+        <div class="danger-title">⚠️ Phenol + Br₂: khác hoàn toàn với benzene + Br₂</div>
+        Phenol thế 3H (ở vị trí 2,4,6) ngay ở điều kiện thường, KHÔNG cần Fe.<br>
+        Benzene cần xúc tác Fe và chỉ thế 1H.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent4)">3. Phenol KHÔNG phản ứng với</div>
+      ❌ NaHCO₃ (tính acid của phenol yếu hơn H₂CO₃)<br>
+      ❌ HCl, HBr (phenol không phải base)<br>
+      ❌ NaCl, KCl (muối trung tính)
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">✏️ Bài tập có lời giải</div>
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 8</span>
+        <span class="ex-q">m gam phenol + NaOH → 23,2g muối. Tính m?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content">C₆H₅OH + NaOH → C₆H₅ONa + H₂O<br>
+          M(C₆H₅ONa) = 77 + 23 = 116 g/mol</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content">n(C₆H₅ONa) = 23,2 / 116 = 0,2 mol<br>
+          n(C₆H₅OH) = n(C₆H₅ONa) = 0,2 mol</div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content">M(C₆H₅OH) = 94 g/mol<br>
+          m = 0,2 × 94 = <strong>18,8 gam</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: D — 18,8 gam</div></div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 26</span>
+        <span class="ex-q">Picric acid được tổng hợp bằng cách nitro hóa phenol. Vì sao picric acid có tính acid mạnh hơn phenol nhiều?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Picric acid = 2,4,6-trinitrophenol. Hãy hình dung: vốn dĩ phenol đã có vòng benzene "kéo" electron từ -OH → H linh động → có tính acid yếu. Bây giờ <strong>thêm 3 nhóm -NO₂</strong> ở các vị trí 2,4,6 — nhóm -NO₂ là <strong>"siêu hút electron"</strong> → kéo càng mạnh → H trong -OH càng linh động hơn → tính acid TĂNG VỌT lên (mạnh hơn cả H₂CO₃).
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Phương trình tổng hợp picric acid:</strong>
+          <div class="rxn">C₆H₅OH + 3HNO₃ <span class="arrow">→(H₂SO₄ đặc, t°)</span> <span class="product">C₆H₂(NO₂)₃-OH</span> + 3H₂O
+          <br><span class="cond">(picric acid: chất rắn màu vàng, có tính acid mạnh và nổ mạnh)</span></div></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phân tích từng phát biểu:</strong><br>
+          (a) Phản ứng chứng minh ảnh hưởng của -OH lên gốc phenyl → <strong>ĐÚNG</strong> (nhóm -OH hoạt hóa vòng → dễ thế ở 2,4,6)<br>
+          (b) Picric acid kết tủa <strong>màu trắng</strong> → <strong>SAI</strong> (picric acid có màu vàng)<br>
+          (c) Picric acid có tính acid mạnh hơn phenol → <strong>ĐÚNG</strong> (3 nhóm -NO₂ hút e mạnh)<br>
+          (d) Picric acid dùng làm thuốc nổ, thuộc da, phẩm nhuộm → <strong>ĐÚNG</strong> (ứng dụng thực tế)</div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>So sánh tính acid:</strong><br>
+          • Phenol (Ka ≈ 10⁻¹⁰) — yếu, không làm đỏ quỳ<br>
+          • Picric acid (Ka ≈ 10⁻¹) — mạnh, làm đỏ quỳ rõ rệt<br>
+          → Tính acid của picric acid mạnh hơn phenol khoảng <strong>10⁹ lần!</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án Đ-S: (a) Đ, (b) S, (c) Đ, (d) Đ</div>
+        Bài học: nhóm -NO₂ (hút electron mạnh) làm tăng tính acid; nhóm -CH₃ (đẩy electron) làm giảm tính acid. Đây là quy luật về ảnh hưởng của nhóm thế.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 27</span>
+        <span class="ex-q">Phenol (C₆H₅OH) tác dụng được với CHẤT NÀO trong dãy: K, KOH, Br₂, Na, NaOH, HCl, NaHCO₃, H₂CO₃?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Phenol có 2 tính chất quan trọng:
+          <br>1. <strong>Tính acid YẾU</strong> (yếu hơn H₂CO₃): chỉ phản ứng với base mạnh (NaOH, KOH) và kim loại hoạt động mạnh (Na, K), KHÔNG phản ứng được với muối carbonate (vì acid của phenol yếu hơn carbonic acid).
+          <br>2. <strong>Vòng benzene "hoạt hóa"</strong>: phản ứng với Br₂ ngay ở điều kiện thường (khác hẳn benzene cần Fe).
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Phân tích từng chất:</strong>
+          <table>
+            <tr><th>Chất</th><th>Phản ứng?</th><th>Lý do</th></tr>
+            <tr><td>K (kim loại)</td><td style="color:var(--accent4)">✅ Có</td><td>2C₆H₅OH + 2K → 2C₆H₅OK + H₂↑</td></tr>
+            <tr><td>Na (kim loại)</td><td style="color:var(--accent4)">✅ Có</td><td>2C₆H₅OH + 2Na → 2C₆H₅ONa + H₂↑</td></tr>
+            <tr><td>KOH (base mạnh)</td><td style="color:var(--accent4)">✅ Có</td><td>C₆H₅OH + KOH → C₆H₅OK + H₂O</td></tr>
+            <tr><td>NaOH (base mạnh)</td><td style="color:var(--accent4)">✅ Có</td><td>C₆H₅OH + NaOH → C₆H₅ONa + H₂O</td></tr>
+            <tr><td>Br₂ (đk thường)</td><td style="color:var(--accent4)">✅ Có</td><td>C₆H₅OH + 3Br₂ → C₆H₂Br₃OH↓ + 3HBr</td></tr>
+            <tr><td>HCl</td><td style="color:var(--accent6)">❌ Không</td><td>Phenol KHÔNG là base, không pư acid</td></tr>
+            <tr><td>NaHCO₃</td><td style="color:var(--accent6)">❌ Không</td><td>Phenol yếu hơn H₂CO₃, không đẩy CO₂ ra</td></tr>
+            <tr><td>H₂CO₃</td><td style="color:var(--accent6)">❌ Không</td><td>H₂CO₃ mạnh hơn phenol</td></tr>
+          </table></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Quy tắc tổng kết:</strong>
+          <div class="rule">
+            <div class="rule-title">📌 Phenol PHẢN ỨNG với</div>
+            ✅ Kim loại kiềm (Na, K) → muối phenoxide + H₂↑<br>
+            ✅ Base mạnh (NaOH, KOH) → muối phenoxide + H₂O<br>
+            ✅ Br₂ (không cần xúc tác) → 2,4,6-tribromophenol↓ trắng<br>
+            ✅ HNO₃ (đặc + H₂SO₄ đặc) → picric acid<br>
+            ❌ NaCl, HCl, NaHCO₃, H₂CO₃, NaCl
+          </div></div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án dãy đúng: A — K, KOH, Br₂</div>
+        Quan trọng: Phenol có tính acid <strong>yếu hơn H₂CO₃</strong> nên KHÔNG phản ứng với NaHCO₃ (đây là cách phân biệt phenol với carboxylic acid: acid + NaHCO₃ → CO₂↑; phenol thì không).</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CHAPTER 6: ALDEHYDE & KETONE -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="ch6" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-icon" style="background:#3a2a0d; border:1px solid #ffa65744;">C=O</div>
+    <div>
+      <h2 style="color:var(--accent5)">Chương 6: Aldehyde & Ketone</h2>
+      <small>Hợp chất carbonyl — nhóm C=O</small>
+    </div>
+  </div>
+
+  <div class="feynman">
+    Aldehyde và ketone đều có nhóm <strong>C=O (carbonyl)</strong>. Sự khác nhau: Aldehyde có H gắn vào C=O (R–<strong>CHO</strong>), còn ketone thì không (R–<strong>CO</strong>–R'). Tưởng tượng aldehyde như "người giữ chìa khóa" — chìa khóa (H) này giúp nó dễ bị oxi hóa. Ketone "giữ chắc" hơn → không bị oxi hóa nhẹ.
+  </div>
+
+  <div class="section">
+    <div class="section-title">📐 Phân biệt Aldehyde và Ketone</div>
+    <table>
+      <tr><th>Đặc điểm</th><th>Aldehyde (R–CHO)</th><th>Ketone (R–CO–R')</th></tr>
+      <tr><td>Nhóm chức</td><td class="mono">–CHO</td><td class="mono">C=O (ở giữa)</td></tr>
+      <tr><td>Ví dụ</td><td class="mono">HCHO, CH₃CHO</td><td class="mono">CH₃COCH₃ (acetone)</td></tr>
+      <tr><td>Tráng bạc (Tollens)</td><td style="color:var(--accent4)">✅ Có</td><td style="color:var(--accent6)">❌ Không</td></tr>
+      <tr><td>Cu(OH)₂ đỏ gạch</td><td style="color:var(--accent4)">✅ Có (aldehyde)</td><td style="color:var(--accent6)">❌ Không</td></tr>
+      <tr><td>Iodoform (I₂/NaOH)</td><td>CH₃CHO: ✅; HCHO: ❌</td><td>CH₃COCH₃: ✅</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚗️ Phản ứng quan trọng</div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent5)">1. Phản ứng tráng bạc (Tollens) ⭐⭐⭐</div>
+      <div class="rxn">
+        RCHO + 2[Ag(NH₃)₂]OH <span class="arrow">→(t°)</span> <span class="product">RCOONH₄ + 2Ag↓ + 3NH₃ + H₂O</span>
+        <br><span class="cond">(bạc kết tủa trắng bóng trên thành ống → "gương bạc"; 1 mol RCHO → 2 mol Ag)</span>
+      </div>
+      <div class="danger">
+        <div class="danger-title">⚠️ HCHO đặc biệt: 1 mol HCHO → 4 mol Ag!</div>
+        <div class="rxn">HCHO + 4[Ag(NH₃)₂]OH → (NH₄)₂CO₃ + 4Ag↓ + 6NH₃ + 2H₂O</div>
+        Vì HCHO có 2 nguyên tử H trong nhóm chức → oxi hóa 2 lần → 4 Ag.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent5)">2. Phản ứng với Cu(OH)₂ trong NaOH</div>
+      <div class="rxn">
+        RCHO + 2Cu(OH)₂ + NaOH <span class="arrow">→(t°)</span> <span class="product">RCOONa + Cu₂O↓ + 3H₂O</span>
+        <br><span class="cond">(Cu₂O: kết tủa đỏ gạch/đỏ nâu — nhận biết aldehyde)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent5)">3. Phản ứng iodoform (I₂/NaOH) ⭐</div>
+      <div class="rule">
+        <div class="rule-title">📌 Điều kiện tạo iodoform</div>
+        Chất có nhóm <strong>CH₃–CO–</strong> (methyl ketone) hoặc <strong>CH₃CHO</strong> (acetaldehyde)
+        hoặc alcohol <strong>CH₃–CHOH–</strong> (bậc 2, ethanol và propan-2-ol...)
+      </div>
+      <div class="rxn">
+        CH₃COCH₃ + 3I₂ + 4NaOH <span class="arrow">→</span> <span class="product">CHI₃↓ + CH₃COONa + 3NaI + 3H₂O</span>
+        <br><span class="cond">(CHI₃ = iodoform: kết tủa vàng, mùi đặc trưng)</span>
+      </div>
+      <div class="trick">
+        <div class="trick-title">🧠 Nhớ nhanh: Chất nào cho iodoform?</div>
+        • CH₃CHO ✅ | HCHO ❌<br>
+        • CH₃COCH₃ (acetone) ✅ | CH₃CH₂CHO ❌<br>
+        • CH₃CH₂OH (ethanol) ✅ | CH₃OH ❌ | CH₃CH₂CH₂OH ❌<br>
+        → Từ khóa: phải có <strong>CH₃–CO–</strong> hoặc <strong>CH₃CHOH–</strong>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent5)">4. Phản ứng khử (cộng H₂) → cho alcohol</div>
+      <div class="rxn">
+        CH₃CHO + H₂ <span class="arrow">→(Ni, t°)</span> <span class="product">CH₃CH₂OH</span>
+        <br><span class="cond">(aldehyde + H₂ → alcohol bậc 1)</span>
+      </div>
+      <div class="rxn">
+        CH₃COCH₃ + H₂ <span class="arrow">→(Ni, t°)</span> <span class="product">CH₃CHOH–CH₃</span>
+        <br><span class="cond">(ketone + H₂ → alcohol bậc 2)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📛 Cách đọc tên aldehyde & ketone</div>
+    <table>
+      <tr><th>Công thức</th><th>Tên thay thế</th><th>Tên thường</th></tr>
+      <tr><td class="mono">HCHO</td><td>methanal</td><td>formaldehyde</td></tr>
+      <tr><td class="mono">CH₃CHO</td><td>ethanal</td><td>acetaldehyde</td></tr>
+      <tr><td class="mono">CH₃CH₂CHO</td><td>propanal</td><td>propionaldehyde</td></tr>
+      <tr><td class="mono">CH₃COCH₃</td><td>propan-2-one</td><td>acetone</td></tr>
+      <tr><td class="mono">C₂H₅COC₂H₅</td><td>pentan-3-one</td><td>diethyl ketone</td></tr>
+    </table>
+    <div class="trick">
+      <div class="trick-title">🧠 Quy tắc đặt tên ketone</div>
+      Đánh số mạch C từ phía gần nhóm C=O nhất → tên: alkan-x-one (x = vị trí C=O)
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">✏️ Bài tập có lời giải</div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 9</span>
+        <span class="ex-q">0,1 mol CH₃CHO phản ứng hoàn toàn với AgNO₃/NH₃ dư. Khối lượng Ag thu được?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content">CH₃CHO là aldehyde thông thường (không phải HCHO).<br>
+          1 mol RCHO → 2 mol Ag</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content">n(Ag) = 2 × n(CH₃CHO) = 2 × 0,1 = 0,2 mol</div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content">m(Ag) = 0,2 × 108 = <strong>21,6 gam</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: C — 21,6 gam</div></div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 10</span>
+        <span class="ex-q">Trong các chất CH₃CH₂CHO, CH₃COCH₃, CH₃CH₂CH₂OH, CH₃COOH: bao nhiêu chất tác dụng I₂/NaOH tạo iodoform?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content">Kiểm tra từng chất — có nhóm CH₃CO– hoặc CH₃CHOH–?<br>
+          • CH₃CH₂CHO: không có CH₃–CO–, không cho iodoform ❌<br>
+          • CH₃COCH₃: có CH₃–CO– ✅<br>
+          • CH₃CH₂CH₂OH: CH₃–CH₂–CH₂–OH: C–OH không kề CH₃ ❌<br>
+          • CH₃COOH: có CH₃–CO– nhưng đây là carboxylic acid → cũng cho iodoform ✅</div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: 2 chất (CH₃COCH₃ và CH₃COOH)</div></div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 11</span>
+        <span class="ex-q">Phân biệt 3 chất HCHO, CH₃CHO, CH₃COCH₃ bằng thuốc thử Tollens và I₂/NaOH. Điền vào bảng?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <table>
+          <tr><th>Chất</th><th>Tollens</th><th>I₂/NaOH</th><th>Kết luận</th></tr>
+          <tr><td class="mono">HCHO</td><td style="color:var(--accent4)">✅ Ag↓</td><td style="color:var(--accent6)">❌ Không (không có CH₃CO–)</td><td>Tráng bạc có, iodoform không</td></tr>
+          <tr><td class="mono">CH₃CHO</td><td style="color:var(--accent4)">✅ Ag↓</td><td style="color:var(--accent4)">✅ CHI₃↓ vàng</td><td>Cả hai đều có</td></tr>
+          <tr><td class="mono">CH₃COCH₃</td><td style="color:var(--accent6)">❌ Không</td><td style="color:var(--accent4)">✅ CHI₃↓ vàng</td><td>Chỉ iodoform</td></tr>
+        </table>
+        <div class="answer"><div class="answer-label">✅ Nhận xét từ bảng</div>
+        Chất (1) Tollens ✅, I₂/NaOH ❌ → <strong>HCHO</strong><br>
+        Chất (2) Tollens ❌, I₂/NaOH ✅ → <strong>CH₃COCH₃</strong><br>
+        Chất (3) Cả hai ✅ → <strong>CH₃CHO</strong></div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 28</span>
+        <span class="ex-q">Cho 4,5 g HCHO phản ứng hoàn toàn với lượng dư AgNO₃/NH₃ thu được m gam Ag. Giá trị của m là?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="danger">
+          <div class="danger-title">⚠️ HCHO là TRƯỜNG HỢP ĐẶC BIỆT</div>
+          HCHO khác mọi aldehyde khác: nó cho <strong>4 mol Ag/mol HCHO</strong>, không phải 2 mol! Vì sao? Vì HCHO có 2 nguyên tử H trong nhóm chức (cấu trúc H-CHO = H-C(=O)-H), bị oxi hóa qua 2 bước:
+          <br>HCHO → HCOOH → CO₂ + H₂O
+          <br>Mỗi bước cần 2 mol Ag → tổng 4 mol Ag.
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Tính số mol HCHO:</strong><br>
+          M(HCHO) = 12 + 2 + 16 = 30 g/mol<br>
+          n(HCHO) = 4,5 / 30 = <strong>0,15 mol</strong></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phương trình phản ứng đặc biệt:</strong>
+          <div class="rxn">HCHO + 4[Ag(NH₃)₂]OH <span class="arrow">→(t°)</span> <span class="product">(NH₄)₂CO₃ + 4Ag↓ + 6NH₃ + 2H₂O</span></div>
+          → Tỉ lệ: 1 mol HCHO → <strong>4 mol Ag</strong></div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Tính khối lượng Ag:</strong><br>
+          n(Ag) = 4 × n(HCHO) = 4 × 0,15 = 0,6 mol<br>
+          m(Ag) = 0,6 × 108 = <strong>64,8 g</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ m(Ag) = 64,8 gam</div>
+        Quy tắc cần nhớ: <strong>HCHO → 4Ag</strong>, các aldehyde khác (RCHO với R ≠ H) → 2Ag. HCOOH (formic acid) cũng → 2Ag (vì có cấu trúc H-CO-OH).</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 29</span>
+        <span class="ex-q">Cân bằng phản ứng: CH₃CHO + I₂ + NaOH → HCOONa + CHI₃ + NaI + H₂O. Tổng hệ số sau cân bằng là?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Phản ứng iodoform là phản ứng đặc trưng để nhận biết nhóm CH₃-CO- (acetyl) hoặc CH₃CHO. Cách cân bằng nhanh: hãy nhớ "vai trò" của từng chất:
+          <br>• I₂: vừa thay 3H trên CH₃ thành 3I (3 mol I₂), vừa "lấy" thêm để tạo NaI
+          <br>• NaOH: trung hòa HI và "cắt" CH₃CO- khỏi CHI₃
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Cơ chế phản ứng iodoform (2 bước):</strong><br>
+          <strong>Bước A:</strong> 3H trên CH₃ bị thế bởi 3I:<br>
+          CH₃CHO + 3I₂ → CI₃CHO + 3HI<br>
+          <strong>Bước B:</strong> NaOH tách nhóm CI₃ và tạo iodoform:<br>
+          CI₃CHO + NaOH → CHI₃↓ + HCOONa<br>
+          <strong>Bước C:</strong> NaOH trung hòa HI tạo NaI và H₂O:<br>
+          3HI + 3NaOH → 3NaI + 3H₂O</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phương trình tổng hợp đã cân bằng:</strong>
+          <div class="rxn"><strong>CH₃CHO + 3I₂ + 4NaOH <span class="arrow">→</span> HCOONa + CHI₃↓ + 3NaI + 3H₂O</strong></div></div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Tổng hệ số:</strong><br>
+          1 + 3 + 4 + 1 + 1 + 3 + 3 = <strong>16</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: D — Tổng hệ số = 16</div>
+        Quy tắc kiểm tra cân bằng: số nguyên tử I cả 2 vế phải bằng nhau (6 mỗi vế); số Na cả 2 vế phải bằng nhau (4 mỗi vế).</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 30</span>
+        <span class="ex-q">Cho dãy chất: HCHO, CH₃COOH, CH₂=CHCHO, C₂H₅OH, CH₃CHO, CH₃COCH₃. Có bao nhiêu chất tác dụng với thuốc thử Tollens (AgNO₃/NH₃)?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Tollens "tìm" cấu trúc <strong>-CHO</strong> (nhóm formyl) hoặc <strong>HCOO-</strong> (formate). Kiểm tra từng chất xem có chứa nhóm này không. Đặc biệt:
+          <br>• HCOOH (formic acid) <strong>CŨNG</strong> phản ứng (vì có cấu trúc H-CO-OH)
+          <br>• Alkyne đầu mạch (HC≡C-R) tạo kết tủa với AgNO₃/NH₃ nhưng KHÔNG phải phản ứng tráng bạc thông thường
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Phân tích từng chất:</strong>
+          <table>
+            <tr><th>Chất</th><th>Có nhóm -CHO?</th><th>Tollens?</th></tr>
+            <tr><td>HCHO (formaldehyde)</td><td>✅ -CHO</td><td style="color:var(--accent4)">✅ (cho 4Ag)</td></tr>
+            <tr><td>CH₃COOH (acid acetic)</td><td>❌ -COOH (không phải CHO)</td><td style="color:var(--accent6)">❌</td></tr>
+            <tr><td>CH₂=CHCHO (acrolein)</td><td>✅ -CHO</td><td style="color:var(--accent4)">✅ (cho 2Ag)</td></tr>
+            <tr><td>C₂H₅OH (ethanol)</td><td>❌</td><td style="color:var(--accent6)">❌</td></tr>
+            <tr><td>CH₃CHO (acetaldehyde)</td><td>✅ -CHO</td><td style="color:var(--accent4)">✅ (cho 2Ag)</td></tr>
+            <tr><td>CH₃COCH₃ (acetone)</td><td>❌ (-CO- ở giữa)</td><td style="color:var(--accent6)">❌</td></tr>
+          </table></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Đếm số chất phản ứng Tollens:</strong><br>
+          HCHO + CH₂=CHCHO + CH₃CHO = <strong>3 chất</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: 3 chất</div>
+        Cẩn thận với CH₂=CHCHO: tuy có C=C nhưng nhóm -CHO mới phản ứng với Tollens (không phải C=C). Acid CH₃COOH không phản ứng (chỉ HCOOH mới phản ứng vì có cấu trúc H-CO-).</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CHAPTER 7: CARBOXYLIC ACID -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="ch7" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-icon" style="background:#3a1a1a; border:1px solid #ff7b7244;">🍋</div>
+    <div>
+      <h2 style="color:var(--accent6)">Chương 7: Carboxylic Acid</h2>
+      <small>R–COOH — nhóm –COOH</small>
+    </div>
+  </div>
+
+  <div class="feynman">
+    Carboxylic acid có nhóm <strong>–COOH</strong>. Đây thực ra là –CO–OH: nhóm carbonyl C=O + nhóm OH gộp lại. Vì vậy nó vừa có tính acid (–OH ion hóa cho H⁺), vừa có khả năng este hóa (như –OH). Giấm ăn chính là dung dịch acetic acid (CH₃COOH) 5%, vị chua của chanh là citric acid.
+  </div>
+
+  <div class="section">
+    <div class="section-title">📐 Công thức & tên gọi</div>
+    <table>
+      <tr><th>Công thức</th><th>Tên thay thế</th><th>Tên thường</th><th>Ghi nhớ</th></tr>
+      <tr><td class="mono">HCOOH</td><td>methanoic acid</td><td>formic acid</td><td>Acid kiến (formic = kiến)</td></tr>
+      <tr><td class="mono">CH₃COOH</td><td>ethanoic acid</td><td>acetic acid</td><td>Giấm ăn</td></tr>
+      <tr><td class="mono">CH₃CH₂COOH</td><td>propanoic acid</td><td>propionic acid</td><td></td></tr>
+      <tr><td class="mono">C₆H₅COOH</td><td>benzoic acid</td><td>benzoic acid</td><td>Tạo từ oxi hóa toluene</td></tr>
+      <tr><td class="mono">CₙH₂ₙO₂ (n≥1)</td><td>acid no đơn chức</td><td>công thức chung</td><td>Chú ý: n≥1!</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚗️ Tính chất hoá học</div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent6)">1. Tính acid — tác dụng với kim loại, oxide, base, muối</div>
+      <div class="rxn">
+        2CH₃COOH + Zn <span class="arrow">→</span> <span class="product">(CH₃COO)₂Zn + H₂↑</span>
+        <br><span class="cond">(kim loại hoạt động — trừ Cu, Ag, Au không phản ứng!)</span>
+      </div>
+      <div class="rxn">
+        CH₃COOH + NaOH <span class="arrow">→</span> <span class="product">CH₃COONa + H₂O</span>
+      </div>
+      <div class="rxn">
+        2CH₃COOH + CaCO₃ <span class="arrow">→</span> <span class="product">(CH₃COO)₂Ca + H₂O + CO₂↑</span>
+        <br><span class="cond">(đá vôi tan trong acid → có CO₂ sủi bọt; dùng để nhận biết acid)</span>
+      </div>
+      <div class="danger">
+        <div class="danger-title">⚠️ Cu KHÔNG phản ứng với carboxylic acid thông thường</div>
+        Propanoic acid (hay bất kỳ acid hữu cơ thông thường) + Cu → KHÔNG phản ứng (Cu đứng sau H trong dãy hoạt động). Đây là bẫy phổ biến!
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent6)">2. Phản ứng ester hóa ⭐⭐</div>
+      <div class="rxn">
+        CH₃COOH + C₂H₅OH <span class="arrow">⇌(H₂SO₄ đặc, t°)</span> <span class="product">CH₃COOC₂H₅ + H₂O</span>
+        <br><span class="cond">(ethyl acetate — mùi táo, thuận nghịch!)</span>
+      </div>
+      <div class="rule">
+        <div class="rule-title">📌 Nguyên tắc đặt tên ester</div>
+        Ester = gốc R' từ alcohol + gốc acid (đuôi "ate")<br>
+        CH₃COO–C₂H₅ = ethyl acetate (ethyl = C₂H₅, acetate = từ acetic acid)<br>
+        HCOO–CH₃ = methyl formate (methyl = CH₃, formate = từ formic acid)
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--accent6)">3. HCOOH đặc biệt: vừa là acid vừa có tính khử!</div>
+      <div class="rxn">
+        HCOOH + 2[Ag(NH₃)₂]OH <span class="arrow">→</span> <span class="product">2Ag↓ + (NH₄)₂CO₃ + 2NH₃ + H₂O</span>
+        <br><span class="cond">(HCOOH cho phản ứng tráng bạc — vì cấu trúc có nhóm H–C=O)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">✏️ Bài tập có lời giải</div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 12</span>
+        <span class="ex-q">Thể tích NaOH 0,4 mol/L cần để trung hòa 0,005 mol citric acid (3 nhóm COOH)?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content">Citric acid có <strong>3 nhóm –COOH</strong> → tác dụng 3 mol NaOH / 1 mol acid<br>
+          PT: C₃H₄(COOH)₃ + 3NaOH → C₃H₄(COONa)₃ + 3H₂O</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content">n(NaOH) = 3 × n(acid) = 3 × 0,005 = 0,015 mol</div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content">V(NaOH) = n/C = 0,015 / 0,4 = 0,0375 L = <strong>37,5 mL</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: 37,5 mL</div></div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 13</span>
+        <span class="ex-q">Hợp chất X + Ca → muối có công thức thực nghiệm C₄H₄O₄Ca. Tìm công thức cấu tạo của X.</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content">Muối Ca²⁺ của carboxylic acid: Ca²⁺ thay thế 2 ion H⁺ từ 2 nhóm –COOH<br>
+          C₄H₄O₄Ca = (RCOO)₂Ca → RCOO⁻ = C₂H₂O₂⁻ = OOC–... </div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content">Acid X: từ muối (RCOO)₂Ca, X = 2 RCOOH với gốc ghép lại<br>
+          C₄H₄O₄Ca → X = C₄H₄O₄ (acid 2 chức: 2 nhóm –COOH)<br>
+          2 × RCOOH cung cấp C₄H₄O₄H₂ = C₄H₆O₄... Hmm, xét lại:<br>
+          (RCOO⁻)₂Ca có C₄H₄O₄ → mỗi RCOO⁻ = C₂H₂O₂⁻<br>
+          RCOOH = C₂H₃O₂H... thực ra X là acid 2 chức:<br>
+          X = HOOC–CH=CH–COOH (butenedioic acid / fumaric acid) hoặc HOOCCH₂CH₂COOH</div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content">X + Ca → muối: 2RCOOH + Ca → (RCOO)₂Ca + H₂<br>
+          CTPT X: C₄H₆O₄ (dicarboxylic acid, 2 nhóm –COOH)<br>
+          Công thức cấu tạo: <strong>HOOC–CH₂–CH₂–COOH</strong> (succinic acid)</div></div>
+        <div class="answer"><div class="answer-label">✅ X = HOOC–CH₂–CH₂–COOH (succinic acid, butanedioic acid)</div></div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 14</span>
+        <span class="ex-q">Số đồng phân carboxylic acid và ester có CTPT C₄H₈O₂ là bao nhiêu?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Carboxylic acid (RCOOH) với C₄H₈O₂:</strong><br>
+          • CH₃CH₂CH₂COOH (butanoic acid)<br>
+          • (CH₃)₂CHCOOH (2-methylpropanoic acid / isobutyric acid)<br>
+          → <strong>2 acid</strong></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Ester (RCOOR') với C₄H₈O₂:</strong><br>
+          • HCOO–CH₂CH₂CH₃ (propyl formate)<br>
+          • HCOO–CH(CH₃)₂ (isopropyl formate)<br>
+          • CH₃COO–CH₂CH₃ (ethyl acetate)<br>
+          • CH₃CH₂COO–CH₃ (methyl propanoate)<br>
+          → <strong>4 ester</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Tổng: 2 + 4 = 6 đồng phân (Đáp án C)</div></div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 31</span>
+        <span class="ex-q">Trong các chất sau, chất nào có nhiệt độ sôi CAO nhất: acetone (CH₃COCH₃), ethyl chloride (C₂H₅Cl), ethanol (C₂H₅OH), acetic acid (CH₃COOH)? Giải thích vì sao.</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Nhiệt độ sôi phụ thuộc vào <strong>lực liên kết giữa các phân tử</strong>. Phân tử nào "kéo nhau" mạnh hơn thì cần nhiều năng lượng hơn để tách rời (sôi). Thứ tự lực liên kết phân tử tăng dần:
+          <br>1. Alkane/halogen (chỉ có lực Van der Waals — yếu)
+          <br>2. Aldehyde/Ketone/Ester (có lưỡng cực C=O)
+          <br>3. Alcohol (có liên kết hydrogen O-H...O — mạnh)
+          <br>4. <strong>Carboxylic acid</strong> (có liên kết hydrogen "đôi" O-H...O=C — rất mạnh, tạo dimer!)
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>So sánh nhiệt độ sôi thực tế:</strong>
+          <table>
+            <tr><th>Chất</th><th>M (g/mol)</th><th>t°sôi (°C)</th><th>Lực liên kết phân tử</th></tr>
+            <tr><td>Ethyl chloride (C₂H₅Cl)</td><td>64,5</td><td>+12</td><td>Lưỡng cực yếu</td></tr>
+            <tr><td>Acetone (CH₃COCH₃)</td><td>58</td><td>+56</td><td>Lưỡng cực C=O</td></tr>
+            <tr><td>Ethanol (C₂H₅OH)</td><td>46</td><td>+78</td><td>Liên kết H đơn</td></tr>
+            <tr><td><strong>Acetic acid (CH₃COOH)</strong></td><td>60</td><td><strong>+118</strong></td><td><strong>Liên kết H đôi (dimer)</strong></td></tr>
+          </table></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Vì sao acid cao nhất?</strong><br>
+          Phân tử CH₃COOH liên kết hydrogen với nhau theo kiểu "<strong>dimer</strong>" — 2 phân tử dính nhau qua 2 liên kết H:
+          <div class="rxn">CH₃-C(=O)-O-H · · · O=C(-CH₃)-O-H · · · O=C → "khối liền"</div>
+          → Phải bứt 2 liên kết H mỗi phân tử để bốc hơi → cần nhiều nhiệt → t°sôi cao nhất.</div></div>
+        <div class="answer"><div class="answer-label">✅ Đáp án: D — Acetic acid có nhiệt độ sôi cao nhất</div>
+        Quy tắc tổng quát so sánh t°sôi (cùng số C tương đương):
+        <strong>Acid &gt; Alcohol &gt; Aldehyde/Ketone &gt; Ester &gt; Halogen &gt; Hydrocarbon</strong></div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 32</span>
+        <span class="ex-q">Citric acid (acid 3 nhóm -COOH, có trong quả chanh) có CTCT: HOOC-CH₂-C(OH)(COOH)-CH₂-COOH. Tính V(NaOH) 0,4 mol/L cần để trung hòa 0,005 mol citric acid?</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Đây là acid <strong>đa chức</strong> — có 3 nhóm -COOH. Mỗi nhóm -COOH cần 1 phân tử NaOH để trung hòa. Vậy 1 mol citric acid cần <strong>3 mol NaOH</strong>.
+          <br>(Lưu ý: nhóm -OH ở giữa là alcohol — KHÔNG phản ứng với NaOH, đừng đếm nhầm!)
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Phương trình trung hòa:</strong>
+          <div class="rxn">HOOC-CH₂-C(OH)(COOH)-CH₂-COOH + 3NaOH <span class="arrow">→</span> <span class="product">NaOOC-CH₂-C(OH)(COONa)-CH₂-COONa</span> + 3H₂O</div></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Tính số mol NaOH:</strong><br>
+          n(NaOH) = 3 × n(citric acid) = 3 × 0,005 = <strong>0,015 mol</strong></div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Tính thể tích:</strong><br>
+          V(NaOH) = n/C = 0,015 / 0,4 = 0,0375 L = <strong>37,5 mL</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ V(NaOH) = 37,5 mL</div>
+        Cẩn thận: nhóm -OH alcohol ở C bậc 3 KHÔNG phản ứng với NaOH (chỉ có -COOH mới phản ứng). Đếm đúng số -COOH = 3 → công thức n(NaOH) = 3 × n(citric).</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 33</span>
+        <span class="ex-q">Để trung hòa 40 mL giấm ăn cần 25 mL dung dịch NaOH 1M. Biết khối lượng riêng giấm là 1 g/mL. Tính nồng độ % của acetic acid trong giấm.</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div class="feynman">
+          Giấm ăn = dung dịch acetic acid loãng (thường ~5%). Bài chuẩn độ này có 3 bước rõ ràng:
+          <br>1. Tìm số mol acid từ số mol NaOH (tỉ lệ 1:1)
+          <br>2. Đổi số mol acid → khối lượng acid
+          <br>3. Tính C% = m(acid)/m(giấm) × 100%
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Tính số mol NaOH:</strong><br>
+          n(NaOH) = V × C = 25 × 10⁻³ × 1 = <strong>0,025 mol</strong></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phương trình trung hòa (1:1):</strong>
+          <div class="rxn">CH₃COOH + NaOH <span class="arrow">→</span> <span class="product">CH₃COONa + H₂O</span></div>
+          → n(CH₃COOH) = n(NaOH) = 0,025 mol</div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Tính khối lượng acetic acid:</strong><br>
+          M(CH₃COOH) = 60 g/mol<br>
+          m(CH₃COOH) = 0,025 × 60 = <strong>1,5 g</strong></div></div>
+        <div class="ex-step"><div class="step-num">4</div>
+          <div class="step-content"><strong>Tính khối lượng giấm và C%:</strong><br>
+          m(giấm) = V × d = 40 × 1 = 40 g<br>
+          C% = (1,5 / 40) × 100% = <strong>3,75%</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Nồng độ % của giấm = 3,75%</div>
+        Giấm ăn thương mại thường có nồng độ acetic acid 4–8%, tùy loại. Mẫu này (3,75%) là giấm pha loãng hoặc giấm gạo nhẹ.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CHAPTER 8: ÔN TẬP TỔNG HỢP (CROSS-CHAPTER) -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="ch-ontap" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-icon" style="background:#3a2a1a; border:1px solid #e3b34144;">🔄</div>
+    <div>
+      <h2 style="color:var(--gold)">Ôn tập</h2>
+      <small>Bài tập tổng hợp — sử dụng kiến thức &gt; 2 chương</small>
+    </div>
+  </div>
+
+  <div class="feynman">
+    Phần này dành cho các bài tập "trộn" kiến thức từ nhiều chương — đề thi thật thường có dạng này. Mỗi bài tập sẽ gắn nhãn để em biết kiến thức nào đang được vận dụng. Hãy nhớ: muốn giải tốt bài tổng hợp, em cần <strong>nắm vững từng chương riêng lẻ</strong> trước, rồi mới ráp lại được.
+  </div>
+
+  <div class="section">
+    <div class="section-title">✏️ Bài tập tổng hợp có lời giải</div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 34</span>
+        <span class="ex-q">Sắp xếp nhiệt độ sôi tăng dần: ethane, benzene, phenol, ethanol. (Áp dụng kiến thức Ch.1 + Ch.2 + Ch.4 + Ch.5)</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div style="margin-bottom:10px;">
+          <span class="tag tag-blue">Ch.1: Ethane</span>
+          <span class="tag tag-orange">Ch.2: Benzene</span>
+          <span class="tag tag-green">Ch.4: Ethanol</span>
+          <span class="tag tag-green">Ch.5: Phenol</span>
+        </div>
+        <div class="feynman">
+          Đề cho 4 chất với t°sôi và độ tan trong nước. Em cần "đọc" bảng và đối chiếu kiến thức về liên kết phân tử:
+          <br>• Có liên kết hydrogen → t°sôi cao + tan tốt trong nước
+          <br>• Không có liên kết H → t°sôi thấp + không tan trong nước
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Tóm tắt dữ liệu:</strong>
+          <table>
+            <tr><th>Mẫu</th><th>t°sôi</th><th>Độ tan</th><th>Liên kết H</th></tr>
+            <tr><td>1</td><td>80°C</td><td>Không tan</td><td>Không</td></tr>
+            <tr><td>2</td><td>-89°C</td><td>Không tan</td><td>Không</td></tr>
+            <tr><td>3</td><td>78°C</td><td>Tan vô hạn</td><td>Có</td></tr>
+            <tr><td>4</td><td>182°C</td><td>Tan ít</td><td>Có</td></tr>
+          </table></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Suy luận từng mẫu:</strong><br>
+          • <strong>Mẫu 2</strong> (-89°C, không tan, không có LK H) → chất nhẹ nhất, không phân cực → <strong>ethane</strong> (CH₃CH₃, M=30)<br>
+          • <strong>Mẫu 1</strong> (80°C, không tan, không có LK H) → chất phân tử lớn hơn, vẫn không phân cực → <strong>benzene</strong> (C₆H₆, M=78, t°sôi thực = 80°C ✓)<br>
+          • <strong>Mẫu 3</strong> (78°C, tan vô hạn, có LK H) → alcohol nhỏ → <strong>ethanol</strong> (C₂H₅OH, M=46, t°sôi 78°C ✓, tan vô hạn ✓)<br>
+          • <strong>Mẫu 4</strong> (182°C, tan ít, có LK H) → cao nhất, M lớn, có LK H nhưng tan ít vì có vòng benzene kỵ nước → <strong>phenol</strong> (C₆H₅OH, M=94, t°sôi 182°C ✓)</div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Sắp xếp nhiệt độ sôi tăng dần:</strong><br>
+          ethane (-89°C) &lt; ethanol (78°C) &lt; benzene (80°C) &lt; phenol (182°C)</div></div>
+        <div class="answer"><div class="answer-label">✅ Mẫu 1, 2, 3, 4 lần lượt là: B — benzene, ethane, ethanol, phenol</div>
+        Bài học: 2 yếu tố quyết định t°sôi là (1) khối lượng phân tử M và (2) liên kết hydrogen. Phenol cao nhất vì M lớn + có LK H.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 35</span>
+        <span class="ex-q">Cho dãy: phenol, ethanol, ethyl chloride, o-cresol, glycerol. Bao nhiêu chất tác dụng với Na? (Ch.3 + Ch.4 + Ch.5)</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div style="margin-bottom:10px;">
+          <span class="tag tag-purple">Ch.3: Halogen (ethyl chloride)</span>
+          <span class="tag tag-green">Ch.4: Alcohol (ethanol, glycerol)</span>
+          <span class="tag tag-green">Ch.5: Phenol (phenol, o-cresol)</span>
+        </div>
+        <div class="feynman">
+          Na "tấn công" vào liên kết O-H (yếu hơn liên kết O-H thông thường). Vậy chất nào có nhóm -OH (alcohol hoặc phenol) sẽ phản ứng với Na giải phóng H₂. Ethyl chloride (C₂H₅Cl) <strong>KHÔNG có nhóm -OH</strong> → không phản ứng. Phải cẩn thận: ethyl chloride có Cl, không phải -OH!
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Phân tích từng chất:</strong>
+          <table>
+            <tr><th>Chất</th><th>Có nhóm -OH?</th><th>Td với Na?</th></tr>
+            <tr><td>Phenol (C₆H₅OH)</td><td>✅ -OH (phenol)</td><td style="color:var(--accent4)">✅</td></tr>
+            <tr><td>Ethanol (C₂H₅OH)</td><td>✅ -OH (alcohol)</td><td style="color:var(--accent4)">✅</td></tr>
+            <tr><td>Ethyl chloride (C₂H₅Cl)</td><td>❌ chỉ có -Cl</td><td style="color:var(--accent6)">❌</td></tr>
+            <tr><td>o-cresol (CH₃-C₆H₄-OH)</td><td>✅ -OH (phenol)</td><td style="color:var(--accent4)">✅</td></tr>
+            <tr><td>Glycerol C₃H₅(OH)₃</td><td>✅ 3 nhóm -OH</td><td style="color:var(--accent4)">✅</td></tr>
+          </table></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phương trình ví dụ:</strong>
+          <div class="rxn">2C₆H₅OH + 2Na <span class="arrow">→</span> <span class="product">2C₆H₅ONa + H₂↑</span></div>
+          <div class="rxn">2C₂H₅OH + 2Na <span class="arrow">→</span> <span class="product">2C₂H₅ONa + H₂↑</span></div>
+          <div class="rxn">2CH₃-C₆H₄-OH + 2Na <span class="arrow">→</span> <span class="product">2CH₃-C₆H₄-ONa + H₂↑</span></div>
+          <div class="rxn">2C₃H₅(OH)₃ + 6Na <span class="arrow">→</span> <span class="product">2C₃H₅(ONa)₃ + 3H₂↑</span></div></div></div>
+        <div class="answer"><div class="answer-label">✅ Có 4 chất phản ứng với Na</div>
+        Ethyl chloride không phản ứng vì không có nhóm -OH. Đây là bẫy thường gặp: học sinh hay nhầm vì thấy "Cl" giống "halogen của HCl" nên tưởng có H linh động.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 36</span>
+        <span class="ex-q">Cho HC≡C-CH₂OH (propargyl alcohol) lần lượt tác dụng với: Cu(OH)₂, AgNO₃/NH₃, H₂(Ni,t°), Na, nước Br₂, KMnO₄, NaOH. Có bao nhiêu trường hợp xảy ra phản ứng? (Ch.1 + Ch.4)</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div style="margin-bottom:10px;">
+          <span class="tag tag-blue">Ch.1: Alkyne (HC≡C-)</span>
+          <span class="tag tag-green">Ch.4: Alcohol (-CH₂OH)</span>
+        </div>
+        <div class="feynman">
+          Phân tử HC≡C-CH₂OH có <strong>2 nhóm chức</strong> kết hợp:
+          <br>• HC≡C- (alkyne đầu mạch) → phản ứng với Br₂, H₂, AgNO₃/NH₃, KMnO₄
+          <br>• -CH₂OH (alcohol bậc 1) → phản ứng với Na
+          <br>Vậy hãy đi qua từng thuốc thử và xem nó "tìm" nhóm nào.
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Phân tích từng thuốc thử:</strong>
+          <table>
+            <tr><th>Thuốc thử</th><th>Phản ứng?</th><th>Mục tiêu phản ứng</th></tr>
+            <tr><td>Cu(OH)₂</td><td style="color:var(--accent6)">❌</td><td>Cần ≥2 nhóm OH liền kề (poly-ol); chỉ có 1 OH</td></tr>
+            <tr><td>AgNO₃/NH₃</td><td style="color:var(--accent4)">✅</td><td>HC≡C- đầu mạch → kết tủa AgC≡C-CH₂OH</td></tr>
+            <tr><td>H₂ (Ni, t°)</td><td style="color:var(--accent4)">✅</td><td>Cộng vào C≡C → CH₃-CH₂-CH₂OH</td></tr>
+            <tr><td>Na</td><td style="color:var(--accent4)">✅</td><td>-CH₂OH có H linh động → giải phóng H₂</td></tr>
+            <tr><td>Nước Br₂</td><td style="color:var(--accent4)">✅</td><td>Cộng vào C≡C → CHBr₂-CBr₂-CH₂OH</td></tr>
+            <tr><td>KMnO₄</td><td style="color:var(--accent4)">✅</td><td>Oxi hóa C≡C; OH cũng oxi hóa</td></tr>
+            <tr><td>NaOH</td><td style="color:var(--accent6)">❌</td><td>Alcohol KHÔNG phản ứng NaOH; alkyne cũng không</td></tr>
+          </table></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Đếm số trường hợp phản ứng:</strong><br>
+          AgNO₃/NH₃ + H₂ + Na + Br₂ + KMnO₄ = <strong>5 trường hợp</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Có 5 phản ứng xảy ra</div>
+        Bài học: khi gặp chất có "2 nhóm chức", em phải xét cả 2 và xem mỗi thuốc thử "tìm" nhóm nào. Cu(OH)₂ rất "kén chọn" — chỉ phản ứng với poly-ol có ≥2 OH liền kề (như glycerol).</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 37</span>
+        <span class="ex-q">Oxi hóa không hoàn toàn ethylene (xt) → ethanal. Dẫn 2,479 L hỗn hợp khí (đkc) vào AgNO₃/NH₃ dư thu được 16,2 g Ag. Tính hiệu suất phản ứng. (Ch.1 + Ch.6)</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div style="margin-bottom:10px;">
+          <span class="tag tag-blue">Ch.1: Ethylene CH₂=CH₂</span>
+          <span class="tag tag-orange">Ch.6: Tráng bạc Tollens</span>
+        </div>
+        <div class="feynman">
+          Sơ đồ: Ethylene (oxi hóa không hoàn toàn) → Ethanal (CH₃CHO). Vì hiệu suất &lt;100%, hỗn hợp khí X gồm cả ethylene <strong>còn dư</strong> và ethanal <strong>đã tạo</strong>.
+          <br>• Chỉ ethanal (CH₃CHO) phản ứng với Tollens, ethylene KHÔNG phản ứng
+          <br>→ Đếm Ag → tính số mol CH₃CHO → tính hiệu suất.
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Tính số mol hỗn hợp khí:</strong><br>
+          n(hỗn hợp X) = V/24,79 = 2,479/24,79 = <strong>0,1 mol</strong> (đkc 25°C, 1 bar)</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phương trình điều chế ethanal:</strong>
+          <div class="rxn">2CH₂=CH₂ + O₂ <span class="arrow">→(PdCl₂/CuCl₂)</span> <span class="product">2CH₃CHO</span></div></div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Phản ứng với Tollens:</strong><br>
+          CH₃CHO + 2[Ag(NH₃)₂]OH → CH₃COONH₄ + 2Ag↓ + 3NH₃ + H₂O<br>
+          n(Ag) = 16,2/108 = 0,15 mol<br>
+          n(CH₃CHO) = n(Ag)/2 = 0,15/2 = <strong>0,075 mol</strong></div></div>
+        <div class="ex-step"><div class="step-num">4</div>
+          <div class="step-content"><strong>Tính hiệu suất:</strong><br>
+          Ethylene phản ứng = ethylene chuyển thành ethanal = 0,075 mol<br>
+          Ethylene ban đầu = ethylene phản ứng + ethylene dư = (0,1 - 0,075) + 0,075 = 0,1 mol<br>
+          Đợi đã — bài này hỏi hiệu suất chuyển ethylene → ethanal:<br>
+          <strong>Tổng hỗn hợp X có 0,1 mol</strong> = ethylene dư + ethanal = 0,1 mol<br>
+          → ethylene dư = 0,1 - 0,075 = 0,025 mol<br>
+          → ethylene ban đầu = 0,025 + 0,075 = 0,1 mol<br>
+          H% = (n CH₃CHO tạo ra)/(n ethylene ban đầu) × 100% = 0,075/0,1 × 100% = <strong>75%</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ Hiệu suất H = 75%</div>
+        Mẹo: trong oxi hóa không hoàn toàn, "hỗn hợp khí X" = nguyên liệu dư + sản phẩm. Hiệu suất = sản phẩm/nguyên liệu ban đầu.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 38</span>
+        <span class="ex-q">Hợp chất X có vòng benzene, CTPT C₈H₈O₂, phản ứng X + 2NaOH → Y + 2H₂O. Phân tích các phát biểu về cấu trúc và phản ứng của X. (Ch.2 + Ch.5 + Ch.7)</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div style="margin-bottom:10px;">
+          <span class="tag tag-orange">Ch.2: Vòng benzene</span>
+          <span class="tag tag-green">Ch.5: Phenol (-OH gắn vòng)</span>
+          <span class="tag tag-red">Ch.7: Acid (-COOH)</span>
+        </div>
+        <div class="feynman">
+          Đây là bài "<strong>truy ngược cấu tạo</strong>" — từ phản ứng và CTPT, suy ra X là gì. Quan sát kỹ:
+          <br>• X + 2NaOH → Y + 2H₂O nghĩa là X có 2 nhóm acid hoặc 2 phenol-H linh động
+          <br>• CTPT C₈H₈O₂: 2 oxi → 2 nhóm -OH/-COOH/ester
+          <br>• Có vòng benzene (chiếm 6C, 4H sau khi mất 2H thế)
+          <br>→ Còn 2C, 4H ngoài vòng + 2 nhóm chức
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Tính độ bất bão hòa:</strong><br>
+          C₈H₈O₂: k = (2×8+2-8)/2 = (16+2-8)/2 = <strong>5</strong><br>
+          Vòng benzene đã chiếm k=4 (3 đôi + 1 vòng) → còn k=1 → <strong>1 liên kết đôi C=O</strong> ngoài vòng</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Suy ra cấu trúc X:</strong><br>
+          X có 1 vòng benzene + 1 nhóm C=O. Phản ứng X + 2NaOH → Y + 2H₂O cho thấy X có thể là:<br>
+          • <strong>Ester của phenol:</strong> CH₃-COO-C₆H₄-OH (hydroxyphenyl acetate)<br>
+          → CH₃COO-C₆H₄-OH + 2NaOH → CH₃COONa + NaO-C₆H₄-OH + H₂O? Không đúng vì 1 ester chỉ cần 1 NaOH thường.<br>
+          → Phải xét: ester của phenol + phenol-OH dư → 2 NaOH<br>
+          Cấu trúc khả dĩ: <strong>HCOO-C₆H₄-CH₃</strong> (formate của cresol) hoặc <strong>CH₃-COO-C₆H₅</strong> (phenyl acetate)... 
+          Thực ra X = <strong>HCOO-C₆H₄-CH₃</strong> (methyl phenyl formate): cho ra HCOONa + CH₃-C₆H₄-ONa + H₂O (chỉ 1 H₂O, không phải 2)<br>
+          → X = <strong>HO-C₆H₄-CHO</strong> (hydroxybenzaldehyde) cũng không đúng (chỉ 1 -OH).<br>
+          <strong>X = ester của phenol có nhóm acid:</strong> X chỉ có thể là HCOO-C₆H₄-CH₃ = formate của cresol</div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Cấu trúc đúng nhất: X = HCOOC₆H₄CH₃ (formate của cresol)</strong><br>
+          <div class="rxn">HCOO-C₆H₄-CH₃ + 2NaOH <span class="arrow">→</span> <span class="product">HCOONa + CH₃-C₆H₄-ONa + H₂O</span></div>
+          Đây chỉ tạo 1 H₂O. Để có 2 H₂O thì X phải khác — có thể là <strong>methyl salicylate</strong> hoặc tương tự với cấu trúc 2 nhóm phenol/acid.<br>
+          Cấu trúc X có 2 nhóm OH (phenol) gắn methylene: <strong>HO-C₆H₄-CH₂-OH</strong> không hợp với CTPT C₈H₈O₂.<br>
+          Đáp án phù hợp nhất: <strong>X = ester của phenol</strong> với 1 -COOR + 1 -OH phenol còn lại.</div></div>
+        <div class="ex-step"><div class="step-num">4</div>
+          <div class="step-content"><strong>Phân tích phát biểu (a-d):</strong><br>
+          (a) X có 5 liên kết π → <strong>ĐÚNG</strong> (3 trong vòng benzene + 1 C=O + 1 từ liên kết đơn của ester) — thực tế π=4 (3 vòng + 1 C=O)<br>
+          (b) Y là phenol đa chức → <strong>SAI</strong> (Y là muối)<br>
+          (c) Y có 6 nguyên tử H → tùy cấu trúc Y<br>
+          (d) X làm mất màu Br₂ → <strong>SAI</strong> (vòng benzene + ester không phản ứng với Br₂ ở điều kiện thường)</div></div>
+        <div class="answer"><div class="answer-label">✅ X là ester có vòng benzene và 1 nhóm OH phenol</div>
+        Đây là bài tổng hợp khó — cần kiến thức về vòng benzene (Ch.2), phenol (Ch.5) và ester của carboxylic acid (Ch.7). Khi X + 2NaOH cho 2H₂O, đó là dấu hiệu của ester có thêm phenol-OH.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 39</span>
+        <span class="ex-q">Hỗn hợp A gồm ethanol và phenol + Na dư → 3,7185 L H₂ (đkc). Cho cùng A + nước Br₂ vừa đủ → 19,86 g kết tủa trắng. Tính %m phenol trong A. (Ch.4 + Ch.5)</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div style="margin-bottom:10px;">
+          <span class="tag tag-green">Ch.4: Ethanol + Na</span>
+          <span class="tag tag-green">Ch.5: Phenol + Br₂ → kết tủa trắng</span>
+        </div>
+        <div class="feynman">
+          Bài này có 2 dữ liệu — chính là 2 phương trình để giải hệ 2 ẩn (n ethanol và n phenol).
+          <br><strong>Dữ liệu 1 (Na):</strong> CẢ HAI chất đều phản ứng với Na → tổng số mol H₂
+          <br><strong>Dữ liệu 2 (Br₂):</strong> CHỈ phenol mới tạo kết tủa với Br₂ → riêng phenol
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Đặt ẩn:</strong> Gọi n(C₂H₅OH) = x; n(C₆H₅OH) = y</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phương trình 2: Phản ứng với Br₂:</strong>
+          <div class="rxn">C₆H₅OH + 3Br₂ <span class="arrow">→</span> <span class="product">C₆H₂Br₃OH↓ + 3HBr</span></div>
+          (Ethanol KHÔNG phản ứng Br₂)<br>
+          M(C₆H₂Br₃OH) = 12×6 + 2 + 80×3 + 16 + 1 = 331 g/mol<br>
+          n(kết tủa) = 19,86/331 = <strong>0,06 mol</strong><br>
+          → y = n(C₆H₅OH) = <strong>0,06 mol</strong></div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Phương trình 1: Phản ứng với Na:</strong>
+          <div class="rxn">2C₂H₅OH + 2Na <span class="arrow">→</span> 2C₂H₅ONa + H₂↑</div>
+          <div class="rxn">2C₆H₅OH + 2Na <span class="arrow">→</span> 2C₆H₅ONa + H₂↑</div>
+          n(H₂) = 3,7185/24,79 = <strong>0,15 mol</strong><br>
+          Tổng (x + y)/2 = n(H₂) → x + y = 0,3 mol → x = 0,3 - 0,06 = <strong>0,24 mol</strong></div></div>
+        <div class="ex-step"><div class="step-num">4</div>
+          <div class="step-content"><strong>Tính khối lượng và %m phenol:</strong><br>
+          m(ethanol) = 0,24 × 46 = 11,04 g<br>
+          m(phenol) = 0,06 × 94 = 5,64 g<br>
+          Tổng m(A) = 11,04 + 5,64 = 16,68 g<br>
+          %m(phenol) = (5,64/16,68) × 100% = <strong>33,81%</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ %m(phenol) ≈ 33,81%</div>
+        Mẹo: khi gặp hỗn hợp 2 chất + 2 dữ liệu khác nhau → giải hệ 2 phương trình. Khi 1 dữ liệu chỉ "chạm" vào 1 chất (như Br₂ chỉ phản ứng phenol) → tìm được n chất đó trước, đỡ phải giải hệ.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 40</span>
+        <span class="ex-q">PVC điều chế từ khí thiên nhiên qua sơ đồ: CH₄ → C₂H₂ → CH₂=CHCl → PVC. Hiệu suất toàn quá trình 20%. Để có 1 tấn PVC cần V (m³) khí thiên nhiên (chứa 80% CH₄)? (Ch.1 + Ch.3)</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div style="margin-bottom:10px;">
+          <span class="tag tag-blue">Ch.1: CH₄, C₂H₂</span>
+          <span class="tag tag-purple">Ch.3: Vinyl chloride (CH₂=CHCl) → PVC</span>
+        </div>
+        <div class="feynman">
+          Đây là bài chuỗi sản xuất công nghiệp. Mỗi mắc xích nối với mắc xích sau theo tỉ lệ stoichiometry. Hãy đi <strong>NGƯỢC TỪ SẢN PHẨM</strong> (PVC) về nguyên liệu (CH₄), nhân tỉ lệ ở mỗi bước, rồi cuối cùng chia hiệu suất.
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Sơ đồ phản ứng:</strong>
+          <div class="rxn">2CH₄ <span class="arrow">→(1500°C, làm lạnh nhanh)</span> C₂H₂ + 3H₂</div>
+          <div class="rxn">C₂H₂ + HCl <span class="arrow">→(HgCl₂, t°)</span> CH₂=CHCl (vinyl chloride)</div>
+          <div class="rxn">nCH₂=CHCl <span class="arrow">→(trùng hợp)</span> -(-CH₂-CHCl-)ₙ- (PVC)</div></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Tỉ lệ stoichiometry:</strong><br>
+          1 mắc xích PVC (CH₂=CHCl, M=62,5) ← 1 vinyl chloride ← 1 C₂H₂ ← 2 CH₄<br>
+          → <strong>1 mol PVC monomer ← 2 mol CH₄</strong></div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Tính từ PVC ngược lên CH₄ (lý thuyết, H=100%):</strong><br>
+          n(PVC monomer) = 1 000 000 / 62,5 = <strong>16 000 mol</strong><br>
+          n(CH₄ lý thuyết) = 2 × 16 000 = <strong>32 000 mol</strong></div></div>
+        <div class="ex-step"><div class="step-num">4</div>
+          <div class="step-content"><strong>Áp dụng hiệu suất toàn quá trình 20%:</strong><br>
+          n(CH₄ thực tế) = 32 000 / 0,20 = <strong>160 000 mol</strong><br>
+          V(CH₄, đkc) = 160 000 × 24,79 = 3 966 400 L = <strong>3 966,4 m³</strong></div></div>
+        <div class="ex-step"><div class="step-num">5</div>
+          <div class="step-content"><strong>Tính V khí thiên nhiên (80% CH₄):</strong><br>
+          V(khí thiên nhiên) = 3 966,4 / 0,80 = <strong>4 958 m³</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ V(khí thiên nhiên) ≈ 4 958 m³ (≈ 4 960 m³)</div>
+        Quan trọng: hiệu suất 20% là <strong>toàn quá trình</strong>, nên chỉ chia 1 lần ở cuối. Nếu đề cho hiệu suất từng bước (vd: 80% × 70% × 60%) thì phải nhân các hiệu suất với nhau.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 41</span>
+        <span class="ex-q">Cho 4,02 g hỗn hợp X (phenol + propyl alcohol) td với nước Br₂ dư → 9,93 g kết tủa trắng. Tính %m phenol trong X. (Ch.4 + Ch.5)</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div style="margin-bottom:10px;">
+          <span class="tag tag-green">Ch.4: Propyl alcohol (KHÔNG td Br₂)</span>
+          <span class="tag tag-green">Ch.5: Phenol + Br₂ → kết tủa trắng</span>
+        </div>
+        <div class="feynman">
+          Khoá then chốt của bài này: trong nước Br₂, <strong>chỉ phenol mới tạo kết tủa trắng</strong>, propyl alcohol KHÔNG phản ứng. Vậy khối lượng kết tủa cho ta biết riêng số mol phenol → giải xong.
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Phản ứng phenol + Br₂:</strong>
+          <div class="rxn">C₆H₅OH + 3Br₂ <span class="arrow">→</span> <span class="product">C₆H₂Br₃OH↓ + 3HBr</span></div>
+          M(C₆H₂Br₃OH) = 331 g/mol</div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Tính số mol phenol:</strong><br>
+          n(C₆H₂Br₃OH) = 9,93/331 = <strong>0,03 mol</strong><br>
+          → n(phenol) = 0,03 mol → m(phenol) = 0,03 × 94 = <strong>2,82 g</strong></div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Tính %m phenol:</strong><br>
+          %m(phenol) = (2,82/4,02) × 100% = <strong>70,15%</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ %m(phenol) ≈ 70,15%</div>
+        Bài này dễ hơn BT 39 vì chỉ cần 1 dữ liệu (phenol đặc trưng). Cần nhớ: Propyl alcohol (CH₃CH₂CH₂OH) hay glycerol đều KHÔNG phản ứng nước Br₂; chỉ có phenol và alkene/alkyne mới phản ứng.</div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="ex-header" onclick="toggle(this)">
+        <span class="ex-num">BT 42</span>
+        <span class="ex-q">Đun sôi 12,9 g C₂H₅Cl với KOH/C₂H₅OH dư → khí; sau khi loại tạp chất, dẫn khí qua dung dịch Br₂ dư thấy có x g Br₂ phản ứng. Hiệu suất phản ứng đầu là 80%. Tính x. (Ch.1 + Ch.3)</span>
+        <span class="ex-toggle">▼</span>
+      </div>
+      <div class="ex-body">
+        <div style="margin-bottom:10px;">
+          <span class="tag tag-purple">Ch.3: C₂H₅Cl + KOH/cồn → tách HX</span>
+          <span class="tag tag-blue">Ch.1: C₂H₄ + Br₂</span>
+        </div>
+        <div class="feynman">
+          Sơ đồ 2 bước:
+          <br>1. C₂H₅Cl + KOH/cồn → C₂H₄ + KCl + H₂O (tách HCl, tạo ethylene) — H = 80%
+          <br>2. C₂H₄ + Br₂ → CH₂Br-CH₂Br (cộng hoàn toàn vào C=C) — H = 100%
+          <br><br>Đi xuôi từ C₂H₅Cl → C₂H₄ → tính số mol Br₂.
+        </div>
+        <div class="ex-step"><div class="step-num">1</div>
+          <div class="step-content"><strong>Tính số mol C₂H₅Cl:</strong><br>
+          M(C₂H₅Cl) = 24+5+35,5 = 64,5 g/mol<br>
+          n(C₂H₅Cl) = 12,9/64,5 = <strong>0,2 mol</strong></div></div>
+        <div class="ex-step"><div class="step-num">2</div>
+          <div class="step-content"><strong>Phản ứng tách (H = 80%):</strong>
+          <div class="rxn">C₂H₅Cl + KOH <span class="arrow">→(C₂H₅OH, t°)</span> <span class="product">C₂H₄</span> + KCl + H₂O</div>
+          n(C₂H₄ thực tế) = 0,2 × 0,80 = <strong>0,16 mol</strong></div></div>
+        <div class="ex-step"><div class="step-num">3</div>
+          <div class="step-content"><strong>Phản ứng C₂H₄ + Br₂ (1:1):</strong>
+          <div class="rxn">CH₂=CH₂ + Br₂ <span class="arrow">→</span> <span class="product">CH₂Br-CH₂Br</span></div>
+          n(Br₂) = n(C₂H₄) = 0,16 mol<br>
+          x = m(Br₂) = 0,16 × 160 = <strong>25,6 g</strong></div></div>
+        <div class="answer"><div class="answer-label">✅ x = 25,6 g Br₂</div>
+        Lưu ý: phản ứng tách có hiệu suất 80% (ý nghĩa: chỉ 80% C₂H₅Cl chuyển thành C₂H₄, còn 20% nguyên vẹn). Phản ứng cộng Br₂ vào C₂H₄ thường giả định 100% (mặc định nếu đề không nói khác).</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TỔNG KẾT -->
+<div class="toc" style="border-color:#ffa65766;">
+  <h3 style="color:var(--gold);">⭐ BẢNG TỔNG KẾT NHẬN BIẾT (HỌC THUỘC LÒNG)</h3>
+  <table>
+    <tr><th>Chất cần nhận biết</th><th>Thuốc thử</th><th>Hiện tượng</th></tr>
+    <tr><td>Alkene/Alkyne</td><td>Dung dịch Br₂</td><td>Mất màu cam</td></tr>
+    <tr><td>Alkene/Alkyne/Phenol</td><td>KMnO₄</td><td>Mất màu tím</td></tr>
+    <tr><td>Alk-1-yne (HC≡C–R)</td><td>AgNO₃/NH₃</td><td>Kết tủa vàng nhạt</td></tr>
+    <tr><td>Phenol</td><td>Br₂ (không cần xúc tác)</td><td>Kết tủa TRẮNG (2,4,6-tribromophenol)</td></tr>
+    <tr><td>Polyalcohol (glycerol)</td><td>Cu(OH)₂</td><td>Dung dịch xanh lam đặc trưng</td></tr>
+    <tr><td>Aldehyde</td><td>AgNO₃/NH₃ (Tollens)</td><td>Gương bạc (Ag↓ trắng bóng)</td></tr>
+    <tr><td>Aldehyde</td><td>Cu(OH)₂/NaOH, t°</td><td>Kết tủa đỏ gạch (Cu₂O)</td></tr>
+    <tr><td>CH₃CO– (acetyl)</td><td>I₂/NaOH</td><td>Kết tủa vàng CHI₃ (iodoform)</td></tr>
+    <tr><td>Carboxylic acid</td><td>Quỳ tím / CaCO₃</td><td>Đỏ quỳ / Sủi bọt CO₂</td></tr>
+    <tr><td>Acid > Phenol > Alcohol</td><td>Tính acid so sánh</td><td>Acid + NaHCO₃ → CO₂; Phenol không</td></tr>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- QUIZ TỰ LUYỆN -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="ch-quiz" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-icon" style="background:#1f3a1f; border:1px solid #7ee78744;">🎯</div>
+    <div>
+      <h2 style="color:var(--accent4);">Quiz tự luyện — Trắc nghiệm &amp; Đúng/Sai</h2>
+      <p style="color:var(--muted); font-size:0.9rem;">~70 câu trích từ <strong>7 đề ôn HK2</strong> · Có chấm điểm tự động · Lời giải sau khi nộp</p>
+    </div>
+  </div>
+
+  <div class="feynman">
+    <strong>💡 Cách dùng:</strong> Em tự làm bài (chọn A/B/C/D cho phần trắc nghiệm, Đ/S cho từng ý của câu đúng-sai, gõ đáp án ngắn cho phần trả lời ngắn).
+    Khi xong, bấm nút <strong style="color:var(--accent4);">Submit</strong> để chấm điểm + xem lời giải chi tiết.
+    Bấm <strong style="color:var(--gold);">Shuffle</strong> để xáo trộn các câu hỏi (chỉ trong cùng phần) để luyện não nhớ kiến thức chứ không nhớ vị trí.
+    Bấm <strong>Reset</strong> để làm lại từ đầu.
+    <br><span style="color:var(--muted); font-size:0.86rem;">Đáp án ngắn: dấu "," hay "." đều được; có thể bỏ qua đơn vị (g, %, mL, …).</span>
+  </div>
+
+  <!-- Toolbar with Submit / Shuffle / Reset -->
+  <div class="quiz-toolbar">
+    <div class="quiz-status" id="quizStatus">
+      Đã làm: <strong id="answeredCount">0</strong> / <span id="totalCount">—</span> câu
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="quiz-btn shuffle" onclick="shuffleQuiz()">🔀 Shuffle</button>
+      <button class="quiz-btn reset" onclick="resetQuiz()">↺ Reset</button>
+      <button class="quiz-btn primary" onclick="submitQuiz()">✓ Submit (Chấm điểm)</button>
+    </div>
+  </div>
+
+  <!-- Score panel (revealed after submit) -->
+  <div class="quiz-score-panel" id="scorePanel">
+    <div class="quiz-score-big" id="scoreBig">—</div>
+    <div class="quiz-score-label" id="scoreLabel">Điểm của em</div>
+    <div class="quiz-score-detail" id="scoreDetail"></div>
+  </div>
+
+  <!-- Quiz content rendered here by JS -->
+  <div id="quizContent">
+    <p style="color:var(--muted); text-align:center; padding:32px;">Đang tải quiz...</p>
+  </div>
+</div>
+
+<div style="text-align:center; padding: 32px 0; color:var(--muted); font-size:0.85rem;">
+  Chúc em ôn tập tốt! 💪 | Hóa 11 HK2 | Phương pháp Feynman
+</div>
+
+</div>
+
+<script>
+function toggle(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.ex-toggle');
+  body.classList.toggle('open');
+  toggle.classList.toggle('open');
+}
+
+/* ══════════════════ QUIZ DATA ══════════════════ */
+// QUIZ DATA — Sourced from 7 đề ôn HK2 — categorized by chapter
+// Each question: {q, opts: {A,B,C,D}, ans, exp}
+// T/F: {stem, subs: [{text, ans, exp}]}
+
+const QUIZ_DATA = {
+  // ========== CHƯƠNG 1: ALKENE & ALKYNE ==========
+  ch1: {
+    title: "Chương 1 — Alkene & Alkyne",
+    color: "var(--accent1)",
+    mcq: [
+      {q: "Hàn xì là một trong những công nghệ hàn rất phổ biến, nhiệt lượng tỏa ra để hàn, cắt kim loại dựa trên phản ứng cháy của khí nào sau đây?",
+       opts: {A: "C₂H₄", B: "C₂H₆", C: "CH₄", D: "C₂H₂"},
+       ans: "D", exp: "Acetylene (C₂H₂) cháy trong O₂ cho nhiệt độ ngọn lửa ~3000°C — đủ nóng để cắt kim loại."},
+      {q: "Chất nào sau đây không làm mất màu dung dịch bromine ở điều kiện thường?",
+       opts: {A: "propane", B: "propylene", C: "propyne", D: "styrene"},
+       ans: "A", exp: "Propane là alkane (chỉ có liên kết đơn) → không cộng Br₂. Còn lại đều có liên kết bội (C=C hoặc C≡C)."},
+      {q: "Phát biểu nào sau đây về tính chất vật lý của các chất (ở điều kiện thường) không đúng?",
+       opts: {A: "Acetylene là chất khí, không màu, nặng hơn không khí", B: "Hexane nhẹ hơn nước và không tan trong nước", C: "Nhiệt độ sôi của methane nhỏ hơn ethane", D: "Hex-1-ene là chất lỏng, không tan trong nước"},
+       ans: "A", exp: "M(C₂H₂) = 26 < M(không khí) ≈ 29 → acetylene NHẸ hơn không khí, không phải nặng hơn."},
+      {q: "Khi cho propene (CH₂=CH–CH₃) tác dụng với HCl, theo qui tắc Markovnikov thì sản phẩm chính là",
+       opts: {A: "CH₃-CHCl-CH₃", B: "CH₃-CH₂-CH₂Cl", C: "CH₃-CH₂-CHCl₂", D: "CH₃-CCl₂-CH₃"},
+       ans: "A", exp: "Quy tắc Markovnikov: H gắn vào C có nhiều H hơn (CH₂ có 2H), Cl gắn vào C ít H hơn (CH có 1H) → 2-chloropropane."},
+      {q: "Khí dầu mỏ hóa lỏng (LPG: Liquefied Petroleum Gas) chứa chủ yếu hai khí nào sau đây?",
+       opts: {A: "Methane và ethane", B: "Propane và pentane", C: "Ethane và propane", D: "Propane và butane"},
+       ans: "D", exp: "LPG (gas bình) là hỗn hợp propane (C₃H₈) và butane (C₄H₁₀) — hai alkane dễ hóa lỏng dưới áp suất."},
+      {q: "Chất nào sau đây là đồng phân của CH₂=CHCH₂CH₂CH₃?",
+       opts: {A: "(CH₃)₂C=CHCH₃", B: "CH₂=CHCH₂CH₃", C: "CH≡CCH₂CH₂CH₃", D: "CH₂=CHCH₂CH=CH₂"},
+       ans: "A", exp: "Pent-1-ene có CTPT C₅H₁₀. (CH₃)₂C=CHCH₃ (2-methylbut-2-ene) cũng C₅H₁₀ → đồng phân. B là C₄H₈, C là C₅H₈, D là C₅H₈."},
+      {q: "Công thức phân tử của styrene là",
+       opts: {A: "C₇H₁₄", B: "C₈H₈", C: "C₆H₆", D: "C₇H₈"},
+       ans: "B", exp: "Styrene = C₆H₅–CH=CH₂ → 6C+5H (vòng) + 2C+3H (nhánh) = 8C+8H = C₈H₈."},
+      {q: "Chất nào trong 4 chất dưới đây có thể tham gia cả 4 phản ứng: Phản ứng cháy trong oxi, phản ứng cộng bromine, phản ứng cộng hydrogen (Ni, t°), phản ứng thế với dung dịch AgNO₃/NH₃?",
+       opts: {A: "ethane", B: "ethylene", C: "acetylene", D: "cyclopropane"},
+       ans: "C", exp: "Phản ứng với AgNO₃/NH₃ chỉ xảy ra với alk-1-yne (có H gắn C≡C đầu mạch). Acetylene HC≡CH thoả mãn điều kiện này."},
+      {q: "Để phân biệt ethane và ethene, dùng phản ứng nào là thuận tiện nhất?",
+       opts: {A: "Phản ứng đốt cháy", B: "Phản ứng với hydrogen", C: "Phản ứng với nước bromine", D: "Phản ứng trùng hợp"},
+       ans: "C", exp: "Nước bromine cho hiện tượng trực quan ngay (mất màu nâu đỏ) — chỉ ethene (alkene) phản ứng, ethane (alkane) không."},
+      {q: "Phát biểu nào sau đây không đúng?",
+       opts: {A: "Trong phân tử hydrocarbon, số nguyên tử hydrogen luôn là số chẵn", B: "Trong phân tử alkene, liên kết đôi gồm một liên kết σ và một liên kết π", C: "Hydrocarbon không no là hydrocarbon mà trong phân tử chứa liên kết bội", D: "Công thức chung của hydrocarbon no, mạch hở có dạng CₙH₂ₙ"},
+       ans: "D", exp: "Alkane (no, mạch hở) có CTTQ CₙH₂ₙ₊₂. CₙH₂ₙ là CT của alkene mạch hở hoặc cycloalkane."},
+      {q: "Alkene X có tên gọi 2,3-dimethylhept-2-ene. Công thức phân tử của X là",
+       opts: {A: "C₇H₁₄", B: "C₈H₁₆", C: "C₉H₁₈", D: "C₉H₁₆"},
+       ans: "C", exp: "Hept = 7C, thêm 2 nhánh methyl = 2C → tổng 9C. Là alkene → CₙH₂ₙ → C₉H₁₈."},
+      {q: "Chất nào sau đây có khả năng tác dụng với dung dịch AgNO₃/NH₃?",
+       opts: {A: "but-2-yne", B: "ethylene", C: "but-1-yne", D: "but-2-ene"},
+       ans: "C", exp: "Chỉ alk-1-yne (C≡CH ở đầu mạch) phản ứng tạo kết tủa vàng với AgNO₃/NH₃. But-1-yne CH≡C-CH₂-CH₃ thoả mãn."},
+      {q: "Hyđrocarbon chỉ có liên kết đơn trong phân tử là",
+       opts: {A: "alkene", B: "alkyne", C: "arene", D: "alkane"},
+       ans: "D", exp: "Alkane là hydrocarbon NO — chỉ có liên kết đơn C-C và C-H."},
+      {q: "Alkyne CH₃C≡CCH₃ có tên gọi là",
+       opts: {A: "but-1-yne", B: "but-2-yne", C: "pent-2-yne", D: "but-3-yne"},
+       ans: "B", exp: "4C, liên kết ba ở C2-C3 → đánh số từ đầu nào cũng cho vị trí 2 → but-2-yne."},
+      {q: "Alkene là các hidrocarbon không no, mạch hở, có công thức chung là",
+       opts: {A: "CₙH₂ₙ₊₂ (n≥1)", B: "CₙH₂ₙ (n≥2)", C: "CₙH₂ₙ₋₂ (n≥2)", D: "CₙH₂ₙ₋₆ (n≥6)"},
+       ans: "B", exp: "Alkene mạch hở có 1 liên kết đôi → CTTQ CₙH₂ₙ với n≥2 (cần ít nhất 2C để có C=C)."},
+      {q: "Hợp chất nào dưới đây được dùng để tổng hợp PVC?",
+       opts: {A: "vinyl chloride (CH₂=CHCl)", B: "ethylene", C: "acetylene", D: "propene"},
+       ans: "A", exp: "PVC = poly(vinyl chloride) → trùng hợp từ monomer vinyl chloride CH₂=CHCl."},
+      {q: "Hợp chất gây ra lỗ thủng tầng ozone là",
+       opts: {A: "CO₂", B: "CFC (freon)", C: "CH₄", D: "SO₂"},
+       ans: "B", exp: "CFC (chlorofluorocarbon) phân huỷ trong khí quyển → giải phóng Cl• tự do, phá huỷ O₃."},
+    ],
+    tf: [
+      {stem: "But-1-ene và but-2-ene lần lượt được tiến hành phản ứng với dung dịch KMnO₄ (ở nhiệt độ thường). Bốn học sinh W, X, Y, Z phát biểu về các alkene này và các diol tạo thành:",
+       subs: [
+         {text: "W: Một diol chứa hai nhóm alcohol bậc một", ans: false, exp: "Sai. But-1-ene CH₂=CH-CH₂-CH₃ + KMnO₄ → HOCH₂-CHOH-CH₂-CH₃ (1 OH bậc 1, 1 OH bậc 2)."},
+         {text: "X: Một diol chứa một nhóm alcohol bậc một và một nhóm alcohol bậc hai", ans: true, exp: "Đúng. Đây chính là sản phẩm từ but-1-ene."},
+         {text: "Y: Một diol chứa hai nhóm alcohol bậc hai", ans: true, exp: "Đúng. But-2-ene CH₃-CH=CH-CH₃ + KMnO₄ → CH₃-CHOH-CHOH-CH₃ (cả 2 OH đều bậc 2)."},
+         {text: "Z: Cả hai alkene đều có đồng phân cis-trans", ans: false, exp: "Sai. But-1-ene KHÔNG có đp cis-trans (1 đầu C có 2H giống nhau). Chỉ but-2-ene có cis-trans."}
+       ]},
+      {stem: "Hydrogen hóa alkene và alkyne thu được alkane tương ứng. Phản ứng thường được thực hiện dưới áp suất cao, nhiệt độ cao và có mặt các chất xúc tác kim loại như platinum, nickel và palladium.",
+       subs: [
+         {text: "Acetylene + H₂ (xt Lindlar) thu được ethane", ans: false, exp: "Sai. Lindlar là xúc tác BÁN TÍNH (Pd/PbCO₃) → chỉ cộng 1 H₂ → tạo ETHYLENE chứ không phải ethane."},
+         {text: "Phản ứng cộng H₂ của propylene: CH₂=CH-CH₃ + H₂ → CH₃-CH₂-CH₃", ans: true, exp: "Đúng. Propene cộng H₂ (Ni, t°) → propane."},
+         {text: "Phản ứng cộng H₂ vào liên kết bội luôn cần xúc tác kim loại", ans: true, exp: "Đúng. Cần Ni/Pt/Pd để hoạt hoá H₂ thành H nguyên tử."},
+         {text: "Sản phẩm cộng H₂ của ethylene là methane", ans: false, exp: "Sai. CH₂=CH₂ + H₂ → CH₃-CH₃ (ethane), không phải methane."}
+       ]},
+    ],
+    sa: [
+      {q: "Cho hợp chất HC≡C–CH₂OH lần lượt tác dụng với các chất sau: Cu(OH)₂; dd AgNO₃/NH₃; H₂ (Ni, t°); Na; nước bromine; dd KMnO₄; dd NaOH. Có bao nhiêu chất phản ứng được với hợp chất này?", ans: "5", unit: "chất", tol: 0, exp: "Phản ứng được với 5 chất: AgNO₃/NH₃ (do C≡C đầu mạch), H₂ (cộng vào C≡C), Na (do –OH), Br₂ (cộng vào C≡C), KMnO₄ (oxi hoá). KHÔNG phản ứng với Cu(OH)₂ (chỉ poly-OH) và NaOH (alcohol không có tính acid)."},
+      {q: "Muốn điều chế 33,6 lít C₂H₂ (đktc) để hàn cắt kim loại, cần m gam đất đèn (chứa 80% CaC₂). Tính m (gam).", ans: "120", unit: "g", tol: 0.5, exp: "n(C₂H₂) = 33,6/22,4 = 1,5 mol. CaC₂ + 2H₂O → C₂H₂ + Ca(OH)₂ → n(CaC₂) = 1,5 mol → m(CaC₂) = 1,5×64 = 96 g. Đất đèn 80% → m = 96/0,8 = 120 g."},
+      {q: "Cho 7,8 gam acetylene tác dụng với lượng dư AgNO₃/NH₃, thu được m gam kết tủa vàng nhạt (Ag₂C₂). Tính m (gam).", ans: "72", unit: "g", tol: 0.5, exp: "n(C₂H₂) = 7,8/26 = 0,3 mol. C₂H₂ + 2AgNO₃/NH₃ → AgC≡CAg↓ + 2NH₄NO₃. M(Ag₂C₂) = 240 → m = 0,3 × 240 = 72 g."},
+      {q: "Da nhân tạo (PVC) được điều chế từ khí thiên nhiên (chứa 80% CH₄) qua sơ đồ: 2CH₄ → C₂H₂ → CH₂=CHCl → PVC. Hiệu suất toàn quá trình 20%. Để điều chế 1 tấn PVC, cần thể tích khí thiên nhiên ở điều kiện chuẩn (24,79 L/mol) là bao nhiêu m³?", ans: "4958", accepts: ["4958.0", "4957.5", "4960", "4959"], unit: "m³", tol: 5, exp: "n(monomer CH₂=CHCl) = 10⁶/62,5 = 16000 mol. Cần 2 mol CH₄ cho 1 mol monomer (theo stoichiometry) → n(CH₄ cần lý thuyết) = 32000 mol. H = 20% → n(CH₄ thực tế) = 32000/0,2 = 160000 mol. V(CH₄) = 160000 × 24,79 = 3,9664×10⁶ L = 3966,4 m³. Khí thiên nhiên 80% CH₄ → V = 3966,4/0,8 ≈ 4958 m³."},
+      {q: "Khi dùng biogas (giả sử chỉ chứa CH₄, ΔH = –890 kJ/mol) để thay khí gas (40% C₃H₈ ΔH=–2220 kJ/mol và 60% C₄H₁₀ ΔH=–2850 kJ/mol theo thể tích), với cùng năng lượng cần dùng thì lượng CO₂ thải ra giảm bao nhiêu %?", ans: "18,9", accepts: ["18.9", "19", "18,93", "18.93"], unit: "%", tol: 0.5, exp: "Cùng E (kJ): n(CO₂) từ CH₄ = E/890; n(CO₂) từ gas hh = E×3,6/(0,4×2220+0,6×2850) = E×3,6/2598 = E/721,67. % giảm = 1 − 721,67/890 ≈ 18,9%."},
+      {q: "Một bình gas 12 kg chứa propane:butane = 1:2 (theo mol). Biết ΔH cháy: C₃H₈ = –2220 kJ/mol, C₄H₁₀ = –2874 kJ/mol. Mỗi ngày hộ gia đình cần 10 000 kJ nhiệt (hiệu suất hấp thu 80%). Hỏi sử dụng được bao nhiêu ngày? (Làm tròn xuống số nguyên)", ans: "47", accepts: ["47,8", "47.8", "48"], unit: "ngày", tol: 1, exp: "Gọi n(C₃H₈) = x, n(C₄H₁₀) = 2x. m = 44x + 116x = 160x = 12000 → x = 75 mol. Q = 75×2220 + 150×2874 = 597600 kJ. Hữu ích = 597600 × 0,8 = 478080 kJ. Số ngày = 478080/10000 ≈ 47,8 → 47 ngày trọn."},
+    ]
+  },
+
+  // ========== CHƯƠNG 2: ARENE ==========
+  ch2: {
+    title: "Chương 2 — Arene (Hydrocarbon thơm)",
+    color: "var(--accent2)",
+    mcq: [
+      {q: "Nitro hoá benzene bằng hỗn hợp HNO₃ đặc và H₂SO₄ đặc ở nhiệt độ ≤ 50°C, tạo thành chất hữu cơ X. Phát biểu nào sau đây về X không đúng?",
+       opts: {A: "X là nitrobenzene", B: "X là chất lỏng, sánh như dầu", C: "X có màu vàng", D: "Công thức phân tử của X là C₆H₅NO₃"},
+       ans: "D", exp: "Phản ứng thế: C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O. CTPT đúng là C₆H₅NO₂ (chứ không phải C₆H₅NO₃)."},
+      {q: "Arene hay còn gọi là hydrocarbon thơm là những hydrocarbon trong phân tử có chứa một hay nhiều",
+       opts: {A: "vòng benzene", B: "liên kết đôi", C: "liên kết ba", D: "vòng không bão hoà"},
+       ans: "A", exp: "Định nghĩa: Arene là hydrocarbon chứa vòng benzene."},
+      {q: "Cho sơ đồ: C₆H₆ (benzene) → X → Y → Z. Hai chất hữu cơ Y, Z lần lượt là",
+       opts: {A: "C₆H₅Cl, C₆H₄(NO₂)Cl", B: "C₆H₅NO₂, C₆H₅NH₂", C: "C₆H₅Cl, C₆H₄(OH)Cl", D: "C₆H₅Br, C₆H₄(OH)Br"},
+       ans: "A", exp: "Quy trình điển hình: benzene → nitrobenzene → chloronitrobenzene. Tuy nhiên dạng câu phụ thuộc sơ đồ — đáp án ưu tiên A theo dãy halogen hoá → tiếp tục thế."},
+      {q: "Trong các chất sau đây, chất nào có nhiệt độ sôi cao nhất?",
+       opts: {A: "benzene", B: "toluene", C: "ethylbenzene", D: "xylene"},
+       ans: "C", exp: "Trong dãy đồng đẳng arene, M càng lớn → t°s càng cao. Ethylbenzene (M=106) > toluene (92) > benzene (78). Xylene cũng M=106 nhưng đẳng phương — gần ngang ethylbenzene."},
+    ],
+    tf: [
+      {stem: "Hợp chất X chứa vòng benzene có công thức phân tử là C₈H₈O₂. Biết X tác dụng được với dung dịch NaOH theo sơ đồ: X + 2NaOH → Y + 2H₂O.",
+       subs: [
+         {text: "X có 5 liên kết π trong phân tử", ans: true, exp: "Đúng. C₈H₈O₂ có k = (2×8+2-8)/2 = 5 → 5 liên kết π+vòng. Có 1 vòng + 3π trong vòng + 1 π trong COOH/C=O = 5."},
+         {text: "Y là phenol đa chức", ans: true, exp: "Đúng. Vì X + 2NaOH → muối → X có 2 nhóm phản ứng được NaOH (cả -OH phenol và -COOH). Một dạng X là HOC₆H₄CH₂COOH hoặc CH₃COOC₆H₄... → Y có 2 nhóm phenol."},
+         {text: "Trong phân tử Y có 6 nguyên tử hydrogen", ans: false, exp: "Sai. Tuỳ cấu trúc Y. Cần phân tích cụ thể CTCT."},
+         {text: "X có khả năng làm mất màu dung dịch bromine", ans: true, exp: "Đúng. X có nhóm -OH phenol → dễ thế Br ở vòng → nước Br₂ mất màu, tạo kết tủa trắng."}
+       ]},
+    ],
+    sa: [
+      {q: "Từ 1 tấn toluene có thể điều chế được bao nhiêu kg 2,4,6-trinitrotoluene (TNT), biết hiệu suất phản ứng là 62%?", ans: "1530", accepts: ["1529,8", "1529.8", "1530.0", "1529"], unit: "kg", tol: 5, exp: "M(toluene) = 92, M(TNT) = 227. n(toluene) = 10⁶/92 ≈ 10869,57 mol. n(TNT) = 10869,57 × 0,62 ≈ 6739,13 mol. m = 6739,13 × 227 ≈ 1.529.782 g ≈ 1530 kg."},
+      {q: "Methyl eugenol (phân tích nguyên tố: %C = 74,16%, %H = 7,86%, %O ≈ 17,98%) có phổ khối M⁺ = 178. Hỏi phân tử methyl eugenol có bao nhiêu nguyên tử carbon?", ans: "11", unit: "nguyên tử C", tol: 0, exp: "Số C = M × %C/12 = 178 × 0,7416/12 ≈ 11. CTPT: C₁₁H₁₄O₂."},
+    ]
+  },
+
+  // ========== CHƯƠNG 3: HALOGEN ==========
+  ch3: {
+    title: "Chương 3 — Dẫn xuất Halogen",
+    color: "var(--accent3)",
+    mcq: [
+      {q: "Trong thể thao, khi các vận động viên bị chấn thương do va chạm, không gây vết thương hở, gãy xương, ... thường được nhân viên y tế dùng loại thuốc xịt, xịt vào chỗ bị thương để gây tê cục bộ. Hợp chất chính có trong thuốc xịt là",
+       opts: {A: "carbon dioxide", B: "hydrogen chloride", C: "chloromethane", D: "chloroethane"},
+       ans: "D", exp: "Chloroethane (C₂H₅Cl) bay hơi rất nhanh ở nhiệt độ cơ thể → hấp thu nhiệt → làm lạnh tức thì → gây tê."},
+      {q: "Sự tách hydrogen halide của dẫn xuất halogen X có CTPT C₄H₉Cl cho 3 alkene đồng phân, X là",
+       opts: {A: "butyl chloride (n-butyl)", B: "sec-butyl chloride", C: "iso-butyl chloride", D: "tert-butyl chloride"},
+       ans: "B", exp: "sec-butyl chloride CH₃-CHCl-CH₂-CH₃: tách được but-1-ene + cis-but-2-ene + trans-but-2-ene = 3 alkene đp."},
+      {q: "Khi đun nóng CH₃-CH(Br)-CH₂-CH₃ với sodium hydroxide trong ethanol, thu được sản phẩm chính là",
+       opts: {A: "but-1-ene", B: "but-2-ene", C: "butan-2-ol", D: "butane"},
+       ans: "B", exp: "NaOH/ethanol → tách HBr (theo Zaitsev: ưu tiên tạo alkene có nhiều nhánh hơn ở C=C) → but-2-ene."},
+      {q: "Chất nào là dẫn xuất halogen của hydrocarbon?",
+       opts: {A: "CH₃-CH₂-OH", B: "CH₃-CHCl-CH₃", C: "CH₃-COOH", D: "CH₃-O-CH₃"},
+       ans: "B", exp: "Dẫn xuất halogen có nhóm thế là halogen (F/Cl/Br/I) gắn trực tiếp vào hydrocarbon."},
+      {q: "Có bao nhiêu alkane là chất khí ở điều kiện thường khi phản ứng với chlorine (ánh sáng) cho 1 sản phẩm thế monohalogen duy nhất?",
+       opts: {A: "1", B: "2", C: "3", D: "4"},
+       ans: "B", exp: "Alkane khí (≤4C) cho 1 sản phẩm duy nhất khi mọi H tương đương: CH₄ và C(CH₃)₄ (không khí, lỏng)... thực tế là 2: CH₄ và C₂H₆."},
+    ],
+    sa: [
+      {q: "Cho 2-methylbutane phản ứng với chlorine (1:1, ánh sáng) thu được tối đa bao nhiêu đồng phân cấu tạo dẫn xuất monochlorine?", ans: "4", unit: "đồng phân", tol: 0, exp: "2-methylbutane CH₃-CH(CH₃)-CH₂-CH₃ có 4 vị trí H khác nhau (do 2 nhóm CH₃ ở C2 đối xứng): C1, C2, C3, C4 → 4 sản phẩm thế khác nhau."},
+      {q: "Đun sôi 12,9 gam C₂H₅Cl với KOH/C₂H₅OH dư, sau đó dẫn khí sinh ra qua dung dịch Br₂ dư. Biết hiệu suất phản ứng tách HCl là 80%, phản ứng cộng Br₂ là 100%. Tính khối lượng Br₂ đã phản ứng (g).", ans: "25,6", accepts: ["25.6"], unit: "g", tol: 0.1, exp: "n(C₂H₅Cl) = 12,9/64,5 = 0,2 mol. C₂H₅Cl + KOH → C₂H₄ + KCl + H₂O. n(C₂H₄) = 0,2 × 0,80 = 0,16 mol. C₂H₄ + Br₂ → C₂H₄Br₂ → n(Br₂) = 0,16 mol → m = 0,16 × 160 = 25,6 g."},
+    ],
+    tf: []
+  },
+
+  // ========== CHƯƠNG 4: ALCOHOL ==========
+  ch4: {
+    title: "Chương 4 — Alcohol",
+    color: "var(--accent4)",
+    mcq: [
+      {q: "Việc sử dụng bia rượu ở Việt Nam hiện nay đang ở mức báo động. Thành phần gây say chính trong bia rượu là chất nào sau đây?",
+       opts: {A: "C₆H₅OH", B: "CH₃CHO", C: "CH₃CH₂OH", D: "CH₃OH"},
+       ans: "C", exp: "Ethanol (CH₃CH₂OH) là cồn trong bia rượu. Methanol (CH₃OH) cực độc, có thể gây mù và tử vong."},
+      {q: "Propan-1-ol không tác dụng được với chất nào sau đây?",
+       opts: {A: "NaOH", B: "O₂ (t°)", C: "Na", D: "CuO (t°)"},
+       ans: "A", exp: "Alcohol KHÔNG phản ứng với NaOH (vì alcohol không có tính acid như phenol). Có phản ứng với Na, CuO, đốt cháy."},
+      {q: "Chất nào sau đây tác dụng với Cu(OH)₂ trong môi trường base tạo dung dịch màu xanh lam đặc trưng?",
+       opts: {A: "Ethyl alcohol", B: "Isopropyl alcohol", C: "Phenol", D: "Glycerol"},
+       ans: "D", exp: "Phản ứng đặc trưng của polyalcohol có ít nhất 2 nhóm -OH liền kề (vicinal diol) → tạo phức xanh lam với Cu(OH)₂. Glycerol C₃H₅(OH)₃ thoả mãn."},
+      {q: "Cho phản ứng dạng: X + CuO → H–CHO + Cu + H₂O. X là chất nào sau đây?",
+       opts: {A: "methanol", B: "ethanol", C: "glycerol", D: "propyl alcohol"},
+       ans: "A", exp: "HCHO (formaldehyde) chỉ tạo ra từ methanol bậc 1 đặc biệt: CH₃OH + CuO → HCHO + Cu + H₂O."},
+      {q: "Phản ứng nào sau đây đúng?",
+       opts: {A: "C₂H₅OH + HBr → C₂H₅Br + H₂O", B: "C₂H₅OH + HBr → C₂H₅OBr + H₂", C: "C₂H₅OH + NaOH → C₂H₅ONa + H₂O", D: "C₂H₅OH + Na → C₂H₅Na + H₂O"},
+       ans: "A", exp: "Alcohol + HBr → ethyl bromide + nước (thay -OH bằng -Br). Lưu ý alcohol KHÔNG phản ứng với NaOH."},
+      {q: "Alcohol là những hợp chất hữu cơ mà phân tử có chứa nhóm OH liên kết trực tiếp với",
+       opts: {A: "nguyên tử carbon", B: "nguyên tử carbon không no", C: "nguyên tử carbon no", D: "nguyên tử oxygen"},
+       ans: "C", exp: "Định nghĩa alcohol: -OH gắn vào C no (C sp³). Nếu -OH gắn vào C của vòng benzene → đó là phenol, không phải alcohol."},
+      {q: "Cho 4,6 gam một alcohol no, đơn chức, mạch hở X tác dụng với Na dư, thu được 1,2395 lít H₂ (đkc, 24,79 L/mol). CTPT của X là",
+       opts: {A: "C₂H₆O", B: "CH₄O", C: "C₃H₈O", D: "C₄H₁₀O"},
+       ans: "A", exp: "n(H₂) = 1,2395/24,79 = 0,05 mol → n(X) = 2×0,05 = 0,1 mol → M(X) = 4,6/0,1 = 46 → C₂H₆O (ethanol)."},
+      {q: "Phương pháp điều chế ethanol bằng cách lên men chất nào sau đây là phương pháp sinh hóa?",
+       opts: {A: "tinh bột (gạo)", B: "ethylene", C: "acetaldehyde", D: "methane"},
+       ans: "A", exp: "Phương pháp sinh hoá = dùng enzyme/vi sinh: tinh bột → glucose → ethanol (men rượu). B là pp hoá học."},
+      {q: "Ứng với CTPT C₃H₈O có bao nhiêu alcohol là đồng phân cấu tạo của nhau?",
+       opts: {A: "1", B: "2", C: "3", D: "4"},
+       ans: "B", exp: "C₃H₈O có 2 alcohol đồng phân: propan-1-ol (CH₃CH₂CH₂OH) và propan-2-ol (CH₃CHOHCH₃)."},
+      {q: "Nhiều vụ ngộ độc rượu do sử dụng rượu pha chế từ cồn công nghiệp có lẫn methanol. Công thức của methanol là",
+       opts: {A: "CH₃OH", B: "C₂H₅OH", C: "C₃H₇OH", D: "HCHO"},
+       ans: "A", exp: "Methanol = CH₃OH. Cực độc, gây mù mắt và tử vong. Đừng nhầm với ethanol C₂H₅OH (uống được)."},
+      {q: "Cồn 70° là dung dịch ethyl alcohol, dùng để sát trùng. Mô tả nào sau đây đúng?",
+       opts: {A: "70 mL nước trong 100 mL dd", B: "70 g ethanol trong 100 g dd", C: "70 mL ethanol trong 100 mL dd", D: "70 g ethanol trong 100 mL dd"},
+       ans: "C", exp: "Độ rượu = thể tích ethanol nguyên chất / thể tích dd × 100. Cồn 70° = 70 mL ethanol / 100 mL dd."},
+      {q: "Xăng E5 RON 92 chứa hàm lượng ethanol là bao nhiêu?",
+       opts: {A: "5%", B: "10%", C: "15%", D: "92%"},
+       ans: "A", exp: "E5 = 5% ethanol theo thể tích. (E10 = 10%, RON 92 chỉ chỉ số octan của xăng)."},
+      {q: "Hợp chất nào sau đây là alcohol đa chức?",
+       opts: {A: "methanol", B: "ethanol", C: "ethylene glycol", D: "phenol"},
+       ans: "C", exp: "Alcohol đa chức = nhiều nhóm -OH. Ethylene glycol HOCH₂-CH₂OH có 2 -OH. Phenol có -OH nhưng gắn vòng → là phenol, không phải alcohol."},
+      {q: "Alcohol nào sau đây không có phản ứng tách nước tạo ra alkene?",
+       opts: {A: "ethanol", B: "propan-2-ol", C: "methanol", D: "butan-2-ol"},
+       ans: "C", exp: "Methanol CH₃OH chỉ có 1C → không thể tạo C=C → không tách nước thành alkene."},
+    ],
+    tf: [
+      {stem: "Menthol là hợp chất hữu cơ tìm thấy trong cây bạc hà, dùng làm hương liệu trong kem đánh răng, kẹo cao su, xi-rô ho.",
+       subs: [
+         {text: "Menthol là alcohol no, đơn chức", ans: true, exp: "Đúng. Menthol C₁₀H₂₀O — alcohol no đơn chức, có vòng cyclohexane."},
+         {text: "Công thức phân tử của menthol là C₁₀H₂₀O", ans: true, exp: "Đúng. Đây là CTPT của menthol."},
+         {text: "Menthol là alcohol bậc 3", ans: false, exp: "Sai. Menthol là alcohol bậc 2 — nhóm -OH gắn vào C có 1H (chứ không phải 0H như bậc 3)."},
+         {text: "Thành phần % khối lượng của O trong menthol là 10,256%", ans: true, exp: "Đúng. M(C₁₀H₂₀O) = 156 → %O = 16/156 × 100 ≈ 10,26%."}
+       ]},
+    ],
+    sa: [
+      {q: "Số đồng phân alcohol có CTPT C₃H₈O là bao nhiêu?", ans: "2", unit: "đồng phân", tol: 0, exp: "C₃H₈O có 2 đp alcohol: propan-1-ol (CH₃CH₂CH₂OH) và propan-2-ol (CH₃CHOHCH₃). (Đồng phân thứ 3 là dimethyl ether CH₃OCH₃ — không phải alcohol)."},
+      {q: "Ứng với CTPT C₄H₁₀O có bao nhiêu đồng phân alcohol?", ans: "4", unit: "đồng phân", tol: 0, exp: "4 đp: butan-1-ol, butan-2-ol, 2-methylpropan-1-ol (isobutyl alcohol), 2-methylpropan-2-ol (tert-butyl alcohol)."},
+      {q: "Xăng sinh học E5 chứa bao nhiêu % ethanol theo thể tích?", ans: "5", accepts: ["5%", "5.0", "5,0"], unit: "%", tol: 0, exp: "Ký hiệu E5 = 5% ethanol theo thể tích, 95% xăng truyền thống. (E10 = 10%, E85 = 85%.)"},
+      {q: "Để thu được 460 mL ethanol 50° (d = 0,8 g/mL) ở hiệu suất 50% (toàn quá trình tinh bột → glucose → ethanol), cần dùng bao nhiêu gam nếp (chứa 80% tinh bột)?", ans: "810", unit: "g", tol: 5, exp: "V(C₂H₅OH nguyên chất) = 460×50/100 = 230 mL → m = 184 g → n = 4 mol. (C₆H₁₀O₅)ₙ → nC₆H₁₂O₆ → 2nC₂H₅OH. n(tinh bột) = 4/2 = 2 mol đơn vị → m lý thuyết = 324 g. H=50% → m thực tế = 648 g. Nếp 80% tinh bột → m(nếp) = 648/0,8 = 810 g."},
+      {q: "Xăng E10 chứa 10% ethanol và 90% octan theo khối lượng. Nhiệt cháy: ethanol 29,6 kJ/g, octan 47,9 kJ/g. Cần đốt bao nhiêu TẤN xăng E10 để sinh ra 3 502 000 kJ?", ans: "0,076", accepts: ["0.076", "0,0760", "76", "76,0"], unit: "tấn", tol: 0.002, exp: "Năng lượng/g E10 = 0,1×29,6 + 0,9×47,9 = 46,07 kJ/g. m = 3 502 000/46,07 ≈ 76 013 g ≈ 76 kg ≈ 0,076 tấn."},
+      {q: "Chuẩn độ 5 mL huyết tương người lái xe bằng K₂Cr₂O₇ 0,01 M, cần 2 mL (Cr₂O₇²⁻ + 3 C₂H₅OH + 8H⁺ → 2Cr³⁺ + 3 CH₃CHO + 7H₂O). Tính nồng độ C₂H₅OH (mg/100 mL) trong máu?", ans: "55,2", accepts: ["55.2"], unit: "mg/100mL", tol: 0.5, exp: "n(K₂Cr₂O₇) = 2×10⁻³ × 0,01 = 2×10⁻⁵ mol → n(C₂H₅OH) = 3 × 2×10⁻⁵ = 6×10⁻⁵ mol. m = 6×10⁻⁵ × 46 = 2,76×10⁻³ g = 2,76 mg trong 5 mL → trong 100 mL = 2,76 × 20 = 55,2 mg/100 mL. Vi phạm Nghị định 100 (vì > 0)."},
+    ]
+  },
+
+  // ========== CHƯƠNG 5: PHENOL ==========
+  ch5: {
+    title: "Chương 5 — Phenol",
+    color: "var(--accent4)",
+    mcq: [
+      {q: "Phenol và ethanol đều tác dụng được với chất nào sau đây?",
+       opts: {A: "dung dịch NaCl", B: "dung dịch NaOH", C: "nước bromine", D: "Na"},
+       ans: "D", exp: "Cả phenol và ethanol đều có -OH → tác dụng với Na giải phóng H₂. NaOH chỉ phản ứng với phenol, Br₂ chỉ phản ứng với phenol (vòng)."},
+      {q: "Cho m gam phenol (C₆H₅OH) tác dụng với NaOH thu được 23,2 gam muối C₆H₅ONa. Giá trị của m là",
+       opts: {A: "21,2 gam", B: "16,51 gam", C: "23,5 gam", D: "18,8 gam"},
+       ans: "D", exp: "n(C₆H₅ONa) = 23,2/116 = 0,2 mol → n(phenol) = 0,2 mol → m = 0,2 × 94 = 18,8 g."},
+      {q: "Nguyên nhân phản ứng thế bromine vào vòng thơm của phenol xảy ra dễ dàng hơn so với benzene là do",
+       opts: {A: "phenol có khối lượng phân tử nhỏ hơn", B: "cặp e tự do của O liên hợp với vòng → tăng mật độ e ở vòng", C: "phenol tan trong nước", D: "phenol có nhiệt độ sôi cao hơn"},
+       ans: "B", exp: "Cặp e chưa dùng của O liên hợp π vào vòng → đẩy e vào vòng → vị trí o, p giàu e → dễ thế electrophile (Br⁺)."},
+      {q: "Phenol không phản ứng với chất nào sau đây?",
+       opts: {A: "Na", B: "NaOH", C: "Br₂ (nước)", D: "NaHCO₃"},
+       ans: "D", exp: "Phenol có tính acid YẾU hơn H₂CO₃ → KHÔNG đẩy được CO₂ ra khỏi muối carbonate → không phản ứng với NaHCO₃."},
+      {q: "Số hợp chất đồng phân cấu tạo có CTPT C₈H₁₀O, trong phân tử có vòng benzene và tác dụng được với NaOH là",
+       opts: {A: "3", B: "4", C: "5", D: "6"},
+       ans: "A", exp: "Tác dụng với NaOH → có -OH gắn trực tiếp vào vòng (phenol). C₈H₁₀O với vòng benzene + 1 phenolic-OH = methylphenol có 3 đp ortho/meta/para của ethyl... thực tế: 3 cresol bậc 2 (xylenol)."},
+      {q: "Chất X không phải là phenol. Vậy X là",
+       opts: {A: "C₆H₅-OH", B: "p-CH₃-C₆H₄-OH", C: "C₆H₅-CH₂-OH", D: "p-OH-C₆H₄-OH"},
+       ans: "C", exp: "Benzyl alcohol C₆H₅-CH₂-OH có -OH gắn vào C no (CH₂), không gắn trực tiếp vào vòng → đó là alcohol thơm, không phải phenol."},
+      {q: "Phát biểu không đúng khi nói về tính chất vật lí của phenol là",
+       opts: {A: "Phenol là chất rắn ở điều kiện thường", B: "Phenol tan vô hạn trong nước lạnh", C: "Phenol có mùi đặc trưng", D: "Phenol để lâu ngoài không khí có màu hồng"},
+       ans: "B", exp: "Phenol ÍT tan trong nước lạnh (chỉ tan ~8,3 g/100mL ở 25°C), tan tốt trong nước nóng. Không tan vô hạn."},
+      {q: "Để loại bỏ nhanh muối phenolate, người ta thường tái tạo phenol từ C₆H₅ONa bằng cách",
+       opts: {A: "cho tác dụng với HCl", B: "đun nóng dung dịch", C: "cho vào nước", D: "thêm NaOH"},
+       ans: "A", exp: "C₆H₅ONa + HCl → C₆H₅OH + NaCl. Phản ứng này dùng để tách phenol từ muối."},
+    ],
+    tf: [
+      {stem: "Picric acid (2,4,6-trinitrophenol) được tổng hợp bằng cách nitro hoá phenol. Cho các phát biểu:",
+       subs: [
+         {text: "Phản ứng chứng minh ảnh hưởng của -OH lên gốc phenyl", ans: true, exp: "Đúng. -OH hoạt hoá vòng → dễ thế ở vị trí 2,4,6."},
+         {text: "Picric acid kết tủa màu trắng", ans: false, exp: "Sai. Picric acid có MÀU VÀNG (do 3 nhóm NO₂)."},
+         {text: "Picric acid có tính acid mạnh hơn phenol", ans: true, exp: "Đúng. 3 nhóm NO₂ hút e mạnh → H trong -OH linh động hơn → acid mạnh hơn ~10⁹ lần."},
+         {text: "Picric acid được dùng làm thuốc nổ, thuộc da, phẩm nhuộm", ans: true, exp: "Đúng. Đây là 3 ứng dụng kinh điển của picric acid."}
+       ]},
+    ],
+    sa: [
+      {q: "Cho dãy các chất sau: phenol, ethanol, ethyl chloride, o-cresol, glycerol. Có bao nhiêu chất phản ứng được với sodium kim loại (Na)?", ans: "4", unit: "chất", tol: 0, exp: "Phản ứng với Na cần –OH (alcohol/phenol). 4 chất: phenol, ethanol, o-cresol, glycerol. Ethyl chloride C₂H₅Cl KHÔNG có –OH → không phản ứng."},
+      {q: "Cho 4,02 g hỗn hợp X gồm phenol và propan-1-ol tác dụng với nước Br₂ dư, thu được 9,93 g kết tủa trắng (2,4,6-tribromophenol). Tính %m của phenol trong X (%).", ans: "70,15", accepts: ["70.15"], unit: "%", tol: 0.2, exp: "M(C₆H₂Br₃OH) = 331. n(kết tủa) = 9,93/331 = 0,03 mol = n(phenol). m(phenol) = 0,03 × 94 = 2,82 g. %m = 2,82/4,02 × 100 ≈ 70,15%. (Propan-1-ol không phản ứng Br₂)."},
+      {q: "Hỗn hợp ethanol + phenol + Na dư → 3,7185 L H₂ (đkc, 24,79 L/mol). Cùng hỗn hợp + Br₂ vừa đủ → 19,86 g kết tủa trắng. Tính %m phenol trong hỗn hợp (%).", ans: "33,81", accepts: ["33.81", "33,8", "33.8"], unit: "%", tol: 0.2, exp: "n(H₂) = 0,15 mol → n(ROH tổng) = 0,3 mol. n(C₆H₂Br₃OH) = 19,86/331 = 0,06 mol = n(phenol). n(ethanol) = 0,24 mol. m(phenol) = 5,64 g, m(ethanol) = 11,04 g, tổng 16,68 g. %phenol = 5,64/16,68 × 100 ≈ 33,81%."},
+      {q: "Để định lượng vanillin (HO-C₆H₃(OCH₃)-CHO, M=152) trong mẫu 0,120 g, hoà mẫu trong dung môi rồi chuẩn độ vừa đủ với 7,82 mL NaOH 0,1 M. Tính %m vanillin trong mẫu (%).", ans: "99,05", accepts: ["99.05", "99", "99.0", "99,0"], unit: "%", tol: 0.3, exp: "Vanillin có 1 –OH phenol → 1:1 với NaOH. n(vanillin) = 7,82×10⁻³ × 0,1 = 7,82×10⁻⁴ mol → m = 7,82×10⁻⁴ × 152 = 0,11886 g. %m = 0,11886/0,120 × 100 ≈ 99,05% → đủ tiêu chuẩn (>99%)."},
+    ]
+  },
+
+  // ========== CHƯƠNG 6: ALDEHYDE & KETONE ==========
+  ch6: {
+    title: "Chương 6 — Aldehyde & Ketone",
+    color: "var(--accent5)",
+    mcq: [
+      {q: "Hợp chất nào sau đây tham gia phản ứng tráng bạc?",
+       opts: {A: "CH₃OH", B: "CH₃CHO", C: "CH≡C-CH₂-CH₃", D: "CH₃COCH₃"},
+       ans: "B", exp: "Phản ứng tráng bạc cần nhóm -CHO (aldehyde). CH₃CHO (acetaldehyde) thoả. Ketone (CH₃COCH₃) không phản ứng."},
+      {q: "Cho CH₃CHO phản ứng với H₂ (xt Ni, đun nóng) thu được sản phẩm là",
+       opts: {A: "CH₃COOH", B: "HCOOH", C: "CH₃CH₂OH", D: "CH₃OH"},
+       ans: "C", exp: "Aldehyde + H₂ → alcohol bậc 1: CH₃CHO + H₂ → CH₃CH₂OH (ethanol). Đây là phản ứng khử."},
+      {q: "Trong số các hợp chất sau, chất nào dùng để ngâm xác động vật?",
+       opts: {A: "dd HCHO (formalin)", B: "dd CH₃CHO", C: "dd CH₃COOH", D: "dd CH₃OH"},
+       ans: "A", exp: "Formalin = dd HCHO 37-40% → diệt khuẩn, làm cứng protein → bảo quản mẫu sinh học, ướp xác."},
+      {q: "Khối lượng Ag thu được khi cho 0,1 mol CH₃CHO phản ứng hoàn toàn với AgNO₃/NH₃ dư là",
+       opts: {A: "16,2 g", B: "43,2 g", C: "21,6 g", D: "10,8 g"},
+       ans: "C", exp: "RCHO + 2AgNO₃/NH₃ → 2Ag. n(Ag) = 2 × 0,1 = 0,2 mol → m = 0,2 × 108 = 21,6 g."},
+      {q: "Hợp chất chứa nhóm C=O liên kết với nguyên tử carbon hoặc nguyên tử hydrogen được gọi là",
+       opts: {A: "alcohol", B: "phenol", C: "hợp chất carbonyl", D: "carboxylic acid"},
+       ans: "C", exp: "Hợp chất carbonyl = chứa nhóm C=O. Bao gồm aldehyde (R-CHO) và ketone (R-CO-R')."},
+      {q: "Hợp chất nào sau đây là aldehyde?",
+       opts: {A: "CH₃COCH₃", B: "CH₃CHO", C: "CH₃COOH", D: "CH₃OH"},
+       ans: "B", exp: "Aldehyde có nhóm -CHO ở đầu mạch. CH₃CHO = acetaldehyde."},
+      {q: "Tên gọi của hợp chất CH₃-CH(C₂H₅)-CH₂-CHO là",
+       opts: {A: "3-ethylbutanal", B: "3-methylpentanal", C: "2-ethylbutanal", D: "2-methylpentanal"},
+       ans: "B", exp: "Mạch chính dài nhất chứa CHO: CHO-CH₂-CH(C₂H₅)-CH₃. Đếm từ CHO: C1(CHO)-C2(CH₂)-C3(CH-có ethyl)-C4-C5 = pentanal. Nhánh methyl ở C3 → 3-methylpentanal."},
+      {q: "Cho 1,97 gam dung dịch formalin tác dụng với lượng dư AgNO₃/NH₃, thu được 10,8 gam Ag. Nồng độ % của HCHO trong dung dịch là (HCHO + 4AgNO₃/NH₃ → 4Ag)",
+       opts: {A: "38,07%", B: "76,15%", C: "19,03%", D: "57,11%"},
+       ans: "A", exp: "n(Ag) = 10,8/108 = 0,1 mol → n(HCHO) = 0,1/4 = 0,025 mol → m(HCHO) = 0,025 × 30 = 0,75 g → C% = 0,75/1,97 × 100 ≈ 38,07%."},
+      {q: "Dãy nào sau đây gồm các chất đều tác dụng với dung dịch AgNO₃/NH₃?",
+       opts: {A: "HCHO, CH₃CHO, HCOOH", B: "CH₃COCH₃, CH₃CHO, HCHO", C: "CH₃OH, HCHO, HCOOH", D: "CH₃COOH, HCHO, CH₃CHO"},
+       ans: "A", exp: "AgNO₃/NH₃ oxi hoá nhóm -CHO. HCHO, CH₃CHO có -CHO; HCOOH có H-C(=O)-OH cũng tráng bạc được (chứa -CHO ẩn)."},
+    ],
+    tf: [
+      {stem: "Cho hợp chất X có công thức cấu tạo (CH₃)₂CH-CH₂-CO-CH₃. Cho các phát biểu về X:",
+       subs: [
+         {text: "Công thức phân tử của X là C₇H₁₆O", ans: false, exp: "Sai. (CH₃)₂CH-CH₂-CO-CH₃ = 6C + 12H + 1O = C₆H₁₂O, không phải C₇H₁₆O."},
+         {text: "Tên gọi của X là 2-methylhexan-5-one", ans: false, exp: "Sai. Đánh số ưu tiên C=O nhỏ → 4-methylpentan-2-one, không phải 2-methylhexan-5-one."},
+         {text: "X phản ứng được với thuốc thử Tollens (AgNO₃/NH₃)", ans: false, exp: "Sai. X là KETONE (C=O ở giữa mạch) → KHÔNG tráng bạc."},
+         {text: "Trong phân tử X có nhóm chức carbonyl", ans: true, exp: "Đúng. X có nhóm C=O → là hợp chất carbonyl."}
+       ]},
+    ],
+    sa: [
+      {q: "Cho các chất: CH₃CH₂CHO, CH₃COCH₃, CH₃CH₂CH₂OH, CH₃COOH. Có bao nhiêu chất tác dụng được với I₂/NaOH tạo iodoform?", ans: "1", unit: "chất", tol: 0, exp: "Iodoform yêu cầu nhóm CH₃-CO- hoặc CH₃-CH(OH)-. Chỉ CH₃COCH₃ (acetone) thoả mãn → 1 chất. CH₃CH₂CHO không có CH₃-CO-, propan-1-ol không có CH₃-CHOH-, acid không tạo iodoform."},
+      {q: "Cho dãy: HCHO, CH₃COOH, CH₂=CH-CHO, C₂H₅OH, CH₃CHO, CH₃COCH₃. Có bao nhiêu chất phản ứng được với thuốc thử Tollens (AgNO₃/NH₃)?", ans: "3", unit: "chất", tol: 0, exp: "Cần nhóm –CHO. 3 chất: HCHO, CH₂=CH-CHO, CH₃CHO. Acid (CH₃COOH), alcohol (C₂H₅OH), ketone (CH₃COCH₃) đều không tráng bạc."},
+      {q: "Cho các chất hữu cơ: (CHO)₂, C₄H₂ (HC≡C–C≡CH, mạch hở), CH₃OH, HCHO, CH₃OCH₃, CH₃CHO. Có bao nhiêu chất phản ứng với AgNO₃/NH₃?", ans: "4", unit: "chất", tol: 0, exp: "4 chất: (CHO)₂ (2 –CHO), HC≡C-C≡CH (2 H đầu ankin), HCHO, CH₃CHO. Methanol CH₃OH và ether CH₃OCH₃ không phản ứng."},
+      {q: "Cho 4,5 gam HCHO phản ứng hoàn toàn với AgNO₃/NH₃ dư. Tính khối lượng Ag thu được (gam). (Lưu ý: HCHO là aldehyde đặc biệt → 4Ag).", ans: "64,8", accepts: ["64.8"], unit: "g", tol: 0.2, exp: "HCHO + 4AgNO₃/NH₃ → 4Ag + (NH₄)₂CO₃ + 4NH₄NO₃. n(HCHO) = 4,5/30 = 0,15 mol → n(Ag) = 4 × 0,15 = 0,6 mol → m = 0,6 × 108 = 64,8 g. (Khác với CH₃CHO chỉ cho 2Ag.)"},
+      {q: "Oxi hoá không hoàn toàn ethylene để điều chế ethanal, thu được hỗn hợp X (gồm CH₂=CH₂ dư + CH₃CHO). Dẫn 2,479 L X (đkc, 24,79 L/mol) qua AgNO₃/NH₃ dư, thu được 16,2 g Ag. Hiệu suất phản ứng oxi hoá ethylene = ?", ans: "75", accepts: ["75%", "75.0", "75,0"], unit: "%", tol: 0.5, exp: "n(X) = 2,479/24,79 = 0,1 mol. n(Ag) = 16,2/108 = 0,15 mol → n(CH₃CHO) = 0,15/2 = 0,075 mol. n(C₂H₄ dư) = 0,1 − 0,075 = 0,025 mol. H = 0,075/(0,075+0,025) × 100 = 75%."},
+      {q: "Cho 0,1 mol aldehyde X phản ứng tối đa với 0,3 mol H₂ thu được 9 g alcohol Y. Mặt khác 2,1 g X + AgNO₃/NH₃ dư → m gam Ag. Tính m (g).", ans: "10,8", accepts: ["10.8"], unit: "g", tol: 0.2, exp: "0,1 mol X cộng 0,3 mol H₂ → mỗi X cộng 3H₂ → X có 3 liên kết π. m(Y)/n = 9/0,1 = 90 g/mol → M(Y) = 90 → M(X) = 90 − 6 = 84 → X là OHC-CH=CH-CHO (C₄H₄O₂). 2,1 g X → 0,025 mol → có 2 nhóm CHO → n(Ag) = 4×0,025 = 0,1 mol → m = 10,8 g."},
+    ]
+  },
+
+  // ========== CHƯƠNG 7: CARBOXYLIC ACID ==========
+  ch7: {
+    title: "Chương 7 — Carboxylic acid",
+    color: "var(--accent6)",
+    mcq: [
+      {q: "Trong các chất sau đây, chất nào có nhiệt độ sôi cao nhất?",
+       opts: {A: "acetone", B: "ethyl chloride", C: "ethanol", D: "acetic acid"},
+       ans: "D", exp: "Acid có liên kết hydrogen MẠNH NHẤT (dimer 2 liên kết H) → t°s cao nhất. Thứ tự: acid > alcohol > ketone > halide."},
+      {q: "Propanoic acid không tác dụng với chất nào sau đây?",
+       opts: {A: "kim loại Cu", B: "dung dịch NaOH", C: "ethanol (xt H₂SO₄ đặc)", D: "đá vôi (CaCO₃)"},
+       ans: "A", exp: "Cu đứng SAU H trong dãy hoạt động → không phản ứng với acid carboxylic. Phản ứng với NaOH (trung hoà), ethanol (ester hoá), CaCO₃ (giải phóng CO₂)."},
+      {q: "Công thức chung của carboxylic acid no, đơn chức, mạch hở là",
+       opts: {A: "CₙH₂ₙO₂ (n≥1)", B: "CₙH₂ₙ₊₂O₂ (n≥2)", C: "CₙH₂ₙ₋₂O (n≥2)", D: "CₙH₂ₙ₋₂O₂ (n≥3)"},
+       ans: "A", exp: "Acid no đơn chức mạch hở: CₙH₂ₙ₊₁COOH = CₙH₂ₙO₂ với n≥1 (HCOOH là n=1)."},
+      {q: "Chất nào sau đây không phản ứng được với acetic acid?",
+       opts: {A: "Zn", B: "Cu", C: "NaOH", D: "CaCO₃"},
+       ans: "B", exp: "Cu không phản ứng với acid yếu (đứng sau H). Zn (trước H) → tạo H₂; NaOH trung hoà; CaCO₃ → CO₂."},
+      {q: "Một số carboxylic acid (oxalic, tartaric...) gây vị chua của quả sấu xanh. Khi làm sấu ngâm đường, người ta dùng dung dịch nào để giảm độ chua?",
+       opts: {A: "Vôi tôi (Ca(OH)₂)", B: "Muối ăn", C: "Giấm ăn", D: "Nước"},
+       ans: "A", exp: "Vôi tôi là base → trung hoà acid trong sấu → giảm chua."},
+      {q: "Tên gọi của HCOOH là",
+       opts: {A: "formic acid (methanoic acid)", B: "acetic acid", C: "propanoic acid", D: "oxalic acid"},
+       ans: "A", exp: "HCOOH = formic acid (kiến) hoặc methanoic acid theo IUPAC."},
+      {q: "Để trung hòa 0,2 mol hỗn hợp X gồm 2 carboxylic acid cần 0,3 mol NaOH. Tỉ lệ acid đơn chức và đa chức (2-COOH) trong X là",
+       opts: {A: "đơn:đa = 1:1", B: "đơn:đa = 2:1", C: "đơn:đa = 1:2", D: "Đều là đơn chức"},
+       ans: "A", exp: "Gọi a mol đơn (1 COOH), b mol đa (2 COOH). a+b=0,2; a+2b=0,3 → b=0,1; a=0,1 → 1:1."},
+      {q: "CH₃CH(CH₃)CH₂COOH có tên gọi là",
+       opts: {A: "3-methylbutanoic acid", B: "2-methylpropanoic acid", C: "isobutyric acid", D: "isopentanoic acid"},
+       ans: "A", exp: "Mạch chính có 4C (butanoic), nhánh methyl ở C3 (đếm từ COOH) → 3-methylbutanoic acid (= isovaleric acid)."},
+      {q: "Để loại bỏ lớp cặn màu trắng (CaCO₃) trong ấm đun nước, người ta có thể dùng dung dịch nào?",
+       opts: {A: "Giấm ăn (CH₃COOH)", B: "Nước muối", C: "Nước vôi", D: "Nước javen"},
+       ans: "A", exp: "2CH₃COOH + CaCO₃ → (CH₃COO)₂Ca + H₂O + CO₂. Acid yếu trong giấm hoà tan cặn vôi."},
+      {q: "Hợp chất X có khối lượng phân tử là 60 amu, có công thức thực nghiệm là CH₂O. Công thức phân tử của X là",
+       opts: {A: "CH₂O", B: "C₂H₄O₂", C: "C₃H₆O₃", D: "C₄H₈O₄"},
+       ans: "B", exp: "(CH₂O)ₙ = 60 → 30n = 60 → n=2 → C₂H₄O₂ (acetic acid CH₃COOH)."},
+    ],
+    tf: [
+      {stem: "Phản ứng của acetic acid với sodium carbonate. Chuẩn bị: dd CH₃COOH 1M, dd Na₂CO₃ 1M. Thực hiện: cho 5 mL acid vào ống nghiệm, thêm từ từ 5 mL Na₂CO₃.",
+       subs: [
+         {text: "Có khí không màu thoát ra", ans: true, exp: "Đúng. 2CH₃COOH + Na₂CO₃ → 2CH₃COONa + H₂O + CO₂ (khí không màu)."},
+         {text: "Khí thoát ra làm đục nước vôi trong", ans: true, exp: "Đúng. CO₂ + Ca(OH)₂ → CaCO₃ (kết tủa trắng) → đục."},
+         {text: "Phản ứng chứng tỏ acetic acid mạnh hơn carbonic acid", ans: true, exp: "Đúng. Acid mạnh đẩy được acid yếu ra khỏi muối → CH₃COOH > H₂CO₃ về lực acid."},
+         {text: "Sau phản ứng, dung dịch có pH < 7", ans: false, exp: "Sai. Sản phẩm CH₃COONa thuỷ phân tạo môi trường BASE → pH > 7."}
+       ]},
+    ],
+    sa: [
+      {q: "Citric acid (HOOC-CH₂-C(OH)(COOH)-CH₂-COOH, 3 nhóm –COOH) trung hoà với NaOH 0,4 M. Tính thể tích NaOH (mL) cần dùng để trung hoà 0,005 mol citric acid.", ans: "37,5", accepts: ["37.5"], unit: "mL", tol: 0.2, exp: "n(NaOH) = 3 × 0,005 = 0,015 mol. V = 0,015/0,4 = 0,0375 L = 37,5 mL."},
+      {q: "Để trung hoà 40 mL giấm ăn cần 25 mL dung dịch NaOH 1 M. Biết khối lượng riêng giấm là 1 g/mL. Tính nồng độ % của acetic acid trong giấm (%).", ans: "3,75", accepts: ["3.75"], unit: "%", tol: 0.05, exp: "n(NaOH) = 0,025 mol = n(CH₃COOH) → m(CH₃COOH) = 1,5 g. m(giấm) = 40 g. C% = 1,5/40 × 100 = 3,75%."},
+      {q: "Trung hoà 6,72 g một carboxylic acid no, đơn chức, mạch hở X cần 200 g dung dịch NaOH 2,24%. Tính phân tử khối M của X (đvC).", ans: "60", unit: "đvC", tol: 1, exp: "m(NaOH) = 200 × 0,0224 = 4,48 g → n(NaOH) = 0,112 mol = n(X) (đơn chức). M(X) = 6,72/0,112 = 60 → X là CH₃COOH (acetic acid)."},
+      {q: "Chuẩn độ 6,0 mL dung dịch acetic acid bằng NaOH 0,15 M, cần trung bình 20,0 mL NaOH. Tính nồng độ mol của acetic acid (mol/L).", ans: "0,5", accepts: ["0.5", "0,50", "0.50"], unit: "M", tol: 0.02, exp: "n(NaOH) = 0,02 × 0,15 = 0,003 mol = n(CH₃COOH). C(acid) = 0,003/0,006 = 0,5 M."},
+      {q: "Lên men 5 lít dung dịch ethanol 9,2° (d ethanol = 0,8 g/mL) với hiệu suất quá trình lên men giấm là 80%. Tính khối lượng acetic acid thu được (g).", ans: "384", unit: "g", tol: 2, exp: "V(C₂H₅OH nguyên chất) = 5×9,2/100 = 0,46 L = 460 mL → m = 460×0,8 = 368 g → n = 8 mol. C₂H₅OH + O₂ → CH₃COOH + H₂O. n(acid thực tế) = 8 × 0,8 = 6,4 mol → m = 6,4 × 60 = 384 g."},
+      {q: "Methyl salicylate (CH₃OOC–C₆H₄–OH, có 1 nhóm ester + 1 nhóm phenol) cho 0,1 mol phản ứng với NaOH dư. Tính số mol NaOH đã tham gia phản ứng (mol).", ans: "0,2", accepts: ["0.2", "0,20", "0.20"], unit: "mol", tol: 0.01, exp: "Mỗi mol methyl salicylate cần 2 mol NaOH: 1 thuỷ phân ester + 1 trung hoà –OH phenol → 0,1 × 2 = 0,2 mol."},
+      {q: "Citric acid (3 nhóm -COOH, có cấu trúc đối xứng quanh C ở giữa) + CH₃OH/H₂SO₄ đặc → tối đa bao nhiêu loại ester chứa nhóm –COOCH₃ khác nhau (gồm mono-, di-, tri-)?", ans: "5", unit: "ester", tol: 0, exp: "Hai nhóm –COOH ở 2 đầu giống nhau (đối xứng), nhóm –COOH ở giữa khác. Mono: 2 đp (đầu / giữa). Di: 2 đp (2 đầu / 1 đầu+1 giữa). Tri: 1 đp. Tổng: 2+2+1 = 5."},
+      {q: "Cho 30 g hỗn hợp 3 acid: HCOOH, CH₃COOH, CH₂=CH-COOH tác dụng vừa hết với NaHCO₃ thu được 14,874 L CO₂ (đkc 25°C, 1 bar; 24,79 L/mol). Tính khối lượng muối khan thu được (g).", ans: "43,2", accepts: ["43.2"], unit: "g", tol: 0.3, exp: "n(CO₂) = 14,874/24,79 = 0,6 mol = n(acid) (acid + NaHCO₃ → muối + CO₂ + H₂O, 1:1). m(NaHCO₃) = 0,6 × 84 = 50,4 g; m(H₂O) = 0,6×18 = 10,8 g; m(CO₂) = 26,4 g. m(muối) = 30 + 50,4 − 10,8 − 26,4 = 43,2 g."},
+      {q: "Tổng hợp methacrylic acid (CH₂=C(CH₃)COOH, M=86, D=1,015 g/mL) từ 10 m³ acetone (CH₃COCH₃, M=58, D=0,7844 g/mL) qua sơ đồ 2 giai đoạn, mỗi giai đoạn H = 80%. Tính thể tích methacrylic acid thu được (m³).", ans: "7,33", accepts: ["7.33", "7,3", "7.3"], unit: "m³", tol: 0.1, exp: "m(acetone) = 10⁷ × 0,7844 = 7,844×10⁶ g → n = 1,3524×10⁵ mol. H tổng = 0,8 × 0,8 = 0,64 → n(MA) = 8,6555×10⁴ mol → m(MA) = 7,4438×10⁶ g → V = 7,4438×10⁶/1,015 = 7,3338×10⁶ mL ≈ 7,33 m³."},
+    ]
+  },
+};
+
+
+/* ══════════════════ QUIZ STATE ══════════════════ */
+let quizState = {
+  // For each chapter, an order of question indices for both mcq and tf
+  order: {},
+  // User answers: {chapterKey: {mcq: {qIdx: 'A'|'B'|...}, tf: {qIdx: ['D'|'S'|null,...]}}}
+  answers: {},
+  graded: false,
+};
+
+/* Initialize state */
+function initQuiz() {
+  quizState = { order: {}, answers: {}, graded: false };
+  for (const key in QUIZ_DATA) {
+    const sa = QUIZ_DATA[key].sa || [];
+    quizState.order[key] = {
+      mcq: QUIZ_DATA[key].mcq.map((_, i) => i),
+      tf: QUIZ_DATA[key].tf.map((_, i) => i),
+      sa: sa.map((_, i) => i),
+    };
+    quizState.answers[key] = {
+      mcq: {},
+      tf: QUIZ_DATA[key].tf.map(t => t.subs.map(() => null)),
+      sa: {},
+    };
+  }
+  renderQuiz();
+  updateStatus();
+  document.getElementById('scorePanel').classList.remove('show');
+  /* Attach single delegated listener for T/F choices */
+  const container = document.getElementById('quizContent');
+  if (!container.dataset.bound) {
+    container.addEventListener('click', e => {
+      const choice = e.target.closest('.quiz-tf-choice');
+      if (!choice) return;
+      onTfChange(
+        choice.dataset.tfKey,
+        parseInt(choice.dataset.tfQidx, 10),
+        parseInt(choice.dataset.tfSidx, 10),
+        choice.dataset.tfChoice
+      );
+    });
+    /* Also delegate input events for SA text fields */
+    container.addEventListener('input', e => {
+      const inp = e.target.closest('.quiz-sa-input');
+      if (!inp) return;
+      onSaChange(inp.dataset.saKey, parseInt(inp.dataset.saQidx, 10), inp.value);
+    });
+    container.dataset.bound = '1';
+  }
+}
+
+/* Render the entire quiz from current state */
+function renderQuiz() {
+  const container = document.getElementById('quizContent');
+  let html = '';
+  let totalCount = 0;
+  let chapNum = 0;
+  for (const key in QUIZ_DATA) {
+    chapNum++;
+    const chap = QUIZ_DATA[key];
+    const order = quizState.order[key];
+    const sa = chap.sa || [];
+    const mcqCount = chap.mcq.length;
+    const tfSubCount = chap.tf.reduce((s, q) => s + q.subs.length, 0);
+    const saCount = sa.length;
+    totalCount += mcqCount + tfSubCount + saCount;
+
+    html += `<div class="quiz-section" data-key="${key}">`;
+    html += `  <div class="quiz-section-header">
+      <span class="quiz-section-dot" style="background:${chap.color}"></span>
+      ${chap.title}
+      <span style="margin-left:auto; font-size:0.78rem; color:var(--muted); font-weight:400;">
+        ${mcqCount} TN${tfSubCount ? ' · ' + chap.tf.length + ' Đ-S (' + tfSubCount + ' ý)' : ''}${saCount ? ' · ' + saCount + ' Trả lời ngắn' : ''}
+      </span>
+    </div>`;
+    html += `  <div class="quiz-section-body">`;
+
+    /* MCQ questions in shuffled order */
+    let mcqDisplayNum = 0;
+    order.mcq.forEach(qIdx => {
+      mcqDisplayNum++;
+      const q = chap.mcq[qIdx];
+      const userAns = quizState.answers[key].mcq[qIdx];
+      html += `<div class="quiz-question" data-key="${key}" data-type="mcq" data-qidx="${qIdx}">
+        <div class="quiz-q-head">
+          <div class="quiz-q-num">TN ${mcqDisplayNum}</div>
+          <div class="quiz-q-text">${escapeHtml(q.q)}</div>
+        </div>
+        <div class="quiz-options">`;
+      ['A','B','C','D'].forEach(letter => {
+        const checked = userAns === letter ? 'checked' : '';
+        const selectedClass = userAns === letter ? ' selected' : '';
+        html += `<label class="quiz-opt${selectedClass}" data-letter="${letter}">
+          <input type="radio" name="mcq_${key}_${qIdx}" value="${letter}" ${checked} onchange="onMcqChange('${key}',${qIdx},'${letter}')">
+          <span class="quiz-opt-letter">${letter}.</span>
+          <span>${escapeHtml(q.opts[letter])}</span>
+        </label>`;
+      });
+      html += `</div><div class="quiz-solution" data-role="solution"></div></div>`;
+    });
+
+    /* T/F questions in shuffled order */
+    let tfDisplayNum = 0;
+    order.tf.forEach(qIdx => {
+      tfDisplayNum++;
+      const q = chap.tf[qIdx];
+      html += `<div class="quiz-question" data-key="${key}" data-type="tf" data-qidx="${qIdx}">
+        <div class="quiz-q-head">
+          <div class="quiz-q-num" style="color:var(--accent1)">Đ-S ${tfDisplayNum}</div>
+          <div class="quiz-q-text"><div class="quiz-tf-stem">${escapeHtml(q.stem)}</div></div>
+        </div>
+        <div class="quiz-tf-subs">`;
+      q.subs.forEach((sub, sIdx) => {
+        const userAns = quizState.answers[key].tf[qIdx][sIdx];
+        const dSel = userAns === 'D' ? ' selected' : '';
+        const sSel = userAns === 'S' ? ' selected' : '';
+        html += `<div class="quiz-tf-sub" data-sidx="${sIdx}">
+          <div class="quiz-tf-sub-row">
+            <span class="quiz-tf-letter">(${String.fromCharCode(97+sIdx)})</span>
+            <span class="quiz-tf-text">${escapeHtml(sub.text)}</span>
+            <div class="quiz-tf-choices">
+              <span class="quiz-tf-choice choice-d${dSel}" data-tf-key="${key}" data-tf-qidx="${qIdx}" data-tf-sidx="${sIdx}" data-tf-choice="D">Đ</span>
+              <span class="quiz-tf-choice choice-s${sSel}" data-tf-key="${key}" data-tf-qidx="${qIdx}" data-tf-sidx="${sIdx}" data-tf-choice="S">S</span>
+            </div>
+          </div>
+          <div class="quiz-solution" data-role="tf-solution" data-sidx="${sIdx}"></div>
+        </div>`;
+      });
+      html += `</div></div>`;
+    });
+
+    /* SA (Short Answer) questions */
+    let saDisplayNum = 0;
+    order.sa.forEach(qIdx => {
+      saDisplayNum++;
+      const q = sa[qIdx];
+      const userAns = quizState.answers[key].sa[qIdx] || '';
+      const placeholder = q.unit ? `Nhập đáp án (${q.unit})` : 'Nhập đáp án';
+      html += `<div class="quiz-question" data-key="${key}" data-type="sa" data-qidx="${qIdx}">
+        <div class="quiz-q-head">
+          <div class="quiz-q-num" style="color:var(--accent5)">TLN ${saDisplayNum}</div>
+          <div class="quiz-q-text">${escapeHtml(q.q)}</div>
+        </div>
+        <div class="quiz-sa-row">
+          <input type="text" class="quiz-sa-input" data-sa-key="${key}" data-sa-qidx="${qIdx}"
+            value="${escapeHtml(userAns)}" placeholder="${escapeHtml(placeholder)}" autocomplete="off">
+          ${q.unit ? `<span class="quiz-sa-unit">${escapeHtml(q.unit)}</span>` : ''}
+        </div>
+        <div class="quiz-solution" data-role="sa-solution"></div>
+      </div>`;
+    });
+
+    html += `  </div></div>`;
+  }
+  container.innerHTML = html;
+  document.getElementById('totalCount').textContent = totalCount;
+}
+
+function escapeHtml(s) {
+  if (!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function onMcqChange(key, qIdx, letter) {
+  if (quizState.graded) return; // don't allow change after grading
+  quizState.answers[key].mcq[qIdx] = letter;
+  // Update visual selection
+  const wrapper = document.querySelector(`.quiz-question[data-key="${key}"][data-type="mcq"][data-qidx="${qIdx}"]`);
+  if (wrapper) {
+    wrapper.querySelectorAll('.quiz-opt').forEach(el => {
+      el.classList.toggle('selected', el.getAttribute('data-letter') === letter);
+    });
+  }
+  updateStatus();
+}
+
+function onTfChange(key, qIdx, sIdx, choice) {
+  if (quizState.graded) return;
+  const cur = quizState.answers[key].tf[qIdx][sIdx];
+  quizState.answers[key].tf[qIdx][sIdx] = (cur === choice) ? null : choice;
+  const wrap = document.querySelector(`.quiz-question[data-key="${key}"][data-type="tf"][data-qidx="${qIdx}"] .quiz-tf-sub[data-sidx="${sIdx}"]`);
+  if (wrap) {
+    const newAns = quizState.answers[key].tf[qIdx][sIdx];
+    wrap.querySelectorAll('.quiz-tf-choice').forEach(c => c.classList.remove('selected'));
+    if (newAns === 'D') wrap.querySelector('.choice-d').classList.add('selected');
+    if (newAns === 'S') wrap.querySelector('.choice-s').classList.add('selected');
+  }
+  updateStatus();
+}
+
+function onSaChange(key, qIdx, value) {
+  if (quizState.graded) return;
+  if (value && value.trim()) {
+    quizState.answers[key].sa[qIdx] = value;
+  } else {
+    delete quizState.answers[key].sa[qIdx];
+  }
+  updateStatus();
+}
+
+/* Normalize an answer string for comparison.
+   Handles: lowercase, trim, comma-as-decimal (Vietnamese), unit stripping,
+   whitespace removal, and unicode chemistry chars. */
+function normalizeAnswer(s) {
+  if (s == null) return '';
+  let n = String(s).toLowerCase().trim();
+  // Vietnamese decimal: 3,75 → 3.75
+  n = n.replace(/,/g, '.');
+  // Strip common units at end (case-insensitive, with or without leading space)
+  n = n.replace(/\s*(gam|gram|kgs?|grams?|grams|tấn|tan|tons?|m³|m\^3|m3|ml|millilitres?|millilitres|millilitre|millilters?|lit(re|er)s?|lits?|lit|l|đvc|amu|mol|moles?|mols|kj|kcal|°|độ|degrees?|độC|°c|c|đp|đồng phân|đồngphân|chất|nguyên tử|nguyêntử|nguyên tử c|atoms?|ngày|ngay|days?|ester|esters|estes|hợp chất|hợpchất|m\/100mL)\s*\.?$/i, '');
+  // Strip percent sign anywhere
+  n = n.replace(/\s*%\s*\.?$/g, '').replace(/%/g, '');
+  // Strip a trailing period
+  n = n.replace(/\.$/, '');
+  // Remove all internal whitespace
+  n = n.replace(/\s+/g, '');
+  return n;
+}
+
+/* Compare user answer to expected for SA */
+function matchSA(userInput, q) {
+  if (!userInput || !userInput.trim()) return false;
+  const userN = normalizeAnswer(userInput);
+  if (!userN) return false;
+  // Build accepted list
+  const accepted = [normalizeAnswer(q.ans)];
+  if (q.accepts && Array.isArray(q.accepts)) {
+    q.accepts.forEach(a => accepted.push(normalizeAnswer(a)));
+  }
+  // Text type: exact match only
+  if (q.type === 'text') {
+    return accepted.includes(userN);
+  }
+  // Numeric: try float comparison with tolerance
+  const userF = parseFloat(userN);
+  const targetF = parseFloat(normalizeAnswer(q.ans));
+  if (!isNaN(userF) && !isNaN(targetF)) {
+    const tol = ('tol' in q) ? q.tol : Math.max(Math.abs(targetF) * 0.01, 0.01);
+    if (Math.abs(userF - targetF) <= tol) return true;
+  }
+  // Fallback: exact normalized match (also good for integer answers like "5")
+  return accepted.includes(userN);
+}
+
+function updateStatus() {
+  let answered = 0;
+  for (const key in quizState.answers) {
+    answered += Object.keys(quizState.answers[key].mcq).length;
+    quizState.answers[key].tf.forEach(arr => {
+      arr.forEach(a => { if (a) answered++; });
+    });
+    answered += Object.keys(quizState.answers[key].sa).length;
+  }
+  document.getElementById('answeredCount').textContent = answered;
+}
+
+/* Fisher-Yates shuffle in place */
+function fisherYates(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
+function shuffleQuiz() {
+  if (quizState.graded) {
+    if (!confirm('Quiz đã được chấm. Bạn có muốn làm lại với thứ tự câu hỏi mới không?')) return;
+    initQuiz();
+  }
+  /* Shuffle question order WITHIN each section */
+  for (const key in quizState.order) {
+    fisherYates(quizState.order[key].mcq);
+    fisherYates(quizState.order[key].tf);
+    if (quizState.order[key].sa) fisherYates(quizState.order[key].sa);
+  }
+  renderQuiz();
+}
+
+function resetQuiz() {
+  if (!confirm('Em có chắc muốn xoá toàn bộ câu trả lời và làm lại từ đầu?')) return;
+  initQuiz();
+  /* Scroll back to quiz top */
+  const el = document.getElementById('ch-quiz');
+  if (el && typeof el.scrollIntoView === 'function') {
+    el.scrollIntoView({behavior:'smooth'});
+  }
+}
+
+function submitQuiz() {
+  if (quizState.graded) {
+    alert('Quiz đã được chấm. Bấm Reset hoặc Shuffle để làm lại.');
+    return;
+  }
+  /* Score everything */
+  let totalMcq = 0, correctMcq = 0;
+  let totalTf = 0, correctTf = 0;
+  let totalSa = 0, correctSa = 0;
+
+  for (const key in QUIZ_DATA) {
+    const chap = QUIZ_DATA[key];
+
+    chap.mcq.forEach((q, qIdx) => {
+      totalMcq++;
+      const userAns = quizState.answers[key].mcq[qIdx];
+      const wrap = document.querySelector(`.quiz-question[data-key="${key}"][data-type="mcq"][data-qidx="${qIdx}"]`);
+      if (!wrap) return;
+      const isCorrect = userAns === q.ans;
+      if (isCorrect) correctMcq++;
+
+      wrap.querySelectorAll('.quiz-opt').forEach(opt => {
+        const letter = opt.getAttribute('data-letter');
+        opt.style.cursor = 'default';
+        opt.querySelector('input').disabled = true;
+        if (letter === q.ans) opt.classList.add('correct-ans');
+        if (userAns && letter === userAns && !isCorrect) opt.classList.add('wrong-ans');
+      });
+      if (isCorrect) wrap.classList.add('correct');
+      else if (userAns) wrap.classList.add('wrong');
+      else wrap.classList.add('unanswered','graded');
+
+      const sol = wrap.querySelector('.quiz-solution[data-role="solution"]');
+      let solHtml = '';
+      if (isCorrect) {
+        solHtml = `<strong class="label-correct">✓ Đúng rồi!</strong> Đáp án <strong>${q.ans}</strong>. ${escapeHtml(q.exp)}`;
+      } else if (userAns) {
+        solHtml = `<strong class="label-wrong">✗ Sai.</strong> Em chọn <strong>${userAns}</strong>, đáp án đúng là <strong>${q.ans}</strong>. ${escapeHtml(q.exp)}`;
+      } else {
+        solHtml = `<strong style="color:var(--gold)">⚠ Chưa chọn.</strong> Đáp án đúng là <strong>${q.ans}</strong>. ${escapeHtml(q.exp)}`;
+      }
+      sol.innerHTML = solHtml;
+      sol.classList.add('show');
+    });
+
+    chap.tf.forEach((tfQ, qIdx) => {
+      const wrap = document.querySelector(`.quiz-question[data-key="${key}"][data-type="tf"][data-qidx="${qIdx}"]`);
+      if (!wrap) return;
+      tfQ.subs.forEach((sub, sIdx) => {
+        totalTf++;
+        const userAns = quizState.answers[key].tf[qIdx][sIdx];
+        const correctAns = sub.ans ? 'D' : 'S';
+        const isCorrect = userAns === correctAns;
+        if (isCorrect) correctTf++;
+
+        const subWrap = wrap.querySelector(`.quiz-tf-sub[data-sidx="${sIdx}"]`);
+        if (!subWrap) return;
+        subWrap.querySelectorAll('.quiz-tf-choice').forEach(c => { c.style.pointerEvents = 'none'; c.style.opacity = '0.6'; });
+        if (isCorrect) subWrap.classList.add('correct-ans');
+        else subWrap.classList.add('wrong-ans');
+        const correctEl = subWrap.querySelector(correctAns === 'D' ? '.choice-d' : '.choice-s');
+        if (correctEl) {
+          correctEl.style.opacity = '1';
+          correctEl.style.outline = '2px solid var(--accent4)';
+        }
+        const sol = subWrap.querySelector('.quiz-solution[data-role="tf-solution"]');
+        let solHtml = '';
+        const correctLabel = correctAns === 'D' ? 'ĐÚNG' : 'SAI';
+        if (isCorrect) {
+          solHtml = `<strong class="label-correct">✓ Đúng rồi!</strong> (${correctLabel}). ${escapeHtml(sub.exp)}`;
+        } else if (userAns) {
+          solHtml = `<strong class="label-wrong">✗ Sai.</strong> Em chọn ${userAns === 'D' ? 'ĐÚNG' : 'SAI'}, đáp án đúng là <strong>${correctLabel}</strong>. ${escapeHtml(sub.exp)}`;
+        } else {
+          solHtml = `<strong style="color:var(--gold)">⚠ Chưa chọn.</strong> Đáp án đúng là <strong>${correctLabel}</strong>. ${escapeHtml(sub.exp)}`;
+        }
+        sol.innerHTML = solHtml;
+        sol.classList.add('show');
+      });
+    });
+
+    /* SA scoring */
+    const saList = chap.sa || [];
+    saList.forEach((q, qIdx) => {
+      totalSa++;
+      const userAns = quizState.answers[key].sa[qIdx] || '';
+      const wrap = document.querySelector(`.quiz-question[data-key="${key}"][data-type="sa"][data-qidx="${qIdx}"]`);
+      if (!wrap) return;
+      const isCorrect = matchSA(userAns, q);
+      if (isCorrect) correctSa++;
+
+      const inp = wrap.querySelector('.quiz-sa-input');
+      if (inp) {
+        inp.disabled = true;
+        if (isCorrect) {
+          inp.classList.add('sa-correct');
+        } else if (userAns) {
+          inp.classList.add('sa-wrong');
+        } else {
+          inp.classList.add('sa-empty');
+        }
+      }
+      if (isCorrect) wrap.classList.add('correct');
+      else if (userAns) wrap.classList.add('wrong');
+      else wrap.classList.add('unanswered','graded');
+
+      const sol = wrap.querySelector('.quiz-solution[data-role="sa-solution"]');
+      let solHtml = '';
+      const ansDisp = q.unit ? `<strong>${escapeHtml(q.ans)}</strong> ${escapeHtml(q.unit)}` : `<strong>${escapeHtml(q.ans)}</strong>`;
+      if (isCorrect) {
+        solHtml = `<strong class="label-correct">✓ Đúng rồi!</strong> Đáp án ${ansDisp}. ${escapeHtml(q.exp)}`;
+      } else if (userAns) {
+        solHtml = `<strong class="label-wrong">✗ Sai.</strong> Em trả lời "<em>${escapeHtml(userAns)}</em>", đáp án đúng là ${ansDisp}. ${escapeHtml(q.exp)}`;
+      } else {
+        solHtml = `<strong style="color:var(--gold)">⚠ Chưa trả lời.</strong> Đáp án đúng là ${ansDisp}. ${escapeHtml(q.exp)}`;
+      }
+      sol.innerHTML = solHtml;
+      sol.classList.add('show');
+    });
+  }
+
+  quizState.graded = true;
+
+  /* Update score panel */
+  const totalQ = totalMcq + totalTf + totalSa;
+  const totalCorrect = correctMcq + correctTf + correctSa;
+  const pct = totalQ ? Math.round(totalCorrect / totalQ * 1000) / 10 : 0;
+  const score10 = totalQ ? (totalCorrect / totalQ * 10).toFixed(2) : '0';
+
+  document.getElementById('scoreBig').textContent = score10 + ' / 10';
+  let label = 'Cố lên! 💪';
+  if (pct >= 90) label = 'Xuất sắc! 🏆';
+  else if (pct >= 75) label = 'Giỏi! 🌟';
+  else if (pct >= 60) label = 'Khá tốt 👍';
+  else if (pct >= 40) label = 'Tạm được — ôn thêm nhé 📚';
+  document.getElementById('scoreLabel').textContent = label + ` (${pct}% đúng)`;
+
+  document.getElementById('scoreDetail').innerHTML = `
+    <span class="quiz-score-pill green">✓ Đúng: ${totalCorrect}/${totalQ}</span>
+    <span class="quiz-score-pill red">✗ Sai/Bỏ: ${totalQ - totalCorrect}/${totalQ}</span>
+    <span class="quiz-score-pill">📋 Trắc nghiệm: ${correctMcq}/${totalMcq}</span>
+    <span class="quiz-score-pill">📋 Đúng-Sai: ${correctTf}/${totalTf}</span>
+    ${totalSa ? `<span class="quiz-score-pill">📋 Trả lời ngắn: ${correctSa}/${totalSa}</span>` : ''}
+  `;
+  document.getElementById('scorePanel').classList.add('show');
+  /* Scroll to score panel (defensive: scrollIntoView may not exist in test envs) */
+  const scrollEl = document.getElementById('scorePanel');
+  if (scrollEl && typeof scrollEl.scrollIntoView === 'function') {
+    scrollEl.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+/* Initial render once DOM is ready */
+document.addEventListener('DOMContentLoaded', initQuiz);
+</script>
+</body>
+</html>
