@@ -2544,3 +2544,257 @@ html[data-theme="dark"] .hero .sub {
 html[data-theme="dark"] .hero .sub b {
   color: var(--fg) !important;
 }
+
+/* ═══════════ MICROSCOPIC DARK MODE POLISH (KEYWORDS & COMPONENTS) ═══════════ */
+
+/* Chemistry Keywords & Formula Emphasis */
+html[data-theme="dark"] .kw,
+html[data-theme="dark"] .note-body .kw,
+html[data-theme="dark"] .ex-card .kw,
+html[data-theme="dark"] .back .kw,
+html[data-theme="dark"] .flash-back-body .kw,
+html[data-theme="dark"] .q-text b,
+html[data-theme="dark"] .checkpoint-q b,
+html[data-theme="dark"] .guided-text b,
+html[data-theme="dark"] strong {
+  color: #fce2c2 !important;
+  font-weight: 700;
+}
+html[data-theme="dark"] .kwi {
+  color: #f3aa79 !important;
+}
+html[data-theme="dark"] .kwi sub,
+html[data-theme="dark"] .kwi sup {
+  color: #e5975f !important;
+}
+html[data-theme="dark"] .kwe {
+  text-decoration-color: var(--accent) !important;
+  color: #ede7de !important;
+}
+
+/* Theory Card Badges & Feynman Block */
+html[data-theme="dark"] .k-trick .note-badge {
+  background: rgba(229, 169, 83, 0.18) !important;
+  border-color: rgba(229, 169, 83, 0.45) !important;
+  color: #f5b74f !important;
+}
+html[data-theme="dark"] .k-rxn .note-badge {
+  background: rgba(56, 189, 248, 0.18) !important;
+  border-color: rgba(56, 189, 248, 0.45) !important;
+  color: #38bdf8 !important;
+}
+html[data-theme="dark"] .k-danger .note-badge {
+  background: rgba(248, 113, 113, 0.18) !important;
+  border-color: rgba(248, 113, 113, 0.45) !important;
+  color: #f87171 !important;
+}
+html[data-theme="dark"] .k-card .note-badge {
+  background: rgba(229, 151, 95, 0.18) !important;
+  border-color: rgba(229, 151, 95, 0.45) !important;
+  color: var(--accent) !important;
+}
+html[data-theme="dark"] .k-rule .note-badge {
+  background: #25221d !important;
+  border-color: #3d362c !important;
+  color: var(--muted) !important;
+}
+html[data-theme="dark"] .k-table .note-badge {
+  background: #25221d !important;
+  border-color: #3d362c !important;
+  color: var(--fg) !important;
+}
+html[data-theme="dark"] .feynman {
+  background: #1c1916 !important;
+  border-color: #38322a !important;
+}
+html[data-theme="dark"] .feynman p {
+  color: var(--fg) !important;
+}
+html[data-theme="dark"] .feynman b {
+  color: var(--accent) !important;
+}
+html[data-theme="dark"] .due-note {
+  background: #231c14 !important;
+  border-color: #4a361e !important;
+  color: #e5a953 !important;
+}
+html[data-theme="dark"] .fav-btn.on {
+  background: #2a2115 !important;
+  border-color: rgba(229, 169, 83, 0.5) !important;
+  color: #e5a953 !important;
+}
+html[data-theme="dark"] .cc-num {
+  -webkit-text-stroke: 1px rgba(229, 151, 95, 0.22) !important;
+}
+
+/* Exercise Cards & Solutions */
+html[data-theme="dark"] .ex-opt {
+  background: var(--surface-2) !important;
+  border-color: var(--line-soft) !important;
+  color: var(--fg) !important;
+}
+html[data-theme="dark"] .ex-opt:hover {
+  background: var(--surface) !important;
+  border-color: var(--accent) !important;
+}
+html[data-theme="dark"] .ex-sol {
+  background: rgba(74, 222, 128, 0.12) !important;
+  border-left: 3px solid var(--ok) !important;
+  color: #bbf7d0 !important;
+}
+html[data-theme="dark"] .ex-sol .sol-tag {
+  background: rgba(0, 0, 0, 0.45) !important;
+  color: #86efac !important;
+  border-color: rgba(74, 222, 128, 0.45) !important;
+}
+html[data-theme="dark"] .ex-steps {
+  color: var(--fg) !important;
+}
+html[data-theme="dark"] .ex-steps li::before {
+  background: var(--ok) !important;
+  color: #121110 !important;
+}
+
+/* Theory Links and Jump Buttons */
+html[data-theme="dark"] .link-theory-btn,
+html[data-theme="dark"] .test-theory-btn,
+html[data-theme="dark"] .fc-theory-link {
+  background: #241d16 !important;
+  color: #e5975f !important;
+  border-color: #4a361e !important;
+}
+html[data-theme="dark"] .link-theory-btn:hover,
+html[data-theme="dark"] .test-theory-btn:hover,
+html[data-theme="dark"] .fc-theory-link:hover {
+  background: #e5975f !important;
+  color: #15110d !important;
+  border-color: #e5975f !important;
+  box-shadow: 0 4px 14px rgba(229, 151, 95, 0.3) !important;
+}
+
+/* Diagnostic Feedback and Comparison Rows */
+html[data-theme="dark"] .fb-section-box.flaw {
+  background: #251614 !important;
+  border: 1px solid #522722 !important;
+  color: #fca5a5 !important;
+}
+html[data-theme="dark"] .fb-section-box.hint {
+  background: #161e27 !important;
+  border: 1px solid #243547 !important;
+  color: #93c5fd !important;
+}
+html[data-theme="dark"] .fb-section-box.exp {
+  background: #132418 !important;
+  border: 1px solid #1f3f26 !important;
+  color: #86efac !important;
+}
+html[data-theme="dark"] .fb-comp-row.correct {
+  background: rgba(74, 222, 128, 0.14) !important;
+  border-left: 3px solid var(--ok) !important;
+  color: #86efac !important;
+}
+html[data-theme="dark"] .fb-comp-row.wrong {
+  background: rgba(248, 113, 113, 0.14) !important;
+  border-left: 3px solid var(--danger) !important;
+  color: #fca5a5 !important;
+}
+
+/* Feynman Guided Learning Elements */
+html[data-theme="dark"] .guided-sec-title.hook { color: var(--accent) !important; }
+html[data-theme="dark"] .guided-sec-title.core { color: #5abda0 !important; }
+html[data-theme="dark"] .guided-sec-title.trap { color: #f87171 !important; }
+html[data-theme="dark"] .guided-sec-title.check { color: #e5a953 !important; }
+html[data-theme="dark"] .guided-text { color: var(--fg) !important; }
+
+/* Edit Toolbar, Prompts and In-line Editing */
+html[data-theme="dark"] .edit-toolbar {
+  background: #1c1916 !important;
+  border: 1.5px solid #523b1e !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+}
+html[data-theme="dark"] .edit-desc {
+  color: #e5a953 !important;
+}
+html[data-theme="dark"] .btn-edit-action {
+  background: #25211c !important;
+  border-color: #4a3821 !important;
+  color: #e5a953 !important;
+}
+html[data-theme="dark"] .btn-edit-action:hover {
+  background: #332a20 !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+}
+html[data-theme="dark"] .btn-edit-action.warn {
+  background: #2a1515 !important;
+  border-color: #522722 !important;
+  color: #f87171 !important;
+}
+html[data-theme="dark"] .card-edit-btn {
+  background: rgba(229, 151, 95, 0.16) !important;
+  border-color: rgba(229, 151, 95, 0.4) !important;
+  color: var(--accent) !important;
+}
+html[data-theme="dark"] .card-del-btn {
+  background: rgba(248, 113, 113, 0.14) !important;
+  border-color: rgba(248, 113, 113, 0.35) !important;
+  color: #f87171 !important;
+}
+html[data-theme="dark"] .edit-prompt-bar {
+  background: #1c1916 !important;
+  border: 1.5px dashed #523b1e !important;
+  color: #e5a953 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+html[data-theme="dark"] .edit-prompt-bar .btn-go-edit {
+  background: #e5975f !important;
+  color: #15110d !important;
+}
+html[data-theme="dark"] .edit-btn-prominent {
+  background: #25211c !important;
+  border-color: #4a3821 !important;
+  color: #e5a953 !important;
+}
+html[data-theme="dark"] .edit-switch-track {
+  background: #4a4034 !important;
+}
+html[data-theme="dark"] body.edit-mode-active [data-inline-edit]:hover {
+  outline: 2px dashed var(--accent) !important;
+  background: rgba(229, 151, 95, 0.12) !important;
+}
+html[data-theme="dark"] body.edit-mode-active [data-inline-edit]:focus {
+  outline: 2.5px solid var(--accent) !important;
+  background: #24211d !important;
+  box-shadow: 0 0 0 4px rgba(229, 151, 95, 0.22) !important;
+}
+html[data-theme="dark"] .fab-edit {
+  background: linear-gradient(135deg, #c47600 0%, #995500 100%) !important;
+  border-color: #38322a !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7) !important;
+}
+html[data-theme="dark"] .perf-chip.on {
+  background: rgba(99, 102, 241, 0.18) !important;
+  border-color: #818cf8 !important;
+  color: #c7d2fe !important;
+}
+html[data-theme="dark"] .xp-fly-badge {
+  background: #1a1816 !important;
+  color: #4ade80 !important;
+  border-color: #4ade80 !important;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6) !important;
+}
+html[data-theme="dark"] option {
+  background: #25221d !important;
+  color: #ede7de !important;
+}
+html[data-theme="dark"] #nt,
+html[data-theme="dark"] #nb {
+  background: #24211d !important;
+  color: #ede7de !important;
+  border-color: #38322a !important;
+}
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: var(--muted) !important;
+  opacity: 0.65;
+}
