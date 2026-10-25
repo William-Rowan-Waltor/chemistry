@@ -1969,3 +1969,67 @@ html[data-theme="dark"] textarea:focus {
   font-size: 0.78rem;
   color: var(--muted);
 }
+
+/* — Universal Prev / Next Navigation Bars — */
+.btn:disabled, .btn[disabled] {
+  opacity: 0.38 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  filter: grayscale(0.4);
+}
+.fs-nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  gap: 10px;
+  width: 100%;
+}
+.fs-nav-row .btn {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.bank-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-soft);
+  gap: 12px;
+  width: 100%;
+}
+.coach-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-soft);
+  gap: 12px;
+  width: 100%;
+}
+.guided-stage-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-soft);
+  gap: 12px;
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .fs-nav-row {
+    flex-wrap: wrap;
+  }
+  .fs-nav-row .btn {
+    min-width: 45%;
+  }
+}

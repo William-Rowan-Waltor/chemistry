@@ -1564,7 +1564,12 @@
       '<div class="fs-actions">' +
         '<button class="btn ghost" data-act="flashAgain">↻ Cần ôn lại (1)</button>' +
         '<button class="btn good" data-act="flashGood">✓ Đã nhớ (2)</button>' +
-      "</div>";
+      "</div>" +
+      '<div class="fs-nav-row">' +
+        '<button class="btn ghost" data-act="flashPrevCard"' + (f.i === 0 ? ' disabled' : '') + '>← Thẻ trước</button>' +
+        '<button class="btn ghost small" data-act="flip">🔄 Lật thẻ</button>' +
+        '<button class="btn ghost" data-act="flashNextCard"' + (f.i >= f.items.length - 1 ? ' disabled' : '') + '>Thẻ sau →</button>' +
+      '</div>';
     }
     body +=
       '<div class="fs-fin' + (done ? " show" : "") + '">' +
@@ -1575,6 +1580,21 @@
       "</div>" +
     "</div>";
     return body;
+  }
+
+  function flashPrevCard() {
+    var f = state.flash;
+    if (!f || !f.items || f.i <= 0) return;
+    f.i--;
+    f.flipped = false;
+    renderPracticeOnly();
+  }
+  function flashNextCard() {
+    var f = state.flash;
+    if (!f || !f.items || f.i >= f.items.length - 1) return;
+    f.i++;
+    f.flipped = false;
+    renderPracticeOnly();
   }
 
   var FLASH_INTERVALS = [1, 3, 7, 15, 30];
@@ -1741,9 +1761,15 @@
         (it.u ? '<span class="num-unit">' + esc(it.u) + "</span>" : "") +
         '<button class="btn primary" data-act="bankPick" data-p="submit">Chấm</button></div>';
     }
+    var navBar = '<div class="bank-nav-bar">' +
+      '<button class="btn ghost" data-act="bankPrev"' + (idx === 0 ? ' disabled' : '') + '>← Câu trước</button>' +
+      '<span class="muted small" style="font-weight:600">Câu ' + (idx + 1) + ' / ' + total + '</span>' +
+      '<button class="btn ghost" data-act="bankNext"' + (idx + 1 >= total ? ' disabled' : '') + '>Câu sau →</button>' +
+    '</div>';
     return '<div class="bank-q">' + head +
       "<p class='q-text'>" + fmt(it.q) + "</p>" + body +
       '<div class="q-feedback" id="qFeedback"></div>' +
+      navBar +
     "</div>";
   }
   function bankPick(pick) {
@@ -1812,11 +1838,24 @@
 
     fb.innerHTML = msg;
     fb.classList.add("show");
-    var nextBar = '<div class="q-next"><button class="btn primary" data-act="bankNext">Câu tiếp theo →</button></div>';
-    if (bs.i + 1 >= bs.items.length) nextBar = '<div class="q-next"><button class="btn primary" data-act="bankFinish">Xem kết quả</button></div>';
+    var nextBar = '<div class="q-nav-row" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:12px">' +
+      '<button class="btn ghost" data-act="bankPrev"' + (bs.i === 0 ? ' disabled' : '') + '>← Câu trước</button>' +
+      (bs.i + 1 >= bs.items.length
+        ? '<button class="btn primary" data-act="bankFinish">Xem kết quả</button>'
+        : '<button class="btn primary" data-act="bankNext">Câu tiếp theo →</button>') +
+    '</div>';
     fb.insertAdjacentHTML("beforeend", nextBar);
     activity();
     updateHeaderStats(correct);
+  }
+  function bankPrev() {
+    var bs = state.bank;
+    if (!bs || bs.i <= 0) return;
+    bs.answered = false;
+    bs.i--;
+    renderPracticeOnly();
+    var bq = $(".bank-q");
+    if (bq) bq.scrollIntoView({ behavior: "smooth", block: "start" });
   }
   function bankNext() {
     var bs = state.bank;
@@ -1926,13 +1965,20 @@
         (it.u ? '<span class="num-unit">' + esc(it.u) + "</span>" : "") +
         '<button class="btn primary" data-act="testPick" data-p="save">Lưu</button></div>';
     }
+    var prevBtn = '<button class="btn ghost" data-act="testPrev"' + (T.i > 0 ? '' : ' disabled') + '>← Câu trước</button>';
+    var nextBtn = (T.i + 1 < T.t.qs.length)
+      ? '<button class="btn ghost" data-act="testNext">Câu sau →</button>'
+      : '<button class="btn ghost" disabled>Câu sau →</button>';
+    var submitBtn = '<button class="btn good" data-act="testSubmit">Nộp bài</button>';
+
     return '<div class="test-q">' + head +
       "<p class='q-text'>" + fmt(it.q) + "</p>" + body +
       '<div class="q-nav">' +
-        (T.i > 0 ? '<button class="btn ghost" data-act="testPrev">← Trước</button>' : '<span></span>') +
-        (T.i + 1 < T.t.qs.length
-          ? '<button class="btn primary" data-act="testNext">Sau →</button>'
-          : '<button class="btn good" data-act="testSubmit">Nộp bài</button>') +
+        prevBtn +
+        '<div style="display:flex;gap:8px;align-items:center">' +
+          nextBtn +
+          submitBtn +
+        '</div>' +
       "</div>" +
     "</div>";
   }
@@ -2139,6 +2185,11 @@
             feedbackHtml +
           '</div>' +
         '</div>' +
+        '<div class="guided-stage-nav">' +
+          '<button class="btn ghost" data-act="guidedPrevStage"' + (curIdx === 0 ? ' disabled' : '') + '>← Chặng trước</button>' +
+          '<span class="muted small" style="font-weight:600">Chặng ' + (curIdx + 1) + ' / ' + stages.length + '</span>' +
+          '<button class="btn primary" data-act="guidedNextStage"' + (curIdx + 1 >= stages.length ? ' disabled' : '') + '>Chặng tiếp theo →</button>' +
+        '</div>' +
       '</div>' +
     '</div>';
   }
@@ -2154,7 +2205,10 @@
           '<div class="fb-sec-title">💡 <b>Bản chất cốt lõi & Cơ chế đúng:</b></div>' +
           '<div class="fb-sec-desc">' + fmt(check.exp) + '</div>' +
         '</div>' +
-        '<div class="fb-action"><button class="btn primary small" data-act="guidedNextStage">Chặng tiếp theo →</button></div>' +
+        '<div class="fb-action" style="display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap">' +
+          '<button class="btn ghost small" data-act="guidedPrevStage">← Chặng trước</button>' +
+          '<button class="btn primary small" data-act="guidedNextStage">Chặng tiếp theo →</button>' +
+        '</div>' +
       '</div>';
     } else {
       return '<div class="checkpoint-feedback bad">' +
@@ -2181,7 +2235,10 @@
           '<div class="fb-sec-title">💡 <b>Bản chất khoa học & Giải thích:</b></div>' +
           '<div class="fb-sec-desc">' + fmt(check.exp) + '</div>' +
         '</div>' +
-        '<div class="fb-action"><button class="btn primary small" data-act="guidedNextStage">Chặng tiếp theo →</button></div>' +
+        '<div class="fb-action" style="display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap">' +
+          '<button class="btn ghost small" data-act="guidedPrevStage">← Chặng trước</button>' +
+          '<button class="btn primary small" data-act="guidedNextStage">Chặng tiếp theo →</button>' +
+        '</div>' +
       '</div>';
     }
   }
@@ -2260,14 +2317,34 @@
     }
   }
 
+  function guidedPrevStage() {
+    if (state.guided && state.guided.stageIdx > 0) {
+      state.guided.stageIdx--;
+      var curCh = state.guided.ch;
+      var stageKey = curCh + "_" + state.guided.stageIdx;
+      var prevAnswer = state.guided.answeredStages && state.guided.answeredStages[stageKey];
+      state.guided.checked = !!prevAnswer;
+      state.guided.pickedOpt = prevAnswer ? prevAnswer.picked : null;
+      render(false);
+      var target = $(".guided-card") || $(".guided-container");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  }
   function guidedNextStage() {
     var curCh = state.guided.ch;
     var ch = DATA[curCh];
     var stages = (ch && ch.guidedStages) || DEFAULT_GUIDED_STAGES[curCh] || DEFAULT_GUIDED_STAGES.g12c1;
     if (state.guided.stageIdx + 1 < stages.length) {
       state.guided.stageIdx++;
-      state.guided.checked = false;
-      state.guided.pickedOpt = null;
+      var curCh2 = state.guided.ch;
+      var stageKey2 = curCh2 + "_" + state.guided.stageIdx;
+      var prevAnswer2 = state.guided.answeredStages && state.guided.answeredStages[stageKey2];
+      state.guided.checked = !!prevAnswer2;
+      state.guided.pickedOpt = prevAnswer2 ? prevAnswer2.picked : null;
       render(false);
       // Smoothly scroll to the top of the guided card so student can read from start
       var target = $(".guided-card") || $(".guided-container");
@@ -2321,7 +2398,9 @@
       diagnosticHtml = '<div class="diagnostic-feedback">' +
         '<h4>' + (isCorrect ? '✓ Đáp án chính xác!' : '✗ Chưa đúng — Phân tích chẩn đoán sai lầm:') + '</h4>' +
         '<p>' + fmt(cur.exp) + '</p>' +
-        '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary small" data-act="coachTestNext">Câu tiếp theo →</button>' +
+        '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">' +
+        (idx > 0 ? '<button class="btn ghost small" data-act="coachTestPrev">← Câu trước</button>' : '') +
+        '<button class="btn primary small" data-act="coachTestNext">Câu tiếp theo →</button>' +
         (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">📖 Xem lại lý thuyết chương này →</button>' : '') + '</div>' +
       '</div>';
     }
@@ -2360,6 +2439,11 @@
           '</div>' +
         '</div>' +
       '</div>' +
+      '<div class="coach-nav-bar">' +
+        '<button class="btn ghost" data-act="coachTestPrev"' + (idx === 0 ? ' disabled' : '') + '>← Câu trước</button>' +
+        '<span class="muted small" style="font-weight:600">Câu ' + (idx + 1) + ' / ' + questions.length + '</span>' +
+        '<button class="btn primary" data-act="coachTestNext">' + (idx + 1 < questions.length ? 'Câu tiếp theo →' : 'Xem kết quả') + '</button>' +
+      '</div>' +
     '</div>';
   }
 
@@ -2368,7 +2452,7 @@
     state.coachTest.picked = p;
     var cur = DEFAULT_COACH_TESTS[state.coachTest.i];
     var ok = p === cur.a;
-    state.coachTest.answers.push({ q: cur, picked: p, ok: ok });
+    state.coachTest.answers[state.coachTest.i] = { q: cur, picked: p, ok: ok };
     if (ok) addXP(profile(), cur.ch, 15);
 
     // In-place update: zero scroll movement on answer pick
@@ -2455,10 +2539,26 @@
     }
   }
 
+  function coachTestPrev() {
+    if (state.coachTest.i > 0) {
+      state.coachTest.i--;
+      var prevAns = state.coachTest.answers[state.coachTest.i];
+      state.coachTest.picked = prevAns ? prevAns.picked : null;
+      state.coachTest.hintsOpened = {};
+      render(false);
+      var card = $(".coach-test-card");
+      if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  }
   function coachTestNext() {
     if (state.coachTest.i + 1 < DEFAULT_COACH_TESTS.length) {
       state.coachTest.i++;
-      state.coachTest.picked = null;
+      var nextAns = state.coachTest.answers[state.coachTest.i];
+      state.coachTest.picked = nextAns ? nextAns.picked : null;
       state.coachTest.hintsOpened = {};
       render(false);
       var card = $(".coach-test-card");
@@ -3006,6 +3106,8 @@
         } break;
       case "flashAgain": markFlash(false); break;
       case "flashGood": markFlash(true); break;
+      case "flashPrevCard": flashPrevCard(); break;
+      case "flashNextCard": flashNextCard(); break;
       case "flashPrev": state.flash = null; render(); break;
 
       /* Bank Quiz */
@@ -3014,6 +3116,7 @@
         var selKind = $(".sel[data-act='bank-kind']");
         startBank(selCh ? selCh.value : "all", selKind ? selKind.value : "all");
         break;
+      case "bankPrev": bankPrev(); break;
       case "bankNext": bankNext(); break;
       case "bankFinish": bankFinish(); break;
       case "bankAgain": state.bank.mode = "pick"; state.bank.items = null; render(); break;
@@ -3053,6 +3156,7 @@
 
       /* Guided Learning */
       case "guidedPick": guidedPick(el.getAttribute("data-k")); break;
+      case "guidedPrevStage": guidedPrevStage(); break;
       case "guidedNextStage": guidedNextStage(); break;
       case "guidedJump":
         state.guided.stageIdx = parseInt(el.getAttribute("data-i"), 10);
@@ -3067,6 +3171,7 @@
 
       /* Coach Testing */
       case "coachTestPick": coachTestPick(el.getAttribute("data-p")); break;
+      case "coachTestPrev": coachTestPrev(); break;
       case "coachTestNext": coachTestNext(); break;
       case "toggleHint": toggleHint(el.getAttribute("data-h")); break;
       case "restartCoachTest":
@@ -3495,6 +3600,12 @@
         markFlash(false);
       } else if (ev.code === "Digit2") {
         markFlash(true);
+      } else if (ev.key === "ArrowLeft") {
+        ev.preventDefault();
+        flashPrevCard();
+      } else if (ev.key === "ArrowRight") {
+        ev.preventDefault();
+        flashNextCard();
       }
     }
   });
