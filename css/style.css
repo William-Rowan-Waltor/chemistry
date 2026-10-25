@@ -1796,3 +1796,176 @@ button, .btn, .chip, .tab, .stab, .ch-card, .note, .checkpoint-opt, .mcq-opt, .t
 .fb-action {
   margin-top: 14px;
 }
+
+/* ═══════════ DARK THEME TOKENS — MIDNIGHT SCHOLAR ═══════════ */
+html[data-theme="dark"] {
+  --bg: #131211;
+  --surface: #1b1917;
+  --surface-2: #25221e;
+  --fg: #ede7de;
+  --ink: #ede7de;
+  --muted: #a59789;
+  --faint: #6d6357;
+  --line: #38332c;
+  --line-soft: #2c2722;
+  --accent: #e5975f;
+  --accent-on: #15110d;
+  --accent-soft: rgba(229, 151, 95, 0.16);
+  --warm: #e09456;
+  --gold: #e5a953;
+  --ok: #4ade80;
+  --warn: #fb923c;
+  --danger: #f87171;
+  --bad: #f87171;
+  --info: #38bdf8;
+  --g11: #d4a76a;
+  --g12: #5abda0;
+  --glass: rgba(27, 25, 23, 0.85);
+  --glass-strong: rgba(27, 25, 23, 0.95);
+  --shadow: 0 1px 3px rgba(0,0,0,0.45), 0 10px 30px rgba(0,0,0,0.55);
+  --shadow-lift: 0 4px 12px rgba(0,0,0,0.55), 0 18px 44px rgba(0,0,0,0.65);
+}
+
+/* — Dark Mode Component Adjustments — */
+html[data-theme="dark"] #veil {
+  background: linear-gradient(180deg, rgba(19,18,17,.12) 0%, rgba(19,18,17,.45) 34%, rgba(19,18,17,.86) 62%, var(--bg) 92%);
+}
+html[data-theme="dark"] body.no-webgl #veil,
+html[data-theme="dark"] body.perf-mode #veil {
+  background: radial-gradient(1100px 520px at 20% -8%, #2a231b 0%, transparent 62%), radial-gradient(900px 480px at 86% -6%, #221d17 0%, transparent 60%), var(--bg);
+}
+html[data-theme="dark"] #gl {
+  opacity: 0.55;
+  filter: contrast(1.1) brightness(0.85);
+}
+html[data-theme="dark"] ::selection {
+  background: #6a4427;
+  color: #fffaf0;
+}
+html[data-theme="dark"] .flash-face.front {
+  background: linear-gradient(180deg, #201d19 0%, #191714 100%);
+  border-color: #383228;
+}
+html[data-theme="dark"] .flash-face.back {
+  background: linear-gradient(180deg, #25211c 0%, #1d1a16 100%);
+  border-color: #383228;
+}
+html[data-theme="dark"] .flash-fc-tag {
+  background: #2b2620;
+  color: var(--accent);
+  border-color: #3d352b;
+}
+html[data-theme="dark"] .checkpoint-feedback.ok {
+  background: #122416;
+  border-left-color: var(--ok);
+  color: #86efac;
+}
+html[data-theme="dark"] .checkpoint-feedback.bad {
+  background: #2a1515;
+  border-left-color: var(--danger);
+  color: #fca5a5;
+}
+html[data-theme="dark"] .fb-section-box.flaw {
+  background: #261715;
+  border-color: #522722;
+  color: #fca5a5;
+}
+html[data-theme="dark"] .fb-section-box.hint {
+  background: #17202b;
+  border-color: #263547;
+  color: #93c5fd;
+}
+html[data-theme="dark"] .fb-section-box.exp {
+  background: #132418;
+  border-color: #21432a;
+  color: #86efac;
+}
+html[data-theme="dark"] .fb-comp-row.correct {
+  background: rgba(74, 222, 128, 0.15);
+  color: #86efac;
+}
+html[data-theme="dark"] .fb-comp-row.wrong {
+  background: rgba(248, 113, 113, 0.15);
+  color: #fca5a5;
+}
+html[data-theme="dark"] .coach-hint-content {
+  background: #181614;
+  color: #d8cebe;
+}
+html[data-theme="dark"] .diagnostic-feedback {
+  background: #1b1917;
+  border-color: #383229;
+}
+html[data-theme="dark"] .checkpoint-opt.reveal-correct,
+html[data-theme="dark"] .mcq-opt.reveal-correct {
+  background: #142e1b !important;
+  border-color: #4ade80 !important;
+  color: #bbf7d0 !important;
+}
+html[data-theme="dark"] .checkpoint-opt.picked.correct,
+html[data-theme="dark"] .mcq-opt.picked.good {
+  background: #15331d !important;
+  border-color: #4ade80 !important;
+  color: #bbf7d0 !important;
+}
+html[data-theme="dark"] .checkpoint-opt.picked.wrong,
+html[data-theme="dark"] .mcq-opt.picked.warn {
+  background: #331515 !important;
+  border-color: #f87171 !important;
+  color: #fecaca !important;
+}
+html[data-theme="dark"] .opt-badge-correct {
+  background: #14532d;
+  color: #86efac;
+}
+html[data-theme="dark"] .opt-badge-wrong {
+  background: #7f1d1d;
+  color: #fca5a5;
+}
+html[data-theme="dark"] .xp-fly-badge {
+  background: #1e1c18;
+  color: #4ade80;
+  border-color: #4ade80;
+}
+html[data-theme="dark"] .mini-toast {
+  background: #25221d;
+  color: #ede7de;
+  border-color: #40382f;
+}
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  background: #201d19;
+  color: #ede7de;
+  border-color: #3d362c;
+}
+html[data-theme="dark"] input:focus,
+html[data-theme="dark"] select:focus,
+html[data-theme="dark"] textarea:focus {
+  border-color: var(--accent);
+  background: #26221c;
+}
+
+/* — Theme Toggle Button — */
+.theme-toggle-btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  color: var(--fg);
+  padding: 4px 11px;
+  border-radius: 999px;
+  transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+}
+.theme-toggle-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.theme-toggle-btn small {
+  font-weight: 650;
+  font-size: 0.78rem;
+  color: var(--muted);
+}

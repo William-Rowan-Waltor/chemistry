@@ -503,105 +503,217 @@
   }
 
   /* ---------- ATOMIC MINIMALIST FLASHCARDS REPOSITORY ---------- */
+  /* ---------- ATOMIC MINIMALIST FLASHCARDS REPOSITORY (ENRICHED PATCH) ---------- */
   var DEFAULT_ATOMIC_FLASHCARDS = {
-    g12c3: [
-      { q: "CTPT của methylamine", a: "CH₅N", note: "Amine no đơn chức nhỏ nhất, thể khí" },
-      { q: "CTCT của methylamine", a: "CH₃NH₂", note: "Amine bậc 1" },
-      { q: "Bậc của amine (CH₃)₂NH", a: "Bậc 2", note: "Dimethylamine, có 2 gốc CH₃ gắn vào N" },
-      { q: "Bậc của amine (CH₃)₃N", a: "Bậc 3", note: "Trimethylamine, gây mùi tanh cá mè" },
-      { q: "Bậc của (CH₃)₃C-NH₂ vs (CH₃)₃C-OH", a: "Amine bậc 1 · Alcohol bậc 3", note: "Bẫy kinh điển: bậc amine tính theo số gốc gắn vào N!" },
-      { q: "Aniline có làm đổi màu quỳ tím không?", a: "Không", note: "Do tính base rất yếu bởi gốc phenyl hút e" },
-      { q: "Hiện tượng khi nhỏ nước Br₂ vào Aniline", a: "Kết tủa trắng", note: "Tạo 2,4,6-tribromoaniline tương tự phenol" },
-      { q: "Tên IUPAC của CH₃-CH(NH₂)-CH₃", a: "Propan-2-amine", note: "Đánh số từ đầu gần nhóm amino nhất" },
-      { q: "Tên gốc - chức của C₂H₅NH₂", a: "Ethylamine", note: "Gốc ethyl + đuôi amine" },
-      { q: "Tên thông thường của C₆H₅NH₂", a: "Aniline", note: "Tên IUPAC thay thế: benzenamine" },
-      { q: "4 amine ở thể khí ở điều kiện thường", a: "CH₃NH₂, (CH₃)₂NH, (CH₃)₃N, C₂H₅NH₂", note: "Đều có mùi khai khó chịu, độc, tan nhiều" },
-      { q: "So sánh lực base: CH₃NH₂, NH₃, C₆H₅NH₂", a: "CH₃NH₂ > NH₃ > C₆H₅NH₂", note: "Alkylamine đẩy e > NH₃ > Arylamine hút e" },
-      { q: "Số đồng phân amine của C₃H₉N", a: "4 đồng phân", note: "2 bậc 1, 1 bậc 2, 1 bậc 3" },
-      { q: "Số đồng phân amine bậc 1 của C₃H₉N", a: "2 đồng phân", note: "Propan-1-amine và propan-2-amine" },
-      { q: "Khí sinh ra khi cho ethylamine + HNO₂", a: "Khí nitrogen (N₂)", note: "C₂H₅NH₂ + HNO₂ → C₂H₅OH + N₂↑ + H₂O" }
-    ],
-    g11c1: [
-      { q: "CTPT ethylene", a: "CH₂=CH₂ (C₂H₄)", note: "Alkene đơn giản nhất" },
-      { q: "CTPT acetylene", a: "CH≡CH (C₂H₂)", note: "Alkyne đơn giản nhất, hàn xì" },
-      { q: "CTPT propyne (methylacetylene)", a: "CH≡C-CH₃ (C₃H₄)", note: "Alk-1-yne tác dụng AgNO₃/NH₃" },
-      { q: "CTPT styrene", a: "C₆H₅-CH=CH₂ (C₈H₈)", note: "Monomer trùng hợp polystiren" },
-      { q: "Quy tắc cộng Markovnikov", a: "H vào C nhiều H, X vào C ít H", note: "Cộng HX/H₂O vào alkene bất đối" },
-      { q: "Thuốc thử nhận biết Alk-1-yne", a: "Dung dịch AgNO₃/NH₃", note: "Tạo kết tủa vàng nhạt RC≡CAg" },
-      { q: "Hiện tượng Alkene + nước Bromine", a: "Nước Br₂ mất màu nâu đỏ", note: "Phản ứng cộng mở liên kết π" },
-      { q: "Hiện tượng Alkene + dd KMnO₄", a: "Mất màu tím, xuất hiện kết tủa đen MnO₂", note: "Oxi hoá tạo diol" }
-    ],
-    g11c2: [
-      { q: "CTPT benzene", a: "C₆H₆", note: "Vòng thơm 6 cạnh đều" },
-      { q: "CTPT toluene", a: "C₆H₅CH₃ (C₇H₈)", note: "Methylbenzene" },
-      { q: "Quy tắc thế ở vòng benzen có nhóm đẩy e", a: "Ưu tiên thế Ortho và Para", note: "Nhóm -CH₃, -OH đẩy electron" },
-      { q: "Sản phẩm nitro hoá toluene (1:3)", a: "TNT (2,4,6-trinitrotoluene)", note: "Thuốc nổ vàng" },
-      { q: "Phân biệt benzene và toluene", a: "Dung dịch KMnO₄ (đun nóng)", note: "Chỉ toluene làm mất màu tím khi đun nóng" }
-    ],
-    g11c3: [
-      { q: "CTPT chloroethane (thuốc xịt tê)", a: "C₂H₅Cl", note: "Làm lạnh tức thì chỗ chấn thương" },
-      { q: "Quy tắc tách Zaitsev", a: "X tách cùng H ở C kề có ít H hơn", note: "Tạo anken có nhiều nhánh hơn" },
-      { q: "Thuỷ phân dẫn xuất halogen trong kiềm", a: "R-X + NaOH → R-OH + NaX (t°)", note: "Tạo alcohol tương ứng" },
-      { q: "Monomer tổng hợp nhựa PVC", a: "Vinyl chloride (CH₂=CHCl)", note: "Poly(vinyl chloride)" }
-    ],
-    g11c4: [
-      { q: "CTPT ethanol (cồn rượu)", a: "C₂H₅OH (CH₃CH₂OH)", note: "M = 46 g/mol" },
-      { q: "CTPT methanol", a: "CH₃OH", note: "Cực độc, gây mù và tử vong" },
-      { q: "CTPT glycerol", a: "C₃H₅(OH)₃", note: "Triol có 3 nhóm -OH liền kề" },
-      { q: "CTPT ethylene glycol", a: "C₂H₄(OH)₂ (HO-CH₂-CH₂-OH)", note: "Diol có 2 nhóm -OH liền kề" },
-      { q: "Polyalcohol (-OH kề nhau) + Cu(OH)₂", a: "Dung dịch màu xanh lam thẫm", note: "Tạo phức đồng tan trong nước" },
-      { q: "Tách nước alcohol ở 170°C (H₂SO₄ đặc)", a: "Tạo Alkene + H₂O", note: "Ở 140°C tạo Ether" },
-      { q: "Oxi hoá alcohol bậc 1 bằng CuO (t°)", a: "Tạo Aldehyde (R-CHO)", note: "Bậc 2 ra Ketone, bậc 3 không phản ứng" }
-    ],
-    g11c5: [
-      { q: "CTPT phenol", a: "C₆H₅OH", note: "Chất rắn, ít tan trong nước lạnh" },
-      { q: "Phenol + nước Bromine", a: "Mất màu Br₂ và tạo kết tủa trắng", note: "2,4,6-tribromophenol" },
-      { q: "So sánh tính acid của Phenol", a: "RCOOH > H₂CO₃ > C₆H₅OH > ROH", note: "Phenol tác dụng NaOH nhưng không tác dụng NaHCO₃" },
-      { q: "Nitro hoá phenol bằng HNO₃ đặc", a: "Picric acid (2,4,6-trinitrophenol)", note: "Chất rắn màu vàng, thuốc nổ" }
-    ],
-    g11c6: [
-      { q: "CTPT formaldehyde (methanal)", a: "HCHO", note: "Formalin 37-40% ngâm ướp xác" },
-      { q: "CTPT acetaldehyde (ethanal)", a: "CH₃CHO", note: "Aldehyde thơm nhẹ" },
-      { q: "CTPT acetone (propan-2-one)", a: "CH₃COCH₃", note: "Ketone đơn giản nhất" },
-      { q: "Tráng bạc của Aldehyde đơn chức", a: "1 mol RCHO → 2 mol Ag", note: "AgNO₃/NH₃" },
-      { q: "Tráng bạc đặc biệt của HCHO", a: "1 mol HCHO → 4 mol Ag", note: "Do có 2 gốc H- gắn carbonyl" },
-      { q: "Thuốc thử tạo kết tủa Iodoform", a: "I₂ trong dung dịch NaOH", note: "Tạo kết tủa vàng CHI₃" }
-    ],
-    g11c7: [
-      { q: "CTPT formic acid (methanoic acid)", a: "HCOOH", note: "Có trong nọc kiến, tráng bạc được" },
-      { q: "CTPT acetic acid (ethanoic acid)", a: "CH₃COOH", note: "Giấm ăn chứa 2 - 5%" },
-      { q: "Phản ứng ester hoá", a: "RCOOH + R'OH ⇌ RCOOR' + H₂O", note: "Thuận nghịch, xúc tác H₂SO₄ đặc, t°" },
-      { q: "So sánh nhiệt độ sôi của acid", a: "Acid > Alcohol > Aldehyde/Ester > Hydrocarbon", note: "Do liên kết hydrogen dimer rất bền" }
-    ],
-    g11on: [
-      { q: "Nhận biết Alk-1-yne", a: "AgNO₃/NH₃ (kết tủa vàng)", note: "Khác alk-2-yne" },
-      { q: "Nhận biết nối đôi C=C", a: "Dung dịch nước Br₂ (mất màu)", note: "Phản ứng cộng" },
-      { q: "Nhận biết Phenol", a: "Nước Br₂ (kết tủa trắng)", note: "2,4,6-tribromophenol" },
-      { q: "Nhận biết Aldehyde", a: "AgNO₃/NH₃ (tráng gương sáng bóng)", note: "Khử Ag⁺ thành Ag" }
-    ],
     g12c1: [
-      { q: "CTPT methyl acetate", a: "CH₃COOCH₃", note: "Este no đơn chức C₃H₆O₂ mùi táo" },
-      { q: "CTCT ethyl formate", a: "HCOOC₂H₅", note: "Este có phản ứng tráng bạc" },
-      { q: "CTCT vinyl acetate", a: "CH₃COOCH=CH₂", note: "Thủy phân trong kiềm tạo muối và acetaldehyde" },
-      { q: "CTPT Triolein (chất béo lỏng)", a: "(C₁₇H₃₃COO)₃C₃H₅", note: "Chất béo không no" },
-      { q: "CTPT Tristearin (chất béo rắn)", a: "(C₁₇H₃₅COO)₃C₃H₅", note: "Chất béo no" },
-      { q: "CTPT Tripalmitin (chất béo rắn)", a: "(C₁₅H₃₁COO)₃C₃H₅", note: "Chất béo no" },
-      { q: "Sản phẩm xà phòng hoá chất béo", a: "Glycerol + Xà phòng (muối natri acid béo)", note: "Đun với dung dịch NaOH" },
-      { q: "Este của phenol (RCOOC₆H₅) + NaOH", a: "Tỉ lệ 1:2 tạo 2 muối + H₂O (KHÔNG tạo alcohol)", note: "RCOONa + C₆H₅ONa + H₂O" }
+      { q: "Công thức tổng quát của ester no, đơn chức, mạch hở", a: "CₙH₂ₙO₂ (n ≥ 2)", note: "Ester đơn giản nhất là methyl formate HCOOCH₃ (n=2)" },
+      { q: "Mùi hương đặc trưng của isoamyl acetate", a: "Mùi chuối chín", note: "CH₃COOCH₂CH₂CH(CH₃)₂ dùng làm hương liệu thực phẩm" },
+      { q: "Mùi thơm đặc trưng của ethyl butyrate và ethyl propionate", a: "Mùi quả dứa chín", note: "Ester tạo hương dứa thơm ngọt tự nhiên" },
+      { q: "Mùi thơm đặc trưng của benzyl acetate", a: "Mùi hoa nhài", note: "CH₃COOCH₂C₆H₅ dùng trong công nghiệp nước hoa" },
+      { q: "Mùi thơm đặc trưng của methyl acetate", a: "Mùi quả táo", note: "CH₃COOCH₃ là ester no đơn chức C₃H₆O₂" },
+      { q: "So sánh nhiệt độ sôi của ester so với alcohol và acid cùng số C", a: "Ester thấp hơn nhiều", note: "Do phân tử ester không tạo được liên kết hydrogen liên phân tử" },
+      { q: "Thuỷ phân vinyl acetate (CH₃COOCH=CH₂) trong dung dịch NaOH", a: "CH₃COONa + CH₃CHO (acetaldehyde)", note: "Gốc vinyl gắn trực tiếp vào oxy tạo enol không bền, tự chuyển thành aldehyde" },
+      { q: "Thuỷ phân phenyl acetate (CH₃COOC₆H₅) với NaOH dư", a: "CH₃COONa + C₆H₅ONa + H₂O", note: "Tỉ lệ mol 1:2 tạo 2 muối và nước, TUYỆT ĐỐI KHÔNG sinh ra alcohol!" },
+      { q: "Số đồng phân ester đơn chức ứng với C₄H₈O₂", a: "4 đồng phân ester", note: "HCOOCH₂CH₂CH₃, HCOOCH(CH₃)₂, CH₃COOC₂H₅, C₂H₅COOCH₃" },
+      { q: "Số đồng phân đơn chức (ester và acid) của C₄H₈O₂", a: "6 đồng phân (4 ester + 2 acid)", note: "Gồm 4 ester trên cùng với 2 acid: butanoic acid và isobutanoic acid" },
+      { q: "Vai trò của H₂SO₄ đặc trong phản ứng ester hoá", a: "Xúc tác và hút nước", note: "Hút nước giúp chuyển dịch cân bằng hoá học sang chiều tạo ester" },
+      { q: "Công thức phân tử và phân tử khối của triolein", a: "(C₁₇H₃₃COO)₃C₃H₅ (M = 884)", note: "Chất béo lỏng không no, chứa 3 liên kết đôi C=C ở gốc acid" },
+      { q: "Công thức phân tử và phân tử khối của tristearin", a: "(C₁₇H₃₅COO)₃C₃H₅ (M = 890)", note: "Chất béo rắn no, có trong mỡ bò, mỡ cừu" },
+      { q: "Công thức phân tử và phân tử khối của tripalmitin", a: "(C₁₅H₃₁COO)₃C₃H₅ (M = 806)", note: "Chất béo rắn no, có trong mỡ động vật và dầu cọ" },
+      { q: "Phản ứng biến dầu ăn lỏng thành bơ nhân tạo / mỡ rắn", a: "Hydrogen hoá (cộng H₂, xúc tác Ni, t°)", note: "Triolein (lỏng) + 3H₂ → Tristearin (rắn)" },
+      { q: "Sản phẩm thu được khi xà phòng hoá mọi chất béo bằng NaOH", a: "Glycerol + Muối sodium của acid béo (xà phòng)", note: "1 mol chất béo luôn sinh ra 1 mol glycerol C₃H₅(OH)₃" },
+      { q: "Công thức đại diện của xà phòng bánh truyền thống", a: "C₁₇H₃₅COONa hoặc C₁₅H₃₁COONa", note: "Sodium stearate hoặc sodium palmitate có đầu ưa nước và đuôi kị nước" },
+      { q: "Công thức đại diện của chất giặt rửa tổng hợp", a: "CH₃[CH₂]₁₁-C₆H₄-SO₃Na", note: "Sodium alkylbenzenesulfonate (chứa nhóm sunfonat -SO₃Na)" },
+      { q: "Dấu hiệu nhận biết công thức xà phòng và chất giặt rửa tổng hợp", a: "Xà phòng có đuôi -COO-; chất giặt rửa có nhóm -SO₃- hoặc -OSO₃-", note: "Thấy lưu huỳnh (S) trong muối là chất giặt rửa tổng hợp" },
+      { q: "Tại sao xà phòng bị giảm bọt và mất tác dụng trong nước cứng?", a: "Tạo kết tủa không tan với ion Ca²⁺ và Mg²⁺", note: "2RCOO⁻ + Ca²⁺ → (RCOO)₂Ca↓ làm tắc sợi vải và lãng phí xà phòng" },
+      { q: "Ưu điểm vượt trội của chất giặt rửa tổng hợp so với xà phòng", a: "Dùng tốt cả trong nước cứng và môi trường acid", note: "Muối alkylsulfonate của Ca²⁺, Mg²⁺ tan tốt trong nước, không bị kết tủa" },
+      { q: "Chất tự nhiên có trong quả bồ kết giúp giặt rửa sạch tóc", a: "Saponin", note: "Chất hoạt động bề mặt tự nhiên tạo bọt và cuốn trôi dầu mỡ" },
+      { q: "Phân biệt acetic acid, glycerol và triolein chỉ bằng nước và quỳ tím", a: "Triolein tách lớp; acid làm đỏ quỳ; glycerol tan không đổi màu", note: "Triolein không tan trong nước; acid hữu cơ làm quỳ hoá đỏ; glycerol tan vô hạn" },
+      { q: "Phản ứng thuỷ phân ester trong môi trường acid là phản ứng gì?", a: "Phản ứng thuận nghịch (hai chiều)", note: "RCOOR' + H₂O ⇌ RCOOH + R'OH (xúc tác H⁺, đun nóng)" },
+      { q: "Phản ứng thuỷ phân ester trong môi trường kiềm (xà phòng hoá) là", a: "Phản ứng một chiều", note: "RCOOR' + NaOH → RCOONa + R'OH (đun nóng)" }
     ],
     g12c2: [
-      { q: "CTPT Glucose và Fructose", a: "C₆H₁₂O₆", note: "Đồng phân của nhau, monosaccharide" },
-      { q: "CTPT Saccharose và Maltose", a: "C₁₂H₂₂O₁₁", note: "Đồng phân của nhau, disaccharide" },
-      { q: "CTPT Tinh bột và Cellulose", a: "(C₆H₁₀O₅)ₙ", note: "Polysaccharide, không phải đồng phân" },
-      { q: "Thủy phân Saccharose tạo ra", a: "1 Glucose + 1 Fructose", note: "Môi trường acid hoặc enzyme" },
-      { q: "Thủy phân Tinh bột / Cellulose", a: "Chỉ tạo Glucose", note: "Cấu tạo từ các gốc glucose" },
-      { q: "Thuốc thử nhận biết Tinh bột", a: "Dung dịch Iodine (I₂)", note: "Tạo hợp chất màu xanh tím" },
-      { q: "1 phân tử Glucose tráng bạc tạo", a: "2 Ag", note: "Do có nhóm -CHO ở dạng mạch hở" },
-      { q: "Sản xuất thuốc súng không khói", a: "Cellulose trinitrate", note: "Từ cellulose + HNO₃/H₂SO₄" }
+      { q: "Công thức phân tử của glucose và fructose", a: "C₆H₁₂O₆ (M = 180)", note: "Đều là monosaccharide, là đồng phân cấu tạo của nhau" },
+      { q: "Công thức phân tử của saccharose và maltose", a: "C₁₂H₂₂O₁₁ (M = 342)", note: "Đều là disaccharide, là đồng phân cấu tạo của nhau" },
+      { q: "Công thức phân tử của tinh bột và cellulose", a: "(C₆H₁₀O₅)ₙ (M = 162n)", note: "Đều là polysaccharide, KHÔNG phải đồng phân vì n khác nhau" },
+      { q: "Tên gọi dân gian của glucose và nồng độ trong máu", a: "Đường nho · Chiếm 0,1% trong máu người", note: "Còn gọi là dextrose, có nhiều trong quả nho chín" },
+      { q: "Tên gọi dân gian của fructose và độ ngọt", a: "Đường mật ong · Là loại đường tự nhiên ngọt nhất", note: "Chiếm khoảng 40% khối lượng mật ong" },
+      { q: "Tên gọi dân gian của saccharose và nguồn gốc", a: "Đường mía (đường củ cải, đường thốt nốt)", note: "Chiết xuất công nghiệp từ cây mía đường hoặc củ cải đường" },
+      { q: "Tên gọi dân gian của maltose và nguồn gốc", a: "Đường mạch nha", note: "Sản xuất bằng cách thuỷ phân tinh bột nhờ men trong mầm lúa" },
+      { q: "Các nhóm chức có trong phân tử glucose mạch hở", a: "5 nhóm -OH kề nhau và 1 nhóm -CHO", note: "Vừa có tính chất của polyalcohol vừa có tính chất của aldehyde" },
+      { q: "Các nhóm chức có trong phân tử fructose mạch hở", a: "5 nhóm -OH kề nhau và 1 nhóm C=O (ketone)", note: "Polyhydroxyketone có vị ngọt sắc" },
+      { q: "Tại sao fructose là ketone mà vẫn tham gia phản ứng tráng bạc?", a: "Trong môi trường kiềm, fructose chuyển hoá thành glucose", note: "Fructose ⇌ Glucose trong môi trường base của thuốc thử Tollens" },
+      { q: "Thuốc thử hoá học dùng để phân biệt glucose và fructose", a: "Dung dịch nước bromine (nước Br₂)", note: "Glucose làm mất màu nước Br₂ (môi trường acid); fructose không phản ứng" },
+      { q: "Lượng Ag thu được khi 1 mol glucose tráng bạc hoàn toàn", a: "2 mol Ag", note: "1 mol R-CHO sinh ra 2 mol Ag kết tủa bám sáng bóng" },
+      { q: "Những carbohydrate nào KHÔNG tham gia phản ứng tráng bạc?", a: "Saccharose, Tinh bột, Cellulose", note: "Do không có nhóm -CHO tự do và không chuyển hoá thành -CHO" },
+      { q: "Cấu tạo phân tử của saccharose", a: "1 gốc α-glucose liên kết 1 gốc β-fructose qua cầu oxy", note: "Liên kết α,β-1,2-glycoside; cả 2 nhóm -OH hemiacetal đều bị khoá" },
+      { q: "Cấu tạo phân tử của maltose", a: "2 gốc α-glucose liên kết qua cầu oxy", note: "Liên kết α-1,4-glycoside; còn 1 nhóm -OH hemiacetal tự do nên tráng bạc được" },
+      { q: "Thuỷ phân hoàn toàn 1 mol saccharose trong môi trường acid thu được", a: "1 mol glucose và 1 mol fructose", note: "Dung dịch sau khi thuỷ phân đem tráng bạc cho tối đa 4 mol Ag" },
+      { q: "Thuỷ phân hoàn toàn tinh bột hoặc cellulose thu được duy nhất", a: "Glucose", note: "Đều cấu tạo từ các mắt xích glucose liên kết glycoside" },
+      { q: "Hai dạng cấu trúc của tinh bột", a: "Amylose (mạch không phân nhánh) và Amylopectin (mạch phân nhánh)", note: "Amylose xoắn ốc; Amylopectin chứa liên kết nhánh α-1,6-glycoside" },
+      { q: "Thuốc thử nhận biết hồ tinh bột và hiện tượng", a: "Dung dịch Iodine (I₂) → Xuất hiện màu xanh tím", note: "Phân tử I₂ bị hấp phụ lọt vào lòng ống xoắn của amylose" },
+      { q: "Hiện tượng khi đun nóng rồi để nguội dung dịch tinh bột + I₂", a: "Đun nóng mất màu xanh tím, để nguội xuất hiện trở lại", note: "Do cấu trúc xoắn bị duỗi ra khi nóng và cuộn lại khi nguội" },
+      { q: "Cấu tạo phân tử của cellulose", a: "Mạch thẳng không phân nhánh gồm các gốc β-glucose", note: "Liên kết β-1,4-glycoside, phân tử duỗi thẳng kéo dài thành sợi bền vững" },
+      { q: "Công thức dạng mắt xích của cellulose", a: "[C₆H₇O₂(OH)₃]ₙ", note: "Mỗi mắt xích C₆H₁₀O₅ có 3 nhóm -OH tự do tham gia phản ứng ester hoá" },
+      { q: "Ứng dụng của cellulose trinitrate [C₆H₇O₂(ONO₂)₃]ₙ", a: "Chế tạo thuốc súng không khói", note: "Sản phẩm phản ứng giữa cellulose và HNO₃ đặc (xúc tác H₂SO₄ đặc)" },
+      { q: "Ứng dụng của dung dịch glucose 5% trong y tế", a: "Dung dịch truyền dịch tĩnh mạch (huyết thanh ngọt)", note: "Cung cấp năng lượng trực tiếp cho tế bào người bệnh" }
+    ],
+    g12c3: [
+      { q: "Định nghĩa bậc của amine", a: "Số gốc hydrocarbon liên kết trực tiếp với nguyên tử nitrogen", note: "Bậc 1: R-NH₂; Bậc 2: R-NH-R'; Bậc 3: R-N(R')-R''" },
+      { q: "So sánh bậc của (CH₃)₃C-NH₂ và (CH₃)₃C-OH", a: "(CH₃)₃C-NH₂ là amine bậc 1 · (CH₃)₃C-OH là alcohol bậc 3", note: "Bẫy kinh điển: bậc amine tính theo số liên kết C-N, không tính theo bậc của C!" },
+      { q: "Hợp chất amine gây nên mùi tanh nồng của cá mè", a: "Trimethylamine (CH₃)₃N", note: "Amine bậc 3 thể khí, tan nhiều trong nước" },
+      { q: "Bản chất hoá học của việc khử mùi tanh cá bằng chanh, me, giấm", a: "Acid trung hoà amine tạo muối ammonium không bay hơi", note: "R₃N + H⁺ → R₃NH⁺ tan trong nước canh, không còn bay vào mũi" },
+      { q: "Bốn amine ở thể khí ở điều kiện thường", a: "CH₃NH₂, (CH₃)₂NH, (CH₃)₃N, C₂H₅NH₂", note: "Đều là chất khí có mùi khai khó chịu, độc, tan rất nhiều trong nước" },
+      { q: "So sánh lực base giữa dimethylamine, methylamine, NH₃ và aniline", a: "(CH₃)₂NH > CH₃NH₂ > NH₃ > C₆H₅NH₂", note: "Alkyl bậc 2 đẩy e mạnh nhất > bậc 1 > NH₃ > vòng benzene hút e làm giảm mạnh lực base" },
+      { q: "Aniline (C₆H₅NH₂) có làm đổi màu giấy quỳ tím ẩm không?", a: "Không làm đổi màu quỳ tím", note: "Do tính base của aniline cực kì yếu (yếu hơn ammonia hàng nghìn lần)" },
+      { q: "Dung dịch các chất nào sau đây làm xanh giấy quỳ tím?", a: "CH₃NH₂, (CH₃)₂NH, C₂H₅NH₂ (các alkylamine)", note: "Dung dịch có tính base mạnh hơn ammonia" },
+      { q: "Tính chất vật lý của aniline ở điều kiện thường", a: "Chất lỏng sánh như dầu, không màu, ít tan trong nước, độc", note: "Để lâu trong không khí bị oxi hoá chuyển sang màu nâu đen" },
+      { q: "Hiện tượng khi nhỏ nước bromine vào dung dịch aniline", a: "Mất màu nước Br₂ và xuất hiện kết tủa trắng", note: "Tạo 2,4,6-tribromoaniline (tương tự phản ứng của phenol)" },
+      { q: "Hiện tượng khi nhỏ dung dịch HCl vào aniline, sau đó nhỏ tiếp NaOH", a: "Nhỏ HCl thì tan trong suốt; nhỏ NaOH lại đục như ban đầu", note: "Tạo muối C₆H₅NH₃Cl tan; sau đó NaOH đẩy aniline không tan tái tạo trở lại" },
+      { q: "Hiện tượng khi cho ethylamine tác dụng với nitrous acid (HNO₂)", a: "Sinh ra alcohol và sủi bọt khí nitrogen (N₂↑)", note: "C₂H₅NH₂ + HNO₂ → C₂H₅OH + N₂↑ + H₂O" },
+      { q: "Phản ứng của aniline với HNO₂ ở nhiệt độ 0 - 5°C", a: "Tạo muối benzenediazonium chloride [C₆H₅-N≡N]⁺Cl⁻", note: "Phản ứng diazo hoá, nguyên liệu trung gian để tổng hợp phẩm nhuộm azo" },
+      { q: "Tên gốc - chức của hợp chất C₂H₅NH₂", a: "Ethylamine", note: "Tên IUPAC thay thế là ethanamine" },
+      { q: "Tên IUPAC thay thế của CH₃-CH(NH₂)-CH₃", a: "Propan-2-amine", note: "Đánh số mạch 3C, nhóm amino ở vị trí số 2" },
+      { q: "Tên thông thường và tên thay thế của C₆H₅NH₂", a: "Aniline (tên thay thế: benzenamine)", note: "Phenylamine là tên gốc - chức" },
+      { q: "Số đồng phân amine có cùng công thức phân tử C₃H₉N", a: "4 đồng phân", note: "Gồm 2 amine bậc 1, 1 amine bậc 2, 1 amine bậc 3" },
+      { q: "Số đồng phân amine bậc 1 có cùng công thức C₃H₉N", a: "2 đồng phân (propan-1-amine và propan-2-amine)", note: "CH₃CH₂CH₂NH₂ và CH₃CH(NH₂)CH₃" },
+      { q: "Số đồng phân amine bậc 1 của C₄H₁₁N", a: "4 đồng phân bậc 1", note: "Butan-1-amine, butan-2-amine, 2-methylpropan-1-amine, 2-methylpropan-2-amine" },
+      { q: "Nguyên liệu trùng ngưng sản xuất tơ nylon-6,6", a: "Hexamethylenediamine H₂N(CH₂)₆NH₂ và Adipic acid", note: "H₂N-(CH₂)₆-NH₂ + HOOC-(CH₂)₄-COOH → Nylon-6,6 + H₂O" },
+      { q: "Phương pháp điều chế aniline trong công nghiệp", a: "Khử nitrobenzene bằng hydrogen mới sinh (Fe + HCl đặc)", note: "C₆H₅NO₂ + 6[H] → C₆H₅NH₂ + 2H₂O" },
+      { q: "Phương pháp điều chế alkylamine từ ammonia", a: "Alkyl hoá ammonia bằng dẫn xuất halogen (R-X)", note: "NH₃ + CH₃I → CH₃NH₂ + HI" }
+    ],
+    g11c1: [
+      { q: "Nhiệt độ ngọn lửa khi hàn cắt kim loại bằng khí acetylene (C₂H₂)", a: "Khoảng 3000°C", note: "C₂H₂ cháy toả nhiệt lượng khổng lồ đủ làm nóng chảy kim loại" },
+      { q: "Alkene CH₂=CH₂ có tên thông thường và IUPAC là", a: "Ethylene (IUPAC: ethene)", note: "Kích thích hoa quả mau chín" },
+      { q: "Alkyne CH≡CH có tên thông thường và IUPAC là", a: "Acetylene (IUPAC: ethyne)", note: "Alkyne đơn giản nhất, điều chế từ đất đèn" },
+      { q: "Khí dầu mỏ hoá lỏng (LPG / gas bình) chứa chủ yếu", a: "Propane (C₃H₈) và Butane (C₄H₁₀)", note: "Hai alkane dễ hoá lỏng dưới áp suất cao" },
+      { q: "Quy tắc cộng Markovnikov phát biểu như thế nào?", a: "H cộng vào C nối đôi có nhiều H hơn, X vào C có ít H hơn", note: "Áp dụng khi cộng HX hoặc H₂O vào alkene bất đối" },
+      { q: "Quy tắc Markovnikov: Propene + HCl tạo sản phẩm chính là", a: "2-chloropropane (CH₃-CHCl-CH₃)", note: "H vào CH₂, Cl vào CH" },
+      { q: "Phản ứng đặc trưng dùng để nhận biết alk-1-yne (nối ba đầu mạch)", a: "Tác dụng với dung dịch AgNO₃ trong NH₃", note: "Nguyên tử H đầu mạch linh động bị thay thế bởi Ag⁺ tạo kết tủa vàng nhạt" },
+      { q: "But-1-yne vs But-2-yne: Chất nào tác dụng được với AgNO₃/NH₃?", a: "Chỉ But-1-yne", note: "Do but-1-yne có liên kết C≡C đầu mạch (CH≡C-CH₂-CH₃)" },
+      { q: "Hiện tượng khi sục khí alkene qua dung dịch nước bromine", a: "Nước bromine bị mất màu nâu đỏ", note: "Phản ứng cộng mở liên kết đôi tạo dẫn xuất dibromo không màu" },
+      { q: "Hiện tượng khi sục alkene qua dung dịch thuốc tím (KMnO₄) ở t° thường", a: "Dung dịch mất màu tím, xuất hiện kết tủa nâu đen (MnO₂)", note: "Oxi hoá alkene tạo diol (glycol)" },
+      { q: "Xúc tác Lindlar (Pd/PbCO₃) có tác dụng gì khi hiđro hoá alkyne?", a: "Dừng phản ứng ở giai đoạn tạo alkene (không thành alkane)", note: "R-C≡C-R' + H₂ (Lindlar) → R-CH=CH-R' (alkene cis)" },
+      { q: "Monomer trực tiếp dùng để trùng hợp sản xuất nhựa PVC", a: "Vinyl chloride (CH₂=CHCl)", note: "n CH₂=CHCl → (-CH₂-CHCl-)ₙ (poly(vinyl chloride))" },
+      { q: "Phản ứng điều chế acetylene trong phòng thí nghiệm từ đất đèn", a: "CaC₂ + 2H₂O → C₂H₂↑ + Ca(OH)₂", note: "Đất đèn chứa calcium carbide CaC₂" },
+      { q: "Khối lượng mol phân tử của acetylene so với không khí", a: "M(C₂H₂) = 26 < M(kk) = 29 → Acetylene nhẹ hơn không khí", note: "Bẫy trắc nghiệm: acetylene nhẹ hơn không khí, không phải nặng hơn" },
+      { q: "Styrene có công thức phân tử và công thức cấu tạo là", a: "C₈H₈ · C₆H₅-CH=CH₂", note: "Vừa có tính chất của arene vừa có tính chất của alkene (làm mất màu Br₂)" },
+      { q: "Chất nào vừa cháy, vừa cộng Br₂, vừa cộng H₂, vừa thế AgNO₃/NH₃?", a: "Acetylene (CH≡CH)", note: "Alkyne có H linh động ở cả 2 đầu liên kết ba" }
+    ],
+    g11c2: [
+      { q: "Định nghĩa Arene (Hydrocarbon thơm)", a: "Hydrocarbon trong phân tử có chứa một hay nhiều vòng benzene", note: "Benzene C₆H₆ là arene đơn giản nhất" },
+      { q: "Công thức phân tử và phân tử khối của toluene", a: "C₇H₈ (C₆H₅CH₃, M = 92)", note: "Tên IUPAC thay thế là methylbenzene" },
+      { q: "Quy tắc thế vào vòng benzene có sẵn nhóm ankyl (nhóm đẩy electron)", a: "Ưu tiên thế vào vị trí Ortho (o-) và Para (p-)", note: "Nhóm -CH₃ hoạt hoá nhân thơm làm tăng mật độ e ở vị trí 2, 4, 6" },
+      { q: "Phản ứng phân biệt benzene và toluene bằng phương pháp hoá học", a: "Dung dịch KMnO₄ (đun nóng)", note: "Toluene làm mất màu tím KMnO₄ khi đun nóng tạo C₆H₅COOK; benzene không phản ứng" },
+      { q: "Phản ứng nitro hoá benzene ở nhiệt độ ≤ 50°C", a: "C₆H₆ + HNO₃ (đặc, xúc tác H₂SO₄ đặc) → C₆H₅NO₂ + H₂O", note: "Tạo nitrobenzene: chất lỏng sánh như dầu, màu vàng, mùi hạnh nhân" },
+      { q: "Công thức và ứng dụng của thuốc nổ TNT", a: "2,4,6-trinitrotoluene (C₆H₂(NO₂)₃CH₃)", note: "Thu được khi nitro hoá toluene tỉ lệ 1:3; chất rắn màu vàng" },
+      { q: "Chất nào sau đây có nhiệt độ sôi cao nhất: benzene, toluene, ethylbenzene?", a: "Ethylbenzene (C₈H₁₀)", note: "Trong cùng dãy đồng đẳng, phân tử khối M càng lớn thì nhiệt độ sôi càng cao" },
+      { q: "Xylene là tên gọi thông thường của", a: "Dimethylbenzene (C₆H₄(CH₃)₂)", note: "Có 3 đồng phân vị trí: o-xylene, m-xylene, p-xylene" },
+      { q: "Phản ứng clo hoá benzene khi có bột sắt (Fe, t°)", a: "C₆H₆ + Cl₂ (Fe) → C₆H₅Cl + HCl", note: "Phản ứng thế nguyên tử H của vòng thơm" },
+      { q: "Phản ứng clo hoá benzene khi có ánh sáng mặt trời (as)", a: "C₆H₆ + 3Cl₂ (as) → C₆H₆Cl₆ (thuốc trừ sâu 666)", note: "Phản ứng cộng phá vỡ vòng thơm tạo hexachlorocyclohexane" },
+      { q: "Naphthalene (băng phiến) có công thức phân tử là", a: "C₁₀H₈", note: "Arene đa vòng gồm 2 vòng benzene giáp nhau, dễ thăng hoa" },
+      { q: "Phân biệt styrene và ethylbenzene bằng thuốc thử nào?", a: "Dung dịch nước bromine ở nhiệt độ thường", note: "Chỉ styrene có nối đôi -CH=CH₂ làm mất màu nước Br₂ ngay" },
+      { q: "Sản phẩm oxi hoá toluene bằng dung dịch KMnO₄ trong môi trường acid", a: "Benzoic acid (C₆H₅COOH)", note: "Nhóm methyl -CH₃ bị oxi hoá hoàn toàn thành nhóm -COOH" },
+      { q: "Độ tan của benzene và các arene trong nước", a: "Hầu như không tan trong nước, nhẹ hơn nước", note: "Tan nhiều trong các dung môi hữu cơ không phân cực" }
+    ],
+    g11c3: [
+      { q: "Hợp chất chính trong bình xịt gây tê cục bộ trong thể thao", a: "Chloroethane (C₂H₅Cl)", note: "Sôi ở 12,3°C; xịt vào da bay hơi tức thì thu nhiệt làm lạnh cóng giảm đau" },
+      { q: "Quy tắc tách hydrogen halide (Quy tắc Zaitsev)", a: "X tách cùng H ở C kề bên có ít H hơn để tạo alkene bền hơn", note: "Ưu tiên tạo alkene có nhiều nhóm thế hơn ở liên kết đôi" },
+      { q: "Tách HBr từ sec-butyl bromide (CH₃-CHBr-CH₂-CH₃) tạo sản phẩm chính là", a: "But-2-ene (CH₃-CH=CH-CH₃)", note: "Theo quy tắc Zaitsev: H tách ở CH₂ (2H) chứ không tách ở CH₃ (3H)" },
+      { q: "Số đồng phân alkene thu được khi tách HCl từ sec-butyl chloride", a: "3 đồng phân alkene", note: "But-1-ene, cis-but-2-ene và trans-but-2-ene (tính cả đồng phân hình học)" },
+      { q: "Thuỷ phân dẫn xuất halogen trong dung dịch kiềm đun nóng", a: "R-X + NaOH (t°) → R-OH + NaX", note: "Phản ứng thế nucleophile thay thế halogen bằng nhóm hydroxyl -OH" },
+      { q: "Hợp chất CFC (freon) gây ra tác hại môi trường nào?", a: "Phá huỷ tầng ozone của khí quyển", note: "Phân huỷ giải phóng gốc clo tự do Cl• phá huỷ hàng ngàn phân tử O₃" },
+      { q: "Khí alkane nào clo hoá (1:1, ánh sáng) chỉ cho 1 dẫn xuất duy nhất?", a: "Methane (CH₄) và Ethane (C₂H₆)", note: "Tất cả các nguyên tử H trong phân tử đều có vị trí đối xứng tương đương" },
+      { q: "Số dẫn xuất monochloro cấu tạo tối đa khi clo hoá 2-methylbutane", a: "4 đồng phân cấu tạo", note: "Phân tử có 4 vị trí C không tương đương: C1, C2, C3, C4" },
+      { q: "Nhận biết ion halide sinh ra khi thuỷ phân dẫn xuất halogen", a: "Acid hoá bằng HNO₃ rồi thêm dung dịch AgNO₃", note: "AgCl kết tủa trắng, AgBr kết tủa vàng nhạt, AgI kết tủa vàng đậm" },
+      { q: "Teflon (chảo chống dính) được trùng hợp từ monomer nào?", a: "Tetrafluoroethylene (CF₂=CF₂)", note: "Chịu nhiệt, chống dính, trơ với acid và kiềm" },
+      { q: "Dẫn xuất halogen có tan được trong nước không?", a: "Hầu như không tan trong nước, nặng hơn nước", note: "Tan tốt trong dầu mỡ và dung môi hữu cơ" },
+      { q: "Tên IUPAC của hợp chất CH₃-CH(Cl)-CH₃", a: "2-chloropropane", note: "Tên gốc - chức là isopropyl chloride" }
+    ],
+    g11c4: [
+      { q: "Định nghĩa hợp chất Alcohol (Ancol)", a: "Hợp chất có nhóm -OH liên kết trực tiếp với nguyên tử carbon no", note: "Nếu -OH gắn vào C của vòng benzene thì là Phenol" },
+      { q: "Chất cồn gây say chính có trong rượu bia", a: "Ethanol (ethyl alcohol, C₂H₅OH, M = 46)", note: "Lên men từ tinh bột hoặc hydrate hoá ethylene" },
+      { q: "Chất cồn công nghiệp cực độc gây mù mắt và tử vong", a: "Methanol (methyl alcohol, CH₃OH, M = 32)", note: "Trong cơ thể bị chuyển hoá thành formaldehyde và formic acid phá huỷ thị giác" },
+      { q: "Công thức phân tử và cấu tạo của glycerol", a: "C₃H₅(OH)₃ (propane-1,2,3-triol)", note: "Polyalcohol có 3 nhóm -OH liền kề, chất lỏng sánh ngọt" },
+      { q: "Công thức phân tử và cấu tạo của ethylene glycol", a: "C₂H₄(OH)₂ (ethane-1,2-diol)", note: "Polyalcohol có 2 nhóm -OH liền kề, chất chống đông động cơ" },
+      { q: "Phản ứng đặc trưng nhận biết polyalcohol có các nhóm -OH kề nhau", a: "Hoà tan Cu(OH)₂ ở t° thường tạo dung dịch màu xanh lam thẫm", note: "Tạo phức đồng chelate tan; monool (như ethanol) không phản ứng" },
+      { q: "Tách nước từ ethanol ở 170°C có mặt H₂SO₄ đặc", a: "C₂H₅OH (170°C) → C₂H₄ (ethylene) + H₂O", note: "Phản ứng tách nước nội phân tử tạo alkene" },
+      { q: "Tách nước từ ethanol ở 140°C có mặt H₂SO₄ đặc", a: "2 C₂H₅OH (140°C) → C₂H₅-O-C₂H₅ (diethyl ether) + H₂O", note: "Phản ứng tách nước liên phân tử tạo ether" },
+      { q: "Alcohol nào sau đây KHÔNG THỂ tách nước tạo alkene?", a: "Methanol (CH₃OH)", note: "Vì phân tử chỉ có 1 carbon, không thể hình thành liên kết đôi C=C" },
+      { q: "Oxi hoá alcohol bậc 1 bằng CuO đun nóng", a: "R-CH₂OH + CuO (t°) → R-CHO (aldehyde) + Cu + H₂O", note: "Màu đen của CuO chuyển sang màu đỏ gạch của Cu" },
+      { q: "Oxi hoá alcohol bậc 2 bằng CuO đun nóng", a: "R-CH(OH)-R' + CuO (t°) → R-CO-R' (ketone) + Cu + H₂O", note: "Thu được ketone tương ứng" },
+      { q: "Alcohol bậc 3 có bị oxi hoá bởi CuO đun nóng không?", a: "Không phản ứng ở điều kiện thường", note: "Alcohol bậc 3 bền, không có nguyên tử H ở nguyên tử C mang nhóm -OH" },
+      { q: "Ý nghĩa của nồng độ cồn 70° dùng sát trùng y tế", a: "Trong 100 mL dung dịch có đúng 70 mL ethanol nguyên chất", note: "Cồn 70° thấm sâu và diệt khuẩn tối ưu hơn cồn 90°" },
+      { q: "Hàm lượng ethanol trong xăng sinh học E5 là", a: "5% ethanol theo thể tích (95% xăng RON 92)", note: "Xăng E10 chứa 10% ethanol" },
+      { q: "Số đồng phân alcohol có cùng công thức phân tử C₃H₈O", a: "2 đồng phân (propan-1-ol và propan-2-ol)", note: "Đồng phân thứ 3 là dimethyl ether CH₃-O-CH₃ (không phải alcohol)" },
+      { q: "Số đồng phân alcohol có cùng công thức phân tử C₄H₁₀O", a: "4 đồng phân alcohol", note: "Butan-1-ol, butan-2-ol, 2-methylpropan-1-ol, 2-methylpropan-2-ol" },
+      { q: "Alcohol có phản ứng với dung dịch kiềm NaOH không?", a: "Tuyệt đối không phản ứng", note: "Alcohol không có tính acid như phenol hay acid carboxylic" },
+      { q: "Menthol có trong tinh dầu bạc hà thuộc loại alcohol nào?", a: "Alcohol no, đơn chức, bậc 2", note: "Có công thức phân tử C₁₀H₂₀O" }
+    ],
+    g11c5: [
+      { q: "Định nghĩa hợp chất Phenol", a: "Hợp chất có nhóm -OH liên kết trực tiếp với nguyên tử C của vòng benzene", note: "C₆H₅OH là phenol đơn giản nhất" },
+      { q: "Tính chất vật lý của phenol ở nhiệt độ phòng", a: "Chất rắn không màu, để lâu trong không khí hoá màu hồng, rất độc", note: "Gây bỏng nặng khi dính vào da" },
+      { q: "Độ tan của phenol trong nước lạnh so với nước nóng", a: "Ít tan trong nước lạnh, tan vô hạn ở trên 66°C", note: "Ở 25°C chỉ tan khoảng 8,3 g trong 100 g nước" },
+      { q: "Phản ứng chứng minh tính acid của phenol", a: "Tác dụng với dung dịch NaOH: C₆H₅OH + NaOH → C₆H₅ONa + H₂O", note: "Alcohol thông thường không phản ứng được với NaOH" },
+      { q: "So sánh tính acid của phenol với H₂CO₃ và carboxylic acid", a: "RCOOH > H₂CO₃ > C₆H₅OH > ROH", note: "Phenol có tính acid yếu hơn acid carbonic H₂CO₃" },
+      { q: "Phenol có tác dụng được với dung dịch NaHCO₃ giải phóng CO₂ không?", a: "Không phản ứng", note: "Vì tính acid của phenol yếu hơn acid carbonic (H₂CO₃)" },
+      { q: "Hiện tượng khi sục khí CO₂ vào dung dịch sodium phenolate (C₆H₅ONa)", a: "Dung dịch bị vẩn đục do tái tạo phenol ít tan", note: "C₆H₅ONa + CO₂ + H₂O → C₆H₅OH↓ + NaHCO₃" },
+      { q: "Hiện tượng khi nhỏ dung dịch nước bromine vào dung dịch phenol", a: "Mất màu nước Br₂ và xuất hiện kết tủa trắng", note: "Tạo 2,4,6-tribromophenol kết tủa trắng" },
+      { q: "Tại sao phenol thế bromine dễ dàng hơn nhiều so với benzene?", a: "Do cặp e tự do của O liên hợp đẩy e làm tăng mật độ e ở vòng", note: "Vị trí ortho và para trở nên rất giàu electron" },
+      { q: "Công thức và ứng dụng của picric acid", a: "2,4,6-trinitrophenol (C₆H₂(NO₂)₃OH) · Làm thuốc nổ vàng", note: "Tổng hợp bằng cách cho phenol phản ứng với HNO₃ đặc (xúc tác H₂SO₄ đặc)" },
+      { q: "Benzyl alcohol (C₆H₅-CH₂-OH) có phải là phenol không?", a: "Không, là alcohol thơm", note: "Do nhóm -OH gắn vào carbon no CH₂, không gắn vào vòng" },
+      { q: "Số đồng phân cresol (methylphenol C₇H₈O) là", a: "3 đồng phân (o-cresol, m-cresol, p-cresol)", note: "Đều tác dụng được với dung dịch NaOH" },
+      { q: "Cách xử lý khẩn cấp khi bị phenol dính vào da", a: "Rửa ngay nhiều lần bằng ethanol hoặc xà phòng", note: "Không rửa bằng nước lạnh vì phenol ít tan trong nước lạnh" },
+      { q: "Ứng dụng quan trọng của phenol trong công nghiệp", a: "Sản xuất nhựa phenol-formaldehyde (bakelite), phẩm nhuộm, dược phẩm", note: "Nguyên liệu then chốt của hoá dầu" }
+    ],
+    g11c6: [
+      { q: "Hợp chất carbonyl gồm những loại hợp chất hữu cơ nào?", a: "Aldehyde (R-CHO) và Ketone (R-CO-R')", note: "Đều chứa nhóm carbonyl >C=O phân cực" },
+      { q: "Tên thông thường và công thức phân tử của methanal", a: "Formaldehyde (HCHO, M = 30)", note: "Aldehyde đơn giản nhất, là chất khí ở điều kiện thường" },
+      { q: "Tên thông thường và công thức phân tử của ethanal", a: "Acetaldehyde (CH₃CHO, M = 44)", note: "Chất lỏng dễ bay hơi, có mùi thơm táo" },
+      { q: "Tên thông thường và công thức phân tử của propan-2-one", a: "Acetone (CH₃COCH₃, M = 58)", note: "Ketone đơn giản nhất, dung môi tẩy sơn móng tay" },
+      { q: "Thuốc thử Tollens dùng trong phản ứng tráng bạc là gì?", a: "Dung dịch AgNO₃ trong dung dịch NH₃ dư ([Ag(NH₃)₂]OH)", note: "Tạo kết tủa bạc Ag bám sáng bóng vào thành ống nghiệm" },
+      { q: "Phản ứng tráng bạc của các aldehyde đơn chức thông thường sinh ra", a: "1 mol RCHO → 2 mol Ag", note: "CH₃CHO + 2AgNO₃/NH₃ → 2Ag" },
+      { q: "Phản ứng tráng bạc đặc biệt của formaldehyde (HCHO)", a: "1 mol HCHO → 4 mol Ag", note: "HCHO có 2 liên kết C-H ở cả hai phía nhóm carbonyl" },
+      { q: "Dung dịch formalin (focmon) dùng ngâm tiêu bản giải phẫu là gì?", a: "Dung dịch chứa 37 - 40% formaldehyde trong nước", note: "Làm đông tụ protein, diệt khuẩn mạnh giúp bảo quản mẫu vật" },
+      { q: "Phản ứng Iodoform nhận biết nhóm cấu trúc nào?", a: "Nhóm methyl carbonyl CH₃-C(=O)- hoặc nhóm CH₃-CH(OH)-", note: "Tác dụng với I₂ trong NaOH tạo kết tủa vàng iodoform CHI₃ có mùi sát trùng" },
+      { q: "Acetone (CH₃COCH₃) có tham gia phản ứng tráng bạc không?", a: "Tuyệt đối không tham gia phản ứng tráng bạc", note: "Ketone thông thường không bị oxi hoá bởi thuốc thử Tollens" },
+      { q: "Acetone (CH₃COCH₃) có tham gia phản ứng tạo iodoform không?", a: "Có, tạo kết tủa vàng CHI₃", note: "Do có nhóm CH₃-CO- liên kết với gốc hydrocarbon" },
+      { q: "Phản ứng khử aldehyde bằng khí hydrogen (Ni, t°)", a: "R-CHO + H₂ (Ni, t°) → R-CH₂OH (alcohol bậc 1)", note: "Cộng H₂ vào liên kết đôi C=O" },
+      { q: "Phản ứng khử ketone bằng khí hydrogen (Ni, t°)", a: "R-CO-R' + H₂ (Ni, t°) → R-CH(OH)-R' (alcohol bậc 2)", note: "Tạo alcohol bậc 2 tương ứng" },
+      { q: "Chất hữu cơ vừa là acid vừa có phản ứng tráng bạc", a: "Formic acid (HCOOH)", note: "Có nhóm H-C(=O)- tương tự aldehyde" },
+      { q: "Hiện tượng khi đun nóng aldehyde với Cu(OH)₂ trong môi trường kiềm", a: "Xuất hiện kết tủa màu đỏ gạch của Cu₂O", note: "RCHO + 2Cu(OH)₂ + NaOH → RCOONa + Cu₂O↓ (đỏ gạch) + 3H₂O" },
+      { q: "Aldehyde có tạo được liên kết hydrogen liên phân tử với nhau không?", a: "Không tạo được liên kết hydrogen liên phân tử", note: "Nên nhiệt độ sôi thấp hơn alcohol có cùng số carbon" }
+    ],
+    g11c7: [
+      { q: "Nhóm chức đặc trưng của Carboxylic Acid", a: "Nhóm carboxyl (-COOH)", note: "Cấu tạo gồm nhóm carbonyl >C=O gắn với nhóm hydroxyl -OH" },
+      { q: "Công thức tổng quát của carboxylic acid no, đơn chức, mạch hở", a: "CₙH₂ₙ₊₁COOH hoặc CₙH₂ₙO₂ (n ≥ 1)", note: "Acid đơn giản nhất là formic acid HCOOH (n=1)" },
+      { q: "So sánh nhiệt độ sôi của acid carboxylic so với các hợp chất khác", a: "Acid có nhiệt độ sôi cao nhất", note: "Do tạo liên kết hydrogen dạng dimer (nhị hợp) rất bền vững" },
+      { q: "Acid hữu cơ có trong giấm ăn hàng ngày", a: "Acetic acid (CH₃COOH, ethanoic acid)", note: "Giấm ăn thông thường là dung dịch chứa 2% - 5% acetic acid" },
+      { q: "Acid hữu cơ có trong nọc kiến, vòi đốt của ong", a: "Formic acid (HCOOH, methanoic acid)", note: "Gây cảm giác bỏng rát, bôi vôi (base) sẽ làm dịu vết cắn" },
+      { q: "Kim loại nào sau đây KHÔNG phản ứng với dung dịch acetic acid: Zn, Fe, Cu, Mg?", a: "Kim loại Cu", note: "Đồng (Cu) đứng sau hydrogen trong dãy hoạt động hoá học" },
+      { q: "Phản ứng của acetic acid với đá vôi (CaCO₃)", a: "2 CH₃COOH + CaCO₃ → (CH₃COO)₂Ca + CO₂↑ + H₂O", note: "Hiện tượng sủi bọt khí không màu CO₂; dùng tẩy cặn canxi ấm đun nước" },
+      { q: "Phản ứng ester hoá giữa acetic acid và ethanol", a: "CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O", note: "Phản ứng thuận nghịch, xúc tác H₂SO₄ đặc đun nóng, tạo ethyl acetate thơm" },
+      { q: "Acid carboxylic nào duy nhất tham gia phản ứng tráng bạc?", a: "Formic acid (HCOOH)", note: "Do nguyên tử H gắn trực tiếp vào nhóm C=O (cấu trúc aldehyde H-C=O)" },
+      { q: "Chất dùng để khử chua khi ngâm quả sấu xanh", a: "Nước vôi trong (dung dịch Ca(OH)₂)", note: "Ca(OH)₂ trung hoà bớt các acid hữu cơ oxalic, tartaric trong quả sấu" },
+      { q: "Acid hữu cơ 2 chức no đơn giản nhất", a: "Oxalic acid (HOOC-COOH hay (COOH)₂)", note: "Có trong lá chua me đất, khế chua" },
+      { q: "Benzoic acid (C₆H₅COOH) có đặc điểm vật lý gì?", a: "Chất rắn màu trắng, tinh thể hình kim, ít tan trong nước lạnh", note: "Muối sodium benzoate dùng làm chất bảo quản thực phẩm (chống mốc)" },
+      { q: "Điều chế acetic acid trong công nghiệp hiện đại từ methanol", a: "CH₃OH + CO (xt, t°) → CH₃COOH", note: "Phương pháp carbonyl hoá methanol cho hiệu suất và tính kinh tế cao nhất" },
+      { q: "Phản ứng lên men giấm từ rượu etylic loãng", a: "C₂H₅OH + O₂ (men giấm) → CH₃COOH + H₂O", note: "Điều chế giấm ăn truyền thống" }
+    ],
+    g11on: [
+      { q: "Thuốc thử nhận biết liên kết ba đầu mạch C≡CH (alk-1-yne)", a: "Dung dịch AgNO₃ trong NH₃ (kết tủa vàng nhạt)", note: "Phản ứng thế ion Ag⁺ vào nguyên tử H linh động" },
+      { q: "Thuốc thử nhận biết liên kết đôi C=C (alkene, styrene)", a: "Dung dịch nước bromine (mất màu nâu đỏ)", note: "Phản ứng cộng halogen vào liên kết $\\pi$" },
+      { q: "Thuốc thử nhận biết phenol trong dung dịch", a: "Dung dịch nước bromine (kết tủa trắng 2,4,6-tribromophenol)", note: "Phenol làm mất màu Br₂ và tạo kết tủa trắng ngay ở t° thường" },
+      { q: "Thuốc thử nhận biết aldehyde", a: "Thuốc thử Tollens AgNO₃/NH₃ (tráng gương sáng bóng)", note: "Oxi hoá nhóm -CHO thành muối ammonium carboxylate" },
+      { q: "Thuốc thử nhận biết polyalcohol có các nhóm -OH liền kề", a: "Cu(OH)₂ ở nhiệt độ thường (dung dịch màu xanh lam thẫm)", note: "Glycerol, ethylene glycol, glucose..." },
+      { q: "Thuốc thử nhận biết tinh bột", a: "Dung dịch Iodine I₂ (xuất hiện màu xanh tím đặc trưng)", note: "Mất màu khi đun nóng, xuất hiện lại khi để nguội" },
+      { q: "Thuốc thử nhận biết carboxylic acid đơn giản nhất", a: "Dung dịch NaHCO₃ hoặc quỳ tím", note: "Làm quỳ hoá đỏ và sủi bọt khí CO₂ với muối hydrocarbonate" },
+      { q: "Chất làm mất màu dung dịch thuốc tím KMnO₄ khi đun nóng nhưng không mất màu ở t° thường", a: "Toluene (C₆H₅CH₃)", note: "Dùng để phân biệt toluene với benzene và alkene" },
+      { q: "Dãy so sánh tính acid: HCl, HCOOH, CH₃COOH, C₆H₅OH, C₂H₅OH", a: "HCl > HCOOH > CH₃COOH > C₆H₅OH > C₂H₅OH", note: "Acid vô cơ > acid hữu cơ mạch ngắn > phenol > alcohol" },
+      { q: "Dãy so sánh nhiệt độ sôi: C₂H₅COOH, C₃H₇OH, CH₃COOCH₃, C₄H₁₀", a: "C₂H₅COOH > C₃H₇OH > CH₃COOCH₃ > C₄H₁₀", note: "Acid > alcohol > ester > alkane cùng số carbon" }
     ]
   };
 
-  /* ---------- GUIDED LEARNING (HỌC CÓ HƯỚNG DẪN) REPOSITORY ---------- */
   var DEFAULT_GUIDED_STAGES = {
     g12c3: [
       {
@@ -831,6 +943,7 @@
 
   /* ---------- APP STATE ---------- */
   var state = {
+    theme: localStorage.getItem("hoa11_12_theme") || "light",
     mode: "theory", // "theory" | "practice" | "guided" | "coach_test" | "library"
     grade: "all",
     tab: "flash",
@@ -871,6 +984,19 @@
     renderShell();
   }
 
+  function applyTheme(t) {
+    state.theme = t || "light";
+    document.documentElement.setAttribute("data-theme", state.theme);
+    try { localStorage.setItem("hoa11_12_theme", state.theme); } catch (e) {}
+  }
+
+  function toggleTheme() {
+    var next = state.theme === "dark" ? "light" : "dark";
+    applyTheme(next);
+    renderShell();
+    showMiniToast(next === "dark" ? "🌙 Đã bật chế độ Tối (Dark Mode)" : "☀️ Đã bật chế độ Sáng (Light Mode)");
+  }
+
   /* ---------- RENDER SHELL ---------- */
   var headerEl;
   function renderShell() {
@@ -904,6 +1030,9 @@
           '<span class="brand-txt"><b>Hoá 11–12</b><small>Học sâu · Nhớ lâu · Tự chủ</small></span>' +
         "</a>" +
         '<div class="stats">' +
+          '<button class="stat pill theme-toggle-btn" data-act="toggleTheme" title="Chuyển chế độ Giao diện Sáng / Tối">' +
+            (state.theme === "dark" ? '☀️ <small>Sáng</small>' : '🌙 <small>Tối</small>') +
+          '</button>' +
           editToggleBtn +
           '<span class="stat pill cloud-pill ' + cloudSyncStatus + '" id="cloudSyncStatus" data-act="cloudSyncNow" title="Cơ sở dữ liệu Vercel cá nhân (Nhấp để đồng bộ ngay)">☁️ <small id="cloudSyncText">' + cloudSyncLabel() + '</small></span>' +
           '<span class="stat pill" title="Điểm luyện tập">' + ico("flame") + ' <b data-xp>' + s.xp + '</b> <i>XP</i></span>' +
@@ -2800,6 +2929,9 @@
     var act = el.getAttribute("data-act");
 
     switch (act) {
+      case "toggleTheme":
+        toggleTheme();
+        break;
       case "cloudSyncNow":
         showMiniToast("Đang đồng bộ dữ liệu với Vercel...");
         pushToCloud();
@@ -3369,6 +3501,7 @@
 
   /* ---------- BOOT ---------- */
   function boot() {
+    applyTheme(state.theme);
     if (state.editMode) {
       document.body.classList.add("edit-mode-active");
     }
