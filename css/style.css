@@ -1799,15 +1799,15 @@ button, .btn, .chip, .tab, .stab, .ch-card, .note, .checkpoint-opt, .mcq-opt, .t
 
 /* ═══════════ DARK THEME TOKENS — MIDNIGHT SCHOLAR ═══════════ */
 html[data-theme="dark"] {
-  --bg: #131211;
-  --surface: #1b1917;
-  --surface-2: #25221e;
+  --bg: #121110;
+  --surface: #1a1816;
+  --surface-2: #24211d;
   --fg: #ede7de;
   --ink: #ede7de;
-  --muted: #a59789;
-  --faint: #6d6357;
-  --line: #38332c;
-  --line-soft: #2c2722;
+  --muted: #a39688;
+  --faint: #6e6458;
+  --line: #38322a;
+  --line-soft: #2a2520;
   --accent: #e5975f;
   --accent-on: #15110d;
   --accent-soft: rgba(229, 151, 95, 0.16);
@@ -1820,19 +1820,19 @@ html[data-theme="dark"] {
   --info: #38bdf8;
   --g11: #d4a76a;
   --g12: #5abda0;
-  --glass: rgba(27, 25, 23, 0.85);
-  --glass-strong: rgba(27, 25, 23, 0.95);
-  --shadow: 0 1px 3px rgba(0,0,0,0.45), 0 10px 30px rgba(0,0,0,0.55);
-  --shadow-lift: 0 4px 12px rgba(0,0,0,0.55), 0 18px 44px rgba(0,0,0,0.65);
+  --glass: rgba(26, 24, 22, 0.85);
+  --glass-strong: rgba(26, 24, 22, 0.95);
+  --shadow: 0 1px 4px rgba(0,0,0,0.5), 0 12px 36px rgba(0,0,0,0.65);
+  --shadow-lift: 0 4px 16px rgba(0,0,0,0.6), 0 20px 48px rgba(0,0,0,0.75);
 }
 
-/* — Dark Mode Component Adjustments — */
+/* ═══════════ FULL DARK MODE COVERAGE ═══════════ */
 html[data-theme="dark"] #veil {
-  background: linear-gradient(180deg, rgba(19,18,17,.12) 0%, rgba(19,18,17,.45) 34%, rgba(19,18,17,.86) 62%, var(--bg) 92%);
+  background: linear-gradient(180deg, rgba(18,17,16,.14) 0%, rgba(18,17,16,.45) 34%, rgba(18,17,16,.88) 62%, var(--bg) 92%);
 }
 html[data-theme="dark"] body.no-webgl #veil,
 html[data-theme="dark"] body.perf-mode #veil {
-  background: radial-gradient(1100px 520px at 20% -8%, #2a231b 0%, transparent 62%), radial-gradient(900px 480px at 86% -6%, #221d17 0%, transparent 60%), var(--bg);
+  background: radial-gradient(1100px 520px at 20% -8%, #28211a 0%, transparent 62%), radial-gradient(900px 480px at 86% -6%, #201a15 0%, transparent 60%), var(--bg);
 }
 html[data-theme="dark"] #gl {
   opacity: 0.55;
@@ -1842,24 +1842,121 @@ html[data-theme="dark"] ::selection {
   background: #6a4427;
   color: #fffaf0;
 }
+
+/* Comprehensive Text Coverage in Dark Mode */
+html[data-theme="dark"] body,
+html[data-theme="dark"] p,
+html[data-theme="dark"] .note-body p,
+html[data-theme="dark"] .note-item .ni-body,
+html[data-theme="dark"] .ex-opt,
+html[data-theme="dark"] .ex-steps,
+html[data-theme="dark"] .fs-card p,
+html[data-theme="dark"] .flash-back-body p,
+html[data-theme="dark"] .back p,
+html[data-theme="dark"] .mcq-opt,
+html[data-theme="dark"] .tf-opt,
+html[data-theme="dark"] .rst-row .small,
+html[data-theme="dark"] .guided-text,
+html[data-theme="dark"] .checkpoint-opt,
+html[data-theme="dark"] .coach-hint-content,
+html[data-theme="dark"] .diagnostic-feedback p,
+html[data-theme="dark"] .graph-legend .lg-item,
+html[data-theme="dark"] .cq-hero p,
+html[data-theme="dark"] .hero .sub,
+html[data-theme="dark"] .fav-card .fc-body,
+html[data-theme="dark"] .modal-box p,
+html[data-theme="dark"] .flash-face p {
+  color: var(--fg);
+}
+
+/* Flashcards Dark Mode */
 html[data-theme="dark"] .flash-face.front {
-  background: linear-gradient(180deg, #201d19 0%, #191714 100%);
+  background: linear-gradient(180deg, #1f1c19 0%, #171513 100%);
   border-color: #383228;
 }
 html[data-theme="dark"] .flash-face.back {
-  background: linear-gradient(180deg, #25211c 0%, #1d1a16 100%);
+  background: linear-gradient(180deg, #24201c 0%, #1b1916 100%);
   border-color: #383228;
+}
+html[data-theme="dark"] .flash-face.minimal-back,
+html[data-theme="dark"] .minimal-flash-back {
+  background: linear-gradient(180deg, #1f1c19 0%, #161412 100%) !important;
 }
 html[data-theme="dark"] .flash-fc-tag {
   background: #2b2620;
   color: var(--accent);
   border-color: #3d352b;
 }
+html[data-theme="dark"] .flash-back-label {
+  color: var(--ok);
+}
+html[data-theme="dark"] .ex-flash-exp {
+  border-top-color: var(--line-soft);
+  color: var(--muted);
+}
+
+/* Practice & Interactive Questions */
+html[data-theme="dark"] .mcq-opt,
+html[data-theme="dark"] .tf-opt,
+html[data-theme="dark"] .checkpoint-opt {
+  background: var(--surface-2);
+  border-color: var(--line);
+  color: var(--fg);
+}
+html[data-theme="dark"] .mcq-opt:hover,
+html[data-theme="dark"] .tf-opt:hover,
+html[data-theme="dark"] .checkpoint-opt:hover {
+  background: var(--surface);
+  border-color: var(--accent);
+  color: var(--fg);
+}
+html[data-theme="dark"] .num-in {
+  background: #201d19;
+  border-color: #3d362c;
+  color: #ede7de;
+}
+html[data-theme="dark"] .num-in:focus {
+  border-color: var(--accent);
+  background: #26221c;
+}
+html[data-theme="dark"] .num-unit {
+  color: var(--muted);
+}
+html[data-theme="dark"] .checkpoint-opt.reveal-correct,
+html[data-theme="dark"] .mcq-opt.reveal-correct {
+  background: #142e1b !important;
+  border-color: #4ade80 !important;
+  color: #bbf7d0 !important;
+}
+html[data-theme="dark"] .checkpoint-opt.picked.correct,
+html[data-theme="dark"] .mcq-opt.picked.good {
+  background: #15331d !important;
+  border-color: #4ade80 !important;
+  color: #bbf7d0 !important;
+}
+html[data-theme="dark"] .checkpoint-opt.picked.wrong,
+html[data-theme="dark"] .mcq-opt.picked.warn {
+  background: #331515 !important;
+  border-color: #f87171 !important;
+  color: #fecaca !important;
+}
+html[data-theme="dark"] .opt-badge-correct {
+  background: #14532d;
+  color: #86efac;
+}
+html[data-theme="dark"] .opt-badge-wrong {
+  background: #7f1d1d;
+  color: #fca5a5;
+}
+
+/* Feedback & Diagnostic Boxes */
+html[data-theme="dark"] .fb.ok,
 html[data-theme="dark"] .checkpoint-feedback.ok {
   background: #122416;
   border-left-color: var(--ok);
   color: #86efac;
 }
+html[data-theme="dark"] .fb.bad,
 html[data-theme="dark"] .checkpoint-feedback.bad {
   background: #2a1515;
   border-left-color: var(--danger);
@@ -1888,50 +1985,231 @@ html[data-theme="dark"] .fb-comp-row.wrong {
   background: rgba(248, 113, 113, 0.15);
   color: #fca5a5;
 }
-html[data-theme="dark"] .coach-hint-content {
-  background: #181614;
-  color: #d8cebe;
+html[data-theme="dark"] .checkpoint-box {
+  background: #1c1916;
+  border: 1px solid #3d352b;
+  box-shadow: none;
 }
-html[data-theme="dark"] .diagnostic-feedback {
-  background: #1b1917;
-  border-color: #383229;
+html[data-theme="dark"] .guided-box.core-box {
+  background: rgba(46, 107, 84, 0.16);
+  border-color: rgba(74, 222, 128, 0.3);
+  border-left: 4px solid var(--ok);
+  color: #bbf7d0;
 }
-html[data-theme="dark"] .checkpoint-opt.reveal-correct,
-html[data-theme="dark"] .mcq-opt.reveal-correct {
-  background: #142e1b !important;
-  border-color: #4ade80 !important;
-  color: #bbf7d0 !important;
+html[data-theme="dark"] .guided-box.trap-box {
+  background: rgba(179, 58, 58, 0.16);
+  border-color: rgba(248, 113, 113, 0.3);
+  border-left: 4px solid var(--danger);
+  color: #fecaca;
 }
-html[data-theme="dark"] .checkpoint-opt.picked.correct,
-html[data-theme="dark"] .mcq-opt.picked.good {
-  background: #15331d !important;
-  border-color: #4ade80 !important;
-  color: #bbf7d0 !important;
-}
-html[data-theme="dark"] .checkpoint-opt.picked.wrong,
-html[data-theme="dark"] .mcq-opt.picked.warn {
-  background: #331515 !important;
-  border-color: #f87171 !important;
-  color: #fecaca !important;
-}
-html[data-theme="dark"] .opt-badge-correct {
-  background: #14532d;
+html[data-theme="dark"] .stage-step.completed {
+  background: rgba(74, 222, 128, 0.14);
+  border-color: var(--ok);
   color: #86efac;
 }
-html[data-theme="dark"] .opt-badge-wrong {
-  background: #7f1d1d;
+html[data-theme="dark"] .ex-sol {
+  background: rgba(74, 222, 128, 0.12);
+  border-left: 3px solid var(--ok);
+  color: #bbf7d0;
+}
+html[data-theme="dark"] .ex-sol .sol-tag {
+  background: rgba(0, 0, 0, 0.4);
+  color: #86efac;
+  border-color: rgba(74, 222, 128, 0.4);
+}
+html[data-theme="dark"] .ex-steps li::before {
+  background: var(--ok);
+  color: #121110;
+}
+html[data-theme="dark"] .k-danger .note-badge {
+  background: rgba(248, 113, 113, 0.16);
+  color: var(--danger);
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+/* Coach Diagnostic Testing */
+html[data-theme="dark"] .coach-hint-item {
+  background: var(--surface);
+  border-color: var(--line-soft);
+}
+html[data-theme="dark"] .coach-hint-btn {
+  color: var(--fg);
+}
+html[data-theme="dark"] .coach-hint-btn:hover {
+  background: var(--surface-2);
+}
+html[data-theme="dark"] .coach-hint-content {
+  background: #171513;
+  color: var(--fg);
+  border-top-color: var(--line-soft);
+}
+html[data-theme="dark"] .diagnostic-feedback {
+  background: #1c1916;
+  border-color: #3d352b;
+}
+html[data-theme="dark"] .diagnostic-feedback.ok-diag {
+  border-left: 4px solid var(--ok);
+  background: #142217;
+}
+html[data-theme="dark"] .diagnostic-feedback.bad-diag {
+  border-left: 4px solid var(--danger);
+  background: #261515;
+}
+html[data-theme="dark"] .hint-tag.l1 {
+  background: rgba(74, 222, 128, 0.18);
+  color: #86efac;
+}
+html[data-theme="dark"] .hint-tag.l2 {
+  background: rgba(56, 189, 248, 0.18);
+  color: #7dd3fc;
+}
+html[data-theme="dark"] .hint-tag.l3 {
+  background: rgba(248, 113, 113, 0.18);
   color: #fca5a5;
 }
-html[data-theme="dark"] .xp-fly-badge {
-  background: #1e1c18;
-  color: #4ade80;
-  border-color: #4ade80;
+
+/* Test Results & Palettes */
+html[data-theme="dark"] .rst-row {
+  background: var(--glass);
+  border-color: var(--line-soft);
 }
-html[data-theme="dark"] .mini-toast {
-  background: #25221d;
+html[data-theme="dark"] .rst-badge.ok,
+html[data-theme="dark"] .rst-row p.exp {
+  background: rgba(74, 222, 128, 0.14);
+  color: #86efac;
+}
+html[data-theme="dark"] .rst-badge.bad {
+  background: rgba(248, 113, 113, 0.14);
+  color: #fca5a5;
+}
+html[data-theme="dark"] .pal-c {
+  background: var(--surface-2);
+  border-color: var(--line-soft);
+  color: var(--muted);
+}
+html[data-theme="dark"] .pal-c.done {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: rgba(229, 151, 95, 0.4);
+}
+html[data-theme="dark"] .pal-c.cur {
+  background: var(--accent);
+  color: #121110;
+  border-color: var(--accent);
+}
+
+/* Knowledge Graph Canvas (SVG) */
+html[data-theme="dark"] .graph-canvas-wrap {
+  background: #171513;
+  border-color: var(--line-soft);
+}
+html[data-theme="dark"] .edge-badge-rect {
+  fill: var(--surface-2);
+  stroke: var(--line);
+}
+html[data-theme="dark"] .edge-badge-text {
+  fill: var(--muted);
+}
+html[data-theme="dark"] .hub-core {
+  fill: var(--surface);
+}
+html[data-theme="dark"] .hub-num,
+html[data-theme="dark"] .hub-label {
+  fill: var(--fg);
+}
+html[data-theme="dark"] .gnote .pill-bg {
+  fill: var(--surface-2);
+  stroke: var(--line);
+}
+html[data-theme="dark"] .gnote .pill-text {
+  fill: var(--fg);
+}
+html[data-theme="dark"] .graph-legend .lg-item {
+  color: var(--muted);
+}
+html[data-theme="dark"] .graph-legend .lg-chip.on {
+  color: var(--fg);
+}
+html[data-theme="dark"] .graph-canvas-wrap .g-coord-grid {
+  stroke: rgba(255, 255, 255, 0.05);
+}
+
+/* Tables & Code */
+html[data-theme="dark"] table {
+  background: var(--surface);
+  color: var(--fg);
+}
+html[data-theme="dark"] th,
+html[data-theme="dark"] td {
+  border-color: var(--line-soft);
+  color: var(--fg);
+}
+html[data-theme="dark"] .tbl-foot td {
+  background: var(--surface-2);
+  color: var(--muted);
+  border-top-color: var(--line);
+}
+html[data-theme="dark"] .tblwrap {
+  border-color: var(--line-soft);
+}
+html[data-theme="dark"] code,
+html[data-theme="dark"] pre {
+  background: var(--surface-2);
+  color: var(--accent);
+  border-color: var(--line-soft);
+}
+
+/* Modals & Edit Mode Bars */
+html[data-theme="dark"] .modal-overlay {
+  background: rgba(0, 0, 0, 0.75);
+}
+html[data-theme="dark"] .modal-box {
+  background: #1a1816;
+  border: 1px solid #38322a;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+  color: var(--fg);
+}
+html[data-theme="dark"] .modal-box h3 {
+  color: var(--fg);
+}
+html[data-theme="dark"] .modal-field label {
+  color: var(--muted);
+}
+html[data-theme="dark"] .modal-field input,
+html[data-theme="dark"] .modal-field textarea,
+html[data-theme="dark"] .modal-field select {
+  background: #24211d;
   color: #ede7de;
-  border-color: #40382f;
+  border-color: #38322a;
 }
+html[data-theme="dark"] .edit-mode-bar {
+  background: #231b12;
+  border-color: #523b1e;
+  color: #f5b74f;
+}
+html[data-theme="dark"] .edit-prompt-bar {
+  background: #201a13;
+  border-color: #4a3821;
+  color: #e5a953;
+}
+html[data-theme="dark"] .add-block-btn {
+  background: rgba(229, 151, 95, 0.1);
+  border-color: rgba(229, 151, 95, 0.35);
+  color: var(--accent);
+}
+html[data-theme="dark"] .add-block-btn:hover {
+  background: rgba(229, 151, 95, 0.2);
+}
+html[data-theme="dark"] .edit-badge {
+  background: rgba(229, 151, 95, 0.2);
+  color: var(--accent);
+}
+html[data-theme="dark"] [contenteditable="true"]:focus {
+  outline: 2px solid var(--accent);
+  background: rgba(229, 151, 95, 0.12);
+}
+
+/* Inputs, Selects & Toasts */
 html[data-theme="dark"] input,
 html[data-theme="dark"] select,
 html[data-theme="dark"] textarea {
@@ -1945,18 +2223,51 @@ html[data-theme="dark"] textarea:focus {
   border-color: var(--accent);
   background: #26221c;
 }
+html[data-theme="dark"] .xp-fly-badge {
+  background: #1e1c18;
+  color: #4ade80;
+  border-color: #4ade80;
+}
+html[data-theme="dark"] .mini-toast {
+  background: #25221d;
+  color: #ede7de;
+  border-color: #40382f;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+html[data-theme="dark"] .cloud-pill {
+  background: var(--surface-2);
+  border-color: var(--line-soft);
+  color: var(--fg);
+}
 
-/* — Theme Toggle Button — */
+/* Custom Scrollbars */
+html[data-theme="dark"] ::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+html[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #141312;
+}
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #332e27;
+  border-radius: 999px;
+  border: 2px solid #141312;
+}
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #4a4237;
+}
+
+/* Theme Toggle Button */
 .theme-toggle-btn {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-size: 0.82rem;
   background: var(--surface-2);
   border: 1px solid var(--line-soft);
   color: var(--fg);
-  padding: 4px 11px;
+  padding: 4px 12px;
   border-radius: 999px;
   transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
 }
@@ -1968,6 +2279,9 @@ html[data-theme="dark"] textarea:focus {
   font-weight: 650;
   font-size: 0.78rem;
   color: var(--muted);
+}
+.theme-toggle-btn .ico {
+  color: var(--accent);
 }
 
 /* — Universal Prev / Next Navigation Bars — */
@@ -2032,4 +2346,73 @@ html[data-theme="dark"] textarea:focus {
   .fs-nav-row .btn {
     min-width: 45%;
   }
+}
+
+/* — Designed Icon Alignments & Refinements — */
+.ico {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.16em;
+  flex: none;
+  stroke: currentColor;
+  stroke-width: 1.85;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+.btn .ico,
+.add-block-btn .ico,
+.edit-btn .ico,
+.del-btn .ico {
+  width: 1em;
+  height: 1em;
+  margin-right: 5px;
+  vertical-align: -0.15em;
+}
+.opt-badge-correct .ico,
+.opt-badge-wrong .ico {
+  width: 0.9em;
+  height: 0.9em;
+  margin-right: 3px;
+  vertical-align: -0.12em;
+}
+.fb-badge .ico {
+  width: 1em;
+  height: 1em;
+  margin-right: 4px;
+  vertical-align: -0.15em;
+}
+.fb-sec-title .ico {
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 6px;
+  vertical-align: -0.18em;
+  color: var(--accent);
+}
+.fb-comp-label .ico {
+  width: 1em;
+  height: 1em;
+  margin-right: 4px;
+  vertical-align: -0.14em;
+}
+.coach-hint-btn .ico {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 7px;
+  vertical-align: -0.16em;
+  color: var(--accent);
+}
+.theme-toggle-btn .ico {
+  width: 1em;
+  height: 1em;
+  color: var(--accent);
+  vertical-align: -0.12em;
+}
+.cloud-pill .ico {
+  width: 1em;
+  height: 1em;
+  margin-right: 4px;
+  vertical-align: -0.14em;
+  color: var(--accent);
 }

@@ -214,45 +214,57 @@
     });
   };
   var ICONS = {
-    book: '<path d="M2 4.5h5a5 5 0 0 1 5 4V20a4 4 0 0 0-4-4H2z"/><path d="M22 4.5h-5a5 5 0 0 0-5 4V20a4 4 0 0 1 4-4h6z"/>',
-    pen: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/>',
-    cards: '<path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M3 12.2l9 4.5 9-4.5"/><path d="M3 16.2l9 4.5 9-4.5"/>',
-    check: '<path d="M9 4.5h6v2.5H9z"/><path d="M6.5 7h11A2.5 2.5 0 0 1 20 9.5v9A2.5 2.5 0 0 1 17.5 21h-11A2.5 2.5 0 0 1 4 18.5v-9A2.5 2.5 0 0 1 6.5 7z"/><path d="M8.5 13.5l2.5 2.5 4.5-4.5"/>',
-    clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.5 2"/>',
-    flame: '<path d="M12 2.5c1.7 2.9 4.5 4.3 4.5 7.6a4.5 4.5 0 0 1-9 0C7.5 6.8 10.3 4.6 12 2.5z"/><path d="M12 15.5a2.3 2.3 0 0 1-2.3-2.2c0-1.6 1.3-2.7 2.3-3.9 1 1.2 2.3 2.3 2.3 3.9A2.3 2.3 0 0 1 12 15.5z"/>',
-    cal: '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M8 3v4M16 3v4"/><path d="M3.5 9.5h17"/>',
-    flask: '<path d="M10 2.5h4M10.5 2.5V7L7 14.5A3.5 3.5 0 0 0 9.5 20h5a3.5 3.5 0 0 0 2.5-5.5L13.5 7V2.5"/><path d="M8 12h8"/>',
-    ring: '<path d="M12 3.5l7 4v9l-7 4-7-4v-9l7-4z"/><circle cx="12" cy="12" r="2.3"/>',
-    tube: '<path d="M9.5 2.5h5M10.5 2.5v6.5a3.5 3.5 0 0 1-2.5 3.3A4.5 4.5 0 0 0 12 17a4.5 4.5 0 0 0 4-4.7A3.5 3.5 0 0 1 13.5 9V2.5"/><path d="M8.5 14h7"/>',
-    drop: '<path d="M12 3s6 6.7 6 10a6 6 0 0 1-12 0c0-3.3 6-10 6-10z"/>',
-    pump: '<path d="M9 3.5h6M9.5 3.5v2l2 1.6 2-1.6v-2"/><path d="M7.5 9h9l1.5 2.5V18a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-6.5L7.5 9z"/><path d="M10 14h4"/>',
-    carbonyl: '<path d="M12 3.5l7 4v9l-7 4-7-4v-9l7-4z"/><path d="M19 7.5l2.6 1.4"/><circle cx="22.4" cy="9.8" r="1.4"/>',
-    acid: '<path d="M10 2.5h4M10.5 2.5v4.5l-3.8 7A3.6 3.6 0 0 0 9.5 20h5a3.6 3.6 0 0 0 3.3-6l-3.8-7V2.5"/><circle cx="11.5" cy="10" r=".8"/><circle cx="13.5" cy="12.5" r=".9"/><circle cx="12" cy="15" r=".8"/>',
-    books: '<path d="M5 4h14v16H5z"/><path d="M9.5 8h5M9.5 11.5h5M9.5 15h3"/>',
-    target: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>',
-    lipid: '<path d="M12 3s6 6.7 6 10a6 6 0 0 1-12 0c0-3.3 6-10 6-10z"/><path d="M9 12h6M9.5 14.5h5"/>',
-    formula: '<path d="M4 5h16l-8 7 8 7H4"/>',
-    rule: '<path d="M9 4.5h6v2.5H9z"/><path d="M6.5 7h11A2.5 2.5 0 0 1 20 9.5v9A2.5 2.5 0 0 1 17.5 21h-11A2.5 2.5 0 0 1 4 18.5v-9A2.5 2.5 0 0 1 6.5 7z"/><path d="M8.5 12.5h7M8.5 15.5h7"/>',
-    bulb: '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.4c.7.6 1 1.5 1 2.6h6c0-1.1.3-2 1-2.6A6 6 0 0 0 12 3z"/>',
-    alert: '<path d="M10.5 4.2 3.5 17a2 2 0 0 0 1.7 3h13.6a2 2 0 0 0 1.7-3L13.5 4.2a2 2 0 0 0-3 0z"/><path d="M12 9.5v4M12 17h.01"/>',
-    tbl: '<path d="M4 4h16v16H4z"/><path d="M4 9.5h16M9.5 4v16"/>',
-    scale: '<path d="M12 3.5v15.5M6 21h12"/><path d="M7.5 8.5h9"/><path d="M7.5 8.5 5.3 12.6a2.6 2.6 0 0 0 4.4 0L7.5 8.5z"/><path d="M16.5 8.5l-2.2 4.1a2.6 2.6 0 0 0 4.4 0l-2.2-4.1z"/>',
-    type: '<path d="M9 4l-2 16M17 4l-2 16M4.5 9h15M4.5 15h15"/>',
-    ok: '<path d="M5 12.5l4.5 4.5L19 7"/>',
-    no: '<path d="M7 7l10 10M17 7L7 17"/>',
-    choose: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
-    eye: '<path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5"/>',
-    info: '<circle cx="12" cy="12" r="8.5"/><path d="M12 11v4.5M12 7.5h.01"/>',
-    star: '<path d="M12 3.2l2.8 5.7 6.3.9-4.6 4.5 1.1 6.3-5.6-2.9-5.6 2.9 1.1-6.3-4.6-4.5 6.3-.9L12 3.2z"/>',
-    graph: '<circle cx="5" cy="12" r="2.6"/><circle cx="19" cy="5.5" r="2.6"/><circle cx="19" cy="18.5" r="2.6"/><path d="M7.3 10.9l8.4-3.5M7.3 13.1l8.4 3.5"/>',
-    plus: '<path d="M12 5v14M5 12h14"/>',
-    trash: '<path d="M4.5 7.5h15M9.5 7.5V5.5h5v2M7 7.5l1.1 12h7.8l1.1-12M10 11v5M14 11v5"/>',
-    search: '<circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L20 20"/>',
+    book: '<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/>',
+    bookOpen: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+    books: '<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M8 2v20M12 6h4M12 10h4"/>',
+    pen: '<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>',
+    edit: '<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/>',
+    cards: '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    ok: '<path d="M20 6 9 17l-5-5"/>',
+    close: '<path d="M18 6 6 18M6 6l12 12"/>',
+    no: '<path d="M18 6 6 18M6 6l12 12"/>',
+    x: '<path d="M18 6 6 18M6 6l12 12"/>',
+    clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    flame: '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
+    cal: '<rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>',
+    flask: '<path d="M10 2v4.5L4.5 18a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 6.5V2M8.5 2h7M7 14h10"/>',
+    ring: '<polygon points="12 2 2 8.5 2 15.5 12 22 22 15.5 22 8.5 12 2"/><circle cx="12" cy="12" r="3"/>',
+    tube: '<path d="M14.5 2v17.5c0 1.4-1.1 2.5-2.5 2.5s-2.5-1.1-2.5-2.5V2M8.5 2h7M9.5 12h5"/>',
+    drop: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-6-1.5-1.6-3.2-3.4-4-5-.8 1.6-2.5 3.4-4 5-2 2.1-3 4-3 6a7 7 0 0 0 7 7z"/>',
+    pump: '<path d="M12 2v4M12 6H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-4ZM6 12h12M10 16h4"/>',
+    carbonyl: '<polygon points="12 2 2 8.5 2 15.5 12 22 22 15.5 22 8.5 12 2"/><path d="m19 7 3-1.5M20 9l2.5-1.2"/><circle cx="23" cy="7" r="1"/>',
+    acid: '<path d="M10 2v4.5L5 18a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3L14 6.5V2M8.5 2h7"/><circle cx="10" cy="15" r="1"/><circle cx="14" cy="15" r="1"/>',
+    target: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+    lipid: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-6-1.5-1.6-3.2-3.4-4-5-.8 1.6-2.5 3.4-4 5-2 2.1-3 4-3 6a7 7 0 0 0 7 7z"/><path d="M9 14h6M10 17h4"/>',
+    formula: '<path d="M4 7V4h16v3M9 20h6M12 4v16"/>',
+    rule: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>',
+    bulb: '<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6M10 22h4"/>',
+    alert: '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+    tbl: '<path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/>',
+    scale: '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1ZM2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1ZM7 21h10M12 3v18M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>',
+    type: '<polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/>',
+    choose: '<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>',
+    eye: '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+    info: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>',
+    star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+    graph: '<circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><line x1="8.7" y1="10.7" x2="15.3" y2="7.3"/><line x1="8.7" y1="13.3" x2="15.3" y2="16.7"/>',
+    plus: '<path d="M5 12h14M12 5v14"/>',
+    trash: '<path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2M10 11v6M14 11v6"/>',
+    search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
     download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',
     upload: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>',
-    refresh: '<path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>',
-    close: '<path d="M18 6L6 18M6 6l12 12"/>',
-    dna: '<path d="M2 15c6.667-6 13.333 0 20-6M2 9c6.667 6 13.333 0 20 6M5 7v10M12 4v16M19 7v10"/>'
+    refresh: '<path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/>',
+    rotate: '<path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/>',
+    arrowLeft: '<path d="m12 19-7-7 7-7M19 12H5"/>',
+    arrowRight: '<path d="M5 12h14m-7-7 7 7-7 7"/>',
+    shield: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>',
+    sparkles: '<path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/>',
+    dna: '<path d="m2 15 20-6M2 9l20 6M5 7v10M12 4v16M19 7v10"/>',
+    moon: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>',
+    cloud: '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
+    cloudCheck: '<path d="m9 15 2 2 4-4"/><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>'
   };
   function ico(n) { return '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + (ICONS[n] || "") + '</svg>'; }
   var KIND = { card: "Công thức", rule: "Quy tắc", rxn: "Phản ứng", trick: "Mẹo", danger: "Cảnh báo", table: "Bảng" };
@@ -275,7 +287,7 @@
 
   function cloudSyncLabel() {
     if (cloudSyncStatus === "syncing") return "Đang lưu...";
-    if (cloudSyncStatus === "synced") return "Vercel DB ✓";
+    if (cloudSyncStatus === "synced") return "Vercel DB";
     if (cloudSyncStatus === "local") return "Cục bộ";
     if (cloudSyncStatus === "offline") return "Offline";
     return "Đồng bộ";
@@ -285,7 +297,7 @@
     cloudSyncStatus = status;
     var el = document.getElementById("cloudSyncStatus");
     if (!el) return;
-    var icon = (status === "syncing") ? "⏳" : (status === "offline" ? "📡" : (status === "local" ? "💻" : "☁️"));
+    var icon = (status === "syncing") ? ico("refresh") : (status === "offline" ? ico("alert") : (status === "local" ? ico("cards") : ico("cloud")));
     el.innerHTML = icon + ' <small id="cloudSyncText">' + (text || cloudSyncLabel()) + '</small>';
     el.className = "stat pill cloud-pill " + status;
   }
@@ -319,7 +331,7 @@
       })
       .then(function (r) {
         if (r.ok) {
-          updateCloudIndicator("synced", "Vercel DB ✓");
+          updateCloudIndicator("synced", "Vercel DB");
         } else {
           updateCloudIndicator("error", "Lỗi sync");
         }
@@ -370,10 +382,10 @@
             }
           }
 
-          updateCloudIndicator("synced", "Vercel DB ✓");
+          updateCloudIndicator("synced", "Vercel DB");
           if (callback) callback(updated);
         } else {
-          updateCloudIndicator("synced", "Vercel DB ✓");
+          updateCloudIndicator("synced", "Vercel DB");
           if (callback) callback(false);
         }
       })
@@ -968,10 +980,10 @@
     try { localStorage.setItem("hoa11_12_edit_mode", state.editMode ? "true" : "false"); } catch(e){}
     if (state.editMode) {
       document.body.classList.add("edit-mode-active");
-      showMiniToast("✏️ BẬT chế độ sửa: Nhấp thẳng vào chữ để gõ sửa");
+      showMiniToast(ico("edit") + " BẬT chế độ sửa: Nhấp thẳng vào chữ để gõ sửa");
     } else {
       document.body.classList.remove("edit-mode-active");
-      showMiniToast("✕ Đã TẮT chế độ sửa");
+      showMiniToast(ico("close") + " Đã TẮT chế độ sửa");
     }
     render(true);
   }
@@ -994,7 +1006,7 @@
     var next = state.theme === "dark" ? "light" : "dark";
     applyTheme(next);
     renderShell();
-    showMiniToast(next === "dark" ? "🌙 Đã bật chế độ Tối (Dark Mode)" : "☀️ Đã bật chế độ Sáng (Light Mode)");
+    showMiniToast(next === "dark" ? ico("moon") + " Đã bật chế độ Tối (Dark Mode)" : ico("sun") + " Đã bật chế độ Sáng (Light Mode)");
   }
 
   /* ---------- RENDER SHELL ---------- */
@@ -1031,10 +1043,10 @@
         "</a>" +
         '<div class="stats">' +
           '<button class="stat pill theme-toggle-btn" data-act="toggleTheme" title="Chuyển chế độ Giao diện Sáng / Tối">' +
-            (state.theme === "dark" ? '☀️ <small>Sáng</small>' : '🌙 <small>Tối</small>') +
+            (state.theme === "dark" ? ico("sun") + ' <small>Sáng</small>' : ico("moon") + ' <small>Tối</small>') +
           '</button>' +
           editToggleBtn +
-          '<span class="stat pill cloud-pill ' + cloudSyncStatus + '" id="cloudSyncStatus" data-act="cloudSyncNow" title="Cơ sở dữ liệu Vercel cá nhân (Nhấp để đồng bộ ngay)">☁️ <small id="cloudSyncText">' + cloudSyncLabel() + '</small></span>' +
+          '<span class="stat pill cloud-pill ' + cloudSyncStatus + '" id="cloudSyncStatus" data-act="cloudSyncNow" title="Cơ sở dữ liệu Vercel cá nhân (Nhấp để đồng bộ ngay)">' + ico("cloud") + ' <small id="cloudSyncText">' + cloudSyncLabel() + '</small></span>' +
           '<span class="stat pill" title="Điểm luyện tập">' + ico("flame") + ' <b data-xp>' + s.xp + '</b> <i>XP</i></span>' +
           '<span class="stat pill" title="Số ngày luyện liên tiếp">' + ico("cal") + ' <b data-streak>' + s.streak.days + '</b> <i>ngày</i></span>' +
         "</div>" +
@@ -1051,7 +1063,7 @@
     if (state.editMode) return "";
     return '<div class="edit-prompt-bar">' +
       '<div class="ep-left">' +
-        '<span class="ep-icon">💡</span>' +
+        '<span class="ep-icon">' + ico("bulb") + '</span>' +
         '<span>Bạn muốn chỉnh sửa, xoá hoặc tạo thêm <b>' + esc(sectionName) + '</b> mới?</span>' +
       '</div>' +
       '<button class="btn-go-edit" data-act="toggleEditMode">' +
@@ -1218,7 +1230,7 @@
       saveCustomData();
       el.classList.add("inline-edit-success");
       setTimeout(function () { el.classList.remove("inline-edit-success"); }, 1200);
-      showMiniToast("✓ Đã lưu thay đổi trực tiếp");
+      showMiniToast(ico("check") + " Đã lưu thay đổi trực tiếp");
     }
   }
 
@@ -1300,14 +1312,14 @@
     var s = profile();
     var xpN = s.xpByCh[id] || 0;
 
-    var editFeynmanBtn = state.editMode ? '<button class="btn ghost tiny edit-btn" data-act="editFeynman" data-ch="' + id + '">✏️ Sửa giải thích</button>' : '';
+    var editFeynmanBtn = state.editMode ? '<button class="btn ghost tiny edit-btn" data-act="editFeynman" data-ch="' + id + '">' + ico("edit") + ' Sửa giải thích</button>' : '';
     var feyn = '<div class="feynman" style="--cc:' + meta.color + '">' +
       '<div style="display:flex;justify-content:space-between;align-items:center"><b>' + ico("info") + " Giải thích ngắn gọn kiểu Feynman:</b>" + editFeynmanBtn + "</div>" +
       '<p class="feynman-p" ' + (state.editMode ? 'data-inline-edit="ch-feynman" data-ch="' + id + '" contenteditable="true" spellcheck="false" title="Nhấp vào đây để sửa trực tiếp lời giải thích"' : '') + '>' + fmt(ch.feynman || "Chưa có lời giải thích ngắn gọn.") + '</p>' +
       "</div>";
 
     var editChPrompt = renderEditPromptBar("thẻ lý thuyết hoặc bài tập của chương");
-    var addNoteBtn = state.editMode ? '<button class="add-block-btn" data-act="addNote" data-ch="' + id + '">➕ Thêm thẻ lý thuyết mới vào chương này</button>' : '';
+    var addNoteBtn = state.editMode ? '<button class="add-block-btn" data-act="addNote" data-ch="' + id + '">' + ico("plus") + ' Thêm thẻ lý thuyết mới vào chương này</button>' : '';
 
     var notes = (ch.notes || []).map(function (n, i) {
       var hidden = (n.kind === "card" || n.kind === "rule" || n.kind === "rxn");
@@ -1331,7 +1343,7 @@
       "</article>";
     }).join("");
 
-    var addExBtn = state.editMode ? '<button class="add-block-btn" data-act="addExercise" data-ch="' + id + '">➕ Thêm bài tập tự luyện mới</button>' : '';
+    var addExBtn = state.editMode ? '<button class="add-block-btn" data-act="addExercise" data-ch="' + id + '">' + ico("plus") + ' Thêm bài tập tự luyện mới</button>' : '';
 
     var exs = (ch.exercises || []).map(function (ex, xj) {
       return exerciseHTML(ex, id, xj);
@@ -1476,7 +1488,7 @@
     var chs = chaptersForGrade(state.grade).filter(function (c) { return c.id !== "g11cq"; });
     var chSel = chapterDropdown("flash-ch", (state.flash && state.flash.sel) || "all", chs, "Toàn bộ chương");
     var due = flashDueCount();
-    var addCardBtn = state.editMode ? '<button class="add-block-btn" data-act="addFlashcard" data-ch="' + ((state.flash && state.flash.sel) || "g12c1") + '">➕ Thêm thẻ nhớ lý thuyết mới</button>' : '';
+    var addCardBtn = state.editMode ? '<button class="add-block-btn" data-act="addFlashcard" data-ch="' + ((state.flash && state.flash.sel) || "g12c1") + '">' + ico("plus") + ' Thêm thẻ nhớ lý thuyết mới</button>' : '';
 
     return '<div class="flash-setup">' +
       '<div class="fs-card intro">' +
@@ -1520,7 +1532,7 @@
   }
 
   function flashBack(item) {
-    var theoryBtn = item.ch ? '<div style="margin-top:14px;text-align:center"><button class="btn ghost tiny link-theory-btn" data-act="jumpToTheory" data-ch="' + item.ch + '">📖 Xem lý thuyết chương này →</button></div>' : '';
+    var theoryBtn = item.ch ? '<div style="margin-top:14px;text-align:center"><button class="btn ghost tiny link-theory-btn" data-act="jumpToTheory" data-ch="' + item.ch + '">' + ico("bookOpen") + ' Xem lý thuyết chương này →</button></div>' : '';
     return '<div class="minimal-flash-back">' +
       '<span class="minimal-flash-badge">Đáp án cốt lõi</span>' +
       '<div class="minimal-flash-ans" ' + (state.editMode ? 'data-inline-edit="flash-a" data-ch="' + item.ch + '" data-idx="' + item.cIndex + '" data-custom="' + item.isCustom + '" contenteditable="true" spellcheck="false" title="Nhấp trực tiếp để sửa công thức/đáp án"' : '') + '>' + fmt(item.a) + '</div>' +
@@ -1541,15 +1553,15 @@
       editCardBar = '<div class="flash-edit-bar">' +
         '<span class="edit-badge">Thẻ nhớ #' + (f.i + 1) + '</span>' +
         '<div>' +
-          '<button class="btn ghost tiny edit-btn" data-act="editCurFlashcard">✏️ Sửa thẻ</button> ' +
-          '<button class="btn warn tiny del-btn" data-act="deleteCurFlashcard">🗑️ Xoá thẻ</button>' +
+          '<button class="btn ghost tiny edit-btn" data-act="editCurFlashcard">' + ico("edit") + ' Sửa thẻ</button> ' +
+          '<button class="btn warn tiny del-btn" data-act="deleteCurFlashcard">' + ico("trash") + ' Xoá thẻ</button>' +
         '</div>' +
       '</div>';
     }
 
     var body = '<div class="flash-session">' +
       '<div class="fs-top">' +
-        '<span class="fs-prog">Thẻ ' + Math.min(f.i + 1, f.items.length) + " / " + f.items.length + ' · <span style="color:var(--ok)">✓ ' + f.good + '</span> · <span style="color:var(--warn)">↻ ' + f.again + "</span></span>" +
+        '<span class="fs-prog">Thẻ ' + Math.min(f.i + 1, f.items.length) + " / " + f.items.length + ' · <span style="color:var(--ok)">' + ico("check") + " " + f.good + '</span> · <span style="color:var(--warn)">' + ico("rotate") + " " + f.again + "</span></span>" +
         '<span class="fs-bar"><i style="width:' + prog + '%"></i></span>' +
       "</div>" + editCardBar;
 
@@ -1562,12 +1574,12 @@
         "</div>" +
       "</div>" +
       '<div class="fs-actions">' +
-        '<button class="btn ghost" data-act="flashAgain">↻ Cần ôn lại (1)</button>' +
-        '<button class="btn good" data-act="flashGood">✓ Đã nhớ (2)</button>' +
+        '<button class="btn ghost" data-act="flashAgain">' + ico("rotate") + ' Cần ôn lại (1)</button>' +
+        '<button class="btn good" data-act="flashGood">' + ico("check") + ' Đã nhớ (2)</button>' +
       "</div>" +
       '<div class="fs-nav-row">' +
         '<button class="btn ghost" data-act="flashPrevCard"' + (f.i === 0 ? ' disabled' : '') + '>← Thẻ trước</button>' +
-        '<button class="btn ghost small" data-act="flip">🔄 Lật thẻ</button>' +
+        '<button class="btn ghost small" data-act="flip">' + ico("rotate") + ' Lật thẻ</button>' +
         '<button class="btn ghost" data-act="flashNextCard"' + (f.i >= f.items.length - 1 ? ' disabled' : '') + '>Thẻ sau →</button>' +
       '</div>';
     }
@@ -1677,7 +1689,7 @@
       .map(function (p) { return '<option value="' + p[0] + '" ' + (bs.kind === p[0] ? "selected" : "") + ">" + p[1] + "</option>"; }).join("");
     var bankAll = bankForGrade(state.grade);
     var stats = bankStats(bankAll);
-    var addBtn = state.editMode ? '<button class="add-block-btn" data-act="addBankQ">➕ Thêm câu hỏi mới vào ngân hàng</button>' : '';
+    var addBtn = state.editMode ? '<button class="add-block-btn" data-act="addBankQ">' + ico("plus") + ' Thêm câu hỏi mới vào ngân hàng</button>' : '';
 
     return '<div class="fs-card intro">' +
       "<h3>" + ico("check") + " Ngân hàng câu hỏi trắc nghiệm & tự luận</h3>" +
@@ -1736,8 +1748,8 @@
     var idx = bs.i, total = bs.items.length;
     var opts = parseOpts(it.o);
     var editBtns = state.editMode ? '<div class="edit-item-btns" style="margin-left:auto">' +
-      '<button class="btn ghost tiny edit-btn" data-act="editBankQ" data-i="' + idx + '">✏️ Sửa câu này</button>' +
-      '<button class="btn warn tiny del-btn" data-act="deleteBankQ" data-i="' + idx + '">🗑️ Xoá câu này</button>' +
+      '<button class="btn ghost tiny edit-btn" data-act="editBankQ" data-i="' + idx + '">' + ico("edit") + ' Sửa câu này</button>' +
+      '<button class="btn warn tiny del-btn" data-act="deleteBankQ" data-i="' + idx + '">' + ico("trash") + ' Xoá câu này</button>' +
     '</div>' : '';
 
     var head =
@@ -1806,13 +1818,13 @@
         var p = btn.getAttribute("data-p");
         if (p === String(it.a)) {
           btn.classList.add("reveal-correct");
-          btn.insertAdjacentHTML("beforeend", ' <span class="opt-badge-correct">✓ Đáp án đúng</span>');
+          btn.insertAdjacentHTML("beforeend", ' <span class="opt-badge-correct">' + ico("check") + ' Đáp án đúng</span>');
         }
         if (p === String(pick)) {
           btn.classList.add("picked");
           btn.classList.add(correct ? "good" : "warn");
           if (!correct) {
-            btn.insertAdjacentHTML("beforeend", ' <span class="opt-badge-wrong">✗ Lựa chọn của bạn</span>');
+            btn.insertAdjacentHTML("beforeend", ' <span class="opt-badge-wrong">' + ico("close") + ' Lựa chọn của bạn</span>');
           }
         }
       });
@@ -1824,16 +1836,16 @@
 
     var msg = correct
       ? '<div class="fb ok">' +
-          '<div class="fb-header"><span class="fb-badge ok">✓ Chính xác!</span> <b>(+10 XP)</b></div>' +
-          (it.e ? '<div class="fb-section-box exp"><div class="fb-sec-title">💡 <b>Giải thích chi tiết:</b></div><div class="fb-sec-desc">' + fmt(it.e) + '</div></div>' : '') +
+          '<div class="fb-header"><span class="fb-badge ok">' + ico("check") + ' Chính xác!</span> <b>(+10 XP)</b></div>' +
+          (it.e ? '<div class="fb-section-box exp"><div class="fb-sec-title">' + ico("bulb") + ' <b>Giải thích chi tiết:</b></div><div class="fb-sec-desc">' + fmt(it.e) + '</div></div>' : '') +
         '</div>'
       : '<div class="fb bad">' +
-          '<div class="fb-header"><span class="fb-badge bad">✗ Chưa chính xác</span> <b>Phân tích lỗi sai:</b></div>' +
+          '<div class="fb-header"><span class="fb-badge bad">' + ico("close") + ' Chưa chính xác</span> <b>Phân tích lỗi sai:</b></div>' +
           '<div class="fb-comparison">' +
-            '<div class="fb-comp-row correct"><span class="fb-comp-label">✓ Đáp án đúng:</span><span class="fb-comp-val"><b>' + esc(it.a) + (it.k === "m" ? '. ' + fmt(correctObj.t) : '') + '</b></span></div>' +
-            '<div class="fb-comp-row wrong"><span class="fb-comp-label">✗ Bạn đã chọn:</span><span class="fb-comp-val"><b>' + esc(pick) + (it.k === "m" ? '. ' + fmt(pickedObj.t) : '') + '</b></span></div>' +
+            '<div class="fb-comp-row correct"><span class="fb-comp-label">' + ico("check") + ' Đáp án đúng:</span><span class="fb-comp-val"><b>' + esc(it.a) + (it.k === "m" ? '. ' + fmt(correctObj.t) : '') + '</b></span></div>' +
+            '<div class="fb-comp-row wrong"><span class="fb-comp-label">' + ico("close") + ' Bạn đã chọn:</span><span class="fb-comp-val"><b>' + esc(pick) + (it.k === "m" ? '. ' + fmt(pickedObj.t) : '') + '</b></span></div>' +
           '</div>' +
-          (it.e ? '<div class="fb-section-box exp"><div class="fb-sec-title">💡 <b>Phân tích & Lỗi sai cần tránh:</b></div><div class="fb-sec-desc">' + fmt(it.e) + '</div></div>' : '') +
+          (it.e ? '<div class="fb-section-box exp"><div class="fb-sec-title">' + ico("bulb") + ' <b>Phân tích & Lỗi sai cần tránh:</b></div><div class="fb-sec-desc">' + fmt(it.e) + '</div></div>' : '') +
         '</div>';
 
     fb.innerHTML = msg;
@@ -1899,13 +1911,13 @@
   function testsView() {
     var tests = (DATA.tests || []).filter(function (t) { return state.grade === "all" || t.grade === state.grade; });
     var s = profile();
-    var addTestBtn = state.editMode ? '<button class="add-block-btn" data-act="addTest">➕ Tạo bộ đề thi mới</button>' : '';
+    var addTestBtn = state.editMode ? '<button class="add-block-btn" data-act="addTest">' + ico("plus") + ' Tạo bộ đề thi mới</button>' : '';
 
     var cards = tests.map(function (t) {
       var best = s.tests[t.id];
       var editBtns = state.editMode ? '<div class="edit-item-btns" style="margin-top:8px">' +
-        '<button class="btn ghost tiny edit-btn" data-act="editTest" data-id="' + t.id + '">✏️ Sửa đề</button>' +
-        '<button class="btn warn tiny del-btn" data-act="deleteTest" data-id="' + t.id + '">🗑️ Xoá đề</button>' +
+        '<button class="btn ghost tiny edit-btn" data-act="editTest" data-id="' + t.id + '">' + ico("edit") + ' Sửa đề</button>' +
+        '<button class="btn warn tiny del-btn" data-act="deleteTest" data-id="' + t.id + '">' + ico("trash") + ' Xoá đề</button>' +
       '</div>' : '';
 
       return '<div class="test-card">' +
@@ -1940,9 +1952,9 @@
     var opts = parseOpts(it.o);
     var ans = T.answers[T.i];
     var editQBtns = state.editMode ? '<div class="edit-item-btns" style="margin-left:auto">' +
-      '<button class="btn ghost tiny edit-btn" data-act="editTestQ" data-i="' + T.i + '">✏️ Sửa câu này</button>' +
-      '<button class="btn warn tiny del-btn" data-act="deleteTestQ" data-i="' + T.i + '">🗑️ Xoá câu này</button>' +
-      '<button class="btn primary tiny add-btn" data-act="addTestQ">➕ Thêm câu</button>' +
+      '<button class="btn ghost tiny edit-btn" data-act="editTestQ" data-i="' + T.i + '">' + ico("edit") + ' Sửa câu này</button>' +
+      '<button class="btn warn tiny del-btn" data-act="deleteTestQ" data-i="' + T.i + '">' + ico("trash") + ' Xoá câu này</button>' +
+      '<button class="btn primary tiny add-btn" data-act="addTestQ">' + ico("plus") + ' Thêm câu</button>' +
     '</div>' : '';
 
     var head = '<div class="q-top"><span class="q-count">' + esc(T.t.title) + " · Câu " + (T.i + 1) + " / " + T.t.qs.length + "</span>" +
@@ -2055,7 +2067,7 @@
         "<p class='small'>" + fmt(d.it.q) + "</p>" +
         (yourAns ? "<p class='small'>" + yourAns + "</p>" : "") +
         (d.it.e ? "<p class='small exp'>" + fmt(d.it.e) + "</p>" : "") +
-        ((d.it.ch || T.t.ch) ? "<div style='margin-top:8px'><button class='btn ghost tiny' data-act='jumpToTheory' data-ch='" + (d.it.ch || T.t.ch) + "'>📖 Xem trong lý thuyết →</button></div>" : "") +
+        ((d.it.ch || T.t.ch) ? "<div style='margin-top:8px'><button class='btn ghost tiny' data-act='jumpToTheory' data-ch='" + (d.it.ch || T.t.ch) + "'>" + ico("bookOpen") + " Xem trong lý thuyết →</button></div>" : "") +
       "</details>";
     }).join("");
     return '<div class="test-result">' +
@@ -2096,7 +2108,7 @@
     var curStage = stages[curIdx];
 
     var chSel = chapterDropdown("guided-ch-sel", curChId, chs, "Chọn chương học");
-    var addStageBtn = state.editMode ? '<button class="btn primary small add-btn" data-act="addGuidedStage" data-ch="' + curChId + '">➕ Thêm chặng học mới</button>' : '';
+    var addStageBtn = state.editMode ? '<button class="btn primary small add-btn" data-act="addGuidedStage" data-ch="' + curChId + '">' + ico("plus") + ' Thêm chặng học mới</button>' : '';
 
     var stepperHtml = stages.map(function (st, idx) {
       var cls = "stage-step";
@@ -2108,8 +2120,8 @@
     }).join("");
 
     var editStageBtns = state.editMode ? '<div class="edit-item-btns">' +
-      '<button class="btn ghost tiny edit-btn" data-act="editGuidedStage" data-ch="' + curChId + '" data-i="' + curIdx + '">✏️ Sửa chặng</button>' +
-      '<button class="btn warn tiny del-btn" data-act="deleteGuidedStage" data-ch="' + curChId + '" data-i="' + curIdx + '">🗑️ Xoá chặng</button>' +
+      '<button class="btn ghost tiny edit-btn" data-act="editGuidedStage" data-ch="' + curChId + '" data-i="' + curIdx + '">' + ico("edit") + ' Sửa chặng</button>' +
+      '<button class="btn warn tiny del-btn" data-act="deleteGuidedStage" data-ch="' + curChId + '" data-i="' + curIdx + '">' + ico("trash") + ' Xoá chặng</button>' +
     '</div>' : '';
 
     // Checkpoint interaction
@@ -2131,12 +2143,12 @@
       if (isChecked) {
         if (o.k === check.a) {
           cls += " reveal-correct";
-          badge = ' <span class="opt-badge-correct">✓ Đáp án đúng</span>';
+          badge = ' <span class="opt-badge-correct">' + ico("check") + ' Đáp án đúng</span>';
         }
         if (pickedOpt === o.k) {
           cls += " picked " + (o.k === check.a ? "correct" : "wrong");
           if (o.k !== check.a) {
-            badge = ' <span class="opt-badge-wrong">✗ Lựa chọn của bạn</span>';
+            badge = ' <span class="opt-badge-wrong">' + ico("close") + ' Lựa chọn của bạn</span>';
           }
         }
       }
@@ -2200,9 +2212,9 @@
 
     if (isCorrect) {
       return '<div class="checkpoint-feedback ok">' +
-        '<div class="fb-header"><span class="fb-badge ok">✓ Chính xác!</span> <b>Bạn đã hiểu đúng bản chất câu hỏi. (+25 XP)</b></div>' +
+        '<div class="fb-header"><span class="fb-badge ok">' + ico("check") + ' Chính xác!</span> <b>Bạn đã hiểu đúng bản chất câu hỏi. (+25 XP)</b></div>' +
         '<div class="fb-section-box exp">' +
-          '<div class="fb-sec-title">💡 <b>Bản chất cốt lõi & Cơ chế đúng:</b></div>' +
+          '<div class="fb-sec-title">' + ico("bulb") + ' <b>Bản chất cốt lõi & Cơ chế đúng:</b></div>' +
           '<div class="fb-sec-desc">' + fmt(check.exp) + '</div>' +
         '</div>' +
         '<div class="fb-action" style="display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap">' +
@@ -2212,27 +2224,27 @@
       '</div>';
     } else {
       return '<div class="checkpoint-feedback bad">' +
-        '<div class="fb-header"><span class="fb-badge bad">✗ Chưa chính xác</span> <b>Phân tích lỗi sai & Chẩn đoán tư duy:</b></div>' +
+        '<div class="fb-header"><span class="fb-badge bad">' + ico("close") + ' Chưa chính xác</span> <b>Phân tích lỗi sai & Chẩn đoán tư duy:</b></div>' +
         '<div class="fb-comparison">' +
           '<div class="fb-comp-row correct">' +
-            '<span class="fb-comp-label">✓ Đáp án đúng:</span>' +
+            '<span class="fb-comp-label">' + ico("check") + ' Đáp án đúng:</span>' +
             '<span class="fb-comp-val"><b>' + esc(check.a) + '.</b> ' + fmt(correctObj.t) + '</span>' +
           '</div>' +
           '<div class="fb-comp-row wrong">' +
-            '<span class="fb-comp-label">✗ Bạn đã chọn:</span>' +
+            '<span class="fb-comp-label">' + ico("close") + ' Bạn đã chọn:</span>' +
             '<span class="fb-comp-val"><b>' + esc(pickedOpt) + '.</b> ' + fmt(pickedObj.t) + '</span>' +
           '</div>' +
         '</div>' +
         (curStage.trap ? '<div class="fb-section-box flaw">' +
-          '<div class="fb-sec-title">⚠️ <b>Chỉ ra lỗi sai & Bẫy phương án ' + esc(pickedOpt) + ':</b></div>' +
+          '<div class="fb-sec-title">' + ico("alert") + ' <b>Chỉ ra lỗi sai & Bẫy phương án ' + esc(pickedOpt) + ':</b></div>' +
           '<div class="fb-sec-desc">' + fmt(curStage.trap) + '</div>' +
         '</div>' : '') +
         (check.hint ? '<div class="fb-section-box hint">' +
-          '<div class="fb-sec-title">🔍 <b>Gợi ý tư duy đúng hướng:</b></div>' +
+          '<div class="fb-sec-title">' + ico("search") + ' <b>Gợi ý tư duy đúng hướng:</b></div>' +
           '<div class="fb-sec-desc">' + fmt(check.hint) + '</div>' +
         '</div>' : '') +
         '<div class="fb-section-box exp">' +
-          '<div class="fb-sec-title">💡 <b>Bản chất khoa học & Giải thích:</b></div>' +
+          '<div class="fb-sec-title">' + ico("bulb") + ' <b>Bản chất khoa học & Giải thích:</b></div>' +
           '<div class="fb-sec-desc">' + fmt(check.exp) + '</div>' +
         '</div>' +
         '<div class="fb-action" style="display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap">' +
@@ -2286,12 +2298,12 @@
         var badge = "";
         if (o.k === check.a) {
           cls += " reveal-correct";
-          badge = ' <span class="opt-badge-correct">✓ Đáp án đúng</span>';
+          badge = ' <span class="opt-badge-correct">' + ico("check") + ' Đáp án đúng</span>';
         }
         if (k === o.k) {
           cls += " picked " + (o.k === check.a ? "correct" : "wrong");
           if (o.k !== check.a) {
-            badge = ' <span class="opt-badge-wrong">✗ Lựa chọn của bạn</span>';
+            badge = ' <span class="opt-badge-wrong">' + ico("close") + ' Lựa chọn của bạn</span>';
           }
         }
         return '<button class="' + cls + '" data-act="guidedPick" data-k="' + esc(o.k) + '" disabled>' +
@@ -2396,12 +2408,12 @@
     var diagnosticHtml = "";
     if (isSubmitted) {
       diagnosticHtml = '<div class="diagnostic-feedback">' +
-        '<h4>' + (isCorrect ? '✓ Đáp án chính xác!' : '✗ Chưa đúng — Phân tích chẩn đoán sai lầm:') + '</h4>' +
+        '<h4>' + (isCorrect ? ico("check") + ' Đáp án chính xác!' : ico("close") + ' Chưa đúng — Phân tích chẩn đoán sai lầm:') + '</h4>' +
         '<p>' + fmt(cur.exp) + '</p>' +
         '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">' +
         (idx > 0 ? '<button class="btn ghost small" data-act="coachTestPrev">← Câu trước</button>' : '') +
         '<button class="btn primary small" data-act="coachTestNext">Câu tiếp theo →</button>' +
-        (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">📖 Xem lại lý thuyết chương này →</button>' : '') + '</div>' +
+        (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">' + ico("bookOpen") + ' Xem lại lý thuyết chương này →</button>' : '') + '</div>' +
       '</div>';
     }
 
@@ -2418,21 +2430,21 @@
         '<div class="coach-hints-accordion">' +
           '<div class="coach-hint-item">' +
             '<button class="coach-hint-btn" data-act="toggleHint" data-h="1">' +
-              '<span>💡 Gợi ý cấp 1: Định hướng tư duy</span>' +
+              '<span>' + ico("bulb") + ' Gợi ý cấp 1: Định hướng tư duy</span>' +
               '<span class="hint-tag l1">' + (h1Open ? 'Ẩn' : 'Mở xem') + '</span>' +
             '</button>' +
             (h1Open ? '<div class="coach-hint-content">' + fmt(cur.h1) + '</div>' : '') +
           '</div>' +
           '<div class="coach-hint-item">' +
             '<button class="coach-hint-btn" data-act="toggleHint" data-h="2">' +
-              '<span>🔍 Gợi ý cấp 2: Phương pháp & Công thức áp dụng</span>' +
+              '<span>' + ico("search") + ' Gợi ý cấp 2: Phương pháp & Công thức áp dụng</span>' +
               '<span class="hint-tag l2">' + (h2Open ? 'Ẩn' : 'Mở xem') + '</span>' +
             '</button>' +
             (h2Open ? '<div class="coach-hint-content">' + fmt(cur.h2) + '</div>' : '') +
           '</div>' +
           '<div class="coach-hint-item">' +
             '<button class="coach-hint-btn" data-act="toggleHint" data-h="3">' +
-              '<span>🛡️ Gợi ý cấp 3: Vạch trần bẫy phương án nhiễu</span>' +
+              '<span>' + ico("shield") + ' Gợi ý cấp 3: Vạch trần bẫy phương án nhiễu</span>' +
               '<span class="hint-tag l3">' + (h3Open ? 'Ẩn' : 'Mở xem') + '</span>' +
             '</button>' +
             (h3Open ? '<div class="coach-hint-content">' + fmt(cur.h3) + '</div>' : '') +
@@ -2467,12 +2479,12 @@
         var badge = "";
         if (o.k === cur.a) {
           cls += " reveal-correct";
-          badge = ' <span class="opt-badge-correct">✓ Đáp án đúng</span>';
+          badge = ' <span class="opt-badge-correct">' + ico("check") + ' Đáp án đúng</span>';
         }
         if (p === o.k) {
           cls += " picked " + (o.k === cur.a ? " good" : " warn");
           if (o.k !== cur.a) {
-            badge = ' <span class="opt-badge-wrong">✗ Lựa chọn của bạn</span>';
+            badge = ' <span class="opt-badge-wrong">' + ico("close") + ' Lựa chọn của bạn</span>';
           }
         }
         return '<button class="' + cls + '" data-act="coachTestPick" data-p="' + esc(o.k) + '" disabled>' +
@@ -2486,39 +2498,39 @@
       var diagContainer = $(".diagnostic-feedback", card);
       var diagHtml = ok
         ? '<div class="diagnostic-feedback ok-diag">' +
-            '<div class="fb-header"><span class="fb-badge ok">✓ Chính xác!</span> <b>Bạn đã nắm chắc kiến thức (+15 XP)</b></div>' +
+            '<div class="fb-header"><span class="fb-badge ok">' + ico("check") + ' Chính xác!</span> <b>Bạn đã nắm chắc kiến thức (+15 XP)</b></div>' +
             '<div class="fb-section-box exp">' +
-              '<div class="fb-sec-title">💡 <b>Bản chất cốt lõi & Giải thích:</b></div>' +
+              '<div class="fb-sec-title">' + ico("bulb") + ' <b>Bản chất cốt lõi & Giải thích:</b></div>' +
               '<div class="fb-sec-desc">' + fmt(cur.exp) + '</div>' +
             '</div>' +
             '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">' +
               '<button class="btn primary small" data-act="coachTestNext">Câu tiếp theo →</button>' +
-              (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">📖 Xem lại lý thuyết chương này →</button>' : '') +
+              (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">' + ico("bookOpen") + ' Xem lại lý thuyết chương này →</button>' : '') +
             '</div>' +
           '</div>'
         : '<div class="diagnostic-feedback bad-diag">' +
-            '<div class="fb-header"><span class="fb-badge bad">✗ Chưa chính xác</span> <b>Phân tích lỗi sai & Chẩn đoán bẫy:</b></div>' +
+            '<div class="fb-header"><span class="fb-badge bad">' + ico("close") + ' Chưa chính xác</span> <b>Phân tích lỗi sai & Chẩn đoán bẫy:</b></div>' +
             '<div class="fb-comparison">' +
               '<div class="fb-comp-row correct">' +
-                '<span class="fb-comp-label">✓ Đáp án đúng:</span>' +
+                '<span class="fb-comp-label">' + ico("check") + ' Đáp án đúng:</span>' +
                 '<span class="fb-comp-val"><b>' + esc(cur.a) + '.</b> ' + fmt(correctObj.t) + '</span>' +
               '</div>' +
               '<div class="fb-comp-row wrong">' +
-                '<span class="fb-comp-label">✗ Bạn đã chọn:</span>' +
+                '<span class="fb-comp-label">' + ico("close") + ' Bạn đã chọn:</span>' +
                 '<span class="fb-comp-val"><b>' + esc(p) + '.</b> ' + fmt(pickedObj.t) + '</span>' +
               '</div>' +
             '</div>' +
             (cur.h3 ? '<div class="fb-section-box flaw">' +
-              '<div class="fb-sec-title">⚠️ <b>Chỉ ra lỗi sai & Bẫy phương án ' + esc(p) + ':</b></div>' +
+              '<div class="fb-sec-title">' + ico("alert") + ' <b>Chỉ ra lỗi sai & Bẫy phương án ' + esc(p) + ':</b></div>' +
               '<div class="fb-sec-desc">' + fmt(cur.h3) + '</div>' +
             '</div>' : '') +
             '<div class="fb-section-box exp">' +
-              '<div class="fb-sec-title">💡 <b>Bản chất khoa học & Giải thích:</b></div>' +
+              '<div class="fb-sec-title">' + ico("bulb") + ' <b>Bản chất khoa học & Giải thích:</b></div>' +
               '<div class="fb-sec-desc">' + fmt(cur.exp) + '</div>' +
             '</div>' +
             '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">' +
               '<button class="btn primary small" data-act="coachTestNext">Câu tiếp theo →</button>' +
-              (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">📖 Xem lại lý thuyết chương này →</button>' : '') +
+              (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">' + ico("bookOpen") + ' Xem lại lý thuyết chương này →</button>' : '') +
             '</div>' +
           '</div>';
 
