@@ -1024,28 +1024,175 @@
       }
     },
 
+    // Recalculate State Cleanly when Adjusting Dosages
+    recalcState: function (chId, stageIdx) {
+      var sc = this.getLab(chId, stageIdx);
+      if (!sc) return null;
+      var st = this.getOrCreateState(chId, stageIdx);
+      var savedReagents = JSON.parse(JSON.stringify(st.reagents || {}));
+      var wasHeated = st.heated;
+      var wasOverheated = st.overheated;
+
+      // Re-initialize fresh state
+      var fresh = JSON.parse(JSON.stringify(sc.initial));
+      fresh.reagents = {};
+      sc.reagents.forEach(function (r) { fresh.reagents[r.id] = 0; });
+
+      // Replay reagent drops
+      sc.reagents.forEach(function (r) {
+        var count = savedReagents[r.id] || 0;
+        for (var i = 0; i < count; i++) {
+          fresh.log = sc.processReagent(fresh, r.id, sc);
+        }
+      });
+
+      // Replay action state if applicable
+      if (wasOverheated && sc.actions.some(function (a) { return a.id === "overheat"; })) {
+        fresh.log = sc.processAction(fresh, "overheat", sc);
+      } else if (wasHeated && sc.actions.some(function (a) { return a.id === "heat"; })) {
+        fresh.log = sc.processAction(fresh, "heat", sc);
+      }
+
+      this.activeStates[chId + "_" + stageIdx] = fresh;
+      return fresh;
+    },
+
+    // Helper: Render Droplet Reservoir Pips
+    renderPips: function (count, color) {
+      var html = '';
+      for (var i = 1; i <= 5; i++) {
+        var isFilled = i <= count;
+        html += '<span class="drop-pip ' + (isFilled ? 'filled' : 'empty') + '" style="--pip-color:' + color + '">' +
+          '<svg viewBox="0 0 24 24" ' + (isFilled ? 'fill="currentColor"' : 'fill="none" stroke="currentColor" stroke-width="2"') + '>' +
+            CHEMICONS.drop +
+          '</svg>' +
+        '</span>';
+      }
+      if (count > 5) {
+        html += '<span class="drop-pip-more">+' + (count - 5) + '</span>';
+      }
+      return html;
+    },
+
+    // Helper: Render Reagent Channels Matrix for Master Stoich Banner
+    renderReagentChannels: function (sc, st) {
+      if (!sc.reagents) return '';
+      return sc.reagents.map(function (r) {
+        var count = (st.reagents && st.reagents[r.id]) || 0;
+        return '<div class="stoich-channel-row" style="--ch-color:' + r.color + '">' +
+          '<span class="stoich-channel-name"><span class="stoich-channel-dot"></span>' + r.name + '</span>' +
+          '<span class="stoich-channel-drops">' + count + ' giọt</span>' +
+        '</div>';
+      }).join('');
+    },
+
+    // Real-time Update of all Doser Consoles & Master Stoich HUD
+    updateDoserUI: function (chId, stageIdx) {
+      var sc = this.getLab(chId, stageIdx);
+      if (!sc) return;
+      var st = this.getOrCreateState(chId, stageIdx);
+
+      var totalDrops = 0;
+      sc.reagents.forEach(function (r) {
+        var count = (st.reagents && st.reagents[r.id]) || 0;
+        totalDrops += count;
+
+        var doserBox = document.getElementById("doser-" + chId + "-" + stageIdx + "-" + r.id);
+        var valEl = document.getElementById("dose-val-" + chId + "-" + stageIdx + "-" + r.id);
+        var pipsEl = document.getElementById("pips-" + chId + "-" + stageIdx + "-" + r.id);
+        var meterStatus = document.getElementById("meter-status-" + chId + "-" + stageIdx + "-" + r.id);
+        var minusBtn = doserBox ? doserBox.querySelector(".btn-minus") : null;
+
+        if (doserBox) {
+          if (count > 0) doserBox.classList.add("active");
+          else doserBox.classList.remove("active");
+        }
+        if (valEl) {
+          valEl.textContent = count < 10 ? "0" + count : "" + count;
+          if (count === 0) valEl.classList.add("zero");
+          else valEl.classList.remove("zero");
+
+          valEl.classList.add("bump");
+          setTimeout(function () { valEl.classList.remove("bump"); }, 180);
+        }
+        if (pipsEl) {
+          pipsEl.innerHTML = ChemLab.renderPips(count, r.color);
+        }
+        if (meterStatus) {
+          meterStatus.textContent = count === 0 ? "Chưa nhỏ" : (count <= 3 ? "Đang thêm" : "Dư liều");
+        }
+        if (minusBtn) {
+          minusBtn.disabled = count === 0;
+        }
+      });
+
+      // Update Master Stoichiometric Banner
+      var totalBadge = document.getElementById("stoich-total-" + chId + "-" + stageIdx);
+      if (totalBadge) totalBadge.textContent = "Tổng: " + totalDrops + " giọt";
+
+      var channelsEl = document.getElementById("stoich-channels-" + chId + "-" + stageIdx);
+      if (channelsEl) channelsEl.innerHTML = ChemLab.renderReagentChannels(sc, st);
+
+      var stoichPill = document.getElementById("stoich-pill-" + chId + "-" + stageIdx);
+      var stoichDesc = document.getElementById("stoich-desc-" + chId + "-" + stageIdx);
+      if (sc.calcStoich && stoichPill && stoichDesc) {
+        var sData = sc.calcStoich(st, sc);
+        stoichPill.className = "stoich-pill " + sData.pillCls;
+        stoichPill.textContent = sData.pillText;
+        stoichDesc.textContent = sData.desc;
+      }
+    },
+
     // Render Full Interactive Virtual Laboratory Widget
     renderWidget: function (chId, stageIdx) {
       var sc = this.getLab(chId, stageIdx);
       if (!sc) return "";
       var st = this.getOrCreateState(chId, stageIdx);
 
-      // Reagent Cards with live dosage badges
+      // Reagent Cards with Redesigned Precision Micropipette Doser Console (Khung Đếm Số Giọt)
+      var totalDrops = 0;
       var reagentCards = sc.reagents.map(function (r) {
         var count = (st.reagents && st.reagents[r.id]) || 0;
-        var badgeCls = count > 0 ? " active" : "";
+        totalDrops += count;
+        var boxActive = count > 0 ? " active" : "";
+        var valZero = count === 0 ? " zero" : "";
+        var valStr = count < 10 ? "0" + count : "" + count;
+        var statusText = count === 0 ? "Chưa nhỏ" : (count <= 3 ? "Đang thêm" : "Dư liều");
+
         return '<div class="chemlab-reagent-card" draggable="true" data-chemlab-act="dragReagent" data-ch="' + chId + '" data-idx="' + stageIdx + '" data-rid="' + r.id + '" style="--rg-color:' + r.color + '">' +
           '<div class="rg-card-head">' +
             '<span class="rg-grip" title="Kéo thả trực tiếp vào ống nghiệm">' + cIco("grip") + '</span>' +
             '<span class="rg-bottle-badge" style="background:' + r.color + '">' + cIco("pipette") + '</span>' +
             '<b class="rg-name">' + r.name + '</b>' +
-            '<span class="rg-dosage-badge' + badgeCls + '" id="dose-' + chId + '-' + stageIdx + '-' + r.id + '">' + count + ' giọt</span>' +
           '</div>' +
           '<div class="rg-desc">' + r.desc + '</div>' +
-          '<div class="rg-card-foot">' +
-            '<button class="chemlab-add-btn" data-chemlab-act="reagent" data-ch="' + chId + '" data-idx="' + stageIdx + '" data-rid="' + r.id + '">' +
-              cIco("drop") + ' Nhỏ giọt (+1)' +
-            '</button>' +
+
+          // Redesigned Precision Drop Counter Console
+          '<div class="rg-doser-box' + boxActive + '" id="doser-' + chId + '-' + stageIdx + '-' + r.id + '" style="--rg-color:' + r.color + '">' +
+            '<div class="doser-top-bar">' +
+              '<span class="doser-label">' + cIco("pipette") + ' ĐỊNH LƯỢNG GIỌT</span>' +
+              '<div class="doser-lcd-screen">' +
+                '<span class="doser-lcd-val' + valZero + '" id="dose-val-' + chId + '-' + stageIdx + '-' + r.id + '">' + valStr + '</span>' +
+                '<span class="doser-lcd-unit">GIỌT</span>' +
+              '</div>' +
+            '</div>' +
+            '<div class="doser-reservoir-meter">' +
+              '<div class="doser-pips-chain" id="pips-' + chId + '-' + stageIdx + '-' + r.id + '">' +
+                ChemLab.renderPips(count, r.color) +
+              '</div>' +
+              '<span class="doser-meter-status" id="meter-status-' + chId + '-' + stageIdx + '-' + r.id + '">' + statusText + '</span>' +
+            '</div>' +
+            '<div class="doser-actions-row">' +
+              '<button class="btn-doser-step btn-minus" data-chemlab-act="reagentDec" data-ch="' + chId + '" data-idx="' + stageIdx + '" data-rid="' + r.id + '" title="Rút bớt 1 giọt" ' + (count === 0 ? 'disabled' : '') + '>' +
+                '−1' +
+              '</button>' +
+              '<button class="btn-doser-main" data-chemlab-act="reagent" data-ch="' + chId + '" data-idx="' + stageIdx + '" data-rid="' + r.id + '" title="Nhỏ 1 giọt vào ống nghiệm">' +
+                cIco("drop") + ' <span>Nhỏ 1 giọt</span>' +
+              '</button>' +
+              '<button class="btn-doser-step btn-plus3" data-chemlab-act="reagentQuick" data-ch="' + chId + '" data-idx="' + stageIdx + '" data-rid="' + r.id + '" title="Nhỏ nhanh 3 giọt">' +
+                '+3' +
+              '</button>' +
+            '</div>' +
           '</div>' +
         '</div>';
       }).join("");
@@ -1154,20 +1301,36 @@
               '<span class="status-pill vol" id="pill-vol-' + chId + '-' + stageIdx + '">' + cIco("tube") + ' ' + (st.volume * 0.2).toFixed(1) + ' mL</span>' +
             '</div>' +
 
-            // Stoichiometric Ratio Banner
+            // Master Stoichiometric Dosing HUD Banner
             '<div class="tube-stoich-banner" id="stoich-banner-' + chId + '-' + stageIdx + '">' +
-              '<div class="stoich-ratio-row">' +
-                '<span class="stoich-pill ' + stoichData.pillCls + '" id="stoich-pill-' + chId + '-' + stageIdx + '">' + stoichData.pillText + '</span>' +
+              '<div class="stoich-banner-head">' +
+                '<div class="stoich-head-title">' +
+                  cIco("beaker") +
+                  '<span>ĐỒNG HỒ ĐỊNH LƯỢNG & CÂN BẰNG PHẢN ỨNG</span>' +
+                '</div>' +
+                '<span class="stoich-total-badge" id="stoich-total-' + chId + '-' + stageIdx + '">' +
+                  'Tổng: ' + totalDrops + ' giọt' +
+                '</span>' +
               '</div>' +
-              '<div class="stoich-desc-text" id="stoich-desc-' + chId + '-' + stageIdx + '">' + stoichData.desc + '</div>' +
+              '<div class="stoich-channels-meter" id="stoich-channels-' + chId + '-' + stageIdx + '">' +
+                ChemLab.renderReagentChannels(sc, st) +
+              '</div>' +
+              '<div class="stoich-status-display">' +
+                '<span class="stoich-pill ' + stoichData.pillCls + '" id="stoich-pill-' + chId + '-' + stageIdx + '">' +
+                  stoichData.pillText +
+                '</span>' +
+                '<div class="stoich-desc-text" id="stoich-desc-' + chId + '-' + stageIdx + '">' +
+                  stoichData.desc +
+                '</div>' +
+              '</div>' +
             '</div>' +
 
-            '<div class="tube-drop-hint">' + cIco("pipette") + ' Nhỏ từng giọt hoặc kéo lọ hoá chất thả vào ống</div>' +
+            '<div class="tube-drop-hint">' + cIco("pipette") + ' Nhỏ giọt điều chỉnh liều lượng hoặc kéo thả trực tiếp</div>' +
           '</div>' +
 
           // Right: Reagents Shelf & Tools
           '<div class="chemlab-controls">' +
-            '<div class="ctrl-sec-title">HÓA CHẤT & THUỐC THỬ (NHỎ TỪNG GIỌT ĐỂ THỬ CÁC TỈ LỆ MOL)</div>' +
+            '<div class="ctrl-sec-title">HÓA CHẤT & BỘ ĐỊNH LƯỢNG VI LƯỢNG (NHỎ GIỌT HOẶC RÚT BỚT)</div>' +
             '<div class="chemlab-reagents-shelf">' + reagentCards + '</div>' +
             '<div class="ctrl-sec-title" style="margin-top:14px">THAO TÁC THÍ NGHIỆM</div>' +
             '<div class="chemlab-tools-row">' + actionBtns + '</div>' +
@@ -1191,6 +1354,88 @@
       var rObj = sc.reagents.find(function (r) { return r.id === reagentId; });
       if (!rObj) return;
 
+      // Execute scenario logic to calculate next state
+      var log = sc.processReagent(st, reagentId, sc);
+      st.log = log;
+
+      // Update all doser consoles and master stoich banner in real time!
+      this.updateDoserUI(chId, stageIdx);
+      this.triggerReagentVisual(chId, stageIdx, reagentId);
+    },
+
+    // Fast 3-drop burst dosing
+    triggerReagentQuick: function (chId, stageIdx, reagentId) {
+      var sc = this.getLab(chId, stageIdx);
+      if (!sc) return;
+      var st = this.getOrCreateState(chId, stageIdx);
+      for (var i = 0; i < 3; i++) {
+        st.log = sc.processReagent(st, reagentId, sc);
+      }
+      this.updateDoserUI(chId, stageIdx);
+      this.triggerReagentVisual(chId, stageIdx, reagentId);
+    },
+
+    // Decrement 1 drop and cleanly reconstruct state
+    triggerReagentDec: function (chId, stageIdx, reagentId) {
+      var sc = this.getLab(chId, stageIdx);
+      if (!sc) return;
+      var st = this.getOrCreateState(chId, stageIdx);
+      if (!st.reagents || !st.reagents[reagentId] || st.reagents[reagentId] <= 0) return;
+
+      st.reagents[reagentId]--;
+      var fresh = this.recalcState(chId, stageIdx);
+      this.updateDoserUI(chId, stageIdx);
+
+      var liquidEl = document.getElementById("liquid-" + chId + "-" + stageIdx);
+      var pillVol = document.getElementById("pill-vol-" + chId + "-" + stageIdx);
+      var pillTemp = document.getElementById("pill-temp-" + chId + "-" + stageIdx);
+      var logEl = document.getElementById("log-" + chId + "-" + stageIdx);
+      var topLayerEl = document.getElementById("layer-top-" + chId + "-" + stageIdx);
+      var precipEl = document.getElementById("precip-" + chId + "-" + stageIdx);
+
+      if (liquidEl) {
+        if (window.gsap) {
+          gsap.to(liquidEl, { height: fresh.volume + "%", backgroundColor: fresh.color, duration: 0.5, ease: "power2.out" });
+        } else {
+          liquidEl.style.height = fresh.volume + "%";
+          liquidEl.style.backgroundColor = fresh.color;
+        }
+      }
+
+      if (topLayerEl) {
+        topLayerEl.style.display = fresh.separated ? "block" : "none";
+        if (fresh.layerTopColor) topLayerEl.style.backgroundColor = fresh.layerTopColor;
+      }
+      if (precipEl) {
+        precipEl.style.display = fresh.precipitate ? "block" : "none";
+        if (fresh.precipitate) {
+          precipEl.style.backgroundColor = fresh.precipitate.color || "#ffffff";
+          precipEl.title = fresh.precipitate.name || "Kết tủa";
+        }
+      }
+
+      if (pillVol) pillVol.innerHTML = cIco("tube") + ' ' + (fresh.volume * 0.2).toFixed(1) + ' mL';
+      if (pillTemp) pillTemp.innerHTML = cIco("temp") + ' ' + fresh.temp + '°C';
+
+      var log = fresh.log || (sc.calcStoich ? sc.calcStoich(fresh, sc) : null);
+      if (logEl && log) {
+        var logCls = log.success ? "success" : (log.warn ? "warn" : "info");
+        var logIcon = log.success ? cIco("check") : (log.warn ? cIco("alert") : cIco("bulb"));
+        logEl.className = "chemlab-log-box " + logCls;
+        logEl.innerHTML = '<div class="log-head">' + logIcon + ' <b>' + (log.title || log.pillText || 'Đã rút 1 giọt') + '</b></div>' +
+          '<div class="log-body">' + (log.text || log.desc || '') + '</div>' +
+          (log.rxn ? '<div class="log-rxn"><b>Phương trình & Cơ chế:</b> <code>' + log.rxn + '</code></div>' : '');
+      }
+    },
+
+    // Visual Animation for Liquid Dropping
+    triggerReagentVisual: function (chId, stageIdx, reagentId) {
+      var sc = this.getLab(chId, stageIdx);
+      if (!sc) return;
+      var st = this.getOrCreateState(chId, stageIdx);
+      var rObj = sc.reagents.find(function (r) { return r.id === reagentId; });
+      if (!rObj) return;
+
       var pipEl = document.getElementById("pipette-" + chId + "-" + stageIdx);
       var dropEl = document.getElementById("pip-drop-" + chId + "-" + stageIdx);
       var fluidEl = document.getElementById("pip-fluid-" + chId + "-" + stageIdx);
@@ -1203,28 +1448,6 @@
       var logEl = document.getElementById("log-" + chId + "-" + stageIdx);
       var pillVol = document.getElementById("pill-vol-" + chId + "-" + stageIdx);
       var pillTemp = document.getElementById("pill-temp-" + chId + "-" + stageIdx);
-      var doseEl = document.getElementById("dose-" + chId + "-" + stageIdx + "-" + reagentId);
-      var stoichPill = document.getElementById("stoich-pill-" + chId + "-" + stageIdx);
-      var stoichDesc = document.getElementById("stoich-desc-" + chId + "-" + stageIdx);
-
-      // Execute scenario logic to calculate next state
-      var log = sc.processReagent(st, reagentId, sc);
-      st.log = log;
-
-      // Update dosage count badge in real-time
-      if (doseEl) {
-        var count = (st.reagents && st.reagents[reagentId]) || 0;
-        doseEl.textContent = count + " giọt";
-        doseEl.classList.add("active");
-      }
-
-      // Update Stoichiometric Status Banner
-      if (sc.calcStoich && stoichPill && stoichDesc) {
-        var sData = sc.calcStoich(st, sc);
-        stoichPill.className = "stoich-pill " + sData.pillCls;
-        stoichPill.textContent = sData.pillText;
-        stoichDesc.textContent = sData.desc;
-      }
 
       var dropColor = rObj.dropColor || rObj.color;
       var newHeight = st.volume + "%";
@@ -1319,6 +1542,7 @@
       if (pillTemp) pillTemp.innerHTML = cIco("temp") + ' ' + st.temp + '°C';
 
       // Update observation log with in-place animation
+      var log = st.log;
       if (logEl && log) {
         var logCls = log.success ? "success" : (log.warn ? "warn" : "info");
         var logIcon = log.success ? cIco("check") : (log.warn ? cIco("alert") : cIco("bulb"));
@@ -1880,6 +2104,16 @@
         ev.preventDefault();
         var rid = btn.getAttribute("data-rid");
         ChemLab.triggerReagent(ch, idx, rid);
+        return;
+      } else if (act === "reagentDec") {
+        ev.preventDefault();
+        var ridDec = btn.getAttribute("data-rid");
+        ChemLab.triggerReagentDec(ch, idx, ridDec);
+        return;
+      } else if (act === "reagentQuick") {
+        ev.preventDefault();
+        var ridQuick = btn.getAttribute("data-rid");
+        ChemLab.triggerReagentQuick(ch, idx, ridQuick);
         return;
       } else if (act === "tool") {
         ev.preventDefault();
