@@ -3199,6 +3199,7 @@
           '<div class="guided-sec-title case">' + ico("search") + ' 3. Case Study: Thực nghiệm & Ứng dụng thực tế</div>' +
           '<div class="guided-box case-box" ' + (state.editMode ? 'data-inline-edit="guided-case" data-ch="' + curChId + '" data-idx="' + curIdx + '" contenteditable="true" spellcheck="false" title="Nhấp trực tiếp để sửa case study"' : '') + '>' + fmt(curStage.caseStudy) + '</div>' +
         '</div>') : '') +
+        ((window.ChemLab && ChemLab.hasLab(curChId, curIdx)) ? ChemLab.renderWidget(curChId, curIdx) : '') +
         '<div class="guided-section">' +
           '<div class="guided-sec-title trap">' + ico("alert") + ' ' + (curStage.caseStudy ? '4.' : '3.') + ' Điểm bẫy thi cử & Phân tích đa điều kiện</div>' +
           '<div class="guided-box trap-box" ' + (state.editMode ? 'data-inline-edit="guided-trap" data-ch="' + curChId + '" data-idx="' + curIdx + '" contenteditable="true" spellcheck="false" title="Nhấp trực tiếp để sửa điểm bẫy"' : '') + '>' + fmt(curStage.trap) + '</div>' +

@@ -2809,3 +2809,339 @@ html[data-theme="dark"] textarea::placeholder {
   color: var(--muted) !important;
   opacity: 0.65;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   CHEMLAB VIRTUAL LABORATORY & INTERACTIVE WIDGETS
+   ═══════════════════════════════════════════════════════════════════ */
+.chemlab-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+  border: 1px solid rgba(14, 165, 233, 0.25);
+  border-radius: 18px;
+  padding: 22px 24px;
+  margin: 22px 0 26px;
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+html[data-theme="dark"] .chemlab-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+  border-color: rgba(56, 189, 248, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+.chemlab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.chemlab-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0284c7;
+  background: rgba(14, 165, 233, 0.12);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+}
+html[data-theme="dark"] .chemlab-badge {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+}
+.chemlab-title {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+.chemlab-sub {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.chemlab-mol-btns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chemlab-workbench {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  align-items: center;
+  margin: 18px 0;
+}
+@media (max-width: 720px) {
+  .chemlab-workbench { grid-template-columns: 1fr; }
+}
+.chemlab-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+}
+.test-tube-assembly {
+  position: relative;
+  width: 90px;
+  height: 220px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.tube-dropper-pipette {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 40px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+.pipette-tip {
+  width: 6px;
+  height: 28px;
+  background: rgba(203, 213, 225, 0.85);
+  border-radius: 3px 3px 1px 1px;
+  margin: 0 auto;
+}
+.pipette-drop {
+  width: 8px;
+  height: 10px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: #0284c7;
+  margin: 2px auto 0;
+  opacity: 0;
+}
+.test-tube-glass {
+  position: relative;
+  width: 58px;
+  height: 180px;
+  border: 3px solid rgba(148, 163, 184, 0.65);
+  border-top: none;
+  border-radius: 0 0 29px 29px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4), 0 8px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: all 0.4s ease;
+}
+html[data-theme="dark"] .test-tube-glass {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(148, 163, 184, 0.4);
+}
+.test-tube-glass.mirror-on {
+  background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 50%, #ffffff 100%) !important;
+  box-shadow: inset 0 0 16px rgba(255,255,255,0.95), 0 0 20px rgba(148, 163, 184, 0.8) !important;
+  border-color: #e2e8f0 !important;
+}
+.glass-reflection {
+  position: absolute;
+  top: 0; left: 5px; bottom: 0; width: 6px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.05) 100%);
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 5;
+}
+.tube-graduations {
+  position: absolute;
+  top: 20px; right: 4px; bottom: 40px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  font-size: 8px; color: rgba(100, 116, 139, 0.6); font-family: monospace;
+  pointer-events: none; z-index: 4;
+}
+.tube-liquid {
+  position: relative;
+  width: 100%;
+  min-height: 15px;
+  border-radius: 0 0 26px 26px;
+  transition: height 0.4s ease, background 0.4s ease;
+  overflow: hidden;
+}
+.tube-layer-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  border-bottom: 2px dashed rgba(255,255,255,0.7);
+  z-index: 3;
+}
+.layer-tag {
+  font-size: 8px; font-weight: 700; color: #713f12; background: rgba(254, 240, 138, 0.95);
+  padding: 1px 4px; border-radius: 4px; position: absolute; right: 2px; top: 2px;
+}
+.tube-precipitate {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 20px;
+  border-radius: 0 0 26px 26px;
+  opacity: 0.95;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+  z-index: 2;
+}
+.tube-bubbles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.tube-bubbles span {
+  position: absolute;
+  bottom: 4px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  animation: bubbleUp 1.4s infinite ease-in;
+}
+.tube-bubbles span:nth-child(1) { left: 20%; animation-delay: 0.1s; }
+.tube-bubbles span:nth-child(2) { left: 45%; animation-delay: 0.5s; width: 4px; height: 4px; }
+.tube-bubbles span:nth-child(3) { left: 65%; animation-delay: 0.9s; }
+.tube-bubbles span:nth-child(4) { left: 80%; animation-delay: 0.3s; width: 6px; height: 6px; }
+@keyframes bubbleUp {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: translateY(-70px) scale(1.3); opacity: 0; }
+}
+.tube-stand-base {
+  width: 80px; height: 10px;
+  background: #cbd5e1;
+  border-radius: 5px;
+  margin-top: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+html[data-theme="dark"] .tube-stand-base { background: #334155; }
+.tube-status-bar {
+  display: flex; gap: 8px; margin-top: 10px;
+}
+.status-pill {
+  font-size: 0.78rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 6px;
+  background: var(--surface); border: 1px solid var(--line);
+  color: var(--fg);
+}
+.ctrl-sec-title {
+  font-size: 0.74rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px;
+}
+.chemlab-reagents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 8px;
+}
+.chemlab-reagent-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--fg);
+  transition: all 0.18s ease;
+  text-align: left;
+}
+.chemlab-reagent-btn:hover {
+  border-color: var(--rg-color);
+  background: rgba(14, 165, 233, 0.08);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+.rg-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.rg-name { flex: 1; line-height: 1.3; }
+.rg-drop-pill {
+  font-size: 0.72rem; font-weight: 700; color: #0284c7;
+  background: rgba(14, 165, 233, 0.12); padding: 2px 6px; border-radius: 6px;
+}
+html[data-theme="dark"] .rg-drop-pill {
+  color: #38bdf8; background: rgba(56, 189, 248, 0.15);
+}
+.chemlab-tools-row {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px;
+}
+.chemlab-tool-btn {
+  font-size: 0.84rem !important;
+}
+.chemlab-log-box {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  border: 1px solid var(--line);
+}
+.chemlab-log-box.success {
+  background: #f0fdf4; border-color: rgba(34, 197, 94, 0.3); color: #166534;
+}
+.chemlab-log-box.warn {
+  background: #fffbeb; border-color: rgba(245, 158, 11, 0.3); color: #92400e;
+}
+.chemlab-log-box.info {
+  background: #f0f9ff; border-color: rgba(14, 165, 233, 0.3); color: #0369a1;
+}
+html[data-theme="dark"] .chemlab-log-box.success {
+  background: rgba(34, 197, 94, 0.14); color: #bbf7d0; border-color: rgba(74, 222, 128, 0.3);
+}
+html[data-theme="dark"] .chemlab-log-box.warn {
+  background: rgba(245, 158, 11, 0.14); color: #fde68a; border-color: rgba(251, 191, 36, 0.3);
+}
+html[data-theme="dark"] .chemlab-log-box.info {
+  background: rgba(14, 165, 233, 0.14); color: #bae6fd; border-color: rgba(56, 189, 248, 0.3);
+}
+.log-head {
+  display: flex; align-items: center; gap: 8px; font-size: 0.95rem; margin-bottom: 4px;
+}
+.log-rxn {
+  margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(0,0,0,0.1);
+  font-size: 0.88rem;
+}
+.log-rxn code {
+  display: inline-block; background: rgba(0,0,0,0.06); padding: 2px 6px; border-radius: 4px; font-weight: 600;
+}
+html[data-theme="dark"] .log-rxn code { background: rgba(255,255,255,0.1); }
+
+/* Molecule Viewer Modal */
+.chemlab-modal-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10000; padding: 20px;
+  animation: fadeInModal 0.2s ease-out;
+}
+.chemlab-modal-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  max-width: 520px; width: 100%;
+  padding: 22px 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.modal-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 16px;
+}
+.modal-close-btn {
+  font-size: 1.4rem !important; line-height: 1; padding: 4px 8px !important; cursor: pointer;
+}
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
