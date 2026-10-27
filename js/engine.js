@@ -1627,7 +1627,14 @@
         "opts": "A=Ethyl acetate;B=Methyl propionate;C=Propyl formate;D=Isopropyl formate",
         "a": "A",
         "exp": "Chính xác tuyệt đối! Phân tử khối M_X = 22 × 4 = 88 → CTPT là C₄H₈O₂. Vì phản ứng thủy phân sinh ra muối RCOONa và alcohol R'OH có cùng số nguyên tử carbon nên gốc R và R' đều có đúng 2 carbon → Công thức là CH₃COOC₂H₅ (ethyl acetate).",
-        "hint": "Phân tử khối este M = 22 × 4 = 88. Tìm este C₄H₈O₂ sao cho số C của gốc acid bằng số C của gốc alcohol."
+        "hint": "Phân tử khối este M = 22 × 4 = 88. Tìm este C₄H₈O₂ sao cho số C của gốc acid bằng số C của gốc alcohol.",
+        "breakdown": {
+          "A": "ĐÚNG: Ethyl acetate là CH₃COOC₂H₅. M = 88. Gốc acid có 2 carbon và gốc alcohol có 2 carbon (số C bằng nhau).",
+          "B": "SAI: Methyl propionate là C₂H₅COOCH₃ (gốc acid có 3C, gốc alcohol có 1C — số carbon không bằng nhau).",
+          "C": "SAI: Propyl formate là HCOOCH₂CH₂CH₃ (gốc acid có 1C, gốc alcohol có 3C — không bằng nhau).",
+          "D": "SAI: Isopropyl formate là HCOOCH(CH₃)₂ (gốc acid có 1C, gốc alcohol có 3C — không bằng nhau)."
+        },
+        "mnemonic": "Khẩu quyết C₄H₈O₂: 'Bốn Este - Hai Acid'. Muốn muối và alcohol cùng C thì 4C chia đôi thành 2 và 2 (CH₃COOC₂H₅)!"
       }
     },
     {
@@ -1647,7 +1654,14 @@
         "opts": "A=1 este;B=2 este;C=3 este;D=4 este",
         "a": "A",
         "exp": "Xuất sắc! Chỉ có duy nhất (4) methyl methacrylate thỏa mãn: sinh alcohol CH₃OH và không tráng bạc. Phân tích các chất còn lại: (1) Phenyl acetate sinh 2 muối và H₂O (không sinh alcohol); (2) Methyl formate sinh alcohol CH₃OH nhưng muối HCOONa tráng bạc được; (3) Vinyl acetate sinh aldehyde CH₃CHO (không sinh alcohol).",
-        "hint": "Loại este của phenol (không sinh alcohol), loại este vinyl (sinh andehit), và loại este của axit formic (có tráng bạc)."
+        "hint": "Loại este của phenol (không sinh alcohol), loại este vinyl (sinh andehit), và loại este của axit formic (có tráng bạc).",
+        "breakdown": {
+          "A": "ĐÚNG: Chỉ có duy nhất (4) methyl methacrylate thoả mãn cả 2 điều kiện: sinh alcohol CH₃OH và không tráng bạc.",
+          "B": "SAI: (1) Phenyl acetate ăn 2 NaOH sinh 2 muối + H₂O (không sinh alcohol); (3) Vinyl acetate sinh aldehyde CH₃CHO (không sinh alcohol).",
+          "C": "SAI: (2) Methyl formate sinh alcohol CH₃OH nhưng muối HCOONa lại có phản ứng tráng bạc (vi phạm điều kiện 2).",
+          "D": "SAI: Có tới 3 chất không thoả mãn điều kiện của đề bài."
+        },
+        "mnemonic": "Este phenol không sinh alcohol; este vinyl sinh andehit; este formate tráng bạc 1 ăn 2!"
       }
     },
     {
@@ -1667,7 +1681,14 @@
         "opts": "A=Dung dịch NaCl bão hoà giúp este tách lớp nổi lên trên bề mặt rõ rệt;B=Axit H₂SO₄ đặc vừa làm xúc tác vừa có tác dụng hút nước chuyển dịch cân bằng;C=Có thể thay thế dung dịch NaCl bão hoà bằng dung dịch HCl đặc để este nổi lên nhanh hơn;D=Ống thuỷ tinh thẳng dài lắp nghiêng đóng vai trò ống sinh hàn ngưng tụ hồi lưu hơi chất lỏng",
         "a": "C",
         "exp": "Chính xác! Phát biểu C sai hoàn toàn. Dung dịch NaCl bão hòa có khối lượng riêng lớn và độ tan của este trong đó rất bé, giúp este tách lớp triệt để. Nếu thay bằng HCl đặc, axit sẽ xúc tác làm thủy phân ngược este trở lại axit và alcohol!",
-        "hint": "NaCl bão hòa tạo hiệu ứng salting-out giúp tách lớp. Dung dịch HCl đặc có tác dụng này không?"
+        "hint": "NaCl bão hòa tạo hiệu ứng salting-out giúp tách lớp. Dung dịch HCl đặc có tác dụng này không?",
+        "breakdown": {
+          "A": "SAI: H₂SO₄ đặc đóng vai trò kép: vừa xúc tác acid vừa hút nước để chuyển dịch cân bằng sang phía tạo este.",
+          "B": "SAI: Ống dẫn khí dài để hơi este và alcohol ngưng tụ hồi lưu trở lại ống nghiệm, tránh thất thoát.",
+          "C": "ĐÚNG: NaCl bão hoà lạnh giúp tăng tỉ trọng lớp nước và làm giảm độ tan của este (hiệu ứng muối kết), đẩy este nhẹ nổi lên trên.",
+          "D": "SAI: Không được đun sôi trực tiếp bằng ngọn lửa đèn cồn vì cồn và este dễ bốc cháy; phải đun cách thuỷ ở 65-70°C."
+        },
+        "mnemonic": "NaCl bão hòa: Tăng tỉ trọng dung dịch, ép este nổi lên tách pha dầu!"
       }
     },
     {
@@ -1687,7 +1708,14 @@
         "opts": "A=1;B=2;C=3;D=4",
         "a": "C",
         "exp": "Chính xác! Có 3 phát biểu đúng là (a), (b), (c). Phát biểu (d) sai vì dầu mỡ bôi trơn máy móc là hỗn hợp hydrocarbon khoáng vật, còn dầu thực vật và mỡ động vật là este của glycerol với acid béo.",
-        "hint": "Xem xét kỹ bản chất của dầu bôi trơn động cơ xe máy: nó có phải là este không?"
+        "hint": "Xem xét kỹ bản chất của dầu bôi trơn động cơ xe máy: nó có phải là este không?",
+        "breakdown": {
+          "A": "SAI: Bị thiếu các phát biểu đúng khác (cả a, c, d đều đúng).",
+          "B": "SAI: Phát biểu (b) sai vì chất giặt rửa tổng hợp không bị kết tủa trong nước cứng như xà phòng thông thường.",
+          "C": "ĐÚNG: Gồm 3 phát biểu đúng là (a), (c) và (d).",
+          "D": "SAI: Phát biểu (b) sai: Chất giặt rửa tổng hợp dùng tốt trong cả nước cứng vì muối của nó tan tốt trong nước."
+        },
+        "mnemonic": "Xà phòng gặp nước cứng bị kết tủa; chất giặt tổng hợp bất chấp mọi loại nước!"
       }
     },
     {
@@ -1707,7 +1735,14 @@
         "opts": "A=18,36 gam;B=19,12 gam;C=17,24 gam;D=18,84 gam",
         "a": "A",
         "exp": "Chính xác tuyệt đối! Số mol glycerol: n = 1,84 / 92 = 0,02 mol. Theo tỉ lệ mol phản ứng: n(NaOH) = 3 × n(glycerol) = 3 × 0,02 = 0,06 mol. Áp dụng định luật bảo toàn khối lượng: m(chất béo) + m(NaOH) = m(muối) + m(glycerol) → 17,8 + (0,06 × 40) = m + 1,84 → m = 18,36 gam.",
-        "hint": "Tính n(glycerol) = 1,84 / 92. Từ đó suy ra n(NaOH) = 3 × n(glycerol). Dùng bảo toàn khối lượng để tìm m(muối)."
+        "hint": "Tính n(glycerol) = 1,84 / 92. Từ đó suy ra n(NaOH) = 3 × n(glycerol). Dùng bảo toàn khối lượng để tìm m(muối).",
+        "breakdown": {
+          "A": "ĐÚNG: n(glycerol) = n(triglyceride) = 17,8 / 890 = 0,02 mol. n(NaOH) = 3 × 0,02 = 0,06 mol. Bảo toàn khối lượng: m(muối) = 17,8 + 0,06 × 40 - 0,02 × 92 = 18,36 gam.",
+          "B": "SAI: Quên không trừ đi khối lượng glycerol sinh ra.",
+          "C": "SAI: Quên nhân hệ số 3 của NaOH trong phương trình xà phòng hoá.",
+          "D": "SAI: Tính sai khối lượng phân tử của triglixerit tristearin."
+        },
+        "mnemonic": "Toán xà phòng: m(muối) = m(chất béo) + m(NaOH) - m(glycerol). Tỉ lệ: 1 béo : 3 kiềm : 1 glycerol!"
       }
     }
   ],
@@ -1729,7 +1764,14 @@
         "opts": "A=Cu(OH)₂ ở nhiệt độ thường;B=Dung dịch AgNO₃ trong NH₃, đun nóng;C=Kim loại Sodium (Na);D=Dung dịch nước bromine",
         "a": "A",
         "exp": "Chính xác! Phản ứng tạo phức màu xanh lam thẫm với Cu(OH)₂ ở nhiệt độ thường là phản ứng đặc trưng của các polyalcohol có các nhóm -OH liền kề nhau. Phản ứng với Na chỉ chứng minh có nguyên tử H linh động; phản ứng tráng bạc chứng minh có nhóm aldehyde.",
-        "hint": "Thuốc thử nào nhận diện polyalcohol kề nhau bằng hiện tượng hòa tan kết tủa tạo phức màu xanh lam thẫm?"
+        "hint": "Thuốc thử nào nhận diện polyalcohol kề nhau bằng hiện tượng hòa tan kết tủa tạo phức màu xanh lam thẫm?",
+        "breakdown": {
+          "A": "ĐÚNG: Hòa tan Cu(OH)₂ ở nhiệt độ thường tạo phức màu xanh lam thẫm chứng minh glucose có nhiều nhóm -OH kề nhau.",
+          "B": "SAI: Phản ứng tráng bạc chứng minh nhóm aldehyde -CHO, không chứng minh nhiều nhóm -OH kề nhau.",
+          "C": "SAI: Khử hoàn toàn bằng HI chứng minh phân tử có mạch 6 nguyên tử carbon không phân nhánh.",
+          "D": "SAI: Lên men rượu chứng minh khả năng chuyển hóa sinh học, không chứng minh nhóm -OH."
+        },
+        "mnemonic": "Cu(OH)₂ thường xanh lam: Bằng chứng thép của polyol kề nhau!"
       }
     },
     {
@@ -1749,7 +1791,14 @@
         "opts": "A=27,0 gam;B=54,0 gam;C=13,5 gam;D=18,0 gam",
         "a": "A",
         "exp": "Chính xác tuyệt đối! Số mol Ag: n(Ag) = 32,4 / 108 = 0,3 mol. Phản ứng tráng bạc: 1 mol glucose (C₆H₁₂O₆) sinh ra 2 mol Ag → n(glucose) = 0,3 / 2 = 0,15 mol. Khối lượng glucose: m = 0,15 × 180 = 27,0 gam.",
-        "hint": "Nhớ tỉ lệ phản ứng tráng bạc: 1 mol glucose tạo ra 2 mol Ag. Tính n(Ag) rồi suy ra n(glucose) và m."
+        "hint": "Nhớ tỉ lệ phản ứng tráng bạc: 1 mol glucose tạo ra 2 mol Ag. Tính n(Ag) rồi suy ra n(glucose) và m.",
+        "breakdown": {
+          "A": "ĐÚNG: 1 mol Glucose sinh đúng 2 mol Ag. Số mol Ag = 21,6 / 108 = 0,2 mol → n(glucose) = 0,1 mol → m = 0,1 × 180 = 18,0 gam.",
+          "B": "SAI: Nhầm tỉ lệ 1:1 (m = 36,0g là lấy 0,2 × 180).",
+          "C": "SAI: Lấy nhầm khối lượng phân tử của saccharose (342) thay vì glucose (180).",
+          "D": "SAI: Lấy nhầm khối lượng phân tử của glycerol (92)."
+        },
+        "mnemonic": "Glucose tráng bạc: 1 mol đẻ 2 Ag. Lấy mol Ag chia đôi ra mol Glucose!"
       }
     },
     {
@@ -1769,7 +1818,14 @@
         "opts": "A=72,0 gam;B=54,0 gam;C=36,0 gam;D=40,5 gam",
         "a": "A",
         "exp": "Đỉnh cao! n(CaCO₃) = 60 / 100 = 0,6 mol = n(CO₂). Theo phản ứng lên men: 1 glucose sinh ra 2 CO₂ → n(glucose phản ứng) = 0,6 / 2 = 0,3 mol. Vì hiệu suất đạt 75% nên lượng glucose thực tế ban đầu cần lấy là: n = 0,3 / 0,75 = 0,4 mol → m = 0,4 × 180 = 72,0 gam.",
-        "hint": "n(CO₂) = n(CaCO₃) = 0,6 mol. n(glucose pứ) = 0,3 mol. Vì hiệu suất 75% nên chia cho 0,75: n(ban đầu) = 0,3 / 0,75."
+        "hint": "n(CO₂) = n(CaCO₃) = 0,6 mol. n(glucose pứ) = 0,3 mol. Vì hiệu suất 75% nên chia cho 0,75: n(ban đầu) = 0,3 / 0,75.",
+        "breakdown": {
+          "A": "ĐÚNG: C₆H₁₂O₆ → 2 C₂H₅OH + 2 CO₂. n(CO₂) = n(CaCO₃) = 50 / 100 = 0,5 mol → n(glucose lý thuyết) = 0,25 mol. Do H = 80% → n(glucose thực tế) = 0,25 / 0,8 = 0,3125 mol → m = 56,25 gam.",
+          "B": "SAI: Quên chia cho hiệu suất (lấy 0,25 × 0,8 thay vì chia 0,8).",
+          "C": "SAI: Quên tỉ lệ 1 glucose sinh ra 2 CO₂.",
+          "D": "SAI: Nhầm lẫn giữa khối lượng dung dịch giảm và khối lượng kết tủa."
+        },
+        "mnemonic": "Tính chất tham gia ban đầu: Muốn tìm lượng thực tế thì LẤY LÝ THUYẾT CHIA HIỆU SUẤT!"
       }
     },
     {
@@ -1789,7 +1845,14 @@
         "opts": "A=3 chất thuỷ phân và 2 chất tráng bạc;B=3 chất thuỷ phân và 3 chất tráng bạc;C=4 chất thuỷ phân và 2 chất tráng bạc;D=2 chất thuỷ phân và 3 chất tráng bạc",
         "a": "A",
         "exp": "Chính xác tuyệt đối! Chất bị thuỷ phân gồm 3 chất: saccharose (disaccharide) và 2 polysaccharide (tinh bột, cellulose). Monosaccharide không bị thuỷ phân. Chất tráng bạc gồm 2 chất: glucose và fructose. Saccharose, tinh bột và cellulose không tráng bạc.",
-        "hint": "Monosaccharide (đường đơn) có bị thủy phân được không? Những chất nào mở vòng tạo nhóm aldehyde để tráng bạc?"
+        "hint": "Monosaccharide (đường đơn) có bị thủy phân được không? Những chất nào mở vòng tạo nhóm aldehyde để tráng bạc?",
+        "breakdown": {
+          "A": "ĐÚNG: Có đúng 3 chất tham gia phản ứng tráng bạc là glucose, fructose và maltose (saccharose, tinh bột, cellulose không tráng bạc).",
+          "B": "SAI: Quên mất maltose vẫn có nhóm hemiacetal mở vòng tráng bạc được.",
+          "C": "SAI: Đếm nhầm saccharose tráng bạc (saccharose chỉ tráng bạc sau khi thủy phân).",
+          "D": "SAI: Tinh bột và cellulose là polysaccharide hoàn toàn không có tính khử tráng bạc."
+        },
+        "mnemonic": "Tráng bạc tự do: Glu, Fruc, Mal. Bị khóa vòng: Sac, Tinh bột, Xen!"
       }
     },
     {
@@ -1809,7 +1872,14 @@
         "opts": "A=43,2 gam;B=21,6 gam;C=10,8 gam;D=32,4 gam",
         "a": "A",
         "exp": "Đỉnh cao! n(saccharose) = 34,2 / 342 = 0,1 mol. Thuỷ phân 1 mol saccharose tạo 1 mol glucose và 1 mol fructose. Cả glucose và fructose trong môi trường kiềm đều tráng bạc với tỉ lệ 1 mol đường : 2 mol Ag → 1 mol saccharose cho 4 mol Ag! Do đó n(Ag) = 4 × 0,1 = 0,4 mol → m(Ag) = 0,4 × 108 = 43,2 gam.",
-        "hint": "1 mol saccharose thủy phân tạo 1 glucose + 1 fructose. Mỗi chất này tráng bạc tạo 2 Ag. Vậy 1 mol saccharose tạo ra bao nhiêu mol Ag?"
+        "hint": "1 mol saccharose thủy phân tạo 1 glucose + 1 fructose. Mỗi chất này tráng bạc tạo 2 Ag. Vậy 1 mol saccharose tạo ra bao nhiêu mol Ag?",
+        "breakdown": {
+          "A": "ĐÚNG: n(saccharose) = 34,2 / 342 = 0,1 mol. Thủy phân sinh 0,1 mol Glucose + 0,1 mol Fructose. Cả 2 đều tráng bạc (tổng 0,4 mol Ag). Khối lượng Ag = 0,4 × 108 = 43,2 gam.",
+          "B": "SAI: Nghĩ rằng chỉ có glucose tráng bạc nên tính ra 21,6 gam (thiếu fructose).",
+          "C": "SAI: Tính nhầm saccharose tráng bạc trực tiếp.",
+          "D": "SAI: Tính sai phân tử khối của saccharose."
+        },
+        "mnemonic": "Saccharose thủy phân: 1 mol mẹ sinh 2 con, tráng bạc 1 ăn 4 Ag!"
       }
     }
   ],
@@ -1831,7 +1901,14 @@
         "opts": "A=2 đồng phân;B=3 đồng phân;C=4 đồng phân;D=1 đồng phân",
         "a": "A",
         "exp": "Chính xác! C₃H₉N có tổng cộng 4 đồng phân amine, nhưng chỉ có 2 đồng phân amine bậc một (chứa nhóm -NH₂): CH₃-CH₂-CH₂-NH₂ (propan-1-amine) và CH₃-CH(NH₂)-CH₃ (propan-2-amine). Hai đồng phân còn lại gồm 1 amine bậc hai và 1 amine bậc ba.",
-        "hint": "Amine bậc 1 có dạng R-NH₂. Mạch carbon 3C no có mấy vị trí gắn nhóm -NH₂?"
+        "hint": "Amine bậc 1 có dạng R-NH₂. Mạch carbon 3C no có mấy vị trí gắn nhóm -NH₂?",
+        "breakdown": {
+          "A": "ĐÚNG: Amine bậc 1 có dạng R-NH₂. Gốc propyl C₃H₇- có 2 đồng phân: CH₃CH₂CH₂NH₂ (propylamine) và CH₃CH(NH₂)CH₃ (isopropylamine) → Đúng 2 đồng phân.",
+          "B": "SAI: 4 là TỔNG SỐ ĐỒNG PHÂN amine của C₃H₉N (gồm 2 bậc 1, 1 bậc 2, 1 bậc 3). Đề bài chỉ hỏi bậc 1!",
+          "C": "SAI: 3 chất là đếm thiếu hoặc nhầm sang C₄H₁₁N.",
+          "D": "SAI: Chỉ có 1 chất là quên đồng phân mạch nhánh isopropylamine."
+        },
+        "mnemonic": "C₃H₉N: '2 bậc Một - 1 bậc Hai - 1 bậc Ba' (Tổng 4). Đề hỏi bậc 1 chọn 2!"
       }
     },
     {
@@ -1851,7 +1928,14 @@
         "opts": "A=(1) < (2) < (3) < (4);B=(4) < (3) < (2) < (1);C=(1) < (3) < (2) < (4);D=(2) < (1) < (3) < (4)",
         "a": "A",
         "exp": "Chính xác! Gốc phenyl hút electron làm giảm mạnh lực base → (1) Aniline có lực base yếu nhất. Gốc alkyl đẩy electron làm tăng lực base: amine bậc 2 có hai gốc methyl đẩy e mạnh hơn amine bậc 1. Thứ tự lực base tăng dần: C₆H₅NH₂ < NH₃ < CH₃NH₂ < (CH₃)₂NH.",
-        "hint": "Gốc phenyl (vòng thơm) hút e làm giảm lực base, gốc alkyl đẩy e làm tăng lực base. Bậc 2 đẩy mạnh hơn bậc 1."
+        "hint": "Gốc phenyl (vòng thơm) hút e làm giảm lực base, gốc alkyl đẩy e làm tăng lực base. Bậc 2 đẩy mạnh hơn bậc 1.",
+        "breakdown": {
+          "A": "ĐÚNG: Lực base giảm dần: (CH₃)₂NH (bậc 2 no, 2 gốc đẩy e) > CH₃NH₂ (bậc 1 no) > NH₃ > C₆H₅NH₂ (vòng thơm hút e làm lực base cực yếu).",
+          "B": "SAI: Đảo ngược hoàn toàn trật tự, xếp aniline mạnh nhất là sai bản chất.",
+          "C": "SAI: Xếp amine bậc 1 mạnh hơn bậc 2 là sai.",
+          "D": "SAI: Xếp NH₃ mạnh hơn alkylamine là sai."
+        },
+        "mnemonic": "Lực base amine: Bậc 2 no > Bậc 1 no > NH₃ > Amine thơm (Aniline đội sổ)!"
       }
     },
     {
@@ -1871,7 +1955,14 @@
         "opts": "A=2,79 gam;B=3,72 gam;C=1,86 gam;D=4,65 gam",
         "a": "A",
         "exp": "Chính xác tuyệt đối! Số mol kết tủa: n = 9,90 / 330 = 0,03 mol. Phương trình phản ứng thế 3 nguyên tử Bromine: C₆H₅NH₂ + 3Br₂ → C₆H₂Br₃NH₂↓ + 3HBr → n(aniline) = 0,03 mol. Khối lượng aniline tham gia phản ứng: m = 0,03 × 93 = 2,79 gam.",
-        "hint": "Tính n(kết tủa) = 9,90 / 330. Tỉ lệ mol giữa aniline và kết tủa là 1:1. Nhân với M của aniline (93)."
+        "hint": "Tính n(kết tủa) = 9,90 / 330. Tỉ lệ mol giữa aniline và kết tủa là 1:1. Nhân với M của aniline (93).",
+        "breakdown": {
+          "A": "ĐÚNG: C₆H₅NH₂ + 3 Br₂ → C₆H₂Br₃NH₂↓ + 3 HBr. M(kết tủa) = 330. n(kết tủa) = 9,9 / 330 = 0,03 mol → n(aniline) = 0,03 mol → m = 0,03 × 93 = 2,79 gam.",
+          "B": "SAI: Tính nhầm kết tủa là monobromo thay vì tribromo.",
+          "C": "SAI: Quên nhân phân tử khối aniline (93).",
+          "D": "SAI: Nhầm phân tử khối kết tủa 2,4,6-tribromoaniline (330)."
+        },
+        "mnemonic": "Aniline thế bromine: 1 ăn 3 Br₂, kết tủa trắng tinh M = 330!"
       }
     },
     {
@@ -1891,7 +1982,14 @@
         "opts": "A=1 dung dịch;B=2 dung dịch;C=3 dung dịch;D=0 dung dịch",
         "a": "A",
         "exp": "Chính xác tuyệt đối! Chỉ có duy nhất dung dịch Glutamic acid làm quỳ tím chuyển màu đỏ vì phân tử chứa 2 nhóm -COOH và 1 nhóm -NH₂ (tính acid chiếm ưu thế). Gly và Ala có số nhóm -COOH bằng -NH₂ nên không đổi màu quỳ; còn Lysine có 2 nhóm -NH₂ làm quỳ hóa xanh.",
-        "hint": "Dung dịch làm quỳ tím hóa đỏ khi số nhóm -COOH nhiều hơn số nhóm -NH₂."
+        "hint": "Dung dịch làm quỳ tím hóa đỏ khi số nhóm -COOH nhiều hơn số nhóm -NH₂.",
+        "breakdown": {
+          "A": "ĐÚNG: Glutamic acid có 2 nhóm -COOH và 1 nhóm -NH₂ nên tính acid trội hơn, làm quỳ hóa đỏ.",
+          "B": "SAI: Lysine có 2 nhóm -NH₂ và 1 nhóm -COOH nên làm quỳ hóa XANH.",
+          "C": "SAI: Glycine có 1 -COOH và 1 -NH₂ cân bằng nhau nên KHÔNG đổi màu quỳ.",
+          "D": "SAI: Alanine có 1 -COOH và 1 -NH₂ cân bằng nhau nên KHÔNG đổi màu quỳ."
+        },
+        "mnemonic": "Glu đỏ (thừa acid) - Lys xanh (thừa amine) - Gly/Ala hòa bình giữ nguyên màu!"
       }
     },
     {
@@ -1911,7 +2009,14 @@
         "opts": "A=2 chất;B=1 chất;C=3 chất;D=4 chất",
         "a": "A",
         "exp": "Chính xác tuyệt đối! Điều kiện tham gia phản ứng màu Biuret là phân tử phải chứa từ 2 liên kết peptide trở lên (từ tripeptide trở lên hoặc protein). Gly-Ala là dipeptide chỉ có 1 liên kết peptide nên không phản ứng! Triolein là chất béo este. Vậy chỉ có 2 chất tham gia là (2) Gly-Ala-Val và (3) Lòng trắng trứng.",
-        "hint": "Nhớ điều kiện phản ứng Biuret: Cần tối thiểu 2 liên kết peptide (từ tripeptit trở lên) hoặc protein."
+        "hint": "Nhớ điều kiện phản ứng Biuret: Cần tối thiểu 2 liên kết peptide (từ tripeptit trở lên) hoặc protein.",
+        "breakdown": {
+          "A": "ĐÚNG: Gồm 3 chất là (2) Gly-Ala-Val (tripeptide), (3) Lòng trắng trứng (protein) và (4) Gelatin (protein). Riêng (1) Gly-Ala là dipeptide chỉ có 1 liên kết peptide nên KHÔNG CÓ phản ứng Biuret.",
+          "B": "SAI: Tính cả (1) Gly-Ala là dính bẫy dipeptide kinh điển.",
+          "C": "SAI: Bỏ sót protein lòng trắng trứng hoặc gelatin.",
+          "D": "SAI: Bỏ sót tripeptide Gly-Ala-Val."
+        },
+        "mnemonic": "Dipeptide chỉ 1 khớp nối: CẤM ĐƯỢC MƠ MÀU TÍM BIURET! Phải từ Tripeptide trở lên!"
       }
     },
     {
@@ -1931,7 +2036,14 @@
         "opts": "A=38,7 gam;B=34,7 gam;C=40,5 gam;D=36,9 gam",
         "a": "A",
         "exp": "Đỉnh cao tuyệt đối! M(tripeptide) = 89 + 75 + 117 - 2 × 18 = 245 → m(peptit) = 0,1 × 245 = 24,5 gam. Lượng NaOH ban đầu: n(NaOH) = 0,4 × 1 = 0,4 mol → m(NaOH ban đầu) = 0,4 × 40 = 16,0 gam. Trong phản ứng thủy phân peptide bằng kiềm: n(H₂O sinh ra) = n(peptit) = 0,1 mol → m(H₂O) = 0,1 × 18 = 1,8 gam. Bảo toàn khối lượng toàn hệ: m(chất rắn khan) = m(peptit) + m(NaOH ban đầu) - m(H₂O) = 24,5 + 16,0 - 1,8 = 38,7 gam.",
-        "hint": "M(tripeptit) = 89 + 75 + 117 - 36 = 245. n(H₂O) luôn bằng n(peptit) = 0,1 mol. Bảo toàn khối lượng: m(rắn) = m(peptit) + m(NaOH bđ) - m(H₂O)."
+        "hint": "M(tripeptit) = 89 + 75 + 117 - 36 = 245. n(H₂O) luôn bằng n(peptit) = 0,1 mol. Bảo toàn khối lượng: m(rắn) = m(peptit) + m(NaOH bđ) - m(H₂O).",
+        "breakdown": {
+          "A": "ĐÚNG: Tripeptide Ala-Gly-Val (0,1 mol) phản ứng với 3 NaOH → sinh 0,3 mol muối + 0,1 mol H₂O. n(NaOH dư) = 0,4 - 0,3 = 0,1 mol. Bảo toàn khối lượng: m(chất rắn) = m(peptide) + m(NaOH ban đầu) - m(H₂O) = 21,7 + 0,4 × 40 - 0,1 × 18 = 35,9 gam.",
+          "B": "SAI: Quên không tính lượng NaOH dư nằm trong chất rắn khan.",
+          "C": "SAI: Quên trừ đi khối lượng H₂O sinh ra khi cô cạn.",
+          "D": "SAI: Lấy nhầm số mol NaOH phản ứng là 0,1 mol thay vì 0,3 mol."
+        },
+        "mnemonic": "Thủy phân peptide trong kiềm: n(H₂O) luôn bằng n(peptide). Cô cạn nhớ tính cả kiềm dư!"
       }
     }
   ],
@@ -1953,7 +2065,14 @@
         "opts": "A=Ethylene (C₂H₄);B=Propane (C₃H₈);C=Methane (CH₄);D=Hexane (C₆H₁₄)",
         "a": "A",
         "hint": "Hãy tìm chất có chứa liên kết đôi hoặc liên kết ba kém bền (hydrocarbon không no).",
-        "exp": "Ethylene có liên kết đôi C=C nên lập tức cộng Br₂ làm mất màu nâu đỏ. Các chất còn lại chỉ chứa liên kết đơn nên không phản ứng."
+        "exp": "Ethylene có liên kết đôi C=C nên lập tức cộng Br₂ làm mất màu nâu đỏ. Các chất còn lại chỉ chứa liên kết đơn nên không phản ứng.",
+        "breakdown": {
+          "A": "SAI: Khí ethylene có nhiệt độ ngọn lửa cháy không đủ cao như acetylene.",
+          "B": "SAI: Khí ethane là alkane, ngọn lửa cháy tỏa nhiệt không tập trung bằng acetylene.",
+          "C": "SAI: Khí methane dùng làm nhiên liệu dân dụng và công nghiệp, không dùng làm đèn xì hàn cắt kim loại.",
+          "D": "ĐÚNG: Acetylene (C₂H₂) cháy trong khí oxy cho ngọn lửa đèn xì oxy-acetylene đạt tới 3000°C, đủ làm nóng chảy kim loại."
+        },
+        "mnemonic": "Hàn xì kim loại: Cắt thép dùng đèn xì Acetylene (C₂H₂) nhiệt độ 3000°C!"
       }
     },
     {
@@ -1973,7 +2092,14 @@
         "opts": "A=2-chloropropane (CH₃-CHCl-CH₃);B=1-chloropropane (CH₃-CH₂-CH₂Cl);C=1,2-dichloropropane;D=2,2-dichloropropane",
         "a": "A",
         "hint": "Carbon CH₂ có 2H, carbon CH chỉ có 1H. H của HCl sẽ đi vào đâu để tuân theo Markovnikov?",
-        "exp": "H gắn vào CH₂ (nhiều H hơn) thành CH₃, Cl gắn vào CH (ít H hơn) thành CHCl → 2-chloropropane là sản phẩm chính."
+        "exp": "H gắn vào CH₂ (nhiều H hơn) thành CH₃, Cl gắn vào CH (ít H hơn) thành CHCl → 2-chloropropane là sản phẩm chính.",
+        "breakdown": {
+          "A": "ĐÚNG: Propane là alkane chỉ có liên kết đơn C-C và C-H bền vững, không phản ứng với nước bromine ở điều kiện thường.",
+          "B": "SAI: Propylene có liên kết đôi C=C làm mất màu nước bromine nhanh chóng.",
+          "C": "SAI: Propyne có liên kết ba C≡C làm mất màu nước bromine.",
+          "D": "SAI: Styrene có liên kết đôi ở nhánh vinyl làm mất màu nước bromine."
+        },
+        "mnemonic": "Hydrocarbon no (Alkane) trơ lì với dung dịch Bromine ở điều kiện thường!"
       }
     },
     {
@@ -1993,66 +2119,18 @@
         "opts": "A=But-1-yne (CH≡C-CH₂-CH₃);B=But-2-yne (CH₃-C≡C-CH₃);C=Ethylene (CH₂=CH₂);D=Propane (C₃H₈)",
         "a": "A",
         "hint": "Tìm chất có liên kết ba ở vị trí số 1 (đầu mạch C≡CH).",
-        "exp": "But-1-yne có nhóm C≡CH ở đầu mạch nên nguyên tử H linh động bị thay thế bởi ion Ag⁺ tạo kết tủa vàng nhạt."
+        "exp": "But-1-yne có nhóm C≡CH ở đầu mạch nên nguyên tử H linh động bị thay thế bởi ion Ag⁺ tạo kết tủa vàng nhạt.",
+        "breakdown": {
+          "A": "ĐÚNG: Khối lượng mol C₂H₂ = 26 < không khí (≈29) nên acetylene NHẸ HƠN không khí (phát biểu nói nặng hơn là SAI).",
+          "B": "SAI: Hexane là chất lỏng nhẹ hơn nước và không tan trong nước (phát biểu đúng).",
+          "C": "SAI: Methane (M=16) có nhiệt độ sôi thấp hơn ethane (M=30) (phát biểu đúng).",
+          "D": "SAI: Hex-1-ene là chất lỏng không tan trong nước (phát biểu đúng)."
+        },
+        "mnemonic": "M(C₂H₂) = 26 < 29: Acetylene bay lên vì nhẹ hơn không khí!"
       }
     }
   ]
 };
-
-  /* ---------- GUIDED TESTING (KIỂM TRA CÓ HƯỚNG DẪN) REPOSITORY ---------- */
-  var DEFAULT_COACH_TESTS = [
-    {
-      ch: "g12c1",
-      q: "Đun sôi hỗn hợp gồm ethyl alcohol và acetic acid có acid sulfuric đặc làm xúc tác, sau phản ứng thu được chất hữu cơ X có mùi thơm đặc trưng. Công thức của X là",
-      o: "A=HCOOC₂H₅;B=CH₃COOC₂H₅;C=C₂H₅COOCH₃;D=CH₃COOH",
-      a: "B",
-      h1: "Phản ứng ester hoá: Axit axetic (CH₃COOH) phản ứng với rượu etylic (C₂H₅OH).",
-      h2: "Nhóm OH tách ra từ acid (CH₃CO-), H tách ra từ alcohol (-OC₂H₅) ghép lại thành ester.",
-      h3: "Bẫy phương án: Đáp án A là ethyl formate (từ HCOOH), C là methyl propionate (gốc axit 3C). Cần đọc kĩ acid gốc.",
-      exp: "CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ (ethyl acetate) + H₂O. Ethyl acetate là este có mùi thơm quả chín."
-    },
-    {
-      ch: "g12c1",
-      q: "Cho phenyl acetate (CH₃COOC₆H₅) tác dụng với lượng dư dung dịch NaOH, đun nóng. Sau khi phản ứng xảy ra hoàn toàn, số muối thu được là",
-      o: "A=1;B=2;C=3;D=4",
-      a: "B",
-      h1: "Hãy nhận diện gốc C₆H₅ gắn trực tiếp vào nguyên tử oxy của nhóm ester.",
-      h2: "Este của phenol tác dụng NaOH theo tỉ lệ mol 1:2 tạo ra 2 muối: muối của acid carboxylic và muối natri phenolate.",
-      h3: "Bẫy phương án: Nhiều bạn chỉ nghĩ tạo ra muối CH₃COONa và alcohol C₆H₅OH (1 muối). Nhưng C₆H₅OH là phenol, có tính axit nên lập tức tác dụng tiếp với NaOH dư tạo thêm muối thứ hai C₆H₅ONa!",
-      exp: "CH₃COOC₆H₅ + 2NaOH → CH₃COONa + C₆H₅ONa + H₂O. Thu được đúng 2 muối."
-    },
-    {
-      ch: "g11c4",
-      q: "Chất nào sau đây tác dụng với Cu(OH)₂ trong dung dịch NaOH ở nhiệt độ thường tạo thành dung dịch màu xanh lam đặc trưng?",
-      o: "A=Ethanol;B=Propan-1-ol;C=Glycerol;D=Dimethyl ether",
-      a: "C",
-      h1: "Phản ứng tạo phức màu xanh lam đặc trưng là dấu hiệu nhận biết của polyalcohol (ancol đa chức).",
-      h2: "Điều kiện cần và đủ: Phân tử phải có ÍT NHẤT HAI NHÓM -OH NẰM KỀ NHAU (vicinal diol).",
-      h3: "Bẫy phương án: Ethanol và Propan-1-ol chỉ có 1 nhóm -OH đơn chức nên không thể tạo phức vòng chelate xanh lam.",
-      exp: "Glycerol C₃H₅(OH)₃ có 3 nhóm -OH kề nhau nên dễ dàng hoà tan Cu(OH)₂ ở nhiệt độ thường tạo phức đồng xanh lam đậm."
-    },
-    {
-      ch: "g11c1",
-      q: "Khi cho but-1-yne tác dụng với lượng dư dung dịch AgNO₃ trong NH₃, hiện tượng quan sát được là",
-      o: "A=Tạo kết tủa màu trắng xám bám vào thành ống nghiệm;B=Xuất hiện kết tủa màu vàng nhạt;C=Dung dịch mất màu và sủi bọt khí không màu;D=Không có hiện tượng gì xảy ra",
-      a: "B",
-      h1: "But-1-yne có liên kết ba nằm ở đầu mạch (C≡CH).",
-      h2: "Alk-1-yne tác dụng với AgNO₃/NH₃ thế nguyên tử H đầu mạch bằng ion Ag⁺.",
-      h3: "Bẫy phương án: Đừng nhầm với hiện tượng tráng bạc của aldehyde (tạo gương bạc trắng xám). Phản ứng của alk-1-yne sinh ra kết tủa muối màu VÀNG NHẠT (C₂H₅-C≡CAg).",
-      exp: "But-1-yne là alk-1-yne, phản ứng tạo kết tủa vàng nhạt C₂H₅-C≡CAg."
-    },
-    {
-      ch: "g12c2",
-      q: "Cho các chất: glucose, saccharose, fructose, tinh bột, cellulose. Số chất trong dãy có khả năng tham gia phản ứng tráng bạc là",
-      o: "A=1;B=2;C=3;D=4",
-      a: "B",
-      h1: "Chất có phản ứng tráng bạc phải có nhóm aldehyde (-CHO) hoặc có khả năng chuyển hoá thành dạng có nhóm -CHO trong môi trường kiềm.",
-      h2: "Glucose có nhóm -CHO mạch hở; Fructose chuyển hoá thành glucose trong kiềm. Saccharose, tinh bột, cellulose không có nhóm -CHO tự do.",
-      h3: "Bẫy phương án: Nhiều bạn quên mất Fructose. Dù fructose là ketone nhưng môi trường AgNO₃/NH₃ có tính base, biến fructose thành glucose nên vẫn tráng bạc!",
-      exp: "2 chất là Glucose và Fructose."
-    }
-  ];
-
   /* ---------- DATA ACCESS ---------- */
   function bankForGrade(gradeID) {
     var qb = DATA.qb || {};
@@ -2439,8 +2517,9 @@
     var xpN = s.xpByCh[id] || 0;
 
     var editFeynmanBtn = state.editMode ? '<button class="btn ghost tiny edit-btn" data-act="editFeynman" data-ch="' + id + '">' + ico("edit") + ' Sửa giải thích</button>' : '';
+    var trapJumpBtn = '<button class="btn ghost tiny trap-jump-btn" data-act="jumpToTraps" data-cat="' + id + '">' + ico("alert") + ' Xem bẫy đề thi chương này →</button>';
     var feyn = '<div class="feynman" style="--cc:' + meta.color + '">' +
-      '<div style="display:flex;justify-content:space-between;align-items:center"><b>' + ico("info") + " Giải thích ngắn gọn kiểu Feynman:</b>" + editFeynmanBtn + "</div>" +
+      '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><b>' + ico("bulb") + " Giải thích trực quan kiểu Feynman 2.0:</b><div style='display:flex;gap:8px'>" + trapJumpBtn + editFeynmanBtn + "</div></div>" +
       '<p class="feynman-p" ' + (state.editMode ? 'data-inline-edit="ch-feynman" data-ch="' + id + '" contenteditable="true" spellcheck="false" title="Nhấp vào đây để sửa trực tiếp lời giải thích"' : '') + '>' + fmt(ch.feynman || "Chưa có lời giải thích ngắn gọn.") + '</p>' +
       "</div>";
 
@@ -3637,49 +3716,81 @@
     var pickedObj = checkOpts.find(function (o) { return o.k === pickedOpt; }) || { t: pickedOpt };
     var correctObj = checkOpts.find(function (o) { return o.k === check.a; }) || { t: check.a };
 
-    if (isCorrect) {
-      return '<div class="checkpoint-feedback ok">' +
-        '<div class="fb-header"><span class="fb-badge ok">' + ico("check") + ' Chính xác!</span> <b>Bạn đã hiểu đúng bản chất câu hỏi. (+25 XP)</b></div>' +
-        '<div class="fb-section-box exp">' +
-          '<div class="fb-sec-title">' + ico("bulb") + ' <b>Bản chất cốt lõi & Cơ chế đúng:</b></div>' +
-          '<div class="fb-sec-desc">' + fmt(check.exp) + '</div>' +
-        '</div>' +
-        '<div class="fb-action" style="display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap">' +
-          '<button class="btn ghost small" data-act="guidedPrevStage">← Chặng trước</button>' +
-          '<button class="btn primary small" data-act="guidedNextStage">Chặng tiếp theo →</button>' +
-        '</div>' +
-      '</div>';
-    } else {
-      return '<div class="checkpoint-feedback bad">' +
-        '<div class="fb-header"><span class="fb-badge bad">' + ico("close") + ' Chưa chính xác</span> <b>Phân tích lỗi sai & Chẩn đoán tư duy:</b></div>' +
-        '<div class="fb-comparison">' +
-          '<div class="fb-comp-row correct">' +
-            '<span class="fb-comp-label">' + ico("check") + ' Đáp án đúng:</span>' +
-            '<span class="fb-comp-val"><b>' + esc(check.a) + '.</b> ' + fmt(correctObj.t) + '</span>' +
+    var breakdown = check.breakdown || curStage.breakdown;
+    var breakdownHtml = "";
+    if (breakdown) {
+      var rows = checkOpts.map(function(o) {
+        var isOAns = (o.k === check.a);
+        var itemText = breakdown[o.k] || "";
+        return '<div class="breakdown-row ' + (isOAns ? 'is-correct' : 'is-wrong') + '">' +
+          '<div class="bdr-key"><b>' + esc(o.k) + '</b></div>' +
+          '<div class="bdr-content">' +
+            '<div class="bdr-opt-text">' + fmt(o.t) + '</div>' +
+            (itemText ? '<div class="bdr-analysis">' + (isOAns ? '<span class="bdr-badge good">' + ico("check") + ' Đúng</span> ' : '<span class="bdr-badge warn">' + ico("close") + ' Tại sao sai:</span> ') + fmt(itemText) + '</div>' : '') +
           '</div>' +
-          '<div class="fb-comp-row wrong">' +
-            '<span class="fb-comp-label">' + ico("close") + ' Bạn đã chọn:</span>' +
-            '<span class="fb-comp-val"><b>' + esc(pickedOpt) + '.</b> ' + fmt(pickedObj.t) + '</span>' +
-          '</div>' +
-        '</div>' +
-        (curStage.trap ? '<div class="fb-section-box flaw">' +
-          '<div class="fb-sec-title">' + ico("alert") + ' <b>Chỉ ra lỗi sai & Bẫy phương án ' + esc(pickedOpt) + ':</b></div>' +
-          '<div class="fb-sec-desc">' + fmt(curStage.trap) + '</div>' +
-        '</div>' : '') +
-        (check.hint ? '<div class="fb-section-box hint">' +
-          '<div class="fb-sec-title">' + ico("search") + ' <b>Gợi ý tư duy đúng hướng:</b></div>' +
-          '<div class="fb-sec-desc">' + fmt(check.hint) + '</div>' +
-        '</div>' : '') +
-        '<div class="fb-section-box exp">' +
-          '<div class="fb-sec-title">' + ico("bulb") + ' <b>Bản chất khoa học & Giải thích:</b></div>' +
-          '<div class="fb-sec-desc">' + fmt(check.exp) + '</div>' +
-        '</div>' +
-        '<div class="fb-action" style="display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap">' +
-          '<button class="btn ghost small" data-act="guidedPrevStage">← Chặng trước</button>' +
-          '<button class="btn primary small" data-act="guidedNextStage">Chặng tiếp theo →</button>' +
-        '</div>' +
+        '</div>';
+      }).join("");
+      breakdownHtml = '<div class="fb-section-box breakdown-box">' +
+        '<div class="fb-sec-title">' + ico("choose") + ' <b>Giải phẫu từng phương án (Tại sao đúng / Tại sao sai?):</b></div>' +
+        '<div class="breakdown-list">' + rows + '</div>' +
       '</div>';
     }
+
+    var trapHtml = "";
+    var trap = check.trap || curStage.trap;
+    if (trap) {
+      trapHtml = '<div class="fb-section-box flaw">' +
+        '<div class="fb-sec-title">' + ico("alert") + ' <b>Tử huyệt & Bẫy đề thi cần né:</b></div>' +
+        '<div class="fb-sec-desc">' + fmt(trap) + '</div>' +
+      '</div>';
+    }
+
+    var mnemonicHtml = "";
+    var mnemonic = check.mnemonic || curStage.mnemonic;
+    if (mnemonic) {
+      mnemonicHtml = '<div class="fb-section-box mnemonic-box">' +
+        '<div class="fb-sec-title">' + ico("sparkles") + ' <b>Khẩu quyết ghi nhớ & Mẹo phản xạ 3 giây:</b></div>' +
+        '<div class="mnemonic-quote">' + fmt(mnemonic) + '</div>' +
+      '</div>';
+    }
+
+    var compHtml = "";
+    if (!isCorrect) {
+      compHtml = '<div class="fb-comparison">' +
+        '<div class="fb-comp-row correct">' +
+          '<span class="fb-comp-label">' + ico("check") + ' Đáp án đúng:</span>' +
+          '<span class="fb-comp-val"><b>' + esc(check.a) + '.</b> ' + fmt(correctObj.t) + '</span>' +
+        '</div>' +
+        '<div class="fb-comp-row wrong">' +
+          '<span class="fb-comp-label">' + ico("close") + ' Bạn đã chọn:</span>' +
+          '<span class="fb-comp-val"><b>' + esc(pickedOpt) + '.</b> ' + fmt(pickedObj.t) + '</span>' +
+        '</div>' +
+      '</div>' +
+      (check.hint ? '<div class="fb-section-box hint">' +
+        '<div class="fb-sec-title">' + ico("search") + ' <b>Gợi ý tư duy đúng hướng:</b></div>' +
+        '<div class="fb-sec-desc">' + fmt(check.hint) + '</div>' +
+      '</div>' : '');
+    }
+
+    var headerHtml = isCorrect
+      ? '<div class="fb-header"><span class="fb-badge ok">' + ico("check") + ' Chính xác!</span> <b>Bạn đã hiểu đúng bản chất câu hỏi. (+25 XP)</b></div>'
+      : '<div class="fb-header"><span class="fb-badge bad">' + ico("close") + ' Chưa chính xác</span> <b>Phân tích lỗi sai & Chẩn đoán tư duy:</b></div>';
+
+    return '<div class="checkpoint-feedback ' + (isCorrect ? 'ok' : 'bad') + '">' +
+      headerHtml +
+      compHtml +
+      '<div class="fb-section-box exp">' +
+        '<div class="fb-sec-title">' + ico("bulb") + ' <b>Bản chất khoa học & Cơ chế phản ứng:</b></div>' +
+        '<div class="fb-sec-desc">' + fmt(check.exp) + '</div>' +
+      '</div>' +
+      breakdownHtml +
+      trapHtml +
+      mnemonicHtml +
+      '<div class="fb-action" style="display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap">' +
+        '<button class="btn ghost small" data-act="guidedPrevStage">← Chặng trước</button>' +
+        '<button class="btn primary small" data-act="guidedNextStage">Chặng tiếp theo →</button>' +
+      '</div>' +
+    '</div>';
   }
 
   function guidedPick(k) {
@@ -3710,7 +3821,7 @@
     // In-place update: zero scroll movement or reflow
     var box = $(".checkpoint-box");
     if (box) {
-      var check = curStage.check || {
+      var check = curStage.check ? curStage.check : {
         q: curStage.q || "",
         opts: typeof curStage.opts === "string" ? curStage.opts : (Array.isArray(curStage.opts) ? curStage.opts.map(function(o){ return o.k + "=" + o.t; }).join(";") : ""),
         a: correctAns,
@@ -4129,6 +4240,7 @@
     var tabs = [
       { id: "fav", l: "Yêu thích", i: "star" },
       { id: "notes", l: "Ghi chú", i: "pen" },
+      { id: "traps", l: "Sổ tay Bẫy đề thi & Điểm 9+", i: "alert" },
       { id: "graph", l: "Bản đồ tri thức", i: "graph" }
     ].map(function (t) {
       return '<button class="stab ' + (state.lib === t.id ? "on" : "") + '" data-act="libTab" data-t="' + t.id + '">' + ico(t.i) + t.l + "</button>";
@@ -4141,6 +4253,7 @@
       p.innerHTML = '<div class="stab-bar">' + [
         { id: "fav", l: "Yêu thích", i: "star" },
         { id: "notes", l: "Ghi chú", i: "pen" },
+        { id: "traps", l: "Sổ tay Bẫy đề thi & Điểm 9+", i: "alert" },
         { id: "graph", l: "Bản đồ tri thức", i: "graph" }
       ].map(function (t) {
         return '<button class="stab ' + (state.lib === t.id ? "on" : "") + '" data-act="libTab" data-t="' + t.id + '">' + ico(t.i) + t.l + "</button>";
@@ -4149,10 +4262,14 @@
     } else { render(); }
   }
   function renderLibraryBody() {
+    if (state.lib === "traps") return (window.ChemTraps ? ChemTraps.render() : "<p>Đang tải sổ tay bẫy đề thi...</p>");
     if (state.lib === "notes") return renderLibNotes();
     if (state.lib === "graph") return renderLibGraph();
     return renderLibFav();
   }
+
+  // Expose global bridge function for ChemTraps
+  window.renderLibraryOnly = renderLibraryOnly;
   function chShort(id) {
     var m = chapterMeta(id);
     if (!m) return id;
@@ -4410,7 +4527,9 @@
     } else { render(); }
   }
 
-  // Expose global bridge functions for submodules like ChemGames
+  // Expose global bridge functions for submodules like ChemGames and ChemTraps
+  window.state = state;
+  window.render = render;
   window.addXP = addXP;
   window.profile = profile;
   window.renderPracticeOnly = renderPracticeOnly;
@@ -5070,6 +5189,32 @@
           ChemGames.guessDetective(el.getAttribute("data-sub"));
           updateHeaderStats(true);
         }
+        break;
+
+      /* Sổ tay Bẫy đề thi & Điểm 9+ (ChemTraps) */
+      case "ctFilter":
+        if (window.ChemTraps) {
+          ChemTraps.setCategory(el.getAttribute("data-cat"));
+        }
+        break;
+      case "ctQuizPick":
+        if (window.ChemTraps) {
+          ChemTraps.answerQuiz(el.getAttribute("data-tid"), el.getAttribute("data-k"));
+        }
+        break;
+      case "ctQuizRetry":
+        if (window.ChemTraps) {
+          ChemTraps.resetQuiz(el.getAttribute("data-tid"));
+        }
+        break;
+      case "jumpToTraps":
+        state.mode = "library";
+        state.lib = "traps";
+        if (window.ChemTraps) {
+          ChemTraps.setCategory(el.getAttribute("data-cat") || "all");
+        }
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
         break;
     }
   });
