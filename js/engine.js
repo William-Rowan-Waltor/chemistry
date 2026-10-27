@@ -424,6 +424,7 @@
     s.tests = s.tests || {};
     s.fav = s.fav || {};
     s.notes = s.notes || [];
+    s.guidedPredictions = s.guidedPredictions || {};
     return s;
   }
   function save(s) { store.set(s); }
@@ -1612,6 +1613,12 @@
     {
       "title": "1. Bản chất Este, Hương thơm tự nhiên & Đồng phân danh pháp",
       "hook": "Mùi chuối chín thoang thoảng (isoamyl acetate), mùi dứa thơm ngọt (ethyl butyrate), mùi hoa nhài thanh khiết (benzyl acetate)... Tất cả hương thơm quyến rũ trong thế giới tự nhiên và các chai nước hoa đắt giá đều bắt nguồn từ cấu trúc Este!",
+      "predict": {
+        "q": "Theo bạn, giữa Acetic acid (CH₃COOH) và Ethyl acetate (CH₃COOCH₂CH₃), chất nào sẽ có nhiệt độ sôi cao hơn đáng kể và tan vô hạn trong nước?",
+        "opts": "A=Ethyl acetate có nhiệt độ sôi cao hơn vì phân tử cồng kềnh hơn;B=Acetic acid có nhiệt độ sôi cao hơn và tan tốt hơn nhiều vì tạo được liên kết hydrogen liên phân tử;C=Cả hai đều có nhiệt độ sôi và độ tan ngang nhau vì cùng là hợp chất hữu cơ;D=Este tan vô hạn còn acid hoàn toàn không tan trong nước",
+        "a": "B",
+        "insight": "Dự đoán chuẩn xác! Acid carboxylic tạo được liên kết hydrogen liên phân tử rất bền (dạng dimer) nên nhiệt độ sôi cao hơn hẳn este và tan vô hạn trong nước. Trong khi đó, phân tử este không có nguyên tử H linh động nên không tạo được liên kết hydrogen liên phân tử, dẫn đến nhiệt độ sôi thấp hơn nhiều và rất ít tan trong nước."
+      },
       "core": "Este hình thành khi thay thế nhóm -OH ở nhóm carboxyl (-COOH) của acid bằng nhóm -OR' của alcohol. Công thức este no đơn chức mạch hở: CₙH₂ₙO₂ (n ≥ 2). Danh pháp: Tên gốc hydrocarbon R' + tên gốc acid RCOO (đuôi -ate). Do không tạo được liên kết hydrogen liên phân tử như alcohol và acid, este có nhiệt độ sôi thấp hơn nhiều và rất ít tan trong nước.",
       "caseStudy": "Công nghệ sản xuất hương liệu thực phẩm: Chiết xuất este tự nhiên rất tốn kém (hàng nghìn bông hoa nhài mới chiết được vài giọt benzyl acetate). Các nhà hóa học tổng hợp este nhân tạo trong công nghiệp thực phẩm nhờ phản ứng ester hóa, vừa hạ giá thành vừa đảm bảo độ tinh khiết cao.",
       "trap": "BẪY TỬ HUYỆT ĐỒNG PHÂN: Với C₄H₈O₂, có 4 đồng phân este (HCOOCH₂CH₂CH₃, HCOOCH(CH₃)₂, CH₃COOC₂H₅, C₂H₅COOCH₃). Nhưng nếu đề hỏi 'đồng phân đơn chức' thì phải tính thêm 2 đồng phân acid carboxylic (tổng cộng là 6)! Ngoài ra, mọi este của formic acid (HCOOR') đều có khả năng TRÁNG BẠC vì chứa nhóm aldehyde -CH=O.",
@@ -1626,6 +1633,12 @@
     {
       "title": "2. Cơ chế Thuỷ phân Este: Axit vs Kiềm, Bẫy Phenol & Vinyl",
       "hook": "Thuỷ phân este trong acid giống như chiếc khóa kéo hai chiều: kéo vào rồi lại tuột ra (phản ứng thuận nghịch đạt trạng thái cân bằng). Nhưng trong dung dịch kiềm nóng (xà phòng hóa), chiếc khóa bị cắt đứt vĩnh viễn thành muối và không thể quay đầu!",
+      "predict": {
+        "q": "Nếu ta đun phenyl acetate (CH₃COOC₆H₅) với lượng dư dung dịch NaOH, theo trực giác hoá học bạn sẽ thu được những chất nào sau phản ứng?",
+        "opts": "A=Muối CH₃COONa và phenol C₆H₅OH tự do;B=Hai muối CH₃COONa, C₆H₅ONa và nước H₂O (không có phenol hay alcohol sinh ra);C=CH₃COOH và C₆H₅ONa;D=Khí CO₂ và alcohol benzylic C₆H₅CH₂OH",
+        "a": "B",
+        "insight": "Trực giác hoá học xuất sắc! Phenol sinh ra có tính acid nên lập tức phản ứng tiếp với NaOH tạo muối sodium phenolate (C₆H₅ONa) và H₂O. Do đó, tỉ lệ mol phản ứng luôn là 1 este : 2 NaOH và sinh ra 2 MUỐI, TUYỆT ĐỐI KHÔNG sinh ra alcohol hay phenol tự do!"
+      },
       "core": "Thủy phân trong acid: RCOOR' + H₂O ⇌ RCOOH + R'OH (xúc tác H⁺, t°).\nThủy phân trong kiềm (xà phòng hóa): RCOOR' + NaOH → RCOONa + R'OH (1 chiều, đun nóng).\nCÁC TRƯỜNG HỢP NGOẠI LỆ ĐẶC BIỆT:\n• Este vinyl (RCOOCH=CH₂): Thủy phân tạo muối RCOONa + Aldehyde CH₃CHO (do enol không bền tự chuyển vị).\n• Este của phenol (RCOOC₆H₅): Phản ứng với NaOH theo tỉ lệ mol 1:2 tạo 2 MUỐI (RCOONa + C₆H₅ONa) và H₂O, TUYỆT ĐỐI KHÔNG TẠO ALCOHOL!",
       "caseStudy": "Sản xuất keo dán gỗ và sơn bóng PVA: Poly(vinyl acetate) được tổng hợp bằng cách trùng hợp vinyl acetate. Khi thủy phân kiềm một phần PVA, ta thu được poly(vinyl alcohol) dùng làm màng bọc tan trong nước của viên giặt máy hiện đại.",
       "trap": "BẪY ĐỀ THI KINH ĐIỂN: 'Mọi este khi tác dụng với dung dịch NaOH đều sinh ra alcohol' → SAI! Este của phenol tạo 2 muối + H₂O; este vinyl tạo aldehyde; este isopropenyl tạo ketone. Khi tính khối lượng muối xà phòng hóa este của phenol, nhớ tính thêm muối phenolate!",
@@ -1640,6 +1653,12 @@
     {
       "title": "3. Case Study Thí nghiệm: Điều chế Ethyl Acetate trong phòng Lab",
       "hook": "Hình dung bạn là nhà nghiên cứu đang đứng trước bàn thí nghiệm: tại sao phải cho các hóa chất theo thứ tự nghiêm ngặt? Tại sao phải dùng ống dẫn khí nghiêng dài và rót sản phẩm vào dung dịch muối ăn NaCl bão hòa lạnh mà không phải nước cất?",
+      "predict": {
+        "q": "Trong thí nghiệm điều chế ethyl acetate, sau khi đun cách thuỷ, tại sao người ta lại rót hỗn hợp vào dung dịch NaCl bão hoà lạnh mà không dùng nước cất thông thường?",
+        "opts": "A=Để NaCl phản ứng với ester tạo kết tủa trắng;B=Để este tách lớp nổi lên rõ rệt nhờ hiệu ứng muối kết (salting-out) và khối lượng riêng lớn của dung dịch NaCl;C=Để trung hoà axit sunfuric đặc làm dung dịch an toàn hơn;D=Để khử trùng este làm cho este có mùi thơm ngọt hơn",
+        "a": "B",
+        "insight": "Khả năng phân tích thực nghiệm tuyệt vời! Dung dịch NaCl bão hòa làm giảm mạnh độ tan của este trong nước (hiệu ứng muối kết - salting-out) và làm tăng khối lượng riêng của lớp dung dịch nước phía dưới, giúp ester nhẹ hơn nổi hẳn lên trên thành lớp váng dầu trong suốt để dễ dàng tách chiết."
+      },
       "core": "QUY TRÌNH THÍ NGHIỆM CHUẨN:\n• Bước 1: Cho 2 mL ethanol nguyên chất, 2 mL acetic acid băng và 1 mL H₂SO₄ đặc (cho từ từ dọc thành ống nghiệm để tránh sôi bắn axit). Lắp ống thủy tinh dài hướng lên làm ống sinh hàn hồi lưu.\n• Bước 2: Đun cách thủy trong nồi nước nóng 65 - 70°C khoảng 5 - 10 phút (không đun sôi trực tiếp bằng ngọn lửa đèn cồn để tránh cồn bốc cháy và bay hơi hết este).\n• Bước 3: Rót hỗn hợp phản ứng vào ống nghiệm chứa sẵn 2 mL dung dịch NaCl bão hòa lạnh.",
       "caseStudy": "GIẢI MÃ CƠ CHẾ CÁC HÓA CHẤT TRONG THÍ NGHIỆM:\n1. H₂SO₄ đặc: Đóng 2 vai trò quyết định — Vừa là chất xúc tác tăng tốc độ phản ứng, vừa là chất hút nước mạnh giúp chuyển dịch cân bằng sang phía tạo este.\n2. Dung dịch NaCl bão hòa lạnh: Dung dịch NaCl có khối lượng riêng lớn và este gần như không tan trong dung dịch muối ăn (hiện tượng salting-out), làm giảm độ tan của este và tách este thành lớp váng dầu nổi rõ rệt lên trên mặt nước để dễ thu hồi.",
       "trap": "BẪY THỰC NGHIỆM ĐỀ THI THPT:\n• 'Có thể thay H₂SO₄ đặc bằng HCl đặc' → SAI (HCl dễ bay hơi và không hút nước).\n• 'Nhiệt kế cắm ngập vào đáy ống nghiệm phản ứng' → SAI (nhiệt kế cắm vào nồi nước cách thủy để kiểm soát nhiệt độ nước 65-70°C).\n• 'Thay NaCl bão hòa bằng nước cất thì este tách lớp tốt hơn' → SAI (este tan một phần trong nước, chỉ tách lớp triệt để khi dùng NaCl bão hòa).",
@@ -1654,6 +1673,12 @@
     {
       "title": "4. Lipit & Chất béo: Cấu tạo, Hydrogen hoá & Cơ chế tẩy rửa",
       "hook": "Mỡ lợn đông cứng ở nhiệt độ thường, còn dầu thực vật lại sóng sánh ở thể lỏng. Tại sao khi thổi một luồng khí hydro đi qua dầu ăn lại biến dầu lỏng thành bơ thực vật rắn như phép màu? Và xà phòng cuốn trôi dầu mỡ bám trên da như thế nào?",
+      "predict": {
+        "q": "Tại sao mỡ lợn (chứa chủ yếu tristearin no) lại đông đặc ở nhiệt độ thường, trong khi dầu thực vật (chứa triolein không no) lại luôn sóng sánh ở thể lỏng?",
+        "opts": "A=Do phân tử chất béo no có mạch thẳng xếp khít vào nhau làm tăng mạnh lực hút liên phân tử van der Waals;B=Do dầu thực vật chứa hàm lượng nước cao hơn mỡ động vật;C=Do phân tử mỡ lợn có khối lượng nặng hơn dầu ăn hàng nghìn lần;D=Do dầu thực vật bị oxi hoá bởi không khí thành chất lỏng",
+        "a": "A",
+        "insight": "Chính xác tuyệt đối! Các gốc acid béo no có cấu trúc mạch carbon kéo dài thẳng tắp, dễ dàng xếp khít lại gần nhau khiến lực tương tác liên phân tử van der Waals rất lớn → nhiệt độ nóng chảy cao (thể rắn). Trong khi đó, các liên kết đôi C=C dạng đồng phân cis trong dầu thực vật tạo nên các nếp gập gẫy khúc, cản trở các phân tử xếp khít nên lực hút yếu → nhiệt độ nóng chảy thấp (thể lỏng)."
+      },
       "core": "Chất béo (triglyceride) là triester của glycerol với các acid béo mạch C dài không phân nhánh (RCOO)₃C₃H₅.\n• Acid béo no: Palmitic C₁₅H₃₁COOH (M=256), Stearic C₁₇H₃₅COOH (M=284) → Chất béo rắn (tristearin, tripalmitin trong mỡ động vật).\n• Acid béo không no: Oleic C₁₇H₃₃COOH (1 liên kết C=C, M=282), Linoleic C₁₇H₃₁COOH (2 liên kết C=C) → Chất béo lỏng (triolein trong dầu thực vật).\n• Phản ứng Hydrogen hóa: Triolein (lỏng) + 3H₂ → Tristearin (rắn) (xúc tác Ni, t°), ứng dụng sản xuất bơ nhân tạo (margarine) và xà phòng.",
       "caseStudy": "CƠ CHẾ TẨY RỬA & NƯỚC CỨNG:\nPhân tử xà phòng (RCOONa) gồm 2 phần: Đuôi hydrocarbon dài kị nước cắm sâu vào hạt dầu mỡ; Đầu carboxylate -COO⁻Na⁺ ưa nước hướng ra ngoài tạo các hạt micelle lơ lửng trong nước và bị dòng nước cuốn trôi.\nTrong nước cứng chứa Ca²⁺, Mg²⁺: Xà phòng tạo kết tủa (RCOO)₂Ca↓ làm giảm bọt và ố vàng sợi vải. Chất giặt rửa tổng hợp (chứa nhóm -SO₃Na) không tạo kết tủa với Ca²⁺, Mg²⁺ nên dùng tốt trong cả nước cứng và môi trường axit!",
       "trap": "BẪY TỔNG HỢP KIẾN THỨC:\n• Dầu mỡ bôi trơn máy móc là HYDROCARBON (paraffin), hoàn toàn KHÔNG THỂ bị xà phòng hóa bằng NaOH, khác hẳn dầu mỡ ăn (ester).\n• Phản ứng thủy phân chất béo trong dung dịch NaOH luôn thu được GLYCEROL C₃H₅(OH)₃ và muối sodium của acid béo theo tỉ lệ mol 1 : 3.",
@@ -1668,6 +1693,12 @@
     {
       "title": "5. Vận dụng Định lượng & Phân tích Đa điều kiện (Toán Xà phòng hoá)",
       "hook": "Trong hóa học định lượng, khối lượng không bao giờ tự nhiên sinh ra hay mất đi. Định luật bảo toàn khối lượng và tỉ lệ mol vàng là chìa khóa vạn năng giúp giải quyết mọi bài toán xà phòng hóa phức tạp trong nháy mắt!",
+      "predict": {
+        "q": "Khi xà phòng hoá hoàn toàn 1 mol triglyceride bất kì bằng dung dịch NaOH vừa đủ, lượng glycerol thu được luôn luôn là bao nhiêu mol?",
+        "opts": "A=Luôn đúng bằng 1 mol glycerol (tỉ lệ mol este : glycerol là 1 : 1);B=Luôn đúng bằng 3 mol glycerol;C=Tuỳ thuộc vào loại gốc acid béo tạo nên chất béo đó;D=Không thu được glycerol mà thu được ethylene glycol",
+        "a": "A",
+        "insight": "Rất chuẩn xác! Chất béo luôn là triester của glycerol với 3 gốc acid béo: (RCOO)₃C₃H₅ + 3NaOH → 3RCOONa + C₃H₅(OH)₃. Do đó, cứ 1 mol chất béo bị xà phòng hóa luôn tiêu tốn 3 mol NaOH và sinh ra ĐÚNG 1 mol glycerol!"
+      },
       "core": "CÔNG THỨC VÀNG XÀ PHÒNG HÓA CHẤT BÉO:\n1. Tỉ lệ mol: 1 mol chất béo cần 3 mol NaOH và sinh ra 1 mol glycerol: n(NaOH) = 3 × n(glycerol) = 3 × n(chất béo).\n2. Định luật bảo toàn khối lượng: m(chất béo) + m(NaOH) = m(muối/xà phòng) + m(glycerol).\n3. Este đơn chức thông thường: n(este) = n(NaOH phản ứng) = n(muối) = n(alcohol).\n4. Este của phenol: n(NaOH) = 2 × n(este) và sinh ra n(H₂O) = n(este).",
       "caseStudy": "BÀI TOÁN SẢN XUẤT THỰC TẾ:\nKhi nấu xà phòng thủ công trong làng nghề, người ta trộn mỡ bò (tristearin) với dung dịch xút NaOH nóng, sau đó thêm muối ăn NaCl để xà phòng đông đặc đóng bánh nổi lên trên, tách lấy glycerol tinh khiết bên dưới làm nguyên liệu mỹ phẩm và dược phẩm.",
       "trap": "BẪY TÍNH CHẤT RẮN KHAN: Nếu đề bài cho 'dùng dung dịch NaOH dư', thì khối lượng chất rắn khan thu được sau khi cô cạn bao gồm cả MUỐI VÀ NAOH DƯ! Cần lấy tổng khối lượng ban đầu trừ khối lượng alcohol và H₂O bay hơi.",
@@ -1684,6 +1715,12 @@
     {
       "title": "1. Monosaccharide: Glucose & Fructose — Cấu tạo & Tính chất Polyol",
       "hook": "Đường nho (glucose) chảy trong huyết quản nuôi sống hàng tỷ nơ-ron não bộ; đường mật ong (fructose) ngọt sắc đậm đà. Đều cùng công thức C₆H₁₂O₆, nhưng hình dạng phân tử và các nhóm chức của chúng khác nhau như thế nào?",
+      "predict": {
+        "q": "Cả dung dịch Glucose và Fructose đều hoà tan kết tủa Cu(OH)₂ ở nhiệt độ thường tạo thành dung dịch màu xanh lam thẫm. Hiện tượng này chứng minh điều gì trong cấu tạo phân tử của chúng?",
+        "opts": "A=Cả hai đều có nhóm aldehyde (-CHO) ở đầu mạch;B=Cả hai đều có nhiều nhóm hydroxy (-OH) ở các vị trí nguyên tử carbon liền kề nhau;C=Cả hai đều có tính acid mạnh như acetic acid;D=Cả hai đều là những hợp chất cao phân tử mạch dài",
+        "a": "B",
+        "insight": "Dự đoán chuẩn xác! Phản ứng tạo phức chất chelate màu xanh lam thẫm với Cu(OH)₂ ở nhiệt độ thường là tính chất đặc trưng của polyalcohol có từ 2 nhóm -OH kề nhau trở lên. Fructose dù là ketone nhưng sở hữu tới 5 nhóm -OH kề nhau nên vẫn phản ứng tạo phức xanh lam y hệt glucose!"
+      },
       "core": "Glucose và Fructose là đồng phân cấu tạo monosaccharide (M = 180):\n• Glucose (CH₂OH-[CHOH]₄-CHO): Chứa 5 nhóm -OH kề nhau và 1 nhóm aldehyde -CHO. Tồn tại chủ yếu ở dạng vòng 6 cạnh α và β qua liên kết hemiacetal.\n• Fructose (CH₂OH-[CHOH]₃-CO-CH₂OH): Chứa 5 nhóm -OH và 1 nhóm ketone C=O ở vị trí C2. Tồn tại ở dạng vòng 5 cạnh.\n• Tính chất Polyalcohol kề nhau: Cả glucose và fructose đều hòa tan Cu(OH)₂ ở nhiệt độ thường tạo phức chất đồng màu xanh lam thẫm.",
       "caseStudy": "Ứng dụng dung dịch glucose 5% trong y tế (huyết thanh ngọt): Glucose được hấp thu trực tiếp qua niêm mạc ruột non vào máu mà không cần enzyme tiêu hóa thủy phân, giải phóng năng lượng ATP tức thì cho bệnh nhân suy nhược cơ thể.",
       "trap": "BẪY THUỐC THỬ: Vì cả glucose và fructose đều có nhiều nhóm -OH kề nhau nên cả hai ĐỀU HÒA TAN Cu(OH)₂ ở nhiệt độ thường tạo dung dịch xanh lam thẫm. Do đó KHÔNG THỂ dùng Cu(OH)₂ ở nhiệt độ thường để phân biệt hai chất này!",
@@ -1698,6 +1735,12 @@
     {
       "title": "2. Phản ứng Oxi hoá Monosaccharide: Tráng bạc vs Nước Bromine",
       "hook": "Một giọt hóa chất trong suốt có thể biến thành chiếc gương soi sáng bóng như gương trên thành ống nghiệm. Phản ứng tráng bạc là màn trình diễn kỳ diệu của nhóm chức aldehyde!",
+      "predict": {
+        "q": "Fructose là một polyhydroxy ketone (chứa nhóm C=O ở vị trí C2, không có nhóm -CHO). Vậy theo bạn, fructose có tham gia phản ứng tráng bạc với thuốc thử Tollens [Ag(NH₃)₂]OH không?",
+        "opts": "A=Có tráng bạc, vì trong môi trường kiềm của thuốc thử Tollens, fructose tự đồng phân hoá chuyển thành glucose;B=Hoàn toàn không tráng bạc, vì chỉ aldehyde mới có khả năng tráng bạc;C=Có tráng bạc nhưng sinh ra kết tủa đồng đỏ Cu₂O thay vì bạc kim loại;D=Chỉ tráng bạc khi có mặt ánh sáng mặt trời gay gắt",
+        "a": "A",
+        "insight": "Tư duy hoá học đỉnh cao! Đây là bẫy kinh điển nhất trong đề thi THPT: Fructose không có nhóm aldehyde nhưng dung dịch thuốc thử Tollens có môi trường kiềm (NH₃), xúc tác làm fructose chuyển hoá thuận nghịch thành glucose → Fructose vẫn tráng bạc tạo gương sáng bóng!"
+      },
       "core": "• Phản ứng tráng bạc (thuốc thử Tollens): Glucose + 2[Ag(NH₃)₂]OH → Ammonium gluconate + 2Ag↓ + 3NH₃ + H₂O. 1 mol Glucose sinh ra đúng 2 mol Ag.\n• Oxi hóa bởi Cu(OH)₂ đun nóng: Tạo kết tủa đỏ gạch Cu₂O↓.\n• CÂN BẰNG ĐỒNG PHÂN HÓA TRONG MÔI TRƯỜNG KIỀM: Fructose ⇌ Glucose (xúc tác OH⁻). Vì thuốc thử Tollens chứa NH₃ (môi trường base) nên fructose tự chuyển thành glucose và CŨNG THAM GIA PHẢN ỨNG TRÁNG BẠC!\n• Phản ứng với nước Bromine: Glucose oxi hóa làm mất màu nâu đỏ của nước Br₂ (tạo gluconic acid). Vì môi trường nước Br₂ không có tính kiềm nên fructose không chuyển thành glucose → FRUCTOSE KHÔNG LÀM MẤT MÀU NƯỚC BROMINE!",
       "caseStudy": "Phương pháp chuẩn xét nghiệm đường huyết: Trong y học, nồng độ glucose trong máu được định lượng bằng máy đo đường huyết cá nhân dựa trên phản ứng oxi hóa glucose bằng enzyme glucose oxidase sinh ra dòng điện tương ứng.",
       "trap": "BẪY TỬ HUYỆT ĐỀ THI: 'Fructose là ketone nên không tráng bạc' → SAI HOÀN TOÀN! Fructose tráng bạc bình thường nhờ môi trường kiềm. Muốn phân biệt glucose và fructose bằng phương pháp hóa học, thuốc thử duy nhất là DUNG DỊCH NƯỚC BROMINE!",
@@ -1712,6 +1755,12 @@
     {
       "title": "3. Case Study: Y học, Đời sống & Hiệu suất Lên men Rượu",
       "hook": "Ruột phích giữ nhiệt bạn dùng hàng ngày được tráng một lớp bạc siêu mỏng để phản xạ bức xạ nhiệt. Tại sao người ta lại dùng glucose để tráng ruột phích mà không dùng aldehyde formic (HCHO) rẻ tiền hơn?",
+      "predict": {
+        "q": "Khi sản xuất ruột phích giữ nhiệt bằng phản ứng tráng bạc công nghiệp, tại sao người ta lại dùng glucose thay vì formaldehyde (HCHO) dù formaldehyde rẻ tiền hơn rất nhiều?",
+        "opts": "A=Vì formaldehyde độc hại, dễ bay hơi gây nguy hiểm cho công nhân và người tiêu dùng;B=Vì glucose tráng được lớp bạc dày gấp 10 lần formaldehyde;C=Vì formaldehyde không có khả năng tráng bạc;D=Vì glucose tạo ra bạc có màu vàng kim lấp lánh",
+        "a": "A",
+        "insight": "Trực giác nhân văn và khoa học rất chính xác! Formaldehyde (formalin) là chất độc mạnh, gây kích ứng niêm mạc và có nguy cơ gây ung thư. Sử dụng glucose vừa an toàn tuyệt đối cho người sản xuất và người sử dụng ruột phích, vừa tạo lớp màng bạc đồng đều, bám dính sáng bóng trên thành thuỷ tinh."
+      },
       "core": "• Tráng ruột phích bằng glucose: Formaldehyde độc hại cho công nhân và người tiêu dùng. Glucose là hợp chất tự nhiên, an toàn tuyệt đối và tạo lớp bạc bám dính mịn màng.\n• Phản ứng lên men rượu: C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂↑ (men rượu, 30-35°C). Khí CO₂ sinh ra dẫn vào nước vôi trong Ca(OH)₂ dư tạo kết tủa trắng CaCO₃↓.\n• Chỉ số đường huyết sinh học: Lượng glucose trong máu người bình thường luôn ổn định ở mức 0,1% (khoảng 4,4 – 7,2 mmol/L).",
       "caseStudy": "Công nghệ sản xuất cồn sinh học Ethanol (E5): Tinh bột ngô/sắn được thủy phân thành glucose nhờ enzyme amylase, sau đó lên men rượu thành ethanol rồi chưng cất khan để phối trộn vào xăng sinh học thân thiện với môi trường.",
       "trap": "BẪY TÍNH HIỆU SUẤT PHẢN ỨNG: Khi tính khối lượng chất tham gia (glucose ban đầu) với hiệu suất H%, bắt buộc phải CHIA CHO HIỆU SUẤT (m = m_lý_thuyết / (H/100)). Rất nhiều bạn bấm máy nhân với H% dẫn đến đáp án bẫy!",
@@ -1726,6 +1775,12 @@
     {
       "title": "4. Disaccharide & Polysaccharide: Saccharose, Tinh bột & Cellulose",
       "hook": "Từ bông gòn may áo đến cây mía ngọt lịm, từ hạt gạo trắng ngần đến thuốc súng không khói trong quân sự — tất cả đều được tạo nên từ những mắt xích monosaccharide liên kết với nhau!",
+      "predict": {
+        "q": "Dung dịch đường mía (saccharose) bình thường không tham gia phản ứng tráng bạc. Nếu đun nóng dung dịch saccharose với vài giọt acid H₂SO₄ loãng rồi trung hoà kiềm, sau đó cho thuốc thử Tollens vào, hiện tượng sẽ là gì?",
+        "opts": "A=Xuất hiện lớp bạc sáng bóng bám vào thành ống nghiệm (phản ứng tráng bạc);B=Không có hiện tượng gì xảy ra, dung dịch vẫn trong suốt;C=Dung dịch lập tức hoá màu xanh tím đậm;D=Dung dịch sủi bọt khí CO₂ mãnh liệt",
+        "a": "A",
+        "insight": "Chính xác tuyệt đối! Acid xúc tác đun nóng đã thuỷ phân saccharose thành hỗn hợp glucose và fructose. Cả hai monosaccharide sinh ra đều tham gia phản ứng tráng bạc rất mạnh, sinh ra bạc kim loại Ag sáng bóng!"
+      },
       "core": "• Saccharose (C₁₂H₂₂O₁₁): Gồm 1 gốc α-glucose và 1 gốc β-fructose qua liên kết α,β-1,2-glycoside. Cả 2 nhóm hemiacetal đều bị khóa → KHÔNG tráng bạc, KHÔNG mở vòng.\n• Maltose (C₁₂H₂₂O₁₁): Gồm 2 gốc α-glucose liên kết α-1,4-glycoside. Còn 1 nhóm hemiacetal tự do → CÓ phản ứng tráng bạc.\n• Tinh bột (C₆H₁₀O₅)ₙ: Gồm Amylose (mạch thẳng xoắn lò xo, liên kết α-1,4) và Amylopectin (mạch phân nhánh, liên kết α-1,4 và α-1,6). Tác dụng với Iodine cho màu xanh tím đặc trưng (đun nóng mất màu, để nguội hiện lại).\n• Cellulose (C₆H₁₀O₅)ₘ: Mạch kéo dài không phân nhánh gồm các gốc β-glucose liên kết β-1,4-glycoside. Công thức mắt xích: [C₆H₇O₂(OH)₃]ₙ.",
       "caseStudy": "Sản xuất tơ sợi nhân tạo và thuốc súng không khói:\n1. Tơ visco và tơ acetate: Chế biến từ nguồn cellulose gỗ/tre nứa bằng phản ứng hóa học thành tơ sợi mềm mại thay thế lụa tự nhiên.\n2. Thuốc súng không khói: Cellulose trinitrate [C₆H₇O₂(ONO₂)₃]ₙ điều chế từ cellulose tác dụng với HNO₃ đặc (xúc tác H₂SO₄ đặc), cháy cực nhanh và không tạo khói.",
       "trap": "BẪY ĐỒNG PHÂN: Tinh bột và Cellulose đều có công thức tổng quát là (C₆H₁₀O₅)ₙ nhưng KHÔNG PHẢI LÀ ĐỒNG PHÂN của nhau vì hệ số polime hóa n khác nhau rất nhiều (n của cellulose lớn hơn tinh bột từ hàng chục đến hàng trăm lần)!",
@@ -1740,6 +1795,12 @@
     {
       "title": "5. Tính toán Kết hợp & Phân tích Đa điều kiện (Thủy phân Saccharose)",
       "hook": "Thủy phân một phân tử đường không tráng bạc (saccharose), bạn thu được dung dịch có khả năng sinh ra tới 4 nguyên tử bạc sáng bóng! Mối liên hệ định lượng này là cái bẫy điểm 9+ quen thuộc trong đề thi.",
+      "predict": {
+        "q": "Từ 1 mol saccharose, sau khi thuỷ phân hoàn toàn trong môi trường acid rồi trung hoà kiềm, cho tác dụng với lượng dư thuốc thử Tollens thì lượng bạc kim loại Ag tối đa thu được là bao nhiêu mol?",
+        "opts": "A=1 mol Ag;B=2 mol Ag;C=4 mol Ag;D=8 mol Ag",
+        "a": "C",
+        "insight": "Tư duy định lượng cực kỳ sắc bén! 1 mol saccharose thuỷ phân sinh ra 1 mol glucose (tạo 2 mol Ag) và 1 mol fructose (trong môi trường kiềm chuyển thành glucose, cũng tạo 2 mol Ag) → Tổng cộng 1 mol saccharose cho tối đa 4 mol Ag!"
+      },
       "core": "PHẢN ỨNG THỦY PHÂN LIÊN HOÀN:\n• Thủy phân: Saccharose (C₁₂H₂₂O₁₁) + H₂O → Glucose + Fructose (xúc tác H⁺, t°).\n• 1 mol Saccharose thủy phân hoàn toàn tạo ra 1 mol Glucose và 1 mol Fructose.\n• Đem toàn bộ dung dịch sau thủy phân tráng bạc: 1 Glucose tạo 2 Ag; 1 Fructose (trong môi trường kiềm NH₃ chuyển thành glucose) cũng tạo 2 Ag.\n→ TỔNG CỘNG: 1 mol Saccharose thủy phân hoàn toàn cho tối đa 4 mol Ag!",
       "caseStudy": "Công nghiệp sản xuất bánh kẹo và mứt: Thủy phân một phần đường saccharose thành đường nghịch đảo (hỗn hợp glucose + fructose) giúp kẹo không bị lại đường (kết tinh đường thô), giữ bánh kẹo mềm mịn và có độ ngọt thanh tự nhiên.",
       "trap": "BẪY THỰC NGHIỆM ĐỀ THI: Sau khi đun thủy phân saccharose bằng H₂SO₄ loãng, BẮT BUỘC PHẢI TRUNG HÒA ACID DƯ bằng dung dịch kiềm (NaOH hoặc NaHCO₃) trước khi cho thuốc thử tráng bạc AgNO₃/NH₃ vào! Nếu quên trung hòa, môi trường acid sẽ phá hủy phức bạc Tollens và phản ứng tráng bạc thất bại hoàn toàn.",
@@ -1756,6 +1817,12 @@
     {
       "title": "1. Bản chất Amine, Bậc Amine & Danh pháp chuẩn",
       "hook": "Mùi tanh nồng nặc của cá mè sống làm bạn rùng mình, thủ phạm chính là trimethylamine (CH₃)₃N. Nhưng tại sao khi mẹ nấu canh chua cá với me, cà chua hoặc vắt chanh, mùi tanh lại biến mất hoàn toàn?",
+      "predict": {
+        "q": "Hợp chất (CH₃)₃C-NH₂ có nhóm -NH₂ gắn vào nguyên tử carbon bậc 3. Theo bạn, hợp chất này thuộc bậc amine nào?",
+        "opts": "A=Amine bậc 1 (primary amine);B=Amine bậc 3 (tertiary amine);C=Amine bậc 2;D=Amine bậc 4",
+        "a": "A",
+        "insight": "Bẫy tư duy kinh điển đã bị bạn hóa giải! Bậc của amine được tính bằng SỐ NGUYÊN TỬ H của NH₃ BỊ THAY THẾ BỞI GỐC HYDROCARBON (tức là số gốc liên kết trực tiếp với Nitrogen), HOÀN TOÀN KHÔNG PHỤ THUỘC VÀO BẬC CỦA NGUYÊN TỬ CARBON! Phân tử (CH₃)₃C-NH₂ chỉ có 1 gốc gắn vào N nên nó là amine bậc 1."
+      },
       "core": "Amine sinh ra khi thay thế nguyên tử H trong phân tử NH₃ bằng gốc hydrocarbon.\n• BẬC AMINE = SỐ GỐC HYDROCARBON liên kết trực tiếp với nguyên tử Nitrogen (Bậc 1: R-NH₂; Bậc 2: R-NH-R'; Bậc 3: R-N(R')-R'').\n• Danh pháp:\n  - Tên gốc - chức: Tên gốc alkyl + 'amine' (ví dụ: CH₃NH₂ methylamine, (CH₃)₂NH dimethylamine).\n  - Tên thay thế (IUPAC): Tên hydrocarbon - vị trí - amine (ví dụ: CH₃CH(NH₂)CH₃ propan-2-amine).\n• 4 amine ở thể khí ở điều kiện thường: CH₃NH₂, (CH₃)₂NH, (CH₃)₃N, C₂H₅NH₂ (đều có mùi khai khó chịu, độc, tan rất nhiều trong nước).",
       "caseStudy": "Hóa học khử mùi tanh cá trong ẩm thực: Trimethylamine (CH₃)₃N có tính base yếu và dễ bay hơi. Axit hữu cơ trong chanh (citric acid), giấm (acetic acid) hoặc me (tartaric acid) lập tức trung hòa amine tạo thành muối ammonium không bay hơi tan vào nước canh, khử sạch mùi tanh!",
       "trap": "BẪY TỬ HUYỆT ĐỀ THI: Nhầm lẫn giữa bậc của amine và bậc của alcohol! Hợp chất (CH₃)₃C-NH₂ có nhóm -NH₂ gắn vào carbon bậc 3 nhưng NÓ LÀ AMINE BẬC 1 (vì chỉ có 1 gốc liên kết với N)! Trong khi đó (CH₃)₃C-OH lại là alcohol bậc 3.",
@@ -1770,6 +1837,12 @@
     {
       "title": "2. Tính Base, Quy luật Lực Base & Tương tác Axit",
       "hook": "Cặp electron tự do chưa liên kết trên đỉnh kim tự tháp của nguyên tử Nitrogen chính là 'chiếc nam châm' hút proton H⁺. Chiếc nam châm đó mạnh lên hay yếu đi phụ thuộc hoàn toàn vào các gốc gắn xung quanh N!",
+      "predict": {
+        "q": "Khi nhúng mẩu giấy quỳ tím ẩm vào dung dịch aniline (C₆H₅NH₂) trong nước, màu sắc của giấy quỳ tím sẽ thay đổi như thế nào?",
+        "opts": "A=Quỳ tím chuyển sang màu xanh (vì aniline là amine có tính base);B=Quỳ tím không đổi màu (vẫn giữ nguyên màu tím);C=Quỳ tím chuyển sang màu đỏ rực;D=Quỳ tím bị tẩy trắng mất màu hoàn toàn",
+        "a": "B",
+        "insight": "Trực giác hoá học đỉnh cao! Aniline có tính base, nhưng vì vòng benzene hút electron rất mạnh làm giảm mật độ điện tích âm trên nguyên tử Nitrogen, khiến lực base của aniline cực kỳ yếu (yếu hơn NH₃ hàng nghìn lần) và KHÔNG ĐỦ SỨC làm đổi màu quỳ tím!"
+      },
       "core": "QUY LUẬT LỰC BASE:\n• Gốc alkyl (-CH₃, -C₂H₅) đẩy electron → Tăng mật độ e trên N → Lực base TĂNG (Alkylamine > NH₃).\n• Amine bậc 2 đẩy e mạnh hơn bậc 1: (CH₃)₂NH > CH₃NH₂ > NH₃.\n• Gốc phenyl (C₆H₅-) hút electron do liên hợp pi với vòng benzene → Giảm mạnh mật độ e trên N → Lực base GIẢM THẢM HẠI (Aniline C₆H₅NH₂ < NH₃ hàng nghìn lần).\n• Chỉ thị màu: Các alkylamine làm quỳ tím chuyển xanh và phenolphthalein hóa hồng. Aniline KHÔNG làm đổi màu quỳ tím!",
       "caseStudy": "Phản ứng với Nitrous acid (HNO₂) và tổng hợp phẩm nhuộm: Alkylamine bậc 1 phản ứng giải phóng bọt khí N₂↑ (C₂H₅NH₂ + HNO₂ → C₂H₅OH + N₂↑ + H₂O). Còn Aniline ở 0 - 5°C tạo muối benzenediazonium chloride [C₆H₅-N≡N]⁺Cl⁻, là nguyên liệu cốt lõi tổng hợp phẩm nhuộm azo rực rỡ trong ngành dệt may.",
       "trap": "BẪY PHÁT BIỂU ĐÚNG/SAI: 'Mọi amine đều có tính base và đều làm xanh giấy quỳ tím ẩm' → SAI! Aniline và các arylamine có tính base cực kì yếu, hoàn toàn không làm đổi màu giấy quỳ tím ẩm.",
@@ -1784,6 +1857,12 @@
     {
       "title": "3. Aniline & Hợp chất thơm: Phản ứng thế & Chu trình Tái sinh",
       "hook": "Aniline là một chất lỏng sánh như dầu, để lâu ngoài không khí bị sẫm màu vì oxi hóa. Nhưng chỉ cần nhỏ một giọt nước bromine vào, một cơn bão tuyết kết tủa trắng tinh lập tức xuất hiện che kín ống nghiệm!",
+      "predict": {
+        "q": "Aniline rất ít tan trong nước lạnh tạo dung dịch vẩn đục. Nếu nhỏ tiếp dung dịch axit HCl vào ống nghiệm, hiện tượng gì sẽ xảy ra?",
+        "opts": "A=Ống nghiệm lập tức trở nên trong suốt do tạo muối phenylammonium chloride tan tốt;B=Dung dịch càng vẩn đục hơn và đóng bánh kết tủa màu đen;C=Xuất hiện bọt khí thoát ra sùng sục;D=Dung dịch chuyển sang màu tím hoa cà",
+        "a": "A",
+        "insight": "Chính xác! Aniline tác dụng với HCl tạo muối ion [C₆H₅NH₃]⁺Cl⁻ tan tốt trong nước, làm dung dịch từ vẩn đục chuyển sang trong suốt. Nếu sau đó nhỏ tiếp NaOH vào, aniline bị đẩy ra và dung dịch lại vẩn đục trở lại!"
+      },
       "core": "• Tính chất vật lý: Chất lỏng không màu, sánh, ít tan trong nước lạnh (nặng hơn nước, lắng xuống đáy), rất độc.\n• Phản ứng thế trên nhân thơm: Nhóm -NH₂ hoạt hóa vòng thơm cực mạnh ở vị trí ortho và para: C₆H₅NH₂ + 3Br₂ → C₆H₂Br₃NH₂↓ (2,4,6-tribromoaniline kết tủa trắng) + 3HBr (tương tự phenol, không cần xúc tác Fe).\n• CHU TRÌNH ĐỤC - TRONG - ĐỤC KINH ĐIỂN:\n  1. Aniline trong nước không tan → Dung dịch vẩn đục, phân lớp.\n  2. Nhỏ dung dịch HCl vào → Dung dịch trong suốt do tạo muối C₆H₅NH₃Cl tan tốt.\n  3. Nhỏ tiếp dung dịch NaOH vào → Dung dịch vẩn đục trở lại vì NaOH đẩy aniline không tan tái tạo trở lại!",
       "caseStudy": "Quy trình rửa sạch ống nghiệm dính aniline sau thí nghiệm: Không thể rửa bằng nước lã vì aniline không tan bám chặt thành thủy tinh. Người ta tráng ống nghiệm bằng dung dịch HCl để chuyển thành muối tan, sau đó mới rửa lại bằng nước sạch.",
       "trap": "BẪY PHÂN BIỆT PHENOL VÀ ANILINE: Cả phenol và aniline đều tạo kết tủa trắng với nước bromine và đều không làm đổi màu quỳ tím. Để phân biệt hai chất, dùng dung dịch HCl (aniline tan, phenol không tan) hoặc dung dịch NaOH (phenol tan, aniline không tan)!",
@@ -1798,6 +1877,12 @@
     {
       "title": "4. Amino Acid: Cấu tạo Ion Lưỡng Cực & Tính chất Lưỡng Tính",
       "hook": "Amino acid là những viên gạch kỳ diệu xây dựng nên sự sống. Điều thú vị là trong cùng một phân tử, chúng vừa mang nhóm acid (-COOH) vừa mang nhóm base (-NH₂). Chúng hòa hợp với nhau như thế nào?",
+      "predict": {
+        "q": "Ở trạng thái tinh khiết và trong dung dịch nước, amino acid tồn tại chủ yếu dưới dạng nào?",
+        "opts": "A=Dạng phân tử trung hoà H₂N-R-COOH;B=Dạng ion lưỡng cực ⁺H₃N-R-COO⁻;C=Dạng cation hoàn toàn;D=Dạng anion hoàn toàn",
+        "a": "B",
+        "insight": "Hoàn toàn chính xác! Nhóm -COOH có tính acid nhường proton H⁺ cho nhóm -NH₂ có tính base trong cùng phân tử tạo thành ion lưỡng cực. Vì thế amino acid là chất rắn kết tinh, nhiệt độ nóng chảy rất cao và dễ tan trong nước!"
+      },
       "core": "• CẤU TRÚC ION LƯỠNG CỰC: Trong phân tử amino acid, proton H⁺ từ nhóm -COOH chuyển sang nhóm -NH₂ tạo thành ion lưỡng cực ⁺H₃N-R-COO⁻. Do đó amino acid là những chất rắn kết tinh không màu, nhiệt độ nóng chảy cao và tan tốt trong nước.\n• Tính chất lưỡng tính (amphoteric): Tác dụng cả với acid mạnh và base mạnh.\n• CÁC α-AMINO ACID TRỌNG TÂM CẦN NHỚ:\n  - Glycine (Gly): H₂N-CH₂-COOH (M=75, 1 -COOH, 1 -NH₂ → Quỳ không đổi màu).\n  - Alanine (Ala): CH₃-CH(NH₂)-COOH (M=89, 1 -COOH, 1 -NH₂ → Quỳ không đổi màu).\n  - Valine (Val): (CH₃)₂CH-CH(NH₂)-COOH (M=117, Quỳ không đổi màu).\n  - Glutamic acid (Glu): HOOC-(CH₂)₂-CH(NH₂)-COOH (M=147, 2 -COOH, 1 -NH₂ → Quỳ hóa ĐỎ).\n  - Lysine (Lys): H₂N-(CH₂)₄-CH(NH₂)-COOH (M=146, 1 -COOH, 2 -NH₂ → Quỳ hóa XANH).",
       "caseStudy": "Gia vị mì chính (bột ngọt): Bột ngọt chính là muối monosodium glutamate (C₅H₈NO₄Na). Tại sao không dùng dạng axit tự do hay muối disodium? Vì chỉ có dạng monosodium mới tương tác hoàn hảo với thụ thể vị giác tạo nên vị ngọt thịt umami đặc trưng.",
       "trap": "BẪY QUỲ TÍM: Không phải mọi amino acid đều có môi trường trung tính! So sánh số nhóm -COOH và -NH₂: Glu có 2 nhóm -COOH > 1 nhóm -NH₂ nên dung dịch có tính axit (quỳ hóa đỏ). Lys có 2 nhóm -NH₂ > 1 nhóm -COOH nên dung dịch có tính base (quỳ hóa xanh)!",
@@ -1812,6 +1897,12 @@
     {
       "title": "5. Peptide & Protein: Cấu trúc, Phản ứng Biuret & Sự Đông tụ",
       "hook": "Tại sao khi nấu canh cua, gạch và riêu cua lại đóng thành từng mảng nổi bồng bềnh? Tại sao khi vắt chanh vào sữa đậu nành, nước sữa lại bị vón cục lợn cợn? Đó chính là sự biến tính và đông tụ kỳ diệu của Protein!",
+      "predict": {
+        "q": "Cho hai chất: Dipeptide Gly-Ala và Tripeptide Gly-Ala-Val tác dụng với Cu(OH)₂ trong môi trường kiềm NaOH. Chất nào sẽ tạo dung dịch có màu tím đặc trưng (phản ứng Biuret)?",
+        "opts": "A=Chỉ có tripeptide Gly-Ala-Val tạo màu tím, còn dipeptide Gly-Ala không phản ứng;B=Cả hai chất đều cho màu tím đậm;C=Chỉ có dipeptide Gly-Ala phản ứng;D=Cả hai chất đều tạo kết tủa đỏ gạch",
+        "a": "A",
+        "insight": "Bẫy điểm 10 quen thuộc! Phản ứng màu Biuret đòi hỏi phân tử phải có TỪ 2 LIÊN KẾT PEPTIDE TRỞ LÊN (tức từ tripeptide trở lên hoặc protein). Dipeptide Gly-Ala chỉ có 1 liên kết peptide nên KHÔNG CÓ phản ứng màu Biuret!"
+      },
       "core": "• Liên kết peptide: Liên kết -CO-NH- giữa hai gốc α-amino acid.\n• Phân loại: Dipeptide (2 gốc, 1 liên kết peptide), Tripeptide (3 gốc, 2 liên kết peptide)... Polypeptide (>10 gốc).\n• Protein: Polypeptide cao phân tử (vài vạn đến vài triệu đvC) như Albumin (lòng trắng trứng), Fibroin (tơ tằm).\n• PHẢN ỨNG MÀU BIURET: Trong môi trường kiềm, peptit có từ HAI LIÊN KẾT PEPTIDE TRỞ LÊN (từ TRIPEPTIDE trở lên) hoặc protein tác dụng với Cu(OH)₂ tạo hợp chất màu tím đặc trưng.\n• Sự đông tụ protein: Dưới tác dụng của nhiệt độ cao, acid, base hoặc ion kim loại nặng, cấu trúc bậc cao của protein bị phá vỡ, làm protein kết tụ lại.",
       "caseStudy": "Kỹ thuật nấu riêu cua và làm đậu phụ truyền thống: Đun sôi canh cua làm protein cua bị nhiệt đông tụ đóng bánh riêu. Khi nấu sữa đậu nành, người làm đậu thêm nước chua (acid lactic) hoặc thạch cao (CaSO₄) để làm đông tụ protein đậu nành thành những khối đậu phụ mềm béo.",
       "trap": "BẪY TỬ HUYỆT ĐỀ THI: 'Mọi peptide đều tham gia phản ứng màu Biuret' → SAI HOÀN TOÀN! Dipeptide (như Gly-Ala) CHỈ CÓ 1 LIÊN KẾT PEPTIDE nên KHÔNG PHẢN ỨNG với Cu(OH)₂. Phải từ tripeptide trở lên mới cho màu tím!",
@@ -1826,6 +1917,12 @@
     {
       "title": "6. Vận dụng Định lượng & Phân tích Đa điều kiện (Thủy phân Peptide)",
       "hook": "Thủy phân một phân tử peptide giống như tháo rời từng toa tàu hỏa. Mỗi khớp nối peptide bị bẻ gãy cần đúng 1 phân tử nước hoặc 1 phân tử NaOH. Định luật bảo toàn số mắt xích giúp giải quyết bài toán thủy phân peptide siêu tốc!",
+      "predict": {
+        "q": "Khi thuỷ phân hoàn toàn 1 mol tripeptide mạch hở X bằng dung dịch NaOH vừa đủ, lượng H₂O sinh ra sau phản ứng là bao nhiêu mol?",
+        "opts": "A=Đúng 1 mol H₂O (sinh ra từ đầu -COOH tự do duy nhất của peptide);B=3 mol H₂O (vì có 3 gốc amino acid);C=2 mol H₂O (vì có 2 liên kết peptide);D=Hoàn toàn không có H₂O sinh ra",
+        "a": "A",
+        "insight": "Chìa khoá vàng giải toán peptide! Tripeptide tác dụng với 3 NaOH nhưng chỉ sinh ra đúng 1 phân tử H₂O từ nhóm -COOH ở đầu C của chuỗi peptide: Tripeptit + 3NaOH → 3 Muối + 1 H₂O!"
+      },
       "core": "CÔNG THỨC VÀNG THỦY PHÂN PEPTIDE BẰNG KIỀM:\n• Thủy phân bằng NaOH: Peptide (k-peptit) + k NaOH → Hỗn hợp muối của amino acid + 1 H₂O.\n  LƯU Ý VÀNG: Luôn chỉ sinh ra đúng 1 mol H₂O (từ nhóm -COOH tự do ở đầu C của peptide)!\n• Định luật bảo toàn khối lượng toàn hệ:\n  m(chất rắn khan) = m(peptide) + m(NaOH ban đầu) - m(H₂O sinh ra).\n• Phân tử khối peptide tạo từ các α-amino acid no: M(k-peptit) = Tổng M(các amino acid) - (k - 1) × 18.",
       "caseStudy": "Quá trình tiêu hóa protein trong cơ thể người: Trong dạ dày ở môi trường axit HCl pH 1,5 - 2, enzyme pepsin cắt các liên kết peptide dài thành các đoạn peptide ngắn; sau đó xuống ruột non, enzyme trypsin thủy phân triệt để thành các amino acid đơn lẻ để hấp thu vào máu.",
       "trap": "BẪY TÍNH CHẤT RẮN KHAN VÀ NAOH DƯ: Đề bài thường cho dùng dung dịch NaOH DƯ. Khi cô cạn dung dịch sau phản ứng, chất rắn khan thu được gồm CẢ MUỐI VÀ NAOH DƯ. Sử dụng bảo toàn khối lượng toàn hệ với m(NaOH ban đầu) là cách giải ngắn nhất và không bao giờ bị nhầm lẫn!",
@@ -1842,6 +1939,12 @@
     {
       "title": "1. Trực giác liên kết pi & Tính không no",
       "hook": "Hydrocarbon no (alkane) như những người đã no bụng, chỉ có liên kết đơn bền vững. Còn alkene và alkyne giống như chiếc bẫy mở, chứa liên kết π kém bền luôn thèm muốn phản ứng cộng để trở về trạng thái no bền vững.",
+      "predict": {
+        "q": "Theo bạn, chất nào sau đây có khả năng làm mất màu dung dịch nước bromine ở nhiệt độ phòng?",
+        "opts": "A=Ethylene (CH₂=CH₂);B=Ethane (CH₃-CH₃);C=Methane (CH₄);D=Propane (CH₃-CH₂-CH₃)",
+        "a": "A",
+        "insight": "Chính xác! Ethylene có liên kết đôi C=C chứa liên kết pi kém bền nên lập tức cộng Br₂ làm mất màu nâu đỏ của nước bromine."
+      },
       "core": "Công thức chung: Alkene CₙH₂ₙ (n≥2), Alkyne CₙH₂ₙ₋₂ (n≥2). Phản ứng đặc trưng nhất là phản ứng CỘNG (cộng H₂, cộng halogen Br₂, cộng HX, cộng H₂O làm đứt liên kết pi).",
       "caseStudy": "Khí ethylene làm chín trái cây: Ethylene (C₂H₄) là hormone thực vật tự nhiên điều hòa quá trình chín của quả và rụng lá. Trong thương mại, người ta dùng khí ethylene nồng độ thấp để thúc quả chín đều và có màu sắc đẹp mắt.",
       "trap": "Cẩn thận: Alkyne có 2 liên kết π, có thể cộng theo 2 nấc tỉ lệ 1:1 hoặc 1:2 tuỳ thuộc lượng chất và xúc tác (Lindlar tạo anken, Ni tạo ankan).",
@@ -1856,6 +1959,12 @@
     {
       "title": "2. Quy tắc Markovnikov — 'Giàu càng thêm giàu'",
       "hook": "Tưởng tượng một bàn tiệc: người nào đã có nhiều quả bóng thì sẽ được tặng thêm bóng. Trong hóa học hữu cơ, nguyên tử hydrogen (H) ưu tiên đi vào carbon có nhiều H hơn.",
+      "predict": {
+        "q": "Khi propene (CH₂=CH-CH₃) cộng hợp với HCl, nguyên tử Hydrogen (H) sẽ ưu tiên gắn vào nguyên tử carbon nào?",
+        "opts": "A=Carbon CH₂ ở đầu mạch (nhiều H hơn, tuân theo quy tắc Markovnikov);B=Carbon CH ở giữa mạch (ít H hơn);C=Carbon CH₃ cuối mạch;D=Phân bố đều ngẫu nhiên 50/50",
+        "a": "A",
+        "insight": "Chuẩn xác! Quy tắc Markovnikov: Trong phản ứng cộng HX vào alkene bất đối xứng, H ưu tiên đi vào carbon mang nối đôi có nhiều H hơn (giàu càng thêm giàu)."
+      },
       "core": "Khi cộng HX hoặc H₂O vào alkene bất đối xứng: H gắn vào carbon mang nối đôi có NHIỀU H hơn (cho sản phẩm chính), còn X (hoặc OH) gắn vào carbon có ÍT H hơn.",
       "caseStudy": "Tổng hợp công nghiệp dung môi Isopropyl alcohol (IPA): Hydrat hóa propene (CH₂=CH-CH₃) với xúc tác acid H₃PO₄ tuân theo Markovnikov cho sản phẩm chính là propan-2-ol dùng làm cồn sát trùng y tế và dung môi lau rửa vi mạch điện tử.",
       "trap": "Bẫy đề thi: Nếu alkene đối xứng (như but-2-ene CH₃-CH=CH-CH₃), phản ứng cộng chỉ cho 1 sản phẩm duy nhất, không phân biệt sản phẩm chính/phụ.",
@@ -1870,6 +1979,12 @@
     {
       "title": "3. Nhận biết Alk-1-yne đầu mạch",
       "hook": "Chỉ các alkyne có liên kết ba nằm ở ĐẦU MẠCH (chứa nguyên tử H linh động gắn trực tiếp vào C≡C) mới có đặc quyền thay thế H bằng nguyên tử bạc Ag.",
+      "predict": {
+        "q": "Trong các hydrocarbon sau, chất nào có thể tạo kết tủa màu vàng nhạt khi tác dụng với dung dịch AgNO₃ trong NH₃?",
+        "opts": "A=But-1-yne (CH≡C-CH₂-CH₃);B=But-2-yne (CH₃-C≡C-CH₃);C=Ethylene (CH₂=CH₂);D=Butane (C₄H₁₀)",
+        "a": "A",
+        "insight": "Chính xác! Chỉ các alkyne có liên kết ba ở đầu mạch (alk-1-yne) mới có nguyên tử H linh động gắn vào C≡C để thế bằng ion Ag⁺ tạo kết tủa vàng nhạt."
+      },
       "core": "Alk-1-yne + AgNO₃/NH₃ → Kết tủa vàng nhạt RC≡CAg↓. Phản ứng này dùng để phân biệt alk-1-yne với các alkyne giữa mạch (như but-2-yne) và alkene.",
       "caseStudy": "Ứng dụng khí acetylene (C₂H₂) trong hàn cắt kim loại: Ngọn lửa oxy-acetylene đạt nhiệt độ lên đến 3000°C nhờ nhiệt lượng tỏa ra cực lớn, đủ để cắt đứt các thanh thép dày trong đóng tàu và xây dựng.",
       "trap": "Rất nhiều bạn nhầm đây là phản ứng tráng bạc. Không phải! Đây là phản ứng THẾ ion kim loại Ag⁺ vào H đầu mạch, tạo kết tủa vàng chứ không tạo gương bạc Ag sáng bóng.",
@@ -2487,32 +2602,145 @@
     return items;
   }
 
-  function flashDueCount() {
+  /* ---------- SUPERMEMO SM-2 SPACED REPETITION SYSTEM (SRS) ---------- */
+  var FLASH_INTERVALS = [1, 3, 7, 15, 30];
+
+  function getCardSRS(cardKey) {
+    var s = profile();
+    var rec = s.deck[cardKey];
+    if (!rec) {
+      return { reps: 0, ef: 2.5, interval: 0, due: 0, lapses: 0 };
+    }
+    // Seamless backward compatibility migration from legacy lvl
+    if (typeof rec.ef === "undefined") {
+      var lvl = rec.lvl || 0;
+      var iv = lvl === 0 ? 0 : (FLASH_INTERVALS[lvl - 1] || 1);
+      return {
+        reps: lvl,
+        ef: 2.5,
+        interval: iv,
+        due: rec.due || 0,
+        lapses: 0
+      };
+    }
+    return rec;
+  }
+
+  function calcNextSRS(rec, rating) {
+    var ef = rec.ef || 2.5;
+    var reps = rec.reps || 0;
+    var interval = rec.interval || 0;
+    var lapses = rec.lapses || 0;
+    var now = Date.now();
+
+    if (rating === 1) { // 🔴 Again (Quên)
+      reps = 0;
+      interval = 0;
+      ef = Math.max(1.3, ef - 0.2);
+      lapses++;
+      return { reps: 0, ef: ef, interval: 0, due: now + 60 * 1000, lapses: lapses };
+    }
+    if (rating === 2) { // 🟠 Hard (Khó)
+      ef = Math.max(1.3, ef - 0.15);
+      reps++;
+      interval = (interval < 1) ? 1 : Math.max(1, Math.round(interval * 1.2));
+      return { reps: reps, ef: ef, interval: interval, due: now + interval * 86400 * 1000, lapses: lapses };
+    }
+    if (rating === 3) { // 🟢 Good (Nhớ)
+      reps++;
+      if (reps === 1) interval = 1;
+      else if (reps === 2) interval = 3;
+      else interval = Math.max(1, Math.round(interval * ef));
+      return { reps: reps, ef: ef, interval: interval, due: now + interval * 86400 * 1000, lapses: lapses };
+    }
+    if (rating === 4) { // 🔵 Easy (Quá dễ)
+      ef = Math.min(3.0, ef + 0.15);
+      reps++;
+      if (reps === 1) interval = 4;
+      else if (reps === 2) interval = 7;
+      else interval = Math.max(1, Math.round(interval * ef * 1.35));
+      return { reps: reps, ef: ef, interval: interval, due: now + interval * 86400 * 1000, lapses: lapses };
+    }
+    return rec;
+  }
+
+  function formatSRSInterval(days) {
+    if (days <= 0) return "< 1 phút";
+    if (days === 1) return "1 ngày";
+    if (days < 30) return days + " ngày";
+    if (days < 365) return Math.round(days / 30) + " tháng";
+    return (days / 365).toFixed(1) + " năm";
+  }
+
+  function calcPreviewIntervals(rec) {
+    return {
+      again: "< 1p",
+      hard: formatSRSInterval(calcNextSRS(rec, 2).interval),
+      good: formatSRSInterval(calcNextSRS(rec, 3).interval),
+      easy: formatSRSInterval(calcNextSRS(rec, 4).interval)
+    };
+  }
+
+  function flashStatsBreakdown() {
+    var all = buildDeck(state.grade, "all");
     var s = profile();
     var now = Date.now();
-    var n = 0;
-    Object.keys(s.deck).forEach(function (k) { if (s.deck[k].due <= now) n++; });
-    return n;
+    var due = 0, newCards = 0, learning = 0, mastered = 0;
+    all.forEach(function (it) {
+      var rec = s.deck[it.key];
+      if (!rec || !rec.reps) {
+        newCards++;
+        due++; // Chưa ôn lần nào được tính vào hàng đợi ôn hôm nay
+      } else {
+        if (rec.due <= now) due++;
+        if (rec.interval >= 7) mastered++;
+        else learning++;
+      }
+    });
+    return { total: all.length, due: due, newCards: newCards, learning: learning, mastered: mastered };
+  }
+
+  function flashDueCount() {
+    return flashStatsBreakdown().due;
   }
 
   function flashView() {
     var chs = chaptersForGrade(state.grade).filter(function (c) { return c.id !== "g11cq"; });
     var chSel = chapterDropdown("flash-ch", (state.flash && state.flash.sel) || "all", chs, "Toàn bộ chương");
-    var due = flashDueCount();
+    var stats = flashStatsBreakdown();
     var addCardBtn = state.editMode ? '<button class="add-block-btn" data-act="addFlashcard" data-ch="' + ((state.flash && state.flash.sel) || "g12c1") + '">' + ico("plus") + ' Thêm thẻ nhớ lý thuyết mới</button>' : '';
+
+    var dueButton = stats.due > 0
+      ? '<button class="btn primary srs-due-start-btn" data-act="flashStartDue">' +
+          ico("flame") + ' Ôn tập thẻ đến hạn hôm nay (<b>' + stats.due + '</b> thẻ) →' +
+        '</button>'
+      : '<div class="srs-all-done-banner">' + ico("check") + ' Bạn đã hoàn thành tất cả thẻ cần ôn hôm nay! Thật tuyệt vời.</div>';
 
     return '<div class="flash-setup">' +
       '<div class="fs-card intro">' +
-        '<h3>' + ico("cards") + " Thẻ nhớ tối giản — Chỉ LÝ THUYẾT cốt lõi</h3>" +
-        "<p>Hệ thống thẻ nhớ đã được <b>tinh gọn tối đa</b>: loại bỏ mọi bài tập tính toán, chứng minh rườm rà hay bảng biểu phức tạp. " +
-        "Mặt trước hiển thị <b>tên chất / công thức / phản ứng</b>. Khi lật, mặt sau <b>chỉ hiện đúng kết quả cốt lõi</b> (Ví dụ: <i>CTPT methyl acetate</i> → <b>CH₃COOCH₃</b>).</p>" +
-        "<p class='muted small'>Áp dụng chu kỳ lặp lại ngắt quãng <b>1 / 3 / 7 / 15 / 30 ngày</b> để chuyển kiến thức vào trí nhớ dài hạn.</p>" +
+        '<h3>' + ico("cards") + " Thẻ nhớ SM-2 — Thuật toán Lặp lại Ngắt quãng (SRS)</h3>" +
+        "<p>Hệ thống tích hợp thuật toán <b>SuperMemo SM-2</b> chuẩn quốc tế: Tự động tính toán chu kỳ lặp lại tối ưu dựa trên tốc độ phản xạ và độ dễ/khó của từng thẻ. Đảm bảo <b>ghi nhớ vĩnh viễn</b> kiến thức Hóa học 12 mà không tốn công học vẹt.</p>" +
+        '<div class="srs-stats-overview">' +
+          '<div class="srs-stat-box due"><span class="srs-box-num">' + stats.due + '</span><span class="srs-box-label">' + ico("clock") + ' Cần ôn hôm nay</span></div>' +
+          '<div class="srs-stat-box new"><span class="srs-box-num">' + stats.newCards + '</span><span class="srs-box-label">' + ico("sparkles") + ' Thẻ mới</span></div>' +
+          '<div class="srs-stat-box learning"><span class="srs-box-num">' + stats.learning + '</span><span class="srs-box-label">' + ico("zap") + ' Đang rèn luyện</span></div>' +
+          '<div class="srs-stat-box mastered"><span class="srs-box-num">' + stats.mastered + '</span><span class="srs-box-label">' + ico("shield") + ' Đã thuộc sâu</span></div>' +
+        '</div>' +
+        dueButton +
         addCardBtn +
       "</div>" +
       '<div class="fs-card control">' +
+        "<h4>" + ico("formula") + " Luyện tập theo chương cụ thể</h4>" +
         "<label>Chọn phạm vi chương</label>" + chSel +
-        '<button class="btn primary" style="width:100%;margin-top:16px" data-act="flashStart">Bắt đầu phiên lật thẻ →</button>' +
-        (due > 0 ? '<p class="due-note">' + ico("clock") + " Có <b>" + due + "</b> thẻ đến hạn cần ôn lại hôm nay.</p>" : "") +
+        '<button class="btn ghost" style="width:100%;margin-top:16px" data-act="flashStart">Bắt đầu phiên lật thẻ theo chương →</button>' +
+        '<div class="srs-instructions" style="margin-top:16px;padding:12px 14px;background:var(--surface);border:1px solid var(--line-soft);border-radius:12px;font-size:.82rem;line-height:1.6">' +
+          '<div style="font-weight:700;margin-bottom:6px;color:var(--accent)">' + ico("bulb") + ' Phím tắt lật thẻ siêu tốc:</div>' +
+          '<div>• <b>Phím Space / Enter:</b> Lật xem mặt sau</div>' +
+          '<div>• <b>Phím 1:</b> 🔴 Quên (lặp lại ngay trong phiên)</div>' +
+          '<div>• <b>Phím 2:</b> 🟠 Khó (chu kỳ ngắn)</div>' +
+          '<div>• <b>Phím 3:</b> 🟢 Nhớ (chu kỳ chuẩn)</div>' +
+          '<div>• <b>Phím 4:</b> 🔵 Quá dễ (nhảy vọt chu kỳ)</div>' +
+        '</div>' +
       "</div>" +
     "</div>";
   }
@@ -2525,11 +2753,34 @@
     return '<select data-act="' + act + '" class="sel" id="' + act + '">' + opts + "</select>";
   }
 
-  function startFlashSession(sel) {
+  function startFlashSession(sel, onlyDue) {
     var items = buildDeck(state.grade, sel || "all");
+    if (onlyDue) {
+      var s = profile();
+      var now = Date.now();
+      items = items.filter(function (it) {
+        var rec = s.deck[it.key];
+        return !rec || !rec.reps || rec.due <= now;
+      });
+      if (!items.length) {
+        alert("Tuyệt vời! Bạn không còn thẻ nào đến hạn hôm nay. Hãy chọn luyện tập theo chương để củng cố thêm.");
+        return;
+      }
+    }
     if (!items.length) { alert("Không có thẻ nào trong chương này."); return; }
     shuffle(items);
-    state.flash = { items: items, i: 0, good: 0, again: 0, flipped: false, sel: sel || "all" };
+    state.flash = {
+      items: items,
+      initialCount: items.length,
+      i: 0,
+      good: 0,
+      hard: 0,
+      easy: 0,
+      again: 0,
+      flipped: false,
+      sel: sel || "all",
+      onlyDue: !!onlyDue
+    };
   }
 
   function flashFrontHTML(item) {
@@ -2542,10 +2793,20 @@
     "</div>";
   }
 
-  function flashBack(item) {
+  function flashBack(item, srsRec) {
+    srsRec = srsRec || getCardSRS(item.key);
     var theoryBtn = item.ch ? '<div style="margin-top:14px;text-align:center"><button class="btn ghost tiny link-theory-btn" data-act="jumpToTheory" data-ch="' + item.ch + '">' + ico("bookOpen") + ' Xem lý thuyết chương này →</button></div>' : '';
+    var srsMeta = '<div class="srs-card-meta">' +
+      '<span class="srs-meta-pill reps">' + ico("sparkles") + ' Ôn #' + (srsRec.reps || 0) + '</span>' +
+      '<span class="srs-meta-pill ef">EF: ' + (srsRec.ef || 2.5).toFixed(2) + '</span>' +
+      '<span class="srs-meta-pill iv">' + (srsRec.interval ? srsRec.interval + 'd' : 'Mới') + '</span>' +
+    '</div>';
+
     return '<div class="minimal-flash-back">' +
-      '<span class="minimal-flash-badge">Đáp án cốt lõi</span>' +
+      '<div class="flash-back-top-row">' +
+        '<span class="minimal-flash-badge">Đáp án cốt lõi</span>' +
+        srsMeta +
+      '</div>' +
       '<div class="minimal-flash-ans" ' + (state.editMode ? 'data-inline-edit="flash-a" data-ch="' + item.ch + '" data-idx="' + item.cIndex + '" data-custom="' + item.isCustom + '" contenteditable="true" spellcheck="false" title="Nhấp trực tiếp để sửa công thức/đáp án"' : '') + '>' + fmt(item.a) + '</div>' +
       '<div class="minimal-flash-note" ' + (state.editMode ? 'data-inline-edit="flash-note" data-ch="' + item.ch + '" data-idx="' + item.cIndex + '" data-custom="' + item.isCustom + '" contenteditable="true" spellcheck="false" title="Nhấp trực tiếp để sửa ghi chú"' : '') + '>' + fmt(item.note || "") + '</div>' +
       theoryBtn +
@@ -2557,7 +2818,8 @@
     if (!f || !f.items) return flashView();
     var done = f.i >= f.items.length;
     var cur = done ? null : f.items[f.i];
-    var prog = Math.round((f.i / f.items.length) * 100);
+    var totalCards = Math.max(f.items.length, f.initialCount || f.items.length);
+    var prog = Math.min(100, Math.round((f.i / totalCards) * 100));
 
     var editCardBar = "";
     if (state.editMode && cur) {
@@ -2570,38 +2832,73 @@
       '</div>';
     }
 
+    var srsRec = cur ? getCardSRS(cur.key) : null;
+    var prevIv = srsRec ? calcPreviewIntervals(srsRec) : { again: "< 1p", hard: "1 ngày", good: "3 ngày", easy: "7 ngày" };
+
     var body = '<div class="flash-session">' +
       '<div class="fs-top">' +
-        '<span class="fs-prog">Thẻ ' + Math.min(f.i + 1, f.items.length) + " / " + f.items.length + ' · <span style="color:var(--ok)">' + ico("check") + " " + f.good + '</span> · <span style="color:var(--warn)">' + ico("rotate") + " " + f.again + "</span></span>" +
+        '<span class="fs-prog">' +
+          'Thẻ ' + Math.min(f.i + 1, f.items.length) + " / " + f.items.length +
+          ' · <span class="srs-top-stat red" title="Quên">' + ico("rotate") + ' ' + (f.again || 0) + '</span>' +
+          ' · <span class="srs-top-stat amber" title="Khó">' + ico("alert") + ' ' + (f.hard || 0) + '</span>' +
+          ' · <span class="srs-top-stat green" title="Nhớ">' + ico("check") + ' ' + (f.good || 0) + '</span>' +
+          ' · <span class="srs-top-stat blue" title="Quá dễ">' + ico("sparkles") + ' ' + (f.easy || 0) + '</span>' +
+        '</span>' +
         '<span class="fs-bar"><i style="width:' + prog + '%"></i></span>' +
-      "</div>" + editCardBar;
+      '</div>' + editCardBar;
 
     if (!done) {
       body +=
       '<div class="flash-card ' + (f.flipped ? "flipped" : "") + '" data-act="flip">' +
         '<div class="flash-inner">' +
           '<div class="flash-face front">' + flashFrontHTML(cur) + '<div class="hint">Bấm hoặc gõ Space để lật</div></div>' +
-          '<div class="flash-face back minimal-back">' + flashBack(cur) + "<div class='hint'>Gõ phím 1 (Ôn lại) hoặc 2 (Đã nhớ)</div></div>" +
-        "</div>" +
-      "</div>" +
-      '<div class="fs-actions">' +
-        '<button class="btn ghost" data-act="flashAgain">' + ico("rotate") + ' Cần ôn lại (1)</button>' +
-        '<button class="btn good" data-act="flashGood">' + ico("check") + ' Đã nhớ (2)</button>' +
-      "</div>" +
+          '<div class="flash-face back minimal-back">' + flashBack(cur, srsRec) + "<div class='hint'>Đánh giá độ nhớ (Phím 1, 2, 3, 4)</div></div>" +
+        '</div>' +
+      '</div>' +
+      '<div class="fs-actions srs-actions-grid">' +
+        '<button class="btn srs-rate-btn again" data-act="flashRate" data-r="1" title="Chưa nhớ (Phím 1)">' +
+          '<span class="srs-badge red">1</span>' +
+          '<span class="srs-title">Quên</span>' +
+          '<span class="srs-time">' + prevIv.again + '</span>' +
+        '</button>' +
+        '<button class="btn srs-rate-btn hard" data-act="flashRate" data-r="2" title="Nhớ vất vả (Phím 2)">' +
+          '<span class="srs-badge amber">2</span>' +
+          '<span class="srs-title">Khó</span>' +
+          '<span class="srs-time">' + prevIv.hard + '</span>' +
+        '</button>' +
+        '<button class="btn srs-rate-btn good" data-act="flashRate" data-r="3" title="Nhớ chuẩn (Phím 3)">' +
+          '<span class="srs-badge green">3</span>' +
+          '<span class="srs-title">Nhớ</span>' +
+          '<span class="srs-time">' + prevIv.good + '</span>' +
+        '</button>' +
+        '<button class="btn srs-rate-btn easy" data-act="flashRate" data-r="4" title="Quá dễ dàng (Phím 4)">' +
+          '<span class="srs-badge blue">4</span>' +
+          '<span class="srs-title">Quá dễ</span>' +
+          '<span class="srs-time">' + prevIv.easy + '</span>' +
+        '</button>' +
+      '</div>' +
       '<div class="fs-nav-row">' +
         '<button class="btn ghost" data-act="flashPrevCard"' + (f.i === 0 ? ' disabled' : '') + '>← Thẻ trước</button>' +
-        '<button class="btn ghost small" data-act="flip">' + ico("rotate") + ' Lật thẻ</button>' +
+        '<button class="btn ghost small" data-act="flip">' + ico("rotate") + ' Lật thẻ (Space)</button>' +
         '<button class="btn ghost" data-act="flashNextCard"' + (f.i >= f.items.length - 1 ? ' disabled' : '') + '>Thẻ sau →</button>' +
       '</div>';
     }
     body +=
       '<div class="fs-fin' + (done ? " show" : "") + '">' +
-        '<h3>Phiên ôn tập kết thúc!</h3>' +
-        '<p>Đã nhớ: <b>' + f.good + "</b> · Cần ôn lại: <b>" + f.again + "</b></p>" +
-        '<div><button class="btn primary" data-act="flashStart">Làm lại phiên này</button> ' +
-        '<button class="btn ghost" data-act="flashPrev">Trở về</button></div>' +
-      "</div>" +
-    "</div>";
+        '<h3>' + ico("sparkles") + ' Hoàn thành phiên ôn tập SM-2!</h3>' +
+        '<p class="muted">Hệ thống Lặp lại ngắt quãng đã tự động tối ưu hóa lịch học cho từng thẻ nhớ.</p>' +
+        '<div class="srs-session-summary">' +
+          '<div class="sss-item red"><span class="sss-num">' + (f.again || 0) + '</span><span class="sss-lbl">Lặp lại</span></div>' +
+          '<div class="sss-item amber"><span class="sss-num">' + (f.hard || 0) + '</span><span class="sss-lbl">Khó</span></div>' +
+          '<div class="sss-item green"><span class="sss-num">' + (f.good || 0) + '</span><span class="sss-lbl">Nhớ tốt</span></div>' +
+          '<div class="sss-item blue"><span class="sss-num">' + (f.easy || 0) + '</span><span class="sss-lbl">Quá dễ</span></div>' +
+        '</div>' +
+        '<div style="margin-top:20px">' +
+          '<button class="btn primary" data-act="flashStart">Luyện tập tiếp</button> ' +
+          '<button class="btn ghost" data-act="flashPrev">Trở về tổng quan</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
     return body;
   }
 
@@ -2620,8 +2917,11 @@
     renderPracticeOnly();
   }
 
-  var FLASH_INTERVALS = [1, 3, 7, 15, 30];
-  function markFlash(good) {
+  function markFlash(rating) {
+    if (typeof rating === "boolean") {
+      rating = rating ? 3 : 1;
+    }
+    rating = parseInt(rating, 10) || 3;
     var f = state.flash;
     if (!f || !f.items) return;
     var it = f.items[f.i];
@@ -2629,51 +2929,64 @@
 
     function applyMark() {
       var s = profile();
-      var rec = s.deck[it.key] || { lvl: 0, due: 0 };
-      if (good) {
-        f.good++;
-        rec.lvl = Math.min(rec.lvl + 1, 5);
-        rec.due = Date.now() + FLASH_INTERVALS[rec.lvl - 1] * 24 * 3600 * 1000;
+      var rec = getCardSRS(it.key);
+      var next = calcNextSRS(rec, rating);
+      s.deck[it.key] = next;
+
+      if (rating === 1) {
+        f.again = (f.again || 0) + 1;
+        // Feynman Active Mastery: Đưa thẻ chưa nhớ vào cuối hàng đợi để kiểm tra lại
+        f.items.push(it);
+        addXP(s, it.ch, 1);
+      } else if (rating === 2) {
+        f.hard = (f.hard || 0) + 1;
+        addXP(s, it.ch, 5);
+      } else if (rating === 3) {
+        f.good = (f.good || 0) + 1;
         addXP(s, it.ch, 10);
-      } else {
-        f.again++;
-        rec.lvl = 0;
-        rec.due = Date.now() + 5 * 60 * 1000;
-        s.xp += 1; save(s);
+      } else if (rating === 4) {
+        f.easy = (f.easy || 0) + 1;
+        addXP(s, it.ch, 15);
       }
-      s.deck[it.key] = rec;
+
       save(s);
       f.flipped = false;
       f.i++;
+
       if (f.i >= f.items.length) {
         activity();
         renderPracticeOnly();
-        updateHeaderStats(good);
+        updateHeaderStats(rating >= 3);
         return;
       }
       eventBusChanged();
-      updateHeaderStats(good);
+      updateHeaderStats(rating >= 3);
     }
 
     var fc = $(".flash-card");
     if (hasGSAP && !prefersReduced && fc) {
-      var targetX = good ? 160 : -160;
-      var targetRot = good ? 9 : -9;
+      var targetX = 0, targetY = 0, targetRot = 0;
+      if (rating === 1) { targetX = -180; targetRot = -12; }
+      else if (rating === 2) { targetX = -80; targetRot = -5; }
+      else if (rating === 3) { targetX = 140; targetRot = 8; }
+      else if (rating === 4) { targetX = 220; targetY = -40; targetRot = 14; }
+
       gsap.to(fc, {
         x: targetX,
+        y: targetY,
         rotation: targetRot,
         opacity: 0,
-        scale: 0.94,
-        duration: 0.24,
+        scale: 0.93,
+        duration: 0.22,
         ease: "power2.in",
         onComplete: function () {
-          gsap.set(fc, { x: 0, rotation: 0, opacity: 1, scale: 1 });
+          gsap.set(fc, { x: 0, y: 0, rotation: 0, opacity: 1, scale: 1 });
           applyMark();
           var newFc = $(".flash-card");
           if (newFc) {
             gsap.fromTo(newFc,
-              { x: -targetX * 0.45, rotation: -targetRot * 0.45, opacity: 0, scale: 0.94 },
-              { x: 0, rotation: 0, opacity: 1, scale: 1, duration: 0.34, ease: "back.out(1.25)", clearProps: "all" }
+              { x: -targetX * 0.4, y: 15, rotation: -targetRot * 0.4, opacity: 0, scale: 0.94 },
+              { x: 0, y: 0, rotation: 0, opacity: 1, scale: 1, duration: 0.32, ease: "back.out(1.2)", clearProps: "all" }
             );
           }
         }
@@ -3192,21 +3505,22 @@
           '<div class="guided-sec-title hook">' + ico("flame") + ' 1. Trực giác đời sống (Feynman Hook)</div>' +
           '<p class="guided-text" ' + (state.editMode ? 'data-inline-edit="guided-hook" data-ch="' + curChId + '" data-idx="' + curIdx + '" contenteditable="true" spellcheck="false" title="Nhấp trực tiếp để sửa trực giác Feynman"' : '') + '>' + fmt(curStage.hook) + '</p>' +
         '</div>' +
+        (curStage.predict ? renderGuidedPredict(curStage.predict, curChId, curIdx) : '') +
         '<div class="guided-section">' +
-          '<div class="guided-sec-title core">' + ico("flask") + ' 2. Bản chất & Cơ chế cốt lõi</div>' +
+          '<div class="guided-sec-title core">' + ico("flask") + ' ' + (curStage.predict ? '3.' : '2.') + ' Bản chất & Cơ chế cốt lõi</div>' +
           '<div class="guided-box core-box" ' + (state.editMode ? 'data-inline-edit="guided-core" data-ch="' + curChId + '" data-idx="' + curIdx + '" contenteditable="true" spellcheck="false" title="Nhấp trực tiếp để sửa bản chất cốt lõi"' : '') + '>' + fmt(curStage.core) + '</div>' +
         '</div>' +
         (curStage.caseStudy ? ('<div class="guided-section">' +
-          '<div class="guided-sec-title case">' + ico("search") + ' 3. Case Study: Thực nghiệm & Ứng dụng thực tế</div>' +
+          '<div class="guided-sec-title case">' + ico("search") + ' ' + (curStage.predict ? '4.' : '3.') + ' Case Study: Thực nghiệm & Ứng dụng thực tế</div>' +
           '<div class="guided-box case-box" ' + (state.editMode ? 'data-inline-edit="guided-case" data-ch="' + curChId + '" data-idx="' + curIdx + '" contenteditable="true" spellcheck="false" title="Nhấp trực tiếp để sửa case study"' : '') + '>' + fmt(curStage.caseStudy) + '</div>' +
         '</div>') : '') +
         ((window.ChemLab && ChemLab.hasLab(curChId, curIdx)) ? ChemLab.renderWidget(curChId, curIdx) : '') +
         '<div class="guided-section">' +
-          '<div class="guided-sec-title trap">' + ico("alert") + ' ' + (curStage.caseStudy ? '4.' : '3.') + ' Điểm bẫy thi cử & Phân tích đa điều kiện</div>' +
+          '<div class="guided-sec-title trap">' + ico("alert") + ' ' + (curStage.predict ? (curStage.caseStudy ? '5.' : '4.') : (curStage.caseStudy ? '4.' : '3.')) + ' Điểm bẫy thi cử & Phân tích đa điều kiện</div>' +
           '<div class="guided-box trap-box" ' + (state.editMode ? 'data-inline-edit="guided-trap" data-ch="' + curChId + '" data-idx="' + curIdx + '" contenteditable="true" spellcheck="false" title="Nhấp trực tiếp để sửa điểm bẫy"' : '') + '>' + fmt(curStage.trap) + '</div>' +
         '</div>' +
         '<div class="guided-section">' +
-          '<div class="guided-sec-title check">' + ico("target") + ' ' + (curStage.caseStudy ? '5.' : '4.') + ' Thử thách kiểm tra làm chủ (Bản chất + Vận dụng + Tính toán)</div>' +
+          '<div class="guided-sec-title check">' + ico("target") + ' ' + (curStage.predict ? (curStage.caseStudy ? '6.' : '5.') : (curStage.caseStudy ? '5.' : '4.')) + ' Thử thách kiểm tra làm chủ (Bản chất + Vận dụng + Tính toán)</div>' +
           '<div class="checkpoint-box">' +
             '<div class="checkpoint-q">' + fmt(check.q) + '</div>' +
             '<div class="checkpoint-opts">' + checkOptsHtml + '</div>' +
@@ -3220,6 +3534,101 @@
         '</div>' +
       '</div>' +
     '</div>';
+  }
+
+  /* ---------- GUIDED PREDICT-BEFORE-REVEAL (ACTIVE BET & CURIOSITY GAP) ---------- */
+  function renderGuidedPredict(predict, chId, stageIdx) {
+    if (!predict) return "";
+    var stageKey = chId + "_" + stageIdx;
+    var s = profile();
+    s.guidedPredictions = s.guidedPredictions || {};
+    var record = s.guidedPredictions[stageKey];
+    var isDone = !!record;
+    var opts = parseOpts(predict.opts);
+
+    var optsHtml = opts.map(function (o) {
+      var cls = "predict-opt-btn";
+      var badge = "";
+      if (isDone) {
+        if (o.k === predict.a) {
+          cls += " is-correct";
+          badge = ' <span class="p-badge ok">' + ico("check") + ' Dự đoán chuẩn</span>';
+        }
+        if (record.picked === o.k) {
+          cls += " picked " + (o.k === predict.a ? "correct" : "wrong");
+          if (o.k !== predict.a) {
+            badge = ' <span class="p-badge wrong">' + ico("alert") + ' Bạn đã chọn</span>';
+          }
+        }
+      }
+      return '<button class="' + cls + '" data-act="guidedPredict" data-k="' + esc(o.k) + '" ' + (isDone ? 'disabled' : '') + '>' +
+        '<span class="p-opt-key">' + esc(o.k) + '.</span> ' +
+        '<span class="p-opt-text">' + fmt(o.t) + '</span>' + badge +
+      '</button>';
+    }).join("");
+
+    var feedbackHtml = "";
+    if (isDone) {
+      var wasRight = record.picked === predict.a;
+      feedbackHtml = '<div class="predict-feedback-box ' + (wasRight ? 'ok' : 'alert') + '">' +
+        '<div class="pf-header">' +
+          (wasRight
+            ? '<span class="pf-badge ok">' + ico("sparkles") + ' Trực giác xuất sắc!</span> <b>Bạn đã phán đoán rất chính xác hiện tượng. (+15 XP)</b>'
+            : '<span class="pf-badge alert">' + ico("bulb") + ' Bẫy trực giác thường gặp!</span> <b>Bạn đã rơi vào suy luận phổ biến trong đề thi: (+8 XP)</b>') +
+        '</div>' +
+        '<div class="pf-body">' + fmt(predict.insight) + '</div>' +
+        '<div class="pf-cue">' + ico("sparkles") + ' Khám phá tiếp <b>Bản chất cốt lõi</b> và <b>Thí nghiệm tương tác</b> bên dưới để làm chủ cơ chế!</div>' +
+      '</div>';
+    } else {
+      feedbackHtml = '<div class="predict-prompt-cue">' +
+        ico("bulb") + ' <i>Chủ động đặt cược một giả thuyết giúp não bộ kích hoạt sự tò mò và ghi nhớ sâu gấp 3 lần! Hãy bấm chọn 1 phương án dự đoán.</i>' +
+      '</div>';
+    }
+
+    return '<div class="guided-section predict-section">' +
+      '<div class="guided-sec-title predict">' + ico("sparkles") + ' 2. Dự đoán hiện tượng (Curiosity Gap & Active Bet)</div>' +
+      '<div class="predict-card-box">' +
+        '<div class="predict-q">' + fmt(predict.q) + '</div>' +
+        '<div class="predict-opts-grid">' + optsHtml + '</div>' +
+        feedbackHtml +
+      '</div>' +
+    '</div>';
+  }
+
+  function guidedPredict(k) {
+    var curCh = state.guided.ch;
+    var ch = DATA[curCh];
+    var stages = (ch && ch.guidedStages) || DEFAULT_GUIDED_STAGES[curCh] || DEFAULT_GUIDED_STAGES.g12c1;
+    var stageIdx = state.guided.stageIdx || 0;
+    var curStage = stages[stageIdx];
+    if (!curStage || !curStage.predict) return;
+
+    var stageKey = curCh + "_" + stageIdx;
+    var s = profile();
+    s.guidedPredictions = s.guidedPredictions || {};
+    if (s.guidedPredictions[stageKey]) return; // Khóa sau khi đã cược
+
+    var isCorrect = (k === curStage.predict.a);
+    s.guidedPredictions[stageKey] = { picked: k, isCorrect: isCorrect };
+    addXP(s, curCh, isCorrect ? 15 : 8);
+    save(s);
+
+    var box = $(".predict-card-box");
+    if (box) {
+      var newHtml = renderGuidedPredict(curStage.predict, curCh, stageIdx);
+      var tmp = document.createElement("div");
+      tmp.innerHTML = newHtml;
+      var newBox = tmp.querySelector(".predict-card-box");
+      if (newBox) {
+        box.innerHTML = newBox.innerHTML;
+        if (hasGSAP && !prefersReduced) {
+          gsap.fromTo($(".predict-feedback-box", box), { opacity: 0, y: 10, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.28, ease: "power2.out" });
+        }
+      }
+      updateHeaderStats(isCorrect);
+    } else {
+      render(false);
+    }
   }
 
   function buildGuidedFeedback(curStage, check, checkOpts, pickedOpt, isCorrect) {
@@ -4121,6 +4530,10 @@
           startFlashSession(selEl ? selEl.value : (state.flash && state.flash.sel ? state.flash.sel : "all"));
           renderPracticeOnly();
         })(); break;
+      case "flashStartDue":
+        startFlashSession("all", true);
+        renderPracticeOnly();
+        break;
       case "flip":
         if (state.flash && state.flash.items && state.flash.items.length) {
           state.flash.flipped = !state.flash.flipped;
@@ -4132,8 +4545,12 @@
             }
           }
         } break;
-      case "flashAgain": markFlash(false); break;
-      case "flashGood": markFlash(true); break;
+      case "flashRate":
+        var r = parseInt(el.getAttribute("data-r"), 10) || 3;
+        markFlash(r);
+        break;
+      case "flashAgain": markFlash(1); break;
+      case "flashGood": markFlash(3); break;
       case "flashPrevCard": flashPrevCard(); break;
       case "flashNextCard": flashNextCard(); break;
       case "flashPrev": state.flash = null; render(); break;
@@ -4183,6 +4600,7 @@
       case "testQuit": state.test = null; render(); break;
 
       /* Guided Learning */
+      case "guidedPredict": guidedPredict(el.getAttribute("data-k")); break;
       case "guidedPick": guidedPick(el.getAttribute("data-k")); break;
       case "guidedPrevStage": guidedPrevStage(); break;
       case "guidedNextStage": guidedNextStage(); break;
@@ -4619,15 +5037,19 @@
       return;
     }
     if (state.tab === "flash" && state.flash && state.flash.items && state.flash.items.length) {
-      if (ev.code === "Space") {
+      if (ev.code === "Space" || (!state.editMode && ev.code === "Enter")) {
         ev.preventDefault();
         state.flash.flipped = !state.flash.flipped;
         var fc = $(".flash-card");
         if (fc) fc.classList.toggle("flipped", state.flash.flipped);
-      } else if (ev.code === "Digit1") {
-        markFlash(false);
-      } else if (ev.code === "Digit2") {
-        markFlash(true);
+      } else if (ev.code === "Digit1" || ev.key === "1") {
+        markFlash(1);
+      } else if (ev.code === "Digit2" || ev.key === "2") {
+        markFlash(2);
+      } else if (ev.code === "Digit3" || ev.key === "3") {
+        markFlash(3);
+      } else if (ev.code === "Digit4" || ev.key === "4") {
+        markFlash(4);
       } else if (ev.key === "ArrowLeft") {
         ev.preventDefault();
         flashPrevCard();
