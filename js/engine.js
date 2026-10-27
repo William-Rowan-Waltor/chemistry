@@ -2542,9 +2542,10 @@
   /* ═══════════ VIEW: LUYỆN TẬP (PRACTICE) ═══════════ */
   function renderPractice() {
     var tabs = [
-      { id: "flash", l: "Thẻ nhớ tối giản", i: "cards" },
+      { id: "flash", l: "Thẻ nhớ SM-2", i: "cards" },
       { id: "bank", l: "Ngân hàng câu hỏi", i: "check" },
-      { id: "tests", l: "Bộ đề thi thử", i: "clock" }
+      { id: "tests", l: "Bộ đề thi thử", i: "clock" },
+      { id: "games", l: "Đấu trường Mini-games", i: "sparkles" }
     ].map(function (t) {
       return '<button class="stab ' + (state.tab === t.id ? "on" : "") + '" data-act="tab" data-t="' + t.id + '">' + ico(t.i) + t.l + "</button>";
     }).join("");
@@ -2552,9 +2553,10 @@
     var body = "";
     if (state.tab === "flash") body = flashView();
     else if (state.tab === "bank") body = bankView();
+    else if (state.tab === "games") body = (window.ChemGames ? ChemGames.renderArena() : "<p>Đang tải mini-games...</p>");
     else body = testsView();
 
-    var pName = (state.tab === "flash" ? "thẻ nhớ tối giản" : state.tab === "bank" ? "câu hỏi trắc nghiệm" : "bộ đề thi");
+    var pName = (state.tab === "flash" ? "thẻ nhớ tối giản" : state.tab === "bank" ? "câu hỏi trắc nghiệm" : state.tab === "games" ? "đấu trường mini-games" : "bộ đề thi");
     return '<section class="panel practice">' +
       '<div class="stab-bar">' + tabs + "</div>" +
       renderEditPromptBar(pName) +
@@ -4386,7 +4388,9 @@
 
   function renderPracticeOnly() {
     var body = "";
-    if (state.tab === "flash") {
+    if (state.tab === "games") {
+      body = window.ChemGames ? ChemGames.renderArena() : "<p>Đang tải mini-games...</p>";
+    } else if (state.tab === "flash") {
       if (state.flash && state.flash.items && state.flash.items.length) body = renderFlashSession();
       else body = flashView();
     } else if (state.tab === "bank") {
@@ -4405,6 +4409,12 @@
       p.innerHTML = bar ? bar.outerHTML + body : body;
     } else { render(); }
   }
+
+  // Expose global bridge functions for submodules like ChemGames
+  window.addXP = addXP;
+  window.profile = profile;
+  window.renderPracticeOnly = renderPracticeOnly;
+  window.updateHeaderStats = updateHeaderStats;
   function updateHeaderStats(animate) {
     var s = profile();
     var x = $("[data-xp]");
@@ -5004,6 +5014,63 @@
         }
         closeModal();
         break;
+
+      /* Chemistry Mini-Games Arena (Đấu trường Mini-games) */
+      case "cgNav":
+        if (window.ChemGames) {
+          ChemGames.mode = el.getAttribute("data-gmode") || "hub";
+          renderPracticeOnly();
+        }
+        break;
+      case "cgStartChain":
+        if (window.ChemGames) {
+          ChemGames.startChainGame(parseInt(el.getAttribute("data-idx"), 10) || 0);
+        }
+        break;
+      case "cgChainMove":
+        if (window.ChemGames) {
+          ChemGames.moveChainStep(parseInt(el.getAttribute("data-idx"), 10), el.getAttribute("data-dir"));
+        }
+        break;
+      case "cgChainCheck":
+        if (window.ChemGames) {
+          ChemGames.checkChain();
+          updateHeaderStats(true);
+        }
+        break;
+      case "cgStartMatch":
+        if (window.ChemGames) {
+          ChemGames.startMatchGame(parseInt(el.getAttribute("data-idx"), 10) || 0);
+        }
+        break;
+      case "cgMatchPickLeft":
+        if (window.ChemGames) {
+          ChemGames.pickMatchLeft(el.getAttribute("data-id"));
+          updateHeaderStats(true);
+        }
+        break;
+      case "cgMatchPickRight":
+        if (window.ChemGames) {
+          ChemGames.pickMatchRight(el.getAttribute("data-id"));
+          updateHeaderStats(true);
+        }
+        break;
+      case "cgStartDetective":
+        if (window.ChemGames) {
+          ChemGames.startDetectiveGame(parseInt(el.getAttribute("data-idx"), 10) || 0);
+        }
+        break;
+      case "cgDetectiveRevealClue":
+        if (window.ChemGames) {
+          ChemGames.revealNextClue();
+        }
+        break;
+      case "cgDetectiveGuess":
+        if (window.ChemGames) {
+          ChemGames.guessDetective(el.getAttribute("data-sub"));
+          updateHeaderStats(true);
+        }
+        break;
     }
   });
 
@@ -5027,6 +5094,12 @@
       state.bank.ch = el.value; state.bank.items = null; state.bank.mode = "pick"; renderPracticeOnly();
     } else if (act === "bank-kind" && state.bank) {
       state.bank.kind = el.value; state.bank.items = null; state.bank.mode = "pick"; renderPracticeOnly();
+    } else if (act === "cgChainSelect") {
+      if (window.ChemGames) ChemGames.startChainGame(parseInt(el.value, 10) || 0);
+    } else if (act === "cgMatchSelect") {
+      if (window.ChemGames) ChemGames.startMatchGame(parseInt(el.value, 10) || 0);
+    } else if (act === "cgDetectiveSelect") {
+      if (window.ChemGames) ChemGames.startDetectiveGame(parseInt(el.value, 10) || 0);
     }
   });
 
