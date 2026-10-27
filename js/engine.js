@@ -267,6 +267,7 @@
     cloudCheck: '<path d="m9 15 2 2 4-4"/><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>'
   };
   function ico(n) { return '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + (ICONS[n] || "") + '</svg>'; }
+  window.ico = ico; window.ICONS = ICONS;
   var KIND = { card: "Công thức", rule: "Quy tắc", rxn: "Phản ứng", trick: "Mẹo", danger: "Cảnh báo", table: "Bảng" };
   var KIND_ICON = { card: ico("formula"), rule: ico("rule"), rxn: ico("flask"), trick: ico("bulb"), danger: ico("alert"), table: ico("tbl") };
   var KIND_CLS = { card: "k-card", rule: "k-rule", rxn: "k-rxn", trick: "k-trick", danger: "k-danger", table: "k-table" };
