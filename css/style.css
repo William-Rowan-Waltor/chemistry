@@ -2978,7 +2978,7 @@ html[data-theme="dark"] .chemlab-stage {
   pointer-events: none;
   z-index: 15;
 }
-/* Glass Tube Body */
+/* Glass Tube Body with Idle Swivel & Sway */
 .test-tube-glass {
   position: relative;
   width: 58px;
@@ -2993,6 +2993,8 @@ html[data-theme="dark"] .chemlab-stage {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  transform-origin: 50% 90%;
+  animation: tubeIdleSway 5.5s ease-in-out infinite;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 html[data-theme="dark"] .test-tube-glass {
@@ -3011,6 +3013,7 @@ html[data-theme="dark"] .test-tube-glass {
   border-radius: 3px;
   pointer-events: none;
   z-index: 8;
+  animation: glassLightShift 5.5s ease-in-out infinite;
 }
 .glass-sheen {
   position: absolute;
@@ -3018,6 +3021,7 @@ html[data-theme="dark"] .test-tube-glass {
   background: rgba(255, 255, 255, 0.3);
   pointer-events: none;
   z-index: 8;
+  animation: glassSheenShift 5.5s ease-in-out infinite;
 }
 .tube-graduations {
   position: absolute;
@@ -3026,7 +3030,8 @@ html[data-theme="dark"] .test-tube-glass {
   font-size: 8px; color: rgba(100, 116, 139, 0.65); font-family: monospace;
   pointer-events: none; z-index: 7;
 }
-/* Liquid Body with SVG Wave Surface */
+
+/* Liquid Body with SVG Sloshing Waves */
 .tube-liquid {
   position: relative;
   width: 100%;
@@ -3034,26 +3039,79 @@ html[data-theme="dark"] .test-tube-glass {
   border-radius: 0 0 26px 26px;
   transition: background-color 0.8s ease;
   overflow: hidden;
+  animation: liquidBreathe 5.5s ease-in-out infinite;
 }
 .liquid-wave-wrap {
   position: absolute;
-  top: -6px; left: -10%; right: -10%;
-  height: 14px;
+  top: -8px; left: -15%; right: -15%;
+  height: 16px;
   pointer-events: none;
   z-index: 6;
+  transform-origin: 50% 50%;
+  animation: liquidSlosh 5.5s ease-in-out infinite;
 }
 .liquid-wave-svg {
-  width: 120%; height: 100%;
-  animation: waveFlow 2.8s linear infinite alternate;
+  width: 130%; height: 100%;
+  display: block;
 }
 .wave-path {
   fill: inherit;
-  opacity: 0.9;
 }
-@keyframes waveFlow {
+.wave-path.wave-back {
+  opacity: 0.45;
+  filter: brightness(0.82);
+  animation: waveBackMove 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+.wave-path.wave-front {
+  opacity: 0.95;
+  animation: waveFrontMove 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+/* Organic Motion Keyframes */
+@keyframes tubeIdleSway {
+  0% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(1.6deg) translateY(-1px) skewX(0.4deg); }
+  50% { transform: rotate(0deg) translateY(0); }
+  75% { transform: rotate(-1.6deg) translateY(-1px) skewX(-0.4deg); }
+  100% { transform: rotate(0deg) translateY(0); }
+}
+@keyframes glassLightShift {
+  0% { left: 5px; opacity: 0.75; width: 6px; }
+  25% { left: 9px; opacity: 0.95; width: 7px; }
+  50% { left: 5px; opacity: 0.75; width: 6px; }
+  75% { left: 2px; opacity: 0.6; width: 5px; }
+  100% { left: 5px; opacity: 0.75; width: 6px; }
+}
+@keyframes glassSheenShift {
+  0% { right: 5px; opacity: 0.3; }
+  25% { right: 3px; opacity: 0.15; }
+  50% { right: 5px; opacity: 0.3; }
+  75% { right: 8px; opacity: 0.5; }
+  100% { right: 5px; opacity: 0.3; }
+}
+@keyframes liquidSlosh {
+  0% { transform: rotate(0deg) scaleY(1); }
+  25% { transform: rotate(-2.4deg) scaleY(1.2) translateY(-0.5px); }
+  50% { transform: rotate(0deg) scaleY(1); }
+  75% { transform: rotate(2.4deg) scaleY(1.2) translateY(-0.5px); }
+  100% { transform: rotate(0deg) scaleY(1); }
+}
+@keyframes waveBackMove {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-12%); }
+  100% { transform: translateX(-15%); }
 }
+@keyframes waveFrontMove {
+  0% { transform: translateX(-15%); }
+  100% { transform: translateX(0); }
+}
+@keyframes liquidBreathe {
+  0% { transform: scaleY(1); }
+  25% { transform: scaleY(1.008); }
+  50% { transform: scaleY(1); }
+  75% { transform: scaleY(0.992); }
+  100% { transform: scaleY(1); }
+}
+
 .tube-layer-top {
   position: absolute;
   top: 0; left: 0; right: 0;

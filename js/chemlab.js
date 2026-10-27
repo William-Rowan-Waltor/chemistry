@@ -609,10 +609,11 @@
 
                 // Dynamic Liquid Body
                 '<div class="tube-liquid" id="liquid-' + chId + '-' + stageIdx + '" style="height:' + liquidHeight + ';background-color:' + st.color + '">' +
-                  // SVG Wave Surface Meniscus
+                  // SVG Sloshing Wave Surface Meniscus
                   '<div class="liquid-wave-wrap">' +
-                    '<svg class="liquid-wave-svg" viewBox="0 0 100 20" preserveAspectRatio="none">' +
-                      '<path class="wave-path" d="M0 10 Q 25 3, 50 10 T 100 10 V 20 H 0 Z"></path>' +
+                    '<svg class="liquid-wave-svg" viewBox="0 0 120 20" preserveAspectRatio="none">' +
+                      '<path class="wave-path wave-back" d="M0 10 Q 30 4, 60 10 T 120 10 V 20 H 0 Z"></path>' +
+                      '<path class="wave-path wave-front" d="M0 10 Q 30 16, 60 10 T 120 10 V 20 H 0 Z"></path>' +
                     '</svg>' +
                   '</div>' +
 
@@ -712,9 +713,14 @@
               gsap.fromTo(splashEl, { scale: 0.4, opacity: 0.9 }, { scale: 2.2, opacity: 0, duration: 0.35, ease: "power1.out" });
             }
 
-            // Tube elastic wobble
+            // Tube elastic wobble & wave slosh rebound
             if (tubeEl) {
               gsap.fromTo(tubeEl, { scaleY: 0.97, scaleX: 1.03 }, { scaleY: 1, scaleX: 1, duration: 0.4, ease: "elastic.out(1.2, 0.3)" });
+            }
+            var waveWrap = liquidEl.querySelector(".liquid-wave-wrap");
+            if (waveWrap && window.gsap) {
+              gsap.timeline()
+                .fromTo(waveWrap, { scaleY: 2.3, y: 3, rotation: -5 }, { scaleY: 1, y: 0, rotation: 0, duration: 0.85, ease: "elastic.out(1.3, 0.28)" });
             }
 
             // Liquid level rising smoothly
@@ -816,10 +822,20 @@
       if (window.gsap && tubeEl) {
         if (actionId === "shake") {
           gsap.timeline()
-            .to(tubeEl, { rotation: 8, duration: 0.08 })
-            .to(tubeEl, { rotation: -8, duration: 0.08 })
-            .to(tubeEl, { rotation: 5, duration: 0.08 })
-            .to(tubeEl, { rotation: 0, duration: 0.1, ease: "elastic.out(1, 0.3)" });
+            .to(tubeEl, { rotation: 12, duration: 0.1, ease: "power1.inOut" })
+            .to(tubeEl, { rotation: -12, duration: 0.12, ease: "power1.inOut" })
+            .to(tubeEl, { rotation: 8, duration: 0.12, ease: "power1.inOut" })
+            .to(tubeEl, { rotation: -6, duration: 0.14, ease: "power1.inOut" })
+            .to(tubeEl, { rotation: 0, duration: 0.45, ease: "elastic.out(1.2, 0.25)" });
+
+          var waveWrap = tubeEl.querySelector(".liquid-wave-wrap");
+          if (waveWrap) {
+            gsap.timeline()
+              .to(waveWrap, { scaleY: 2.8, rotation: -16, duration: 0.1 })
+              .to(waveWrap, { scaleY: 2.8, rotation: 16, duration: 0.12 })
+              .to(waveWrap, { scaleY: 1.8, rotation: -10, duration: 0.14 })
+              .to(waveWrap, { scaleY: 1, rotation: 0, duration: 0.6, ease: "elastic.out(1.1, 0.25)" });
+          }
         } else if (actionId === "heat") {
           // Heat glow effect
           gsap.fromTo(tubeEl, 
