@@ -1663,8 +1663,9 @@
       if (!canvas) return;
       var ctx = canvas.getContext("2d");
       var dpr = window.devicePixelRatio || 1;
-      var w = 440;
-      var h = 260;
+      var parentW = (canvas.parentElement && canvas.parentElement.clientWidth) || 440;
+      var w = Math.min(Math.max(parentW, 440), 680);
+      var h = Math.round(w * 0.58);
 
       canvas.width = w * dpr;
       canvas.height = h * dpr;
@@ -1801,7 +1802,7 @@
       var modal = document.createElement("div");
       modal.id = "chemlab-mol-modal";
       modal.className = "chemlab-modal-overlay";
-      modal.innerHTML = '<div class="chemlab-modal-card" style="max-width:580px">' +
+      modal.innerHTML = '<div class="chemlab-modal-card">' +
         '<div class="modal-header">' +
           '<div>' +
             '<h3 style="margin:0;font-size:1.15rem;display:flex;align-items:center;gap:8px">' +
@@ -1813,7 +1814,7 @@
         '</div>' +
         '<div class="modal-body" style="padding-top:10px">' +
           (mode === "3d" 
-            ? '<div style="position:relative;width:100%;height:360px;border-radius:14px;overflow:hidden;background:#0f172a">' +
+            ? '<div class="mol-3d-box" style="position:relative;width:100%;border-radius:14px;overflow:hidden;background:#0f172a">' +
                 // 3D Control HUD Toolbar
                 '<div class="mol-3d-hud">' +
                   '<div class="hud-btn-group">' +
@@ -1826,7 +1827,7 @@
                     '<button class="hud-btn" id="hud-style-btn" title="Đổi kiểu hiển thị: Bi & Que / Khối đặc / Khung">' + cIco("layers") + ' <span id="hud-style-text">Bi-Que</span></button>' +
                   '</div>' +
                 '</div>' +
-                '<div id="mol-3d-viewer" style="width:100%;height:100%;cursor:grab"></div>' +
+                '<div id="mol-3d-viewer" style="width:100%;height:100%;min-height:360px;cursor:grab"></div>' +
               '</div>' +
               '<p class="muted small" style="text-align:center;margin-top:8px">' +
                 '<b>Thao tác:</b> Kéo chuột trái để xoay tự do 360° · Cuộn chuột để phóng to/thu nhỏ · Chạm vuốt trên di động' +
@@ -1940,6 +1941,13 @@
                 modelLoaded = true;
               }
             }
+
+            setTimeout(function () {
+              if (viewer && typeof viewer.resize === "function") {
+                viewer.resize();
+                viewer.render();
+              }
+            }, 60);
 
             // HUD Toolbar Events
             var spinBtn = document.getElementById("hud-spin-btn");
