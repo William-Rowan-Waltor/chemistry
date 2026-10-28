@@ -3480,15 +3480,16 @@ html[data-theme="dark"] .test-tube-glass {
   display: block;
 }
 .wave-path {
-  fill: inherit;
+  fill: currentColor;
 }
 .wave-path.wave-back {
-  opacity: 0.45;
-  filter: brightness(0.82);
+  opacity: 0.5;
+  filter: brightness(0.85);
   animation: waveBackMove 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
 }
 .wave-path.wave-front {
   opacity: 0.95;
+  filter: brightness(1.05);
   animation: waveFrontMove 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
 }
 

@@ -77,7 +77,7 @@
           desc: "Hỗn hợp ban đầu gồm ethanol và acetic acid băng, là chất lỏng không màu, đồng nhất một pha."
         },
         initial: {
-          volume: 32,
+          volume: 25,
           color: "rgba(224, 242, 254, 0.45)",
           temp: 25,
           clarity: "clear",
@@ -103,11 +103,19 @@
         calcStoich: function (st) {
           var h2 = st.reagents.h2so4 || 0;
           var nacl = st.reagents.nacl_sat || 0;
+          var water = st.reagents.water || 0;
           if (st.charred || h2 >= 6) {
             return {
               pillCls: "charred",
               pillText: "DƯ H₂SO₄ (" + h2 + " giọt): HÓA THAN & KHÍ SO₂",
               desc: "H₂SO₄ đặc dư quá nhiều có tính háo nước & oxi hóa mạnh, làm cháy cồn thành carbon đen, sinh khí SO₂ mùi hắc, phá hủy phản ứng este hóa!"
+            };
+          }
+          if (water >= 4) {
+            return {
+              pillCls: "excess",
+              pillText: "DƯ NƯỚC CẤT (" + water + " giọt): THUỶ PHÂN & KHÔNG TÁCH LỚP",
+              desc: "Thừa nước cất (" + water + " giọt) làm loãng acid H₂SO₄ đặc và chuyển dịch cân bằng este hoá sang chiều nghịch (thuỷ phân este) theo Le Chatelier! Este tan một phần trong nước, không thể tách lớp nếu không dùng NaCl bão hoà."
             };
           }
           if (h2 === 0) {
@@ -118,6 +126,13 @@
             };
           }
           if (h2 >= 1 && h2 <= 3) {
+            if (water > 0 && water < 4) {
+              return {
+                pillCls: "warning",
+                pillText: "CÓ PHA LOÃNG NƯỚC (" + water + " giọt H₂O)",
+                desc: "Đã có một phần nước cất làm giảm hiệu suất este hoá. Dùng dung dịch NaCl bão hoà sẽ giúp este tách lớp triệt để hơn."
+              };
+            }
             return {
               pillCls: "balanced",
               pillText: "TỈ LỆ TỐI ƯU (" + h2 + " giọt H₂SO₄ đặc)",
@@ -155,6 +170,17 @@
                 text: "Khi đun hỗn hợp có dư thừa H₂SO₄ đặc (" + h2 + " giọt), acid đặc háo nước mãnh liệt oxi hóa than hóa ethanol thành carbon muội đen và sinh khí SO₂ có mùi hắc nghẹt thở! Este bị phá hủy, hiệu suất sụt giảm nghiêm trọng!",
                 rxn: "C₂H₅OH + 2H₂SO₄ đặc → 2C (muội than đen) + 2SO₂↑ (mùi hắc) + 5H₂O"
               };
+            } else if (state.reagents.water >= 4) {
+              state.temp = 68;
+              state.heated = true;
+              state.bubbles = true;
+              state.color = "rgba(240, 249, 255, 0.75)";
+              log = {
+                warn: true,
+                title: "Đun hỗn hợp bị dư thừa nước cất (" + (state.reagents.water || 0) + " giọt)!",
+                text: "Acid H₂SO₄ đặc đã bị nước pha loãng làm mất hoàn toàn khả năng hút ẩm. Đồng thời nồng độ H₂O cao làm cân bằng este hóa chuyển dịch sang chiều nghịch (thủy phân este), lượng este tạo thành rất ít và không thể tách lớp!",
+                rxn: "CH₃COOH + C₂H₅OH + H₂O (dư) ⇌ Cân bằng chuyển dịch sang trái (chiều nghịch chiếm ưu thế)!"
+              };
             } else {
               state.temp = 68;
               state.heated = true;
@@ -174,7 +200,7 @@
         },
         processReagent: function (state, reagentId) {
           var log = null;
-          state.volume = Math.min(state.volume + 7, 85);
+          state.volume = Math.min(state.volume + 1.2, 70);
           state.reagents[reagentId] = (state.reagents[reagentId] || 0) + 1;
           var count = state.reagents[reagentId];
 
@@ -236,15 +262,23 @@
               };
             }
           } else if (reagentId === "water") {
-            if (state.heated) {
+            state.temp = Math.max(25, state.temp - 4);
+            if (count >= 4) {
+              log = {
+                warn: true,
+                title: "Dư thừa nước cất (" + count + " giọt): Thủy phân este & Không thể tách lớp!",
+                text: "Thêm lượng lớn nước cất làm dung dịch bị pha loãng hoàn toàn. Cân bằng este hóa chuyển dịch mạnh sang chiều nghịch theo nguyên lý Le Chatelier (thủy phân este). Đồng thời do thiếu nồng độ ion muối cao (salting-out), este tan một phần trong nước và không thể tạo thành lớp váng nổi rõ rệt!",
+                rxn: "CH₃COOC₂H₅ + H₂O (dư) ⇌ CH₃COOH + C₂H₅OH (cân bằng chuyển dịch sang trái!)"
+              };
+            } else if (state.heated) {
               log = {
                 warn: true,
                 title: "Thêm nước cất: Este tách lớp kém rõ rệt",
-                text: "Ethyl acetate tan một phần trong nước cất thường (~8.3g/100mL ở 20°C). Do đó lớp este tách ra rất mỏng và ranh giới phân lớp mờ nhạt, hao hụt este nhiều hơn hẳn so với khi dùng dung dịch NaCl bão hòa!",
+                text: "Ethyl acetate tan một phần trong nước cất thường (~8.3g/100mL ở 20°C). Do đó lớp este tách ra rất mờ nhạt và hao hụt nhiều hơn hẳn so với khi dùng dung dịch NaCl bão hòa!",
                 rxn: "Bài học thi cử: Bắt buộc dùng NaCl bão hòa (salting-out) để thu hồi tối đa lượng este!"
               };
             } else {
-              log = { info: true, title: "Đã thêm nước cất", text: "Hỗn hợp bị pha loãng, chưa có este.", rxn: null };
+              log = { info: true, title: "Đã thêm nước cất (" + count + " giọt)", text: "Hỗn hợp bị pha loãng nước cất trước khi đun.", rxn: null };
             }
           }
           return log;
@@ -287,7 +321,7 @@
           desc: "Dung dịch đường nho không màu, có 5 nhóm -OH kề nhau và 1 nhóm aldehyde -CHO."
         },
         initial: {
-          volume: 30,
+          volume: 25,
           color: "rgba(240, 249, 255, 0.45)",
           temp: 25,
           clarity: "clear",
@@ -421,7 +455,7 @@
         },
         processReagent: function (state, reagentId, sc) {
           var log = null;
-          state.volume = Math.min(state.volume + 7, 85);
+          state.volume = Math.min(state.volume + 1.2, 70);
           state.reagents[reagentId] = (state.reagents[reagentId] || 0) + 1;
           var count = state.reagents[reagentId];
           var isFruc = sc.substrate && sc.substrate.key === "fructose";
@@ -493,7 +527,7 @@
           desc: "Hồ tinh bột lỏng trong suốt hơi đục nhẹ, cấu trúc amylose dạng lò xo xoắn ốc rỗng bên trong."
         },
         initial: {
-          volume: 35,
+          volume: 25,
           color: "rgba(241, 245, 249, 0.4)",
           temp: 25,
           clarity: "slightly-turbid",
@@ -568,7 +602,7 @@
         },
         processReagent: function (state, reagentId) {
           var log = null;
-          state.volume = Math.min(state.volume + 7, 85);
+          state.volume = Math.min(state.volume + 1.2, 70);
           state.reagents[reagentId] = (state.reagents[reagentId] || 0) + 1;
           if (reagentId === "iodine") {
             if (state.heated) {
@@ -611,7 +645,7 @@
           desc: "Chất lỏng sánh như dầu, rất ít tan trong nước lạnh, tạo dung dịch vẩn đục lợn cợn tách lớp."
         },
         initial: {
-          volume: 28,
+          volume: 20,
           color: "rgba(226, 232, 240, 0.82)",
           temp: 25,
           clarity: "turbid",
@@ -674,7 +708,7 @@
         },
         processReagent: function (state, reagentId) {
           var log = null;
-          state.volume = Math.min(state.volume + 7, 85);
+          state.volume = Math.min(state.volume + 1.2, 70);
           state.reagents[reagentId] = (state.reagents[reagentId] || 0) + 1;
 
           var hcl = state.reagents.hcl || 0;
@@ -820,7 +854,7 @@
           desc: "Dung dịch protein keo lỏng trong suốt, gồm chuỗi dài hàng trăm gốc α-amino acid liên kết peptide."
         },
         initial: {
-          volume: 30,
+          volume: 25,
           color: "rgba(240, 249, 255, 0.4)",
           temp: 25,
           clarity: "clear",
@@ -916,7 +950,7 @@
         },
         processReagent: function (state, reagentId, sc) {
           var log = null;
-          state.volume = Math.min(state.volume + 7, 85);
+          state.volume = Math.min(state.volume + 1.2, 70);
           state.reagents[reagentId] = (state.reagents[reagentId] || 0) + 1;
           var na = state.reagents.naoh || 0;
           var cu = state.reagents.cuso4 || 0;
@@ -1269,7 +1303,7 @@
                 '<div class="tube-graduations"><span>15mL</span><span>10mL</span><span>5mL</span></div>' +
 
                 // Dynamic Liquid Body
-                '<div class="tube-liquid" id="liquid-' + chId + '-' + stageIdx + '" style="height:' + liquidHeight + ';background-color:' + st.color + '">' +
+                '<div class="tube-liquid" id="liquid-' + chId + '-' + stageIdx + '" style="height:' + liquidHeight + ';background-color:' + st.color + ';color:' + st.color + '">' +
                   // SVG Sloshing Wave Surface Meniscus
                   '<div class="liquid-wave-wrap">' +
                     '<svg class="liquid-wave-svg" viewBox="0 0 120 20" preserveAspectRatio="none">' +
@@ -1325,7 +1359,7 @@
               '</div>' +
             '</div>' +
 
-            '<div class="tube-drop-hint">' + cIco("pipette") + ' Nhỏ giọt điều chỉnh liều lượng hoặc kéo thả trực tiếp</div>' +
+            '<div class="tube-drop-hint">' + cIco("pipette") + ' Điều chỉnh liều lượng vi lượng từng giọt bằng bảng hoá chất</div>' +
           '</div>' +
 
           // Right: Reagents Shelf & Tools
@@ -1394,6 +1428,7 @@
       var precipEl = document.getElementById("precip-" + chId + "-" + stageIdx);
 
       if (liquidEl) {
+        liquidEl.style.color = fresh.color;
         if (window.gsap) {
           gsap.to(liquidEl, { height: fresh.volume + "%", backgroundColor: fresh.color, duration: 0.5, ease: "power2.out" });
         } else {
@@ -1491,6 +1526,7 @@
             gsap.to(liquidEl, { height: newHeight, duration: 0.85, ease: "power2.out" });
 
             // Liquid color morphing smoothly
+            liquidEl.style.color = newBg;
             gsap.to(liquidEl, { backgroundColor: newBg, duration: 1.1, ease: "sine.inOut" });
 
             // If separated ester layer
@@ -1534,6 +1570,7 @@
         if (liquidEl) {
           liquidEl.style.height = newHeight;
           liquidEl.style.backgroundColor = newBg;
+          liquidEl.style.color = newBg;
         }
       }
 
@@ -1632,6 +1669,7 @@
       }
 
       if (liquidEl) {
+        liquidEl.style.color = st.color;
         if (window.gsap) {
           gsap.to(liquidEl, { backgroundColor: st.color, duration: 0.8 });
         } else {
