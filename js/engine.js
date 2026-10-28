@@ -2206,8 +2206,39 @@
     showMiniToast(next === "dark" ? ico("moon") + " Đã bật chế độ Tối (Dark Mode)" : ico("sun") + " Đã bật chế độ Sáng (Light Mode)");
   }
 
-  /* ---------- RENDER SHELL ---------- */
+  /* ---------- RENDER SHELL & MOBILE NAV ---------- */
   var headerEl;
+  var mobileNavEl;
+
+  function renderMobileNav() {
+    if (typeof document === "undefined") return;
+    if (!mobileNavEl) {
+      mobileNavEl = document.getElementById("mobileNav");
+      if (!mobileNavEl) {
+        mobileNavEl = document.createElement("nav");
+        mobileNavEl.id = "mobileNav";
+        mobileNavEl.className = "mobile-nav";
+        mobileNavEl.setAttribute("aria-label", "Điều hướng chính trên di động");
+        document.body.appendChild(mobileNavEl);
+      }
+    }
+    var m = state.mode;
+    var navItems = [
+      { id: "theory", l: "Lý thuyết", i: "book" },
+      { id: "practice", l: "Luyện tập", i: "pen" },
+      { id: "guided", l: "Feynman", i: "bulb" },
+      { id: "coach_test", l: "Kiểm tra", i: "target" },
+      { id: "library", l: "Thư viện", i: "star" }
+    ];
+    mobileNavEl.innerHTML = navItems.map(function (x) {
+      var active = (m === x.id) ? " on" : "";
+      return '<button class="mnav-item' + active + '" data-act="mode" data-m="' + x.id + '" aria-label="' + esc(x.l) + '">' +
+        '<span class="mnav-icon">' + ico(x.i) + '</span>' +
+        '<span class="mnav-label">' + esc(x.l) + '</span>' +
+      '</button>';
+    }).join("");
+  }
+
   function renderShell() {
     var s = profile();
     var g = state.grade;
@@ -2253,6 +2284,7 @@
         '<div class="mode-group">' + modeTabs + "</div>" +
       "</div>";
     headerEl.classList.add("has");
+    renderMobileNav();
   }
 
   /* ---------- EDIT TOOLBAR & PROMPTS ---------- */
@@ -5288,6 +5320,7 @@
     headerEl = document.createElement("header");
     headerEl.id = "topbar";
     document.body.insertBefore(headerEl, document.body.firstChild);
+    renderMobileNav();
     render();
 
     // Background cloud sync for single user (William-Rowan-Waltor)
