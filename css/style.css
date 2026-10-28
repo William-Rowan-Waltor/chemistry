@@ -5575,4 +5575,721 @@ html[data-theme="dark"] .mol-pill-tag {
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE UI/UX OPTIMIZATION SUITE (SMARTPHONE & TOUCH REFINEMENT)
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 600px) {
+  /* 1. App Padding & Global Spacing */
+  #app {
+    padding: 10px 12px 85px;
+  }
+  .hd-row {
+    padding: 0 10px;
+  }
+  .hd-row.top {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  .brand-mark {
+    padding: 4px 6px;
+    font-size: 1.2rem;
+    border-radius: 9px;
+  }
+  .brand-txt b {
+    font-size: 1rem;
+    line-height: 1.1;
+  }
+  .brand-txt small {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+  .stats {
+    gap: 4px;
+  }
+  .stat {
+    padding: 2px 7px;
+    font-size: 0.7rem;
+  }
+
+  /* Mode Group Horizontal Scroll Strip on Mobile */
+  .hd-row.mid {
+    padding-top: 4px;
+    padding-bottom: 8px;
+    gap: 6px;
+  }
+  .grade-group {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+  .grade-group button {
+    flex: 1;
+    text-align: center;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  .mode-group {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    gap: 4px;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .mode-group::-webkit-scrollbar {
+    display: none;
+  }
+  .mode-group button {
+    flex-shrink: 0;
+    padding: 6px 11px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  /* 2. Virtual Lab Card Mobile Overhaul */
+  .chemlab-card {
+    padding: 14px 12px;
+    border-radius: 16px;
+    margin: 12px 0 18px;
+  }
+  .chemlab-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .chemlab-title-group {
+    width: 100%;
+  }
+  .chemlab-badge {
+    font-size: 0.68rem;
+    padding: 2px 6px;
+  }
+  .chemlab-title {
+    font-size: 1.05rem;
+    line-height: 1.3;
+    margin-top: 4px;
+  }
+  .chemlab-sub {
+    font-size: 0.76rem;
+    line-height: 1.4;
+    margin-top: 3px;
+  }
+  .chemlab-substrate-switch {
+    width: 100%;
+    display: flex;
+    margin-top: 6px;
+  }
+  .sub-switch-btn {
+    flex: 1;
+    text-align: center;
+    padding: 5px 6px;
+    font-size: 0.72rem;
+  }
+  .chemlab-mol-btns {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .mol-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.74rem;
+    padding: 6px 8px;
+  }
+
+  /* 3. Workbench & Test Tube: Sticky Compact Stage on Mobile */
+  .chemlab-workbench {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 10px 0;
+  }
+  .chemlab-stage {
+    position: sticky;
+    top: 8px;
+    z-index: 30;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(14, 165, 233, 0.28);
+    border-radius: 16px;
+    padding: 10px 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+  html[data-theme="dark"] .chemlab-stage {
+    background: rgba(15, 23, 42, 0.94);
+    border-color: rgba(56, 189, 248, 0.28);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Compact Test Tube Sizing on Mobile */
+  .test-tube-assembly {
+    min-height: 155px;
+    margin: 2px auto 6px;
+  }
+  .test-tube-glass {
+    width: 52px;
+    height: 145px;
+    border-width: 2.5px;
+    border-radius: 0 0 26px 26px;
+  }
+  .test-tube-glass .tube-graduations {
+    font-size: 0.55rem;
+    left: 4px;
+  }
+  .tube-dropper-pipette {
+    width: 16px;
+    height: 48px;
+    top: -50px;
+  }
+  .tube-stand-base {
+    width: 90px;
+    height: 8px;
+  }
+  .tube-status-bar {
+    margin-top: 4px;
+    gap: 6px;
+  }
+  .status-pill {
+    padding: 2px 7px;
+    font-size: 0.7rem;
+  }
+  .tube-drop-hint {
+    display: none; /* Touch screens don't use drag-and-drop */
+  }
+
+  /* Compact Stoichiometric Banner inside Mobile Sticky Stage */
+  .tube-stoich-banner {
+    margin-top: 8px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    gap: 6px;
+  }
+  .stoich-banner-head {
+    padding-bottom: 4px;
+  }
+  .stoich-head-title {
+    font-size: 0.65rem;
+  }
+  .stoich-total-badge {
+    font-size: 0.65rem;
+    padding: 1px 6px;
+  }
+  .stoich-channels-meter {
+    gap: 3px;
+  }
+  .stoich-channel-row {
+    font-size: 0.68rem;
+    padding: 2px 5px;
+  }
+  .stoich-status-display {
+    gap: 3px;
+    padding-top: 2px;
+  }
+  .stoich-pill {
+    font-size: 0.68rem;
+    padding: 2px 7px;
+    justify-content: center;
+    text-align: center;
+  }
+  .stoich-desc-text {
+    font-size: 0.7rem;
+    line-height: 1.35;
+  }
+
+  /* 4. Streamlined Mobile Reagents Shelf & Steppers */
+  .ctrl-sec-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+  .chemlab-reagents-shelf {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .chemlab-reagent-card {
+    padding: 9px 10px;
+    border-radius: 12px;
+    gap: 6px;
+  }
+  .rg-grip {
+    display: none; /* Hide drag grip icon on touch devices */
+  }
+  .rg-name {
+    font-size: 0.82rem;
+  }
+  .rg-bottle-badge {
+    width: 20px;
+    height: 20px;
+  }
+  .rg-bottle-badge svg {
+    width: 12px;
+    height: 12px;
+  }
+  .rg-desc {
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  /* Mobile Micropipette Doser Box */
+  .rg-doser-box {
+    padding: 7px 9px;
+    border-radius: 10px;
+    gap: 6px;
+  }
+  .doser-label {
+    font-size: 0.62rem;
+  }
+  .doser-lcd-screen {
+    padding: 2px 7px;
+    border-radius: 6px;
+  }
+  .doser-lcd-val {
+    font-size: 1rem;
+  }
+  .doser-lcd-unit {
+    font-size: 0.55rem;
+  }
+  .doser-reservoir-meter {
+    padding: 3px 5px;
+  }
+  .drop-pip {
+    width: 12px;
+    height: 12px;
+  }
+  .drop-pip svg {
+    width: 10px;
+    height: 10px;
+  }
+  .doser-meter-status {
+    font-size: 0.62rem;
+  }
+
+  /* Large Thumb Touch Targets for Steppers (42px-44px) */
+  .doser-actions-row {
+    grid-template-columns: 42px 1fr 44px;
+    gap: 6px;
+  }
+  .btn-doser-step {
+    min-height: 42px;
+    font-size: 0.88rem;
+    border-radius: 8px;
+  }
+  .btn-doser-main {
+    min-height: 42px;
+    font-size: 0.78rem;
+    padding: 6px 8px;
+    border-radius: 8px;
+  }
+
+  /* Action Buttons Grid on Mobile */
+  .chemlab-tools-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .chemlab-tool-btn {
+    width: 100%;
+    min-height: 42px;
+    justify-content: center;
+    font-size: 0.78rem;
+    padding: 6px 8px;
+  }
+
+  /* 5. Observation Log on Mobile */
+  .chemlab-log-box {
+    padding: 12px 14px;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+  .chemlab-log-box .log-head {
+    font-size: 0.88rem;
+  }
+  .chemlab-log-box .log-body {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+  .chemlab-log-box .log-rxn {
+    font-size: 0.78rem;
+    padding: 8px 10px;
+    margin-top: 6px;
+  }
+
+  /* 6. Mobile Modals (Bottom Sheet Native Feel) */
+  .chemlab-modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .chemlab-modal-card {
+    border-radius: 20px 20px 0 0;
+    padding: 16px 14px 28px;
+    max-height: 90vh;
+    overflow-y: auto;
+    width: 100%;
+    border-bottom: none;
+  }
+  .modal-header h3 {
+    font-size: 0.96rem;
+  }
+  .modal-body .mol-3d-box,
+  #mol-3d-viewer {
+    height: 300px !important;
+  }
+  .mol-3d-hud {
+    padding: 4px 6px;
+    gap: 4px;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+  }
+  .hud-btn {
+    padding: 4px 7px;
+    font-size: 0.68rem;
+    border-radius: 6px;
+  }
+  .hud-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+  .mol-2d-viewbox {
+    min-height: 240px;
+    padding: 12px;
+  }
+  .mol-2d-svg-container {
+    height: 220px;
+  }
+
+  /* 7. Guided Mode & Checkpoints Mobile Spacing */
+  .stage-stepper {
+    gap: 6px;
+    padding: 2px 0 8px;
+    margin-bottom: 12px;
+    scroll-snap-type: x mandatory;
+  }
+  .stage-step {
+    min-width: 110px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    scroll-snap-align: start;
+  }
+  .stage-step .stage-num {
+    font-size: 0.68rem;
+  }
+  .stage-step .stage-name {
+    font-size: 0.78rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .guided-card {
+    padding: 14px 12px;
+    border-radius: 14px;
+  }
+  .guided-section {
+    margin-bottom: 12px;
+  }
+  .guided-sec-title {
+    font-size: 0.84rem;
+  }
+  .guided-box {
+    padding: 10px 12px;
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+  .checkpoint-box {
+    padding: 12px 10px;
+    border-radius: 12px;
+  }
+  .checkpoint-q {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+  .checkpoint-opts {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .checkpoint-opt {
+    padding: 10px 12px;
+    font-size: 0.84rem;
+    min-height: 44px;
+    border-radius: 10px;
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  /* Option Breakdown Rows on Mobile */
+  .breakdown-row {
+    padding: 8px 10px;
+    gap: 8px;
+    font-size: 0.82rem;
+  }
+  .bdr-key {
+    width: 22px;
+    height: 22px;
+    font-size: 0.74rem;
+  }
+
+  /* 8. Floating Action Button (FAB) & Toolbar Ergonomics */
+  .fab-edit {
+    bottom: 18px;
+    right: 16px;
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(200, 115, 0, 0.4);
+  }
+  .fab-edit .fab-body,
+  .fab-edit .fab-switch-track {
+    display: none;
+  }
+  .fab-edit .fab-icon {
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  .edit-toolbar {
+    padding: 10px 12px;
+    border-radius: 12px;
+    gap: 10px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .edit-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .edit-desc {
+    font-size: 0.78rem;
+  }
+  .edit-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    width: 100%;
+  }
+  .btn-edit-action {
+    width: 100%;
+    justify-content: center;
+    padding: 8px 10px;
+    font-size: 0.78rem;
+  }
+  .edit-prompt-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 12px;
+    gap: 8px;
+    font-size: 0.82rem;
+  }
+  .edit-prompt-bar .btn-go-edit {
+    width: 100%;
+    justify-content: center;
+    padding: 8px 12px;
+  }
+
+  /* 9. Flashcards & SRS Repetition System */
+  .flash-session {
+    padding: 0;
+  }
+  .flash-card,
+  .flash-inner {
+    min-height: 250px;
+  }
+  .flash-face {
+    padding: 18px 16px;
+    border-radius: 16px;
+    min-height: 250px;
+  }
+  .fq {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .flash-back-body p {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .fs-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .fs-actions .btn {
+    width: 100%;
+    min-width: unset;
+    min-height: 44px;
+  }
+  .srs-actions-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .srs-rate-btn {
+    min-height: 48px;
+    padding: 10px 6px;
+    border-radius: 10px;
+  }
+
+  /* 10. Quizzes, Question Bank & Test Session */
+  .bank-q,
+  .test-q,
+  .test-session {
+    padding: 14px 12px;
+    border-radius: 14px;
+  }
+  .q-text {
+    font-size: 1.02rem;
+    line-height: 1.5;
+    margin: 4px 0 14px;
+  }
+  .mcq-opts {
+    gap: 7px;
+  }
+  .mcq-opt {
+    min-height: 44px;
+    padding: 11px 12px;
+    font-size: 0.88rem;
+    border-radius: 10px;
+    line-height: 1.4;
+  }
+  .tf-opts {
+    gap: 8px;
+  }
+  .tf-opt {
+    min-height: 44px;
+    padding: 10px 8px;
+    font-size: 0.88rem;
+  }
+  .q-next {
+    margin-top: 12px;
+  }
+  .q-next .btn {
+    width: 100%;
+    min-height: 44px;
+    font-size: 0.92rem;
+  }
+  .test-card {
+    padding: 12px 12px;
+    border-radius: 14px;
+    gap: 10px;
+  }
+  .tc-left {
+    gap: 10px;
+  }
+  .tc-icon {
+    font-size: 1.35rem;
+    padding: 6px;
+    border-radius: 10px;
+  }
+  .test-card .btn {
+    width: 100%;
+    min-height: 40px;
+  }
+
+  /* 11. Theory, Feynman Box & Notes */
+  .chapter-head {
+    gap: 12px;
+    margin: 4px 0 16px;
+  }
+  .chapter-head .cc-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 12px;
+  }
+  .feynman {
+    padding: 12px 14px;
+    margin: 0 0 16px;
+    border-radius: 12px;
+  }
+  .feynman p {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+  .note {
+    padding: 12px 12px;
+    border-radius: 12px;
+  }
+  .note-h3 {
+    font-size: 0.95rem;
+  }
+  .note-body {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  /* 12. Mini-games Arena & Exam Pitfalls (Traps) */
+  .arena-nav-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+    gap: 6px;
+  }
+  .arena-nav-chips::-webkit-scrollbar {
+    display: none;
+  }
+  .arena-chip {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+  .game-hub-card {
+    padding: 16px 14px;
+    border-radius: 14px;
+    gap: 10px;
+  }
+  .trap-filters-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+    gap: 6px;
+  }
+  .trap-filters-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .trap-filter-pill {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+  .trap-card {
+    padding: 14px 12px;
+    border-radius: 14px;
+  }
+  .tc-columns-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .tc-col {
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
+  .tc-mnemonic-box {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+  .tmq-opts {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .tmq-opt {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 0.84rem;
+    border-radius: 10px;
+  }
+}
+
+
 
