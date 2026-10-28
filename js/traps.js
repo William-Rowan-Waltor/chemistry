@@ -477,7 +477,7 @@
             if (qState.picked === opt.k && !qState.isCorrect) cls += " opt-wrong";
           }
           return '<button class="' + cls + '" data-act="ctQuizPick" data-tid="' + trap.id + '" data-k="' + esc(opt.k) + '" ' + (qState ? 'disabled' : '') + '>' +
-            '<b>' + esc(opt.k) + '.</b> ' + esc(opt.t) +
+            '<span class="opt-key">' + esc(opt.k) + '.</span><span class="opt-text">' + esc(opt.t) + '</span>' +
           '</button>';
         }).join("");
 

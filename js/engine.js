@@ -3166,7 +3166,7 @@
     var body = "";
     if (it.k === "m") {
       body = '<div class="mcq-opts">' + opts.map(function (o) {
-        return '<button class="mcq-opt" data-act="bankPick" data-p="' + esc(o.k) + '"><b>' + esc(o.k) + ".</b> " + fmt(o.t) + "</button>";
+        return '<button class="mcq-opt" data-act="bankPick" data-p="' + esc(o.k) + '"><span class="opt-key">' + esc(o.k) + '.</span><span class="opt-text">' + fmt(o.t) + '</span></button>';
       }).join("") + "</div>";
     } else if (it.k === "tf") {
       body = '<div class="tf-opts">' +
@@ -3368,7 +3368,7 @@
     var body = "";
     if (it.k === "m") {
       body = '<div class="mcq-opts">' + opts.map(function (o) {
-        return '<button class="mcq-opt' + (ans === o.k ? " picked" : "") + '" data-act="testPick" data-p="' + esc(o.k) + '"><b>' + esc(o.k) + ".</b> " + fmt(o.t) + "</button>";
+        return '<button class="mcq-opt' + (ans === o.k ? " picked" : "") + '" data-act="testPick" data-p="' + esc(o.k) + '"><span class="opt-key">' + esc(o.k) + '.</span><span class="opt-text">' + fmt(o.t) + '</span></button>';
       }).join("") + "</div>";
     } else if (it.k === "tf") {
       body = '<div class="tf-opts">' +
@@ -3558,7 +3558,7 @@
         }
       }
       return '<button class="' + cls + '" data-act="guidedPick" data-k="' + esc(o.k) + '" ' + (isChecked ? 'disabled' : '') + '>' +
-        '<b>' + esc(o.k) + '.</b> ' + fmt(o.t) + badge +
+        '<span class="opt-key">' + esc(o.k) + '.</span><span class="opt-text">' + fmt(o.t) + badge + '</span>' +
       '</button>';
     }).join("");
 
@@ -3845,7 +3845,7 @@
           }
         }
         return '<button class="' + cls + '" data-act="guidedPick" data-k="' + esc(o.k) + '" disabled>' +
-          '<b>' + esc(o.k) + '.</b> ' + fmt(o.t) + badge +
+          '<span class="opt-key">' + esc(o.k) + '.</span><span class="opt-text">' + fmt(o.t) + badge + '</span>' +
         '</button>';
       }).join("");
 
@@ -3939,7 +3939,7 @@
         if (isSubmitted) cls += (o.k === cur.a ? " good" : " warn");
       }
       return '<button class="' + cls + '" data-act="coachTestPick" data-p="' + esc(o.k) + '" ' + (isSubmitted ? 'disabled' : '') + '>' +
-        '<b>' + esc(o.k) + '.</b> ' + fmt(o.t) +
+        '<span class="opt-key">' + esc(o.k) + '.</span><span class="opt-text">' + fmt(o.t) + '</span>' +
       '</button>';
     }).join("");
 
@@ -4026,7 +4026,7 @@
           }
         }
         return '<button class="' + cls + '" data-act="coachTestPick" data-p="' + esc(o.k) + '" disabled>' +
-          '<b>' + esc(o.k) + '.</b> ' + fmt(o.t) + badge +
+          '<span class="opt-key">' + esc(o.k) + '.</span><span class="opt-text">' + fmt(o.t) + badge + '</span>' +
         '</button>';
       }).join("");
 

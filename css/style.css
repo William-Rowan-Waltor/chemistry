@@ -641,6 +641,7 @@ tbody td.col0{font-weight:600;white-space:nowrap}
 .mcq-opt{
   text-align:left;border:1px solid var(--line-soft);background:var(--surface);border-radius:12px;
   padding:14px 17px;font-size:.92rem;color:#4a4138;box-shadow:var(--shadow);
+  display:flex;align-items:baseline;gap:8px;width:100%;
   transition:transform var(--motion-ms) var(--ease-standard),border-color var(--motion-ms) var(--ease-standard),background var(--motion-ms) var(--ease-standard);
 }
 .mcq-opt:hover{border-color:var(--accent);background:var(--surface);transform:translateX(3px)}
@@ -1165,6 +1166,28 @@ footer b{color:var(--muted);font-weight:600}
   text-align: left; background: var(--surface); border: 1px solid var(--line);
   padding: 13px 18px; border-radius: 12px; cursor: pointer; transition: all .18s;
   font-size: .95rem; color: #43392f;
+  display: flex; align-items: baseline; gap: 8px; width: 100%;
+}
+.checkpoint-opt .opt-key, .mcq-opt .opt-key, .micro-opt-btn .opt-key {
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 20px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+.checkpoint-opt .opt-text, .mcq-opt .opt-text, .micro-opt-btn .opt-text {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  line-height: 1.55;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+.checkpoint-opt .opt-text::after, .mcq-opt .opt-text::after, .micro-opt-btn .opt-text::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 .checkpoint-opt:hover { border-color: var(--accent); background: var(--surface); transform: translateX(3px); }
 .checkpoint-opt.picked.correct { background: #e8f5e9; border-color: var(--ok); color: #1e4620; font-weight: 700; }
@@ -5529,7 +5552,8 @@ html[data-theme="dark"] .mol-pill-tag {
     margin: 0;
     min-height: 54px;
     display: flex;
-    align-items: center;
+    align-items: baseline;
+    gap: 8px;
     font-size: 0.94rem;
   }
 
@@ -6019,8 +6043,11 @@ html[data-theme="dark"] .mol-pill-tag {
     font-size: 0.84rem;
     min-height: 44px;
     border-radius: 10px;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
     text-align: left;
-    line-height: 1.4;
+    line-height: 1.45;
   }
 
   /* Option Breakdown Rows on Mobile */
@@ -6155,7 +6182,10 @@ html[data-theme="dark"] .mol-pill-tag {
     padding: 11px 12px;
     font-size: 0.88rem;
     border-radius: 10px;
-    line-height: 1.4;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    line-height: 1.45;
   }
   .tf-opts {
     gap: 8px;
