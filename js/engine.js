@@ -2164,7 +2164,7 @@
     editMode: localStorage.getItem("hoa11_12_edit_mode") === "true",
     perfMode: localStorage.getItem("hoa11_12_perf") !== "gpu",
     guided: { ch: "g12c1", stageIdx: 0, checked: false, pickedOpt: null },
-    coachTest: { ch: "all", i: 0, picked: null, hintsOpened: {}, answers: [], done: false },
+    coachTest: { testId: null, t: null, i: 0, picked: null, answers: {}, helped: {}, showPalette: false, showTheoryPeek: false, done: false, filterGrade: "all", searchQuery: "" },
     modal: null
   };
 
@@ -3940,248 +3940,823 @@
     }
   }
 
-  /* ═══════════ VIEW: KIỂM TRA CÓ HƯỚNG DẪN (COACH TESTING) ═══════════ */
-  function renderCoachTest() {
-    var questions = DEFAULT_COACH_TESTS;
-    if (state.coachTest.done) {
-      var correctN = state.coachTest.answers.filter(function (a) { return a.ok; }).length;
-      return '<div class="coach-test-card" style="text-align:center">' +
-        '<h2>' + ico("target") + ' Hoàn thành bài kiểm tra có hướng dẫn!</h2>' +
-        '<p style="font-size:1.15rem">Bạn đã trả lời đúng <b>' + correctN + '</b> / ' + questions.length + ' câu hỏi.</p>' +
-        '<button class="btn primary" data-act="restartCoachTest">Làm lại bài kiểm tra</button>' +
-      '</div>';
+  /* ═══════════ VIEW: KIỂM TRA CÓ HƯỚNG DẪN (COACH TESTING & DIAGNOSTIC SIMULATOR) ═══════════ */
+
+  var COACH_CASE_STUDIES = {
+    ester_flavor: {
+      tag: "Hương liệu & Mỹ phẩm",
+      title: "Mùi hương hoa quả tự nhiên từ các ester phân tử nhỏ",
+      text: "Các ester có phân tử khối thấp và trung bình thường có mùi thơm đặc trưng của các loại hoa quả chín: isoamyl acetate mang hương chuối chín; benzyl acetate thơm ngát mùi hoa nhài; ethyl formate có mùi thơm của quả đào, mâm xôi; ethyl butyrate thoang thoảng hương dứa chín. Do tính an toàn cao và dễ bay hơi, chúng được ứng dụng làm chất tạo hương trong bánh kẹo, đồ uống giải khát, nước hoa và mỹ phẩm."
+    },
+    ester_solvent: {
+      tag: "Dung môi công nghiệp",
+      title: "Ethyl acetate – Dung môi phân cực xanh trong công nghiệp & Đời sống",
+      text: "Ethyl acetate (CH₃COOC₂H₅) là một trong những dung môi hữu cơ quan trọng nhất nhờ độc tính rất thấp, bay hơi nhanh và hoà tan tuyệt vời các chất hữu cơ như sơn mài, chất kết dính, mực in. Đặc biệt trong thực phẩm, ethyl acetate được dùng trong công nghệ decaf (loại bỏ caffeine khỏi hạt cà phê) mà vẫn bảo toàn hương vị tự nhiên của cà phê."
+    },
+    saponification: {
+      tag: "Sản xuất & Đời sống",
+      title: "Cơ chế xà phòng hoá chất béo & Sản xuất xà phòng gia đình",
+      text: "Khi đun nóng chất béo (triglyceride như tristearin hoặc triolein) với dung dịch kiềm (NaOH hoặc KOH), phản ứng xà phòng hoá sinh ra hỗn hợp muối natri/kali của các acid béo (xà phòng) và giải phóng glycerol. Glycerol thu hồi được là nguyên liệu quý giá trong y dược học và mỹ phẩm nhờ khả năng giữ ẩm vượt trội cho da."
+    },
+    detergent_hard_water: {
+      tag: "Môi trường & Hoá học tẩy rửa",
+      title: "Xà phòng truyền thống vs Chất giặt rửa tổng hợp trong nước cứng",
+      text: "Xà phòng thông thường chứa ion carboxylate R-COO⁻. Khi giặt trong nước cứng (chứa nhiều ion Ca²⁺, Mg²⁺), chúng bị kết tủa thành muối canxi/magie stearate không tan, bám dính vào sợi vải gây ố vàng, mục nát và làm mất tác dụng tẩy rửa. Ngược lại, chất giặt rửa tổng hợp (chứa gốc sulfonate R-SO₃⁻Na⁺) không bị kết tủa bởi Ca²⁺, Mg²⁺, giúp duy trì bọt và khả năng làm sạch vượt trội trên mọi nguồn nước."
+    },
+    glucose_medical: {
+      tag: "Y tế & Dược phẩm",
+      title: "Dịch truyền tĩnh mạch Glucose 5% & Ứng dụng tráng ruột phích",
+      text: "Glucose là carbohydrate đơn giản hấp thu trực tiếp vào máu mà không cần tiêu hoá. Dung dịch glucose 5% (nồng độ đẳng trương) là dịch truyền cấp cứu thiết yếu giúp cung cấp năng lượng lập tức cho bệnh nhân suy nhược, tụt đường huyết. Trong công nghiệp, glucose thu được từ thuỷ phân tinh bột sắn được dùng làm tác nhân khử sạch trong phản ứng tráng gương, tráng ruột phích nước nóng, hoàn toàn thay thế aldehyde độc hại."
+    },
+    fructose_honey: {
+      tag: "Dinh dưỡng & Thực phẩm",
+      title: "Fructose – Độ ngọt tự nhiên trong mật ong và trái cây chín",
+      text: "Fructose là monosaccharide đồng phân của glucose, chiếm đến 40% khối lượng trong mật ong. Đây là loại đường ngọt nhất trong tự nhiên (ngọt gấp 1,5 lần đường mía saccharose và 2,5 lần glucose). Fructose tồn tại chủ yếu ở dạng mạch vòng, trong dung dịch kiềm có thể chuyển hoá thuận nghịch thành glucose nên fructose vẫn tham gia phản ứng tráng bạc và khử Cu(OH)₂."
+    },
+    saccharose_inversion: {
+      tag: "Công nghệ thực phẩm",
+      title: "Đường nghịch đảo – Bí quyết chống 'lại đường' trong mứt kẹo",
+      text: "Saccharose (đường mía) là disaccharide không có nhóm -OH hemiacetal tự do nên không có tính khử và không tráng bạc. Trong sản xuất mứt tết, kẹo mềm và siro cao cấp, người ta đun saccharose với xúc tác acid để thuỷ phân thành hỗn hợp glucose và fructose tỉ lệ 1:1 (gọi là đường nghịch đảo). Đường nghịch đảo có độ ngọt sâu hơn và ngăn chặn hiện tượng kết tinh lại các tinh thể đường hạt."
+    },
+    cellulose_industry: {
+      tag: "Vật liệu sinh học",
+      title: "Cellulose – Trụ cột vật liệu xanh & Thuốc súng không khói",
+      text: "Cellulose là polymer tự nhiên phong phú nhất trên Trái Đất, cấu tạo từ các mắt xích β-glucose liên kết chặt chẽ bởi liên kết hydrogen tạo thành các bó sợi siêu bền. Không chỉ là nguyên liệu sản xuất giấy và sợi bông dệt may, cellulose còn được chế hoá thành tơ nhân tạo (viscose, cellulose acetate) và khi ester hoá hoàn toàn với HNO₃ đặc sinh ra cellulose trinitrate – thành phần của thuốc súng không khói."
+    },
+    amine_fish: {
+      tag: "Ẩm thực & Hoá học đời sống",
+      title: "Khử mùi tanh của cá bằng acid hữu cơ trong dân gian",
+      text: "Mùi tanh khó chịu của cá (nhất là cá nước ngọt như cá mè) chủ yếu bắt nguồn từ các alkylamine phân tử nhỏ bay hơi như dimethylamine và trimethylamine. Vì các amine mang tính base, cha ông ta từ xưa đã có kinh nghiệm dùng chanh (citric acid), giấm ăn (acetic acid), mẻ chua hoặc khế chua để khử tanh. Acid sẽ trung hoà các amine thành muối amoni tan trong nước và không còn bay hơi, loại bỏ triệt để mùi tanh."
+    },
+    aniline_dyes: {
+      tag: "Hoá dầu & Dược phẩm",
+      title: "Aniline – Cội nguồn của ngành công nghiệp phẩm nhuộm azo & Paracetamol",
+      text: "Aniline (C₆H₅NH₂) là chất lỏng dạng dầu, ít tan trong nước và có độc tính cao. Do cặp electron tự do trên nguyên tử N giải toả vào vòng benzen, tính base của aniline rất yếu (không làm đổi màu quỳ tím), nhưng lại kích hoạt mãnh liệt các vị trí ortho/para trên nhân thơm, tạo kết tủa trắng 2,4,6-tribromoaniline với nước brom. Aniline là tiền chất sống còn để sản xuất thuốc hạ sốt paracetamol và hàng ngàn loại phẩm nhuộm dệt may rực rỡ."
+    },
+    acetylene_welding: {
+      tag: "Cơ khí & Năng lượng",
+      title: "Ngọn lửa Oxy-Acetylene 3000°C cắt thép công nghiệp",
+      text: "Khi đốt cháy acetylene (C₂H₂) trong dòng khí oxy nguyên chất, nhiệt lượng toả ra cực lớn đẩy nhiệt độ ngọn lửa lên tới trên 3000°C – nóng hơn nhiệt độ nóng chảy của hầu hết các kim loại (sắt thép nóng chảy ở ~1538°C). Ngọn lửa hàn xì oxy-acetylene là công cụ không thể thay thế trong ngành đóng tàu biển, cơ khí chế tạo và sửa chữa cầu đường."
+    },
+    lpg_gas: {
+      tag: "An toàn dân dụng",
+      title: "Chất tạo mùi cảnh báo trong bình gas dân dụng LPG",
+      text: "Khí dầu mỏ hoá lỏng LPG (chứa propane C₃H₈ và butane C₄H₁₀) là nhiên liệu khí cháy hoàn toàn, sạch và không có mùi tự nhiên. Để đảm bảo an toàn tính mạng cho người sử dụng, các nhà sản xuất bắt buộc phải pha thêm một hàm lượng vi lượng chất tạo mùi có mùi trứng thối đặc trưng (như ethanethiol C₂H₅SH). Khi bình gas bị rò rỉ dù chỉ một lượng cực nhỏ, người trong nhà sẽ lập tức ngửi thấy mùi hôi để khoá van gas kịp thời."
+    },
+    markovnikov_drugs: {
+      tag: "Quy tắc kinh điển",
+      title: "Quy tắc Markovnikov – Chiếc kim chỉ nam tổng hợp hữu cơ",
+      text: "Quy tắc Markovnikov chỉ ra rằng khi cộng tác nhân bất đối xứng HX (như HCl, HBr, H₂O) vào alkene bất đối xứng, nguyên tử H ưu tiên cộng vào nguyên tử carbon có nhiều hydro hơn (bậc thấp hơn), còn nhóm mang điện tích âm (X hoặc OH) cộng vào carbon có ít hydro hơn (bậc cao hơn). Nguyên lý này giúp các nhà hoá học dự đoán chính xác cấu trúc sản phẩm chính trong tổng hợp các hợp chất thuốc và hoá chất tinh khiết."
+    },
+    alcohol_methanol_danger: {
+      tag: "Pháp y & An toàn sức khoẻ",
+      title: "Sự nguy hiểm chết người của cồn công nghiệp Methanol",
+      text: "Methanol (CH₃OH) có mùi và vị gần như y hệt ethanol (rượu uống), nhưng độc tính lại vô cùng khủng khiếp. Khi vào cơ thể, gan chuyển hoá methanol thành formaldehyde (HCHO) và formic acid (HCOOH) – các chất độc tích tụ phá huỷ võng mạc và dây thần kinh thị giác gây mù mắt hoàn toàn, đồng thời làm toan máu cấp tính dẫn đến hôn mê và tử vong nhanh chóng."
+    },
+    phenol_antiseptic: {
+      tag: "Y tế & Lịch sử hoá học",
+      title: "Phenol – Chất khử trùng phòng mổ đầu tiên trong lịch sử y khoa",
+      text: "Vào thế kỷ 19, bác sĩ Joseph Lister đã tạo nên cuộc cách mạng trong y học ngoại khoa khi dùng dung dịch phenol (carbolic acid) để khử trùng dụng cụ mổ và vết thương, giảm tỉ lệ tử vong do nhiễm trùng hậu phẫu từ 50% xuống dưới 15%. Mặc dù ngày nay phenol được thay thế bằng các chất khử khuẩn dịu hơn cho da, phenol vẫn là nguyên liệu chủ lực sản xuất nhựa bakelite, chất dẻo và phẩm nhuộm."
+    },
+    carboxylic_vinegar: {
+      tag: "Đời sống & Gia đình",
+      title: "Giấm ăn & Ứng dụng tẩy cặn vôi ấm đun nước",
+      text: "Giấm ăn chứa acetic acid (CH₃COOH) nồng độ khoảng 2–5%. Trong sinh hoạt gia đình, giấm ăn là chất tẩy rửa an toàn tuyệt đối dùng để tẩy cặn vôi CaCO₃ bám trong ruột ấm đun nước điện theo phản ứng: 2CH₃COOH + CaCO₃ → (CH₃COO)₂Ca + CO₂↑ + H₂O. Muối canxi acetate tan tốt trong nước và dễ dàng bị rửa trôi, trả lại bề mặt kim loại sáng bóng."
+    }
+  };
+
+  function resolveCoachChapter(q, test) {
+    if (q && q.ch) return q.ch;
+    var tid = test ? test.id : "";
+    if (tid.startsWith("g12t1") || tid.startsWith("g12t2") || tid.startsWith("g12t3") || tid.startsWith("g12t4")) return "g12c1";
+    if (tid.startsWith("g12t5")) return "g12c2";
+    if (tid.startsWith("g11t1")) return "g11c1";
+    if (tid.startsWith("g11t2")) return "g11c4";
+
+    var text = ((q ? q.q : "") + " " + (q && q.o ? q.o : "") + " " + (q && q.e ? q.e : "")).toLowerCase();
+    if (text.includes("glucose") || text.includes("fructose") || text.includes("saccharose") || text.includes("maltose") || text.includes("tinh bột") || text.includes("cellulose") || text.includes("carbohydrate")) return "g12c2";
+    if (text.includes("amine") || text.includes("aniline") || text.includes("amino") || text.includes("bậc amine") || text.includes("nitrogen")) return "g12c3";
+    if (text.includes("este") || text.includes("ester") || text.includes("lipit") || text.includes("lipid") || text.includes("xà phòng") || text.includes("chất béo") || text.includes("triglyceride")) return "g12c1";
+    if (text.includes("anken") || text.includes("alkene") || text.includes("ankin") || text.includes("alkyne") || text.includes("acetylene") || text.includes("ethylene")) return "g11c1";
+    if (text.includes("benzen") || text.includes("benzene") || text.includes("toluene") || text.includes("arene") || text.includes("styrene")) return "g11c2";
+    if (text.includes("halogen") || text.includes("clo") || text.includes("bromo") || text.includes("chloro") || text.includes("cfc")) return "g11c3";
+    if (text.includes("ancol") || text.includes("alcohol") || text.includes("ethanol") || text.includes("methanol") || text.includes("glycerol")) return "g11c4";
+    if (text.includes("phenol") || text.includes("picric")) return "g11c5";
+    if (text.includes("anđehit") || text.includes("aldehyde") || text.includes("ketone") || text.includes("xeton") || text.includes("fomanđehit")) return "g11c6";
+    if (text.includes("axit") || text.includes("acid") || text.includes("acetic") || text.includes("formic")) return "g11c7";
+
+    return test && test.grade === "g12" ? "g12c1" : "g11c1";
+  }
+
+  function getCoachCaseStudy(q, test) {
+    var text = ((q ? q.q : "") + " " + (q && q.o ? q.o : "") + " " + (q && q.e ? q.e : "")).toLowerCase();
+    if (text.includes("ethyl acetate") || text.includes("dung môi")) return COACH_CASE_STUDIES.ester_solvent;
+    if (text.includes("mùi") || text.includes("hoa nhài") || text.includes("chuối") || text.includes("đào") || text.includes("dứa") || text.includes("hương")) return COACH_CASE_STUDIES.ester_flavor;
+    if (text.includes("nước cứng") || text.includes("chất giặt rửa") || text.includes("bột giặt") || text.includes("las")) return COACH_CASE_STUDIES.detergent_hard_water;
+    if (text.includes("xà phòng") || text.includes("tristearin") || text.includes("triolein") || text.includes("chất béo") || text.includes("muối của acid béo") || text.includes("chỉ số xà phòng")) return COACH_CASE_STUDIES.saponification;
+    if (text.includes("glucose") || text.includes("tráng ruột phích") || text.includes("đường huyết") || text.includes("truyền")) return COACH_CASE_STUDIES.glucose_medical;
+    if (text.includes("fructose") || text.includes("mật ong")) return COACH_CASE_STUDIES.fructose_honey;
+    if (text.includes("saccharose") || text.includes("đường mía") || text.includes("nghịch đảo")) return COACH_CASE_STUDIES.saccharose_inversion;
+    if (text.includes("cellulose") || text.includes("bông") || text.includes("gỗ") || text.includes("thuốc súng")) return COACH_CASE_STUDIES.cellulose_industry;
+    if (text.includes("tanh") || text.includes("cá") || text.includes("trimethylamine")) return COACH_CASE_STUDIES.amine_fish;
+    if (text.includes("aniline") || text.includes("brom") || text.includes("kết tủa trắng") || text.includes("phẩm nhuộm")) return COACH_CASE_STUDIES.aniline_dyes;
+    if (text.includes("hàn xì") || text.includes("cắt kim loại") || text.includes("acetylene") || text.includes("c2h2")) return COACH_CASE_STUDIES.acetylene_welding;
+    if (text.includes("lpg") || text.includes("gas") || text.includes("rò rỉ")) return COACH_CASE_STUDIES.lpg_gas;
+    if (text.includes("markovnikov") || text.includes("cộng hcl") || text.includes("cộng hbr")) return COACH_CASE_STUDIES.markovnikov_drugs;
+    if (text.includes("methanol") || text.includes("ngộ độc") || text.includes("mù")) return COACH_CASE_STUDIES.alcohol_methanol_danger;
+    if (text.includes("phenol")) return COACH_CASE_STUDIES.phenol_antiseptic;
+    if (text.includes("acetic") || text.includes("giấm")) return COACH_CASE_STUDIES.carboxylic_vinegar;
+    if (text.includes("este") || text.includes("ester")) return COACH_CASE_STUDIES.ester_flavor;
+    if (text.includes("tinh bột")) return COACH_CASE_STUDIES.glucose_medical;
+    if (text.includes("amine") || text.includes("amin")) return COACH_CASE_STUDIES.aniline_dyes;
+
+    return test && test.grade === "g12" ? COACH_CASE_STUDIES.ester_solvent : COACH_CASE_STUDIES.acetylene_welding;
+  }
+
+  function getDistractorAnalysis(q, test, picked) {
+    var opts = parseOpts(q.o);
+    var correctKey = String(q.a).trim();
+
+    if (!opts.length) {
+      if (q.k === "tf") {
+        var isTrue = correctKey.toLowerCase() === "true" || correctKey.toLowerCase() === "đ";
+        return [{
+          k: isTrue ? "ĐÚNG" : "SAI",
+          t: isTrue ? "Nhận định hoàn toàn chính xác theo chuẩn hoá học" : "Nhận định này sai lệch bản chất",
+          isCorrect: true,
+          note: "ĐÁP ÁN CHUẨN XÁC: Được khẳng định và chứng minh rõ trong sách giáo khoa và thực nghiệm hoá học."
+        }, {
+          k: isTrue ? "SAI" : "ĐÚNG",
+          t: isTrue ? "Bẫy nhận định đảo ngược" : "Bẫy ngộ nhận thường gặp",
+          isCorrect: false,
+          note: (picked === (isTrue ? "false" : "true") ? "<b>[Bạn đã chọn phương án này]</b> " : "") +
+            "Học sinh thường bị đánh lừa bởi điều kiện nhiệt độ, xúc tác đun nóng hoặc nhầm lẫn giữa các hiện tượng tương tự."
+        }];
+      }
+      return [];
     }
 
-    var idx = state.coachTest.i;
-    var cur = questions[idx];
-    var opts = parseOpts(cur.o);
-    var picked = state.coachTest.picked;
-    var isSubmitted = picked != null;
-    var isCorrect = isSubmitted && picked === cur.a;
+    return opts.map(function (o) {
+      var isCorrect = o.k === correctKey;
+      var note = "";
+      if (isCorrect) {
+        note = "ĐÁP ÁN CHÍNH XÁC: Thoả mãn toàn bộ các điều kiện, cơ chế và danh pháp hoá học của đề bài.";
+      } else {
+        var wasPicked = picked === o.k;
+        var pickPrefix = wasPicked ? "<b>[Bạn đã chọn phương án này]</b> " : "";
 
-    var hints = state.coachTest.hintsOpened || {};
-    var h1Open = !!hints[idx + ":1"];
-    var h2Open = !!hints[idx + ":2"];
-    var h3Open = !!hints[idx + ":3"];
-
-    var optsHtml = opts.map(function (o) {
-      var cls = "mcq-opt";
-      if (picked === o.k) {
-        cls += isCorrect ? " picked" : " picked";
-        if (isSubmitted) cls += (o.k === cur.a ? " good" : " warn");
+        var tLower = o.t.toLowerCase();
+        var qLower = q.q.toLowerCase();
+        if (qLower.includes("este") || qLower.includes("ester")) {
+          if (tLower.includes("formate") || tLower.includes("hcoo")) {
+            note = pickPrefix + "Bẫy gốc formate (HCOO-): Đây là dẫn xuất của formic acid, học sinh hay nhầm với acetate hoặc propionate.";
+          } else if (tLower.includes("acetate") || tLower.includes("ch3coo")) {
+            note = pickPrefix + "Bẫy gốc acetate (CH₃COO-): Dễ bị nhầm lẫn thứ tự gọi tên giữa gốc alcohol và gốc carboxylate.";
+          } else {
+            note = pickPrefix + "Phương án không thoả mãn cấu tạo phân tử hoặc điều kiện sản phẩm phản ứng mà đề bài yêu cầu.";
+          }
+        } else if (qLower.includes("carbohydrate") || qLower.includes("saccharide")) {
+          if (tLower.includes("glucose") || tLower.includes("fructose")) {
+            note = pickPrefix + "Đây là Monosaccharide (đường đơn không bị thuỷ phân), không phải disaccharide hay polysaccharide.";
+          } else if (tLower.includes("saccharose") || tLower.includes("maltose")) {
+            note = pickPrefix + "Đây là Disaccharide (thuỷ phân cho 2 gốc monosaccharide).";
+          } else if (tLower.includes("tinh bột") || tLower.includes("cellulose") || tLower.includes("amylose")) {
+            note = pickPrefix + "Đây là Polysaccharide (đường đa phân tử lớn).";
+          } else {
+            note = pickPrefix + "Phương án này thuộc phân nhóm carbohydrate khác với yêu cầu của đề.";
+          }
+        } else {
+          note = pickPrefix + "Phương án gây nhiễu: Sai lệch về bản chất cấu tạo, điều kiện phản ứng hoặc sản phẩm phản ứng so với yêu cầu đề bài.";
+        }
       }
-      return '<button class="' + cls + '" data-act="coachTestPick" data-p="' + esc(o.k) + '" ' + (isSubmitted ? 'disabled' : '') + '>' +
-        '<span class="opt-key">' + esc(o.k) + '.</span><span class="opt-text">' + fmt(o.t) + '</span>' +
-      '</button>';
+      return {
+        k: o.k,
+        t: o.t,
+        isCorrect: isCorrect,
+        note: note
+      };
+    });
+  }
+
+  function getQuickTheorySummary(chId) {
+    var ch = DATA[chId];
+    if (!ch) {
+      ch = (DATA.chapters || []).find(function (c) { return c.id === chId; });
+    }
+    if (!ch) return null;
+
+    var notesText = "";
+    if (ch.notes && ch.notes.length) {
+      notesText = ch.notes.slice(0, 3).map(function (n) {
+        return '• <b>' + esc(n.title || n.t) + ':</b> ' + fmt(n.text || n.b || "").slice(0, 180) + '...';
+      }).join("<br>");
+    }
+
+    return {
+      feynman: ch.feynman || ch.hook || "",
+      keyNotes: notesText
+    };
+  }
+
+  function renderCoachTest() {
+    if (!state.coachTest.t) {
+      return renderCoachTestLibrary();
+    }
+    if (state.coachTest.done) {
+      return renderCoachTestSummary();
+    }
+    return renderCoachTestSession();
+  }
+
+  function renderCoachTestLibrary() {
+    var s = profile();
+    var curGrade = state.coachTest.filterGrade || state.grade || "all";
+    var query = (state.coachTest.searchQuery || "").trim().toLowerCase();
+
+    var allTests = DATA.tests || [];
+    var filtered = allTests.filter(function (t) {
+      if (curGrade !== "all" && t.grade !== curGrade) return false;
+      if (query) {
+        var str = (t.title + " " + (t.desc || "") + " " + (t.grade || "")).toLowerCase();
+        if (!str.includes(query)) return false;
+      }
+      return true;
+    });
+
+    var gradeChips = [
+      { id: "all", l: "Tất cả các đề (" + allTests.length + ")" },
+      { id: "g11", l: "Hoá 11 · HK2" },
+      { id: "g12", l: "Hoá 12 · HK1" }
+    ].map(function (x) {
+      var on = curGrade === x.id ? " on" : "";
+      return '<button class="chip' + on + '" data-act="coachSetGrade" data-g="' + x.id + '">' + x.l + '</button>';
     }).join("");
 
-    var diagnosticHtml = "";
-    if (isSubmitted) {
-      diagnosticHtml = '<div class="diagnostic-feedback">' +
-        '<h4>' + (isCorrect ? ico("check") + ' Đáp án chính xác!' : ico("close") + ' Chưa đúng — Phân tích chẩn đoán sai lầm:') + '</h4>' +
-        '<p>' + fmt(cur.exp) + '</p>' +
-        '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">' +
-        (idx > 0 ? '<button class="btn ghost small" data-act="coachTestPrev">← Câu trước</button>' : '') +
-        '<button class="btn primary small" data-act="coachTestNext">Câu tiếp theo →</button>' +
-        (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">' + ico("bookOpen") + ' Xem lại lý thuyết chương này →</button>' : '') + '</div>' +
+    var cardsHtml = filtered.map(function (t) {
+      var best = s.tests && s.tests[t.id];
+      var qCount = t.qs ? t.qs.length : 0;
+      var gradeBadge = t.grade === "g12" ? '<span class="badge g12">Hoá 12</span>' : '<span class="badge g11">Hoá 11</span>';
+
+      return '<div class="coach-exam-card">' +
+        '<div class="cec-head">' +
+          '<div class="cec-icon">' + ico("target") + '</div>' +
+          '<div class="cec-meta">' +
+            gradeBadge +
+            '<span class="cec-count">' + qCount + ' câu hỏi</span>' +
+            '<span class="cec-time">' + ico("clock") + ' ~' + (t.timeMin || 45) + ' phút</span>' +
+          '</div>' +
+        '</div>' +
+        '<h3 class="cec-title">' + esc(t.title) + '</h3>' +
+        '<div class="cec-features">' +
+          '<span class="cec-pill">' + ico("bulb") + ' Gia sư đồng hành</span>' +
+          '<span class="cec-pill">' + ico("flask") + ' Case study thực tiễn</span>' +
+          '<span class="cec-pill">' + ico("shield") + ' Bẫy phương án sai</span>' +
+        '</div>' +
+        '<div class="cec-foot">' +
+          (best != null ? '<span class="cec-best">Điểm cao nhất: <b>' + best + '/10</b></span>' : '<span class="cec-new">Chưa hoàn thành</span>') +
+          '<button class="btn primary cec-btn" data-act="startCoachExam" data-tid="' + t.id + '">' +
+            'Làm đề có hướng dẫn →' +
+          '</button>' +
+        '</div>' +
+      '</div>';
+    }).join("");
+
+    if (!cardsHtml) {
+      cardsHtml = '<div class="empty-state" style="padding:40px;text-align:center;color:var(--muted)">' +
+        ico("search") + '<p>Không tìm thấy đề thi phù hợp với từ khoá "' + esc(query) + '".</p>' +
       '</div>';
     }
 
-    return renderEditPromptBar("câu hỏi kiểm tra có hướng dẫn") + '<div class="coach-test-card">' +
-      '<div class="coach-banner">' +
-        '<span class="q-count">Câu hỏi chẩn đoán ' + (idx + 1) + ' / ' + questions.length + '</span>' +
-        '<span class="edit-badge">CÓ GIẢNG VIÊN ĐỒNG HÀNH</span>' +
-      '</div>' +
-      '<p class="q-text">' + fmt(cur.q) + '</p>' +
-      '<div class="mcq-opts">' + optsHtml + '</div>' +
-      diagnosticHtml +
-      '<div class="coach-hints-box">' +
-        '<div style="font-size:.82rem;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Hệ thống trợ lý gợi ý bậc thang (Bấm để xem nếu chưa rõ hướng đi):</div>' +
-        '<div class="coach-hints-accordion">' +
-          '<div class="coach-hint-item">' +
-            '<button class="coach-hint-btn" data-act="toggleHint" data-h="1">' +
-              '<span>' + ico("bulb") + ' Gợi ý cấp 1: Định hướng tư duy</span>' +
-              '<span class="hint-tag l1">' + (h1Open ? 'Ẩn' : 'Mở xem') + '</span>' +
-            '</button>' +
-            (h1Open ? '<div class="coach-hint-content">' + fmt(cur.h1) + '</div>' : '') +
-          '</div>' +
-          '<div class="coach-hint-item">' +
-            '<button class="coach-hint-btn" data-act="toggleHint" data-h="2">' +
-              '<span>' + ico("search") + ' Gợi ý cấp 2: Phương pháp & Công thức áp dụng</span>' +
-              '<span class="hint-tag l2">' + (h2Open ? 'Ẩn' : 'Mở xem') + '</span>' +
-            '</button>' +
-            (h2Open ? '<div class="coach-hint-content">' + fmt(cur.h2) + '</div>' : '') +
-          '</div>' +
-          '<div class="coach-hint-item">' +
-            '<button class="coach-hint-btn" data-act="toggleHint" data-h="3">' +
-              '<span>' + ico("shield") + ' Gợi ý cấp 3: Vạch trần bẫy phương án nhiễu</span>' +
-              '<span class="hint-tag l3">' + (h3Open ? 'Ẩn' : 'Mở xem') + '</span>' +
-            '</button>' +
-            (h3Open ? '<div class="coach-hint-content">' + fmt(cur.h3) + '</div>' : '') +
+    return '<div class="coach-library-view">' +
+      '<div class="coach-library-hero">' +
+        '<div class="clh-kicker">' + ico("target") + ' KIỂM TRA CÓ HƯỚNG DẪN · AI COACH SIMULATOR</div>' +
+        '<h2>Thư viện đề thi thử có gia sư đồng hành</h2>' +
+        '<p class="clh-sub">Chọn 1 đề trong thư viện đề thi chuẩn. Ở mỗi câu, khi bạn <b>chọn sai</b> hoặc <b>bấm nút "Cần trợ giúp"</b>, hệ thống sẽ chẩn đoán ngay: chỉ ra đáp án đúng, giải thích cơ chế, cung cấp case study thực tiễn, phân tích bẫy các phương án sai và liên kết trực tiếp đến lý thuyết chương đó.</p>' +
+        '<div class="coach-filter-bar">' +
+          '<div class="grade-group">' + gradeChips + '</div>' +
+          '<div class="coach-search-box">' +
+            ico("search") +
+            '<input type="text" class="coach-search-input" data-act="coachSearchInput" placeholder="Tìm đề thi theo trường, tỉnh thành, chương..." value="' + esc(state.coachTest.searchQuery || '') + '">' +
           '</div>' +
         '</div>' +
       '</div>' +
-      '<div class="coach-nav-bar">' +
-        '<button class="btn ghost" data-act="coachTestPrev"' + (idx === 0 ? ' disabled' : '') + '>← Câu trước</button>' +
-        '<span class="muted small" style="font-weight:600">Câu ' + (idx + 1) + ' / ' + questions.length + '</span>' +
-        '<button class="btn primary" data-act="coachTestNext">' + (idx + 1 < questions.length ? 'Câu tiếp theo →' : 'Xem kết quả') + '</button>' +
+      '<div class="coach-test-grid">' + cardsHtml + '</div>' +
+    '</div>';
+  }
+
+  function renderCoachTestSession() {
+    var t = state.coachTest.t;
+    var idx = state.coachTest.i;
+    var total = t.qs.length;
+    var cur = t.qs[idx];
+    var ans = state.coachTest.answers[idx];
+    var isAnswered = !!ans;
+    var isHelped = !!(state.coachTest.helped && state.coachTest.helped[idx]);
+    var isSubmitted = isAnswered || isHelped;
+    var ok = ans ? !!ans.ok : false;
+
+    // Progress and statistics
+    var answeredKeys = Object.keys(state.coachTest.answers);
+    var correctCount = answeredKeys.filter(function (k) { return state.coachTest.answers[k].ok; }).length;
+    var wrongCount = answeredKeys.filter(function (k) { return !state.coachTest.answers[k].ok && !state.coachTest.answers[k].helped; }).length;
+    var helpedCount = Object.keys(state.coachTest.helped || {}).length;
+
+    var resolvedChId = resolveCoachChapter(cur, t);
+    var chObj = (DATA.chapters || []).find(function (c) { return c.id === resolvedChId; }) || { title: "Hoá học" };
+
+    // Palette drawer HTML
+    var paletteHtml = "";
+    if (state.coachTest.showPalette) {
+      var cells = t.qs.map(function (q, qIdx) {
+        var a = state.coachTest.answers[qIdx];
+        var isCurrent = qIdx === idx;
+        var cls = "palette-cell";
+        if (isCurrent) cls += " current";
+        if (a) {
+          if (a.helped) cls += " helped";
+          else if (a.ok) cls += " correct";
+          else cls += " wrong";
+        }
+        return '<button class="' + cls + '" data-act="jumpCoachQ" data-idx="' + qIdx + '" title="Câu ' + (qIdx + 1) + '">' +
+          (qIdx + 1) +
+        '</button>';
+      }).join("");
+
+      paletteHtml = '<div class="coach-palette-drawer">' +
+        '<div class="cpd-head">' +
+          '<span>' + ico("choose") + ' Bảng chuyển nhanh câu hỏi</span>' +
+          '<span class="cpd-legend">' +
+            '<i class="leg cor"></i> Đúng ' +
+            '<i class="leg wro"></i> Sai ' +
+            '<i class="leg hlp"></i> Trợ giúp ' +
+            '<i class="leg unt"></i> Chưa làm' +
+          '</span>' +
+        '</div>' +
+        '<div class="cpd-grid">' + cells + '</div>' +
+      '</div>';
+    }
+
+    // Question options
+    var opts = parseOpts(cur.o);
+    var optsHtml = "";
+    if (cur.k === "tf") {
+      var tfPicked = ans ? ans.picked : null;
+      var tfA = String(cur.a).trim().toLowerCase();
+      var isTrue = tfA === "true" || tfA === "đ";
+      var tCls = "tf-opt" + (tfPicked === "true" ? " picked" : "");
+      var fCls = "tf-opt" + (tfPicked === "false" ? " picked" : "");
+      if (isSubmitted) {
+        if (isTrue) tCls += " reveal-correct";
+        else fCls += " reveal-correct";
+        if (tfPicked === "true" && !isTrue) tCls += " warn";
+        if (tfPicked === "false" && isTrue) fCls += " warn";
+      }
+      optsHtml = '<div class="tf-opts">' +
+        '<button class="' + tCls + '" data-act="coachPickTF" data-p="true" ' + (isSubmitted ? 'disabled' : '') + '>ĐÚNG</button>' +
+        '<button class="' + fCls + '" data-act="coachPickTF" data-p="false" ' + (isSubmitted ? 'disabled' : '') + '>SAI</button>' +
+      '</div>';
+    } else if (cur.k === "n") {
+      var nVal = ans ? ans.picked : "";
+      optsHtml = '<div class="short-ans-box">' +
+        '<input type="text" id="coachShortAnsInput" class="short-ans-input" placeholder="Nhập đáp số (số hoặc chữ)..." value="' + esc(nVal || "") + '" ' + (isSubmitted ? 'disabled' : '') + '>' +
+        (!isSubmitted ? '<button class="btn primary" data-act="coachPickN">Kiểm tra kết quả</button>' : '') +
+      '</div>';
+    } else {
+      // Default multiple choice
+      var pickedKey = ans ? ans.picked : null;
+      var curCorrectKey = String(cur.a).trim();
+      optsHtml = '<div class="mcq-opts">' + opts.map(function (o) {
+        var cls = "mcq-opt";
+        var badge = "";
+        if (isSubmitted) {
+          if (o.k === curCorrectKey) {
+            cls += " reveal-correct";
+            badge = ' <span class="opt-badge-correct">' + ico("check") + ' Đáp án đúng</span>';
+          }
+          if (pickedKey === o.k) {
+            cls += " picked " + (o.k === curCorrectKey ? " good" : " warn");
+            if (o.k !== curCorrectKey) {
+              badge = ' <span class="opt-badge-wrong">' + ico("close") + ' Lựa chọn của bạn</span>';
+            }
+          }
+        }
+        return '<button class="' + cls + '" data-act="coachPick" data-p="' + esc(o.k) + '" ' + (isSubmitted ? 'disabled' : '') + '>' +
+          '<span class="opt-key">' + esc(o.k) + '.</span><span class="opt-text">' + fmt(o.t) + badge + '</span>' +
+        '</button>';
+      }).join("") + '</div>';
+    }
+
+    // Help Button (When not yet answered and not helped)
+    var helpBtnHtml = "";
+    if (!isSubmitted) {
+      helpBtnHtml = '<div class="coach-help-bar">' +
+        '<button class="btn-coach-help" data-act="coachHelp">' +
+          ico("bulb") + ' Bị bí câu này? Xem hướng dẫn, case study & Chẩn đoán ngay' +
+        '</button>' +
+      '</div>';
+    }
+
+    // 5-Point Diagnostic Panel (When submitted / helped)
+    var diagnosticHtml = "";
+    if (isSubmitted) {
+      var cs = getCoachCaseStudy(cur, t);
+      var distractorList = getDistractorAnalysis(cur, t, ans ? ans.picked : null);
+      var quickTheory = getQuickTheorySummary(resolvedChId);
+
+      // Distractor rows HTML
+      var distractorRowsHtml = "";
+      if (distractorList.length) {
+        distractorRowsHtml = '<div class="distractor-comparison-box">' +
+          '<div class="dcb-title">' + ico("shield") + ' <b>4. Sự khác biệt với các đáp án khác & Bẫy phương án nhiễu:</b></div>' +
+          '<div class="dcb-list">' +
+            distractorList.map(function (d) {
+              var rowCls = d.isCorrect ? "dcb-row correct" : "dcb-row wrong";
+              var badgeTag = d.isCorrect
+                ? '<span class="dcb-tag good">' + ico("check") + ' Đáp án đúng</span>'
+                : '<span class="dcb-tag warn">' + ico("close") + ' Phương án nhiễu</span>';
+              return '<div class="' + rowCls + '">' +
+                '<div class="dcb-row-head">' +
+                  '<span class="dcb-key">' + esc(d.k || d.key) + '.</span>' +
+                  '<span class="dcb-text">' + fmt(d.t || d.text) + '</span>' +
+                  badgeTag +
+                '</div>' +
+                '<div class="dcb-row-note">' + fmt(d.note) + '</div>' +
+              '</div>';
+            }).join("") +
+          '</div>' +
+        '</div>';
+      }
+
+      // Quick Theory Peek Drawer
+      var theoryPeekHtml = "";
+      if (state.coachTest.showTheoryPeek && quickTheory) {
+        theoryPeekHtml = '<div class="quick-theory-peek">' +
+          '<div class="qtp-head">' + ico("bookOpen") + ' <b>Tóm tắt lý thuyết trọng tâm: ' + esc(chObj.title) + '</b></div>' +
+          (quickTheory.feynman ? '<div class="qtp-feynman"><b>Trực giác Feynman:</b> ' + fmt(quickTheory.feynman) + '</div>' : '') +
+          (quickTheory.keyNotes ? '<div class="qtp-notes">' + fmt(quickTheory.keyNotes) + '</div>' : '') +
+        '</div>';
+      }
+
+      diagnosticHtml = '<div class="diagnostic-feedback ' + (ok ? 'ok-diag' : 'bad-diag') + '">' +
+        // Header
+        '<div class="fb-header">' +
+          (isHelped
+            ? '<span class="fb-badge help">' + ico("bulb") + ' Đã nhận Trợ giúp</span> <b>Gia sư đồng hành hướng dẫn phương pháp:</b>'
+            : (ok
+                ? '<span class="fb-badge ok">' + ico("check") + ' Chính xác!</span> <b>Bạn đã trả lời đúng (+15 XP)</b>'
+                : '<span class="fb-badge bad">' + ico("close") + ' Chưa chính xác</span> <b>Chẩn đoán sai lầm & Phân tích bẫy thi cử:</b>'
+              )
+          ) +
+        '</div>' +
+
+        // Point 1: Kết quả
+        '<div class="fb-point-card p1-result">' +
+          '<div class="fb-point-title">' + ico("target") + ' <b>1. Kết quả & Đáp án chuẩn xác:</b></div>' +
+          '<div class="fb-point-content result-val">' +
+            '<b>' + esc(cur.a) + '</b>' +
+            (cur.k === "m" ? ' — ' + fmt((opts.find(function(o){ return o.k === String(cur.a).trim(); }) || {}).t || "") : '') +
+          '</div>' +
+        '</div>' +
+
+        // Point 2: Giải thích bản chất
+        '<div class="fb-point-card p2-explanation">' +
+          '<div class="fb-point-title">' + ico("bulb") + ' <b>2. Bản chất hoá học & Giải thích chi tiết:</b></div>' +
+          '<div class="fb-point-content">' + fmt(cur.e || cur.exp || "Chưa có lời giải chi tiết.") + '</div>' +
+        '</div>' +
+
+        // Point 3: Case study thực tiễn
+        (cs ? '<div class="fb-point-card p3-casestudy">' +
+          '<div class="fb-point-title">' + ico("flask") + ' <b>3. Case Study & Tình huống thực tiễn đời sống:</b> <span class="cs-badge">' + esc(cs.tag) + '</span></div>' +
+          '<div class="cs-card-body">' +
+            '<h4>' + esc(cs.title) + '</h4>' +
+            '<p>' + fmt(cs.text) + '</p>' +
+          '</div>' +
+        '</div>' : '') +
+
+        // Point 4: Sự khác biệt với các đáp án khác
+        distractorRowsHtml +
+
+        // Point 5: Liên kết đến vùng lý thuyết tương ứng
+        '<div class="fb-point-card p5-theorylink">' +
+          '<div class="fb-point-title">' + ico("bookOpen") + ' <b>5. Liên kết & Ôn tập lý thuyết tương ứng:</b></div>' +
+          '<div class="fb-point-content" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">' +
+            '<button class="btn primary small" data-act="jumpToTheory" data-ch="' + resolvedChId + '">' +
+              ico("bookOpen") + ' Mở toàn bộ Lý thuyết: ' + esc(chObj.title) + ' →' +
+            '</button>' +
+            '<button class="btn ghost small" data-act="toggleTheoryPeek">' +
+              ico("sparkles") + ' ' + (state.coachTest.showTheoryPeek ? 'Ẩn tóm tắt nhanh lý thuyết' : 'Xem nhanh tóm tắt lý thuyết tại chỗ ▾') +
+            '</button>' +
+          '</div>' +
+          theoryPeekHtml +
+        '</div>' +
+
+      '</div>';
+    }
+
+    return '<div class="coach-test-session">' +
+      '<div class="coach-session-bar">' +
+        '<button class="btn ghost small" data-act="quitCoachExam">' + ico("arrowLeft") + ' Chọn đề khác</button>' +
+        '<div class="csb-title">' + esc(t.title) + '</div>' +
+        '<div class="csb-stats">' +
+          '<span class="csb-pill stat-correct">' + ico("check") + ' ' + correctCount + '</span>' +
+          '<span class="csb-pill stat-wrong">' + ico("close") + ' ' + wrongCount + '</span>' +
+          (helpedCount ? '<span class="csb-pill stat-help">' + ico("bulb") + ' ' + helpedCount + '</span>' : '') +
+          '<button class="btn ghost small csb-palette-btn" data-act="toggleCoachPalette">' +
+            ico("choose") + ' Câu ' + (idx + 1) + '/' + total + ' ▾' +
+          '</button>' +
+        '</div>' +
+      '</div>' +
+      paletteHtml +
+      '<div class="coach-test-card">' +
+        '<div class="coach-q-meta">' +
+          '<span class="cq-chapter-badge">' + ico("flask") + ' ' + esc(chObj.title) + '</span>' +
+          '<span class="cq-num-badge">Câu hỏi ' + (idx + 1) + ' / ' + total + '</span>' +
+        '</div>' +
+        '<p class="q-text">' + fmt(cur.q) + '</p>' +
+        optsHtml +
+        helpBtnHtml +
+        diagnosticHtml +
+        '<div class="coach-nav-bar">' +
+          '<button class="btn ghost" data-act="coachPrev"' + (idx === 0 ? ' disabled' : '') + '>← Câu trước</button>' +
+          '<span class="muted small" style="font-weight:600">Câu ' + (idx + 1) + ' / ' + total + '</span>' +
+          '<button class="btn primary" data-act="coachNext">' + (idx + 1 < total ? 'Câu tiếp theo →' : 'Nộp bài & Xem tổng kết') + '</button>' +
+          '<button class="btn good small" data-act="finishCoachExam">Nộp bài ngay</button>' +
+        '</div>' +
       '</div>' +
     '</div>';
   }
 
-  function coachTestPick(p) {
-    if (state.coachTest.picked != null) return;
-    state.coachTest.picked = p;
-    var cur = DEFAULT_COACH_TESTS[state.coachTest.i];
-    var ok = p === cur.a;
-    state.coachTest.answers[state.coachTest.i] = { q: cur, picked: p, ok: ok };
-    if (ok) addXP(profile(), cur.ch, 15);
+  function renderCoachTestSummary() {
+    var t = state.coachTest.t;
+    var total = t.qs.length;
+    var answers = state.coachTest.answers || {};
+    var correctCount = 0;
+    var helpedCount = Object.keys(state.coachTest.helped || {}).length;
+    var wrongList = [];
 
-    // In-place update: zero scroll movement on answer pick
+    // Analyze performance by chapter
+    var chStats = {};
+    t.qs.forEach(function (q, qIdx) {
+      var a = answers[qIdx];
+      var chId = resolveCoachChapter(q, t);
+      chStats[chId] = chStats[chId] || { total: 0, correct: 0 };
+      chStats[chId].total++;
+
+      if (a && a.ok) {
+        correctCount++;
+        chStats[chId].correct++;
+      } else {
+        wrongList.push({ q: q, idx: qIdx, ans: a, chId: chId });
+      }
+    });
+
+    var score = Math.round((correctCount / total) * 100) / 10;
+
+    // Chapter competency bars
+    var chBarsHtml = Object.keys(chStats).map(function (chId) {
+      var chObj = (DATA.chapters || []).find(function (c) { return c.id === chId; }) || { title: chId };
+      var cs = chStats[chId];
+      var pct = Math.round((cs.correct / cs.total) * 100);
+      var barColor = pct >= 80 ? "var(--ok)" : pct >= 50 ? "var(--warm)" : "#e2557c";
+      return '<div class="ch-perf-row">' +
+        '<div class="cpr-label"><span>' + esc(chObj.title) + '</span> <b>' + cs.correct + '/' + cs.total + ' (' + pct + '%)</b></div>' +
+        '<div class="cpr-track"><div class="cpr-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div>' +
+      '</div>';
+    }).join("");
+
+    // Recommended theory chapters to review
+    var weakChapters = Object.keys(chStats).filter(function (chId) {
+      return chStats[chId].correct < chStats[chId].total;
+    });
+
+    var recommendationsHtml = "";
+    if (weakChapters.length) {
+      recommendationsHtml = '<div class="summary-recommendations">' +
+        '<h4>' + ico("bulb") + ' Lộ trình củng cố lý thuyết trọng tâm dựa trên các lỗi sai:</h4>' +
+        '<div class="rec-buttons-row">' +
+          weakChapters.map(function (chId) {
+            var chObj = (DATA.chapters || []).find(function (c) { return c.id === chId; }) || { title: chId };
+            return '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + chId + '">' +
+              ico("bookOpen") + ' Ôn lại: ' + esc(chObj.title) + ' →' +
+            '</button>';
+          }).join("") +
+        '</div>' +
+      '</div>';
+    }
+
+    // Save score to user profile
+    var s = profile();
+    s.tests = s.tests || {};
+    if (!s.tests[t.id] || score > s.tests[t.id]) {
+      s.tests[t.id] = score;
+      save(s);
+    }
+
+    return '<div class="coach-test-card" style="text-align:center;max-width:820px">' +
+      '<div class="summary-hero">' +
+        '<div class="score-circle">' +
+          '<span class="score-big">' + score + '</span>' +
+          '<span class="score-unit">/ 10 ĐIỂM</span>' +
+        '</div>' +
+        '<h2>' + ico("target") + ' Hoàn thành bài kiểm tra có hướng dẫn!</h2>' +
+        '<p style="font-size:1.05rem;color:var(--muted)">Đề thi: <b>' + esc(t.title) + '</b></p>' +
+      '</div>' +
+
+      '<div class="summary-metrics-grid">' +
+        '<div class="metric-card ok">' +
+          '<span class="mc-num">' + correctCount + '</span>' +
+          '<span class="mc-label">Câu đúng độc lập</span>' +
+        '</div>' +
+        '<div class="metric-card help">' +
+          '<span class="mc-num">' + helpedCount + '</span>' +
+          '<span class="mc-label">Câu nhờ Gia sư trợ giúp</span>' +
+        '</div>' +
+        '<div class="metric-card bad">' +
+          '<span class="mc-num">' + (total - correctCount) + '</span>' +
+          '<span class="mc-label">Câu trả lời sai</span>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="summary-competency-box">' +
+        '<h3>' + ico("sparkles") + ' Đánh giá mức độ thành thạo theo chuyên đề:</h3>' +
+        '<div class="ch-perf-grid">' + chBarsHtml + '</div>' +
+      '</div>' +
+
+      recommendationsHtml +
+
+      '<div class="summary-actions-bar">' +
+        (wrongList.length ? '<button class="btn warn" data-act="reviewCoachMistakes">' + ico("alert") + ' Ôn tập & Xem lại các câu sai (' + wrongList.length + ' câu)</button>' : '') +
+        '<button class="btn primary" data-act="restartCoachExam">' + ico("refresh") + ' Làm lại đề này từ đầu</button>' +
+        '<button class="btn ghost" data-act="quitCoachExam">' + ico("arrowLeft") + ' Chọn đề thi khác</button>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function startCoachExam(tid) {
+    var t = null;
+    for (var i = 0; i < (DATA.tests || []).length; i++) {
+      if (DATA.tests[i].id === tid) { t = DATA.tests[i]; break; }
+    }
+    if (!t) return;
+    state.coachTest.testId = tid;
+    state.coachTest.t = t;
+    state.coachTest.i = 0;
+    state.coachTest.picked = null;
+    state.coachTest.answers = {};
+    state.coachTest.helped = {};
+    state.coachTest.showPalette = false;
+    state.coachTest.showTheoryPeek = false;
+    state.coachTest.done = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    render(false);
+  }
+
+  function quitCoachExam() {
+    state.coachTest.t = null;
+    state.coachTest.testId = null;
+    state.coachTest.done = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    render(false);
+  }
+
+  function coachSetGrade(g) {
+    state.coachTest.filterGrade = g;
+    render(false);
+  }
+
+  function coachPick(p) {
+    if (!state.coachTest.t) return;
+    var idx = state.coachTest.i;
+    var cur = state.coachTest.t.qs[idx];
+    if (state.coachTest.answers[idx]) return;
+
+    var ok = String(p).trim() === String(cur.a).trim();
+    state.coachTest.answers[idx] = { q: cur, picked: p, ok: ok, helped: false, time: Date.now() };
+    if (ok) addXP(profile(), resolveCoachChapter(cur, state.coachTest.t), 15);
+    render(false);
+  }
+
+  function coachPickTF(p) {
+    if (!state.coachTest.t) return;
+    var idx = state.coachTest.i;
+    var cur = state.coachTest.t.qs[idx];
+    if (state.coachTest.answers[idx]) return;
+
+    var curA = String(cur.a).trim().toLowerCase();
+    var isTrue = curA === "true" || curA === "đ";
+    var pickTrue = String(p).trim().toLowerCase() === "true";
+    var ok = isTrue === pickTrue;
+
+    state.coachTest.answers[idx] = { q: cur, picked: p, ok: ok, helped: false, time: Date.now() };
+    if (ok) addXP(profile(), resolveCoachChapter(cur, state.coachTest.t), 15);
+    render(false);
+  }
+
+  function coachPickN() {
+    if (!state.coachTest.t) return;
+    var idx = state.coachTest.i;
+    var cur = state.coachTest.t.qs[idx];
+    if (state.coachTest.answers[idx]) return;
+
+    var inputEl = $("#coachShortAnsInput");
+    var val = inputEl ? inputEl.value.trim() : "";
+    if (!val) {
+      alert("Vui lòng nhập đáp số trước khi kiểm tra!");
+      return;
+    }
+    var ok = String(val).replace(/,/g, ".").toLowerCase() === String(cur.a).replace(/,/g, ".").toLowerCase();
+    state.coachTest.answers[idx] = { q: cur, picked: val, ok: ok, helped: false, time: Date.now() };
+    if (ok) addXP(profile(), resolveCoachChapter(cur, state.coachTest.t), 15);
+    render(false);
+  }
+
+  function coachHelp() {
+    if (!state.coachTest.t) return;
+    var idx = state.coachTest.i;
+    var cur = state.coachTest.t.qs[idx];
+    state.coachTest.helped = state.coachTest.helped || {};
+    state.coachTest.helped[idx] = true;
+    state.coachTest.answers[idx] = { q: cur, picked: null, ok: false, helped: true, time: Date.now() };
+    render(false);
+  }
+
+  function coachPrev() {
+    if (!state.coachTest.t || state.coachTest.i <= 0) return;
+    state.coachTest.i--;
+    state.coachTest.showTheoryPeek = false;
+    render(false);
     var card = $(".coach-test-card");
-    if (card) {
-      var opts = parseOpts(cur.o);
-      var pickedObj = opts.find(function(o){ return o.k === p; }) || { t: p };
-      var correctObj = opts.find(function(o){ return o.k === cur.a; }) || { t: cur.a };
-
-      var optsHtml = opts.map(function (o) {
-        var cls = "mcq-opt";
-        var badge = "";
-        if (o.k === cur.a) {
-          cls += " reveal-correct";
-          badge = ' <span class="opt-badge-correct">' + ico("check") + ' Đáp án đúng</span>';
-        }
-        if (p === o.k) {
-          cls += " picked " + (o.k === cur.a ? " good" : " warn");
-          if (o.k !== cur.a) {
-            badge = ' <span class="opt-badge-wrong">' + ico("close") + ' Lựa chọn của bạn</span>';
-          }
-        }
-        return '<button class="' + cls + '" data-act="coachTestPick" data-p="' + esc(o.k) + '" disabled>' +
-          '<span class="opt-key">' + esc(o.k) + '.</span><span class="opt-text">' + fmt(o.t) + badge + '</span>' +
-        '</button>';
-      }).join("");
-
-      var optsContainer = $(".mcq-opts", card);
-      if (optsContainer) optsContainer.innerHTML = optsHtml;
-
-      var diagContainer = $(".diagnostic-feedback", card);
-      var diagHtml = ok
-        ? '<div class="diagnostic-feedback ok-diag">' +
-            '<div class="fb-header"><span class="fb-badge ok">' + ico("check") + ' Chính xác!</span> <b>Bạn đã nắm chắc kiến thức (+15 XP)</b></div>' +
-            '<div class="fb-section-box exp">' +
-              '<div class="fb-sec-title">' + ico("bulb") + ' <b>Bản chất cốt lõi & Giải thích:</b></div>' +
-              '<div class="fb-sec-desc">' + fmt(cur.exp) + '</div>' +
-            '</div>' +
-            '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">' +
-              '<button class="btn primary small" data-act="coachTestNext">Câu tiếp theo →</button>' +
-              (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">' + ico("bookOpen") + ' Xem lại lý thuyết chương này →</button>' : '') +
-            '</div>' +
-          '</div>'
-        : '<div class="diagnostic-feedback bad-diag">' +
-            '<div class="fb-header"><span class="fb-badge bad">' + ico("close") + ' Chưa chính xác</span> <b>Phân tích lỗi sai & Chẩn đoán bẫy:</b></div>' +
-            '<div class="fb-comparison">' +
-              '<div class="fb-comp-row correct">' +
-                '<span class="fb-comp-label">' + ico("check") + ' Đáp án đúng:</span>' +
-                '<span class="fb-comp-val"><b>' + esc(cur.a) + '.</b> ' + fmt(correctObj.t) + '</span>' +
-              '</div>' +
-              '<div class="fb-comp-row wrong">' +
-                '<span class="fb-comp-label">' + ico("close") + ' Bạn đã chọn:</span>' +
-                '<span class="fb-comp-val"><b>' + esc(p) + '.</b> ' + fmt(pickedObj.t) + '</span>' +
-              '</div>' +
-            '</div>' +
-            (cur.h3 ? '<div class="fb-section-box flaw">' +
-              '<div class="fb-sec-title">' + ico("alert") + ' <b>Chỉ ra lỗi sai & Bẫy phương án ' + esc(p) + ':</b></div>' +
-              '<div class="fb-sec-desc">' + fmt(cur.h3) + '</div>' +
-            '</div>' : '') +
-            '<div class="fb-section-box exp">' +
-              '<div class="fb-sec-title">' + ico("bulb") + ' <b>Bản chất khoa học & Giải thích:</b></div>' +
-              '<div class="fb-sec-desc">' + fmt(cur.exp) + '</div>' +
-            '</div>' +
-            '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">' +
-              '<button class="btn primary small" data-act="coachTestNext">Câu tiếp theo →</button>' +
-              (cur.ch ? '<button class="btn ghost small" data-act="jumpToTheory" data-ch="' + cur.ch + '">' + ico("bookOpen") + ' Xem lại lý thuyết chương này →</button>' : '') +
-            '</div>' +
-          '</div>';
-
-      if (diagContainer) {
-        diagContainer.outerHTML = diagHtml;
-      } else if (optsContainer) {
-        optsContainer.insertAdjacentHTML("afterend", diagHtml);
-      }
-
-      var pickedBtn = $('[data-act="coachTestPick"][data-p="' + p + '"]', card);
-      if (pickedBtn && hasGSAP && !prefersReduced) {
-        gsap.fromTo(pickedBtn, { scale: 0.98 }, { scale: 1, duration: 0.2, ease: "power2.out", clearProps: "transform" });
-        gsap.fromTo($(".diagnostic-feedback", card), { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out" });
-      }
-      updateHeaderStats(ok);
-    } else {
-      render();
-    }
+    if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  function coachTestPrev() {
-    if (state.coachTest.i > 0) {
-      state.coachTest.i--;
-      var prevAns = state.coachTest.answers[state.coachTest.i];
-      state.coachTest.picked = prevAns ? prevAns.picked : null;
-      state.coachTest.hintsOpened = {};
-      render(false);
-      var card = $(".coach-test-card");
-      if (card) {
-        card.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    }
-  }
-  function coachTestNext() {
-    if (state.coachTest.i + 1 < DEFAULT_COACH_TESTS.length) {
+  function coachNext() {
+    if (!state.coachTest.t) return;
+    if (state.coachTest.i + 1 < state.coachTest.t.qs.length) {
       state.coachTest.i++;
-      var nextAns = state.coachTest.answers[state.coachTest.i];
-      state.coachTest.picked = nextAns ? nextAns.picked : null;
-      state.coachTest.hintsOpened = {};
+      state.coachTest.showTheoryPeek = false;
       render(false);
       var card = $(".coach-test-card");
-      if (card) {
-        card.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
+      if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      state.coachTest.done = true;
-      render();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      finishCoachExam();
     }
   }
 
-  function toggleHint(h) {
-    var key = state.coachTest.i + ":" + h;
-    state.coachTest.hintsOpened = state.coachTest.hintsOpened || {};
-    state.coachTest.hintsOpened[key] = !state.coachTest.hintsOpened[key];
-    var isOpen = state.coachTest.hintsOpened[key];
-
-    // In-place accordion toggle without page re-render
-    var btn = $('[data-act="toggleHint"][data-h="' + h + '"]');
-    if (btn) {
-      var item = btn.closest(".coach-hint-item");
-      var tag = $(".hint-tag", btn);
-      if (tag) tag.textContent = isOpen ? "Ẩn" : "Mở xem";
-      var contentEl = $(".coach-hint-content", item);
-      if (isOpen) {
-        if (!contentEl) {
-          var cur = DEFAULT_COACH_TESTS[state.coachTest.i];
-          var hintText = h === "1" ? cur.h1 : h === "2" ? cur.h2 : cur.h3;
-          item.insertAdjacentHTML("beforeend", '<div class="coach-hint-content">' + fmt(hintText) + '</div>');
-        }
-      } else {
-        if (contentEl) contentEl.remove();
-      }
-    } else {
-      render();
-    }
+  function jumpCoachQ(idx) {
+    if (!state.coachTest.t || idx < 0 || idx >= state.coachTest.t.qs.length) return;
+    state.coachTest.i = idx;
+    state.coachTest.showTheoryPeek = false;
+    render(false);
+    var card = $(".coach-test-card");
+    if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+
+  function toggleCoachPalette() {
+    state.coachTest.showPalette = !state.coachTest.showPalette;
+    render(false);
+  }
+
+  function toggleTheoryPeek() {
+    state.coachTest.showTheoryPeek = !state.coachTest.showTheoryPeek;
+    render(false);
+  }
+
+  function finishCoachExam() {
+    state.coachTest.done = true;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    render(false);
+  }
+
+  function restartCoachExam() {
+    if (!state.coachTest.t) return;
+    startCoachExam(state.coachTest.t.id);
+  }
+
+  function reviewCoachMistakes() {
+    if (!state.coachTest.t) return;
+    var t = state.coachTest.t;
+    var answers = state.coachTest.answers || {};
+    for (var i = 0; i < t.qs.length; i++) {
+      if (!answers[i] || !answers[i].ok) {
+        state.coachTest.done = false;
+        state.coachTest.i = i;
+        render(false);
+        var card = $(".coach-test-card");
+        if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
+    state.coachTest.done = false;
+    state.coachTest.i = 0;
+    render(false);
+  }
+
+  // Backward compatible aliases
+  var coachTestPick = coachPick;
+  var coachTestPrev = coachPrev;
+  var coachTestNext = coachNext;
+  var restartCoachTest = restartCoachExam;
+  var toggleHint = toggleTheoryPeek;
 
   /* ═══════════ UNIVERSAL MODAL SYSTEM (EDIT MODE) ═══════════ */
   function openModal(config) {
@@ -4776,14 +5351,27 @@
         }
         break;
 
-      /* Coach Testing */
-      case "coachTestPick": coachTestPick(el.getAttribute("data-p")); break;
-      case "coachTestPrev": coachTestPrev(); break;
-      case "coachTestNext": coachTestNext(); break;
-      case "toggleHint": toggleHint(el.getAttribute("data-h")); break;
-      case "restartCoachTest":
-        state.coachTest = { ch: "all", i: 0, picked: null, hintsOpened: {}, answers: [], done: false };
-        render(); break;
+      /* Coach Testing & Diagnostic Simulator */
+      case "coachSetGrade": coachSetGrade(el.getAttribute("data-g")); break;
+      case "startCoachExam": startCoachExam(el.getAttribute("data-tid")); break;
+      case "quitCoachExam": quitCoachExam(); break;
+      case "coachPick": coachPick(el.getAttribute("data-p")); break;
+      case "coachPickTF": coachPickTF(el.getAttribute("data-p")); break;
+      case "coachPickN": coachPickN(); break;
+      case "coachHelp": coachHelp(); break;
+      case "coachPrev": coachPrev(); break;
+      case "coachNext": coachNext(); break;
+      case "jumpCoachQ": jumpCoachQ(parseInt(el.getAttribute("data-idx"), 10)); break;
+      case "toggleCoachPalette": toggleCoachPalette(); break;
+      case "toggleTheoryPeek": toggleTheoryPeek(); break;
+      case "finishCoachExam": finishCoachExam(); break;
+      case "restartCoachExam": restartCoachExam(); break;
+      case "reviewCoachMistakes": reviewCoachMistakes(); break;
+      case "coachTestPick": coachPick(el.getAttribute("data-p")); break;
+      case "coachTestPrev": coachPrev(); break;
+      case "coachTestNext": coachNext(); break;
+      case "toggleHint": toggleTheoryPeek(); break;
+      case "restartCoachTest": restartCoachExam(); break;
 
       /* Notes */
       case "noteSave": noteSave(); break;
@@ -5277,6 +5865,65 @@
       if (window.ChemGames) ChemGames.startMatchGame(parseInt(el.value, 10) || 0);
     } else if (act === "cgDetectiveSelect") {
       if (window.ChemGames) ChemGames.startDetectiveGame(parseInt(el.value, 10) || 0);
+    }
+  });
+
+  /* ---------- GLOBAL INPUT DELEGATION (REAL-TIME FILTERING) ---------- */
+  document.addEventListener("input", function (ev) {
+    var el = ev.target;
+    if (!el) return;
+    var act = el.getAttribute("data-act");
+
+    if (act === "coachSearchInput") {
+      state.coachTest.searchQuery = el.value.trim().toLowerCase();
+      var grid = $(".coach-test-grid");
+      if (grid) {
+        var s = profile();
+        var curGrade = state.coachTest.filterGrade || state.grade || "all";
+        var query = state.coachTest.searchQuery;
+        var allTests = DATA.tests || [];
+        var filtered = allTests.filter(function (t) {
+          if (curGrade !== "all" && t.grade !== curGrade) return false;
+          if (query) {
+            var str = (t.title + " " + (t.desc || "") + " " + (t.grade || "")).toLowerCase();
+            if (!str.includes(query)) return false;
+          }
+          return true;
+        });
+
+        var html = filtered.map(function (t) {
+          var best = s.tests && s.tests[t.id];
+          var qCount = t.qs ? t.qs.length : 0;
+          var gradeBadge = t.grade === "g12" ? '<span class="badge g12">Hoá 12</span>' : '<span class="badge g11">Hoá 11</span>';
+
+          return '<div class="coach-exam-card">' +
+            '<div class="cec-head">' +
+              '<div class="cec-icon">' + ico("target") + '</div>' +
+              '<div class="cec-meta">' +
+                gradeBadge +
+                '<span class="cec-count">' + qCount + ' câu hỏi</span>' +
+                '<span class="cec-time">' + ico("clock") + ' ~' + (t.timeMin || 45) + ' phút</span>' +
+              '</div>' +
+            '</div>' +
+            '<h3 class="cec-title">' + esc(t.title) + '</h3>' +
+            '<div class="cec-features">' +
+              '<span class="cec-pill">' + ico("bulb") + ' Gia sư đồng hành</span>' +
+              '<span class="cec-pill">' + ico("flask") + ' Case study thực tiễn</span>' +
+              '<span class="cec-pill">' + ico("shield") + ' Bẫy phương án sai</span>' +
+            '</div>' +
+            '<div class="cec-foot">' +
+              (best != null ? '<span class="cec-best">Điểm cao nhất: <b>' + best + '/10</b></span>' : '<span class="cec-new">Chưa hoàn thành</span>') +
+              '<button class="btn primary cec-btn" data-act="startCoachExam" data-tid="' + t.id + '">' +
+                'Làm đề có hướng dẫn →' +
+              '</button>' +
+            '</div>' +
+          '</div>';
+        }).join("");
+
+        grid.innerHTML = html || '<div class="empty-state" style="padding:40px;text-align:center;color:var(--muted)">' +
+          ico("search") + '<p>Không tìm thấy đề thi phù hợp với từ khoá "' + esc(query) + '".</p>' +
+        '</div>';
+      }
     }
   });
 
