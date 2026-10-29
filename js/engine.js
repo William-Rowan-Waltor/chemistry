@@ -75,7 +75,7 @@
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   };
-  var BOLD_KW = ["carboxylic acid","acetic acid","amino acid","quy tắc Markovnikov","quy tắc Zaitsev","phản ứng cộng","phản ứng thế","phản ứng tách","phản ứng trùng hợp","phản ứng tráng bạc","liên kết hydrogen","xà phòng hoá","este hoá","trùng ngưng","thuỷ phân","thủy phân","nhiệt độ sôi","chất giặt rửa","alkane","ankan","alkene","anken","alkyne","ankin","arene","benzene","toluene","styrene","alcohol","ancol","phenol","aldehyde","anđehit","ketone","xeton","carboxylic","ester","este","lipit","amine","amin","halogen","glycerol","ethylene","acetylene","ethanol","ether","iodoform","hiđrocacbon","hydrocarbon","muối","dung dịch","kết tủa","đồng phân","nhóm chức","điều chế","xà phòng","acid","axit"];
+  var BOLD_KW = ["glucose","fructose","saccharose","maltose","cellulose","peptide","protein","triglyceride","triolein","tristearin","tripalmitin","carboxylic acid","acetic acid","amino acid","quy tắc Markovnikov","quy tắc Zaitsev","phản ứng cộng","phản ứng thế","phản ứng tách","phản ứng trùng hợp","phản ứng tráng bạc","liên kết hydrogen","xà phòng hoá","este hoá","trùng ngưng","thuỷ phân","thủy phân","nhiệt độ sôi","chất giặt rửa","alkane","ankan","alkene","anken","alkyne","ankin","arene","benzene","toluene","styrene","alcohol","ancol","phenol","aldehyde","anđehit","ketone","xeton","carboxylic","ester","este","lipit","amine","amin","halogen","glycerol","ethylene","acetylene","ethanol","ether","iodoform","hiđrocacbon","hydrocarbon","muối","dung dịch","kết tủa","đồng phân","nhóm chức","điều chế","xà phòng","acid","axit"];
   var UNDER_KW = ["đun nóng","xúc tác","dư"];
   var underMap = {};
   UNDER_KW.forEach(function (w) { underMap[w] = true; });
@@ -3512,7 +3512,41 @@
       renderPracticeOnly();
     }
   }
+  function flushTestNumericInput() {
+    if (state.test) {
+      var inp = $(".num-in", $("#app"));
+      if (inp) {
+        var val = inp.value.trim();
+        if (val !== "") {
+          state.test.answers[state.test.i] = val;
+        }
+      }
+    }
+  }
+
+  function testWrong() {
+    if (!state.test || !state.test.details) return;
+    var wrongQs = state.test.details.filter(function (d) { return !d.ok; }).map(function (d) { return d.it; });
+    if (!wrongQs.length) return;
+    state.test = {
+      t: {
+        id: state.test.t.id + "_wrong",
+        title: "Ôn tập câu sai · " + state.test.t.title,
+        timeMin: Math.max(10, Math.ceil(wrongQs.length * 1.5)),
+        qs: wrongQs,
+        grade: state.test.t.grade
+      },
+      i: 0,
+      answers: {},
+      t0: Date.now(),
+      limit: Math.max(10, Math.ceil(wrongQs.length * 1.5)) * 60
+    };
+    renderPracticeOnly();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   function testSubmit() {
+    flushTestNumericInput();
     var T = state.test;
     var total = T.t.qs.length;
     var rawScore = 0;
@@ -5542,6 +5576,7 @@
       case "testStart": startTest(el.getAttribute("data-t")); break;
       case "testPick": testPick(el.getAttribute("data-p")); break;
       case "testPrev":
+        flushTestNumericInput();
         if (state.test && state.test.i > 0) {
           state.test.i--;
           renderPracticeOnly();
@@ -5550,6 +5585,7 @@
         }
         break;
       case "testNext":
+        flushTestNumericInput();
         if (state.test && state.test.i + 1 < state.test.t.qs.length) {
           state.test.i++;
           renderPracticeOnly();
@@ -5558,6 +5594,7 @@
         }
         break;
       case "testJump":
+        flushTestNumericInput();
         if (state.test) {
           state.test.i = parseInt(el.getAttribute("data-i"), 10);
           renderPracticeOnly();
@@ -5567,6 +5604,7 @@
         break;
       case "testSubmit": testSubmit(); break;
       case "testAgain": state.test.done = null; startTest(state.test.t.id); break;
+      case "testWrong": testWrong(); break;
       case "testQuit": state.test = null; render(); break;
 
       /* Guided Learning */
@@ -5911,6 +5949,62 @@
           }
         })(); break;
 
+      case "addBankQ":
+        (function () {
+          var chId = state.chapter || "g12c1";
+          openModal({
+            title: "Thêm câu hỏi mới vào ngân hàng",
+            fields: [
+              { id: "q", label: "Nội dung câu hỏi", val: "", type: "textarea", rows: 3 },
+              { id: "k", label: "Dạng câu hỏi", val: "m", type: "select", opts: [["m","Trắc nghiệm (MCQ)"],["tf","Đúng / Sai"],["n","Điền số"]] },
+              { id: "o", label: "Phương án (A=...;B=...;C=...;D=...)", val: "A=...;B=...;C=...;D=...", type: "text" },
+              { id: "a", label: "Đáp án đúng", val: "A", type: "text" },
+              { id: "e", label: "Lời giải thích", val: "", type: "textarea", rows: 3 }
+            ],
+            onSave: function (vals) {
+              DATA[chId] = DATA[chId] || {};
+              DATA[chId].customQuestions = DATA[chId].customQuestions || [];
+              DATA[chId].customQuestions.push({ ch: chId, k: vals.k, q: vals.q, o: vals.o, a: vals.a, e: vals.e });
+              saveCustomData();
+              renderPracticeOnly();
+            }
+          });
+        })(); break;
+
+      case "editBankQ":
+        (function () {
+          var bs = state.bank;
+          if (!bs || !bs.items || !bs.items[bs.i]) return;
+          var curItem = bs.items[bs.i];
+          openModal({
+            title: "Sửa câu hỏi ngân hàng #" + (bs.i + 1),
+            fields: [
+              { id: "q", label: "Nội dung câu hỏi", val: curItem.q, type: "textarea", rows: 3 },
+              { id: "k", label: "Dạng câu hỏi", val: curItem.k, type: "select", opts: [["m","Trắc nghiệm (MCQ)"],["tf","Đúng / Sai"],["n","Điền số"]] },
+              { id: "o", label: "Phương án (A=...;B=...;C=...;D=...)", val: curItem.o || "", type: "text" },
+              { id: "a", label: "Đáp án đúng", val: curItem.a, type: "text" },
+              { id: "e", label: "Lời giải thích", val: curItem.e || "", type: "textarea", rows: 3 }
+            ],
+            onSave: function (vals) {
+              curItem.q = vals.q; curItem.k = vals.k; curItem.o = vals.o; curItem.a = vals.a; curItem.e = vals.e;
+              saveCustomData();
+              renderPracticeOnly();
+            }
+          });
+        })(); break;
+
+      case "deleteBankQ":
+        (function () {
+          var bs = state.bank;
+          if (!bs || !bs.items || !bs.items[bs.i]) return;
+          if (confirm("Xoá câu hỏi này khỏi phiên luyện tập ngân hàng?")) {
+            bs.items.splice(bs.i, 1);
+            if (bs.i >= bs.items.length) bs.i = Math.max(0, bs.items.length - 1);
+            saveCustomData();
+            renderPracticeOnly();
+          }
+        })(); break;
+
       case "addGuidedStage":
         (function () {
           var chId = el.getAttribute("data-ch");
@@ -6122,6 +6216,17 @@
     if (!el) return;
     var act = el.getAttribute("data-act");
 
+    if (act === "testNum") {
+      if (state.test) {
+        state.test.answers[state.test.i] = el.value.trim();
+        var palChip = $('.pal-c[data-i="' + state.test.i + '"]');
+        if (palChip) {
+          palChip.classList.toggle("done", el.value.trim() !== "");
+        }
+      }
+      return;
+    }
+
     if (act === "coachSearchInput") {
       state.coachTest.searchQuery = el.value.trim().toLowerCase();
       var grid = $(".coach-test-grid");
@@ -6178,6 +6283,26 @@
 
   /* ---------- KEYBOARD SHORTCUTS ---------- */
   document.addEventListener("keydown", function (ev) {
+    var targetEl = ev.target;
+    if (targetEl && targetEl.tagName === "INPUT" && ev.key === "Enter") {
+      var dAct = targetEl.getAttribute("data-act");
+      if (dAct === "testNum") {
+        ev.preventDefault();
+        testPick("save");
+        return;
+      }
+      if (dAct === "numIn") {
+        ev.preventDefault();
+        bankPick("submit");
+        return;
+      }
+      if (targetEl.id === "coachShortAnsInput") {
+        ev.preventDefault();
+        coachPickN();
+        return;
+      }
+    }
+
     if (state.modal) {
       if (ev.key === "Escape") closeModal();
       return;
