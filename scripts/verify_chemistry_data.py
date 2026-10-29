@@ -3,10 +3,16 @@
 
 Verifies:
 1. Structure and integrity of all 20 exam sets in DATA.tests.
-2. 100% presence and validity of fields (q, a, e, o, sub).
-3. No dummy placeholder answers (all 'A', all '1', or all 'true').
-4. No leaked footer lines or drafting remarks ('HẾT', 'Lời dặn').
-5. Flashcard integrity across all grade 12 chapters.
+2. Exact question counting (must match 649 total questions across 20 tests).
+3. 100% presence and validity of fields (q, a, e, o, sub).
+4. Full validation for both standard and legacy tags:
+   - Multiple-choice (k="m" or "mc"): validates options format and ensures answer 'a' is in options.
+   - Short-answer (k="n", "num" or "sa"): validates numeric answer with support for commas, decimals, fractions.
+   - True/False clusters: validates exactly 4 sub-statements (a, b, c, d) with boolean answers and explanations.
+   - Single True/False statements: validates boolean answers.
+5. No dummy placeholder answers (all 'A', all '1', or all 'true').
+6. No leaked footer lines or drafting remarks ('HẾT', 'Lời dặn').
+7. Flashcard integrity across all grade 12 chapters.
 """
 
 from __future__ import annotations
@@ -35,6 +41,7 @@ def load_data() -> dict:
 
 
 def check_num(val_str: str) -> bool:
+    """Validate numerical short-answer format, supporting decimals (, or .), fractions, or digit sequences."""
     s = str(val_str).strip().replace(" ", "").replace(",", ".")
     if not s or s in ("-", "."):
         return False
@@ -53,14 +60,29 @@ def check_num(val_str: str) -> bool:
         return s.isdigit()
 
 
+def parse_opts(opts_str: str) -> dict[str, str]:
+    """Parse 'A=...;B=...;C=...;D=...' options into a dictionary."""
+    if not opts_str:
+        return {}
+    res = {}
+    for part in opts_str.split(";"):
+        if "=" in part:
+            k, v = part.split("=", 1)
+            res[k.strip()] = v.strip()
+    return res
+
+
 def run_verification() -> int:
-    print("=" * 60)
+    print("=" * 65)
     print("  AUTOMATED REGRESSION TEST SUITE: CHEMISTRY EXAMS & CARDS")
-    print("=" * 60)
+    print("=" * 65)
 
     data = load_data()
     errors: list[str] = []
     tests = data.get("tests", [])
+
+    total_questions = 0
+    kinds_count: dict[str, int] = {}
 
     print(f"\n[1] Checking tests collection ({len(tests)} tests found):")
 
@@ -77,6 +99,9 @@ def run_verification() -> int:
         dominant_answers: dict[str, int] = {}
 
         for q_idx, q in enumerate(qs):
+            total_questions += 1
+            k = q.get("k", "m")
+            kinds_count[k] = kinds_count.get(k, 0) + 1
             q_label = f"{tid}[{q_idx+1}]"
 
             # 1. Question text
@@ -99,12 +124,16 @@ def run_verification() -> int:
                 if not exp:
                     errors.append(f"{q_label}: Missing or empty explanation 'e'")
 
-            # 4. Question type specific checks
-            k = q.get("k", "m")
-            if k == "m":
+            # 4. Question type specific validation
+            if k in ("m", "mc"):
                 opts_raw = q.get("o", "")
-                if not opts_raw or ";" not in opts_raw:
-                    errors.append(f"{q_label}: Invalid MCQ options string: '{opts_raw}'")
+                opts_dict = parse_opts(opts_raw)
+                if len(opts_dict) < 2:
+                    errors.append(f"{q_label}: Invalid MCQ options format (needs >= 2 options): '{opts_raw}'")
+                ans_key = str(q.get("a", "")).strip()
+                if ans_key not in opts_dict:
+                    errors.append(f"{q_label}: MCQ answer key '{ans_key}' not found in options {list(opts_dict.keys())}")
+
             elif "sub" in q:
                 subs = q.get("sub", [])
                 if len(subs) != 4:
@@ -118,12 +147,19 @@ def run_verification() -> int:
                         errors.append(f"{q_label} sub({sub_id}): Invalid boolean answer: '{sub_ans}'")
                     if not sub.get("e", "").strip():
                         errors.append(f"{q_label} sub({sub_id}): Empty explanation")
+
             elif k == "tf":
-                if ans.lower() not in ("true", "false", "đ", "s"):
-                    errors.append(f"{q_label}: Single TF question has invalid boolean answer: '{ans}'")
-            elif k in ("n", "num"):
-                if not check_num(ans):
-                    errors.append(f"{q_label}: Numerical question has non-numeric answer: '{ans}'")
+                ans_str = str(q.get("a", "")).strip().lower()
+                if ans_str not in ("true", "false", "đ", "s"):
+                    errors.append(f"{q_label}: Single TF question has invalid boolean answer: '{ans_str}'")
+
+            elif k in ("n", "num", "sa"):
+                ans_val = str(q.get("a", "")).strip()
+                if not check_num(ans_val):
+                    errors.append(f"{q_label}: Short-answer ({k}) has non-numeric answer: '{ans_val}'")
+
+            else:
+                errors.append(f"{q_label}: Unknown question kind: '{k}'")
 
         # Check for placeholder answer flooding (>70% same answer)
         if len(qs) >= 20:
@@ -135,9 +171,11 @@ def run_verification() -> int:
         print(f"  ✓ {tid:8} | {len(qs):2} qs | Author: {author[:22]:22} | {title[:32]}")
 
     print("\n[2] Checking Chapter Flashcards & Theory:")
+    total_flashcards = 0
     for ch_id in ("g12c1", "g12c2", "g12c3"):
         ch = data.get(ch_id, {})
         notes = ch.get("notes", [])
+        total_flashcards += len(notes)
         title = ch.get("title", ch_id)
         if not notes:
             errors.append(f"Chapter {ch_id} has no flashcards/notes!")
@@ -149,16 +187,26 @@ def run_verification() -> int:
                 if not n.get("b", "").strip():
                     errors.append(f"{ch_id} card #{ni+1}: Missing body 'b'")
 
-    print("\n" + "=" * 60)
+    print("\n[3] Statistical Verification:")
+    print(f"  - Total tests audited:        {len(tests)}")
+    print(f"  - Total questions calculated: {total_questions} (must be exactly 649)")
+    print(f"  - Questions by kind:          {kinds_count}")
+    print(f"  - Total flashcards audited:   {total_flashcards}")
+
+    if total_questions != 649:
+        errors.append(f"Total questions count mismatch: expected 649, got {total_questions}")
+
+    print("\n" + "=" * 65)
     if errors:
         print(f"FAILED: Found {len(errors)} regression errors:")
-        for err in errors[:20]:
+        for err in errors[:25]:
             print(f"  [ERROR] {err}")
         return 1
 
     print("SUCCESS: 100% of exam questions and flashcards passed all checks!")
+    print(f"All {total_questions} questions verified with full coverage of m/mc, tf, n/sa.")
     print("Zero dummy answers. Zero missing explanations. All formats verified.")
-    print("=" * 60)
+    print("=" * 65)
     return 0
 
 
