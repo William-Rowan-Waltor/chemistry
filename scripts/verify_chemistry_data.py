@@ -2,8 +2,8 @@
 """Automated Regression Test Suite for Chemistry Exam Bank & Engine.
 
 Verifies:
-1. Structure and integrity of all 20 exam sets in DATA.tests.
-2. Exact question counting (must match 649 total questions across 20 tests).
+1. Structure and integrity of all 22 exam sets in DATA.tests.
+2. Exact question counting (must match 705 total questions across 22 tests).
 3. 100% presence and validity of fields (q, a, e, o, sub).
 4. Full validation for both standard and legacy tags:
    - Multiple-choice (k="m" or "mc"): validates options format and ensures answer 'a' is in options.
@@ -189,12 +189,12 @@ def run_verification() -> int:
 
     print("\n[3] Statistical Verification:")
     print(f"  - Total tests audited:        {len(tests)}")
-    print(f"  - Total questions calculated: {total_questions} (must be exactly 649)")
+    print(f"  - Total questions calculated: {total_questions} (must be exactly 705)")
     print(f"  - Questions by kind:          {kinds_count}")
     print(f"  - Total flashcards audited:   {total_flashcards}")
 
-    if total_questions != 649:
-        errors.append(f"Total questions count mismatch: expected 649, got {total_questions}")
+    if total_questions != 705:
+        errors.append(f"Total questions count mismatch: expected 705, got {total_questions}")
 
     print("\n" + "=" * 65)
     if errors:
