@@ -1920,6 +1920,8 @@ html[data-theme="dark"] .diagnostic-feedback.bad-diag {
 }
 .dcb-tag.good { background: #d1fae5; color: #065f46; }
 .dcb-tag.warn { background: #fee2e2; color: #991b1b; }
+.dcb-tag.picked { background: #e0e7ff; color: #3730a3; border: 1px solid #c7d2fe; font-weight: 800; }
+.dcb-row.was-picked { outline: 2px solid #6366f1; outline-offset: -1px; }
 .dcb-row-note {
   font-size: .82rem;
   line-height: 1.5;

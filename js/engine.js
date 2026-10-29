@@ -3528,7 +3528,7 @@
         rawScore += earnedPts;
         maxScore += 1.0;
         details.push({ it: it, ans: subAns, ok: ok, subDetails: subDetails, earnedPts: earnedPts });
-      } else if (it.k === "n") {
+      } else if (it.k === "n" || it.k === "num") {
         ok = checkNum(ans, it);
         var qWeight = (total === 28 ? 0.25 : 1);
         if (ok) rawScore += qWeight;
@@ -4156,19 +4156,22 @@
     var correctKey = String(q.a).trim();
 
     if (!opts.length) {
-      if (q.k === "tf") {
+      if (q.k === "tf" || correctKey === "true" || correctKey === "false" || correctKey === "đ" || correctKey === "s") {
         var isTrue = correctKey.toLowerCase() === "true" || correctKey.toLowerCase() === "đ";
+        var userPickedTrue = picked === "true" || picked === "đ" || picked === "ĐÚNG";
+        var userPickedFalse = picked === "false" || picked === "s" || picked === "SAI";
         return [{
           k: isTrue ? "ĐÚNG" : "SAI",
           t: isTrue ? "Nhận định hoàn toàn chính xác theo chuẩn hoá học" : "Nhận định này sai lệch bản chất",
           isCorrect: true,
+          wasPicked: isTrue ? userPickedTrue : userPickedFalse,
           note: "ĐÁP ÁN CHUẨN XÁC: Được khẳng định và chứng minh rõ trong sách giáo khoa và thực nghiệm hoá học."
         }, {
           k: isTrue ? "SAI" : "ĐÚNG",
           t: isTrue ? "Bẫy nhận định đảo ngược" : "Bẫy ngộ nhận thường gặp",
           isCorrect: false,
-          note: (picked === (isTrue ? "false" : "true") ? "<b>[Bạn đã chọn phương án này]</b> " : "") +
-            "Học sinh thường bị đánh lừa bởi điều kiện nhiệt độ, xúc tác đun nóng hoặc nhầm lẫn giữa các hiện tượng tương tự."
+          wasPicked: isTrue ? userPickedFalse : userPickedTrue,
+          note: "Học sinh thường bị đánh lừa bởi điều kiện nhiệt độ, xúc tác đun nóng hoặc nhầm lẫn giữa các hiện tượng tương tự."
         }];
       }
       return [];
@@ -4176,41 +4179,40 @@
 
     return opts.map(function (o) {
       var isCorrect = o.k === correctKey;
+      var wasPicked = picked === o.k;
       var note = "";
       if (isCorrect) {
         note = "ĐÁP ÁN CHÍNH XÁC: Thoả mãn toàn bộ các điều kiện, cơ chế và danh pháp hoá học của đề bài.";
       } else {
-        var wasPicked = picked === o.k;
-        var pickPrefix = wasPicked ? "<b>[Bạn đã chọn phương án này]</b> " : "";
-
         var tLower = o.t.toLowerCase();
         var qLower = q.q.toLowerCase();
         if (qLower.includes("este") || qLower.includes("ester")) {
           if (tLower.includes("formate") || tLower.includes("hcoo")) {
-            note = pickPrefix + "Bẫy gốc formate (HCOO-): Đây là dẫn xuất của formic acid, học sinh hay nhầm với acetate hoặc propionate.";
+            note = "Bẫy gốc formate (HCOO-): Đây là dẫn xuất của formic acid, học sinh hay nhầm với acetate hoặc propionate.";
           } else if (tLower.includes("acetate") || tLower.includes("ch3coo")) {
-            note = pickPrefix + "Bẫy gốc acetate (CH₃COO-): Dễ bị nhầm lẫn thứ tự gọi tên giữa gốc alcohol và gốc carboxylate.";
+            note = "Bẫy gốc acetate (CH₃COO-): Dễ bị nhầm lẫn thứ tự gọi tên giữa gốc alcohol và gốc carboxylate.";
           } else {
-            note = pickPrefix + "Phương án không thoả mãn cấu tạo phân tử hoặc điều kiện sản phẩm phản ứng mà đề bài yêu cầu.";
+            note = "Phương án không thoả mãn cấu tạo phân tử hoặc điều kiện sản phẩm phản ứng mà đề bài yêu cầu.";
           }
         } else if (qLower.includes("carbohydrate") || qLower.includes("saccharide")) {
           if (tLower.includes("glucose") || tLower.includes("fructose")) {
-            note = pickPrefix + "Đây là Monosaccharide (đường đơn không bị thuỷ phân), không phải disaccharide hay polysaccharide.";
+            note = "Đây là Monosaccharide (đường đơn không bị thuỷ phân), không phải disaccharide hay polysaccharide.";
           } else if (tLower.includes("saccharose") || tLower.includes("maltose")) {
-            note = pickPrefix + "Đây là Disaccharide (thuỷ phân cho 2 gốc monosaccharide).";
+            note = "Đây là Disaccharide (thuỷ phân cho 2 gốc monosaccharide).";
           } else if (tLower.includes("tinh bột") || tLower.includes("cellulose") || tLower.includes("amylose")) {
-            note = pickPrefix + "Đây là Polysaccharide (đường đa phân tử lớn).";
+            note = "Đây là Polysaccharide (đường đa phân tử lớn).";
           } else {
-            note = pickPrefix + "Phương án này thuộc phân nhóm carbohydrate khác với yêu cầu của đề.";
+            note = "Phương án này thuộc phân nhóm carbohydrate khác với yêu cầu của đề.";
           }
         } else {
-          note = pickPrefix + "Phương án gây nhiễu: Sai lệch về bản chất cấu tạo, điều kiện phản ứng hoặc sản phẩm phản ứng so với yêu cầu đề bài.";
+          note = "Phương án gây nhiễu: Sai lệch về bản chất cấu tạo, điều kiện phản ứng hoặc sản phẩm phản ứng so với yêu cầu đề bài.";
         }
       }
       return {
         k: o.k,
         t: o.t,
         isCorrect: isCorrect,
+        wasPicked: wasPicked,
         note: note
       };
     });
@@ -4457,7 +4459,7 @@
         '<button class="' + tCls + '" data-act="coachPickTF" data-p="true" ' + (isSubmitted ? 'disabled' : '') + '>ĐÚNG</button>' +
         '<button class="' + fCls + '" data-act="coachPickTF" data-p="false" ' + (isSubmitted ? 'disabled' : '') + '>SAI</button>' +
       '</div>';
-    } else if (cur.k === "n") {
+    } else if (cur.k === "n" || cur.k === "num") {
       var nVal = ans ? ans.picked : "";
       optsHtml = '<div class="short-ans-box">' +
         '<input type="text" id="coachShortAnsInput" class="short-ans-input" placeholder="Nhập đáp số (số hoặc chữ)..." value="' + esc(nVal || "") + '" ' + (isSubmitted ? 'disabled' : '') + '>' +
@@ -4513,13 +4515,18 @@
           '<div class="dcb-list">' +
             distractorList.map(function (d) {
               var rowCls = d.isCorrect ? "dcb-row correct" : "dcb-row wrong";
+              if (d.wasPicked) rowCls += " was-picked";
               var badgeTag = d.isCorrect
                 ? '<span class="dcb-tag good">' + ico("check") + ' Đáp án đúng</span>'
                 : '<span class="dcb-tag warn">' + ico("close") + ' Phương án nhiễu</span>';
+              var pickedBadge = d.wasPicked
+                ? '<span class="dcb-tag picked">' + ico("user") + ' Bạn đã chọn</span>'
+                : '';
               return '<div class="' + rowCls + '">' +
                 '<div class="dcb-row-head">' +
                   '<span class="dcb-key">' + esc(d.k || d.key) + '.</span>' +
                   '<span class="dcb-text">' + fmt(d.t || d.text) + '</span>' +
+                  pickedBadge +
                   badgeTag +
                 '</div>' +
                 '<div class="dcb-row-note">' + fmt(d.note) + '</div>' +
