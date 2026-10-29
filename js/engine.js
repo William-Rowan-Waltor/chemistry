@@ -4028,8 +4028,8 @@
   function resolveCoachChapter(q, test) {
     if (q && q.ch) return q.ch;
     var tid = test ? test.id : "";
-    if (tid.startsWith("g12t1") || tid.startsWith("g12t2") || tid.startsWith("g12t3") || tid.startsWith("g12t4")) return "g12c1";
-    if (tid.startsWith("g12t5")) return "g12c2";
+    if (tid.startsWith("g12t1") || tid.startsWith("g12t2") || tid.startsWith("g12t3") || tid.startsWith("g12t4") || tid.startsWith("g12t15")) return "g12c1";
+    if (tid.startsWith("g12t5") || tid.startsWith("g12t11") || tid.startsWith("g12t12") || tid.startsWith("g12t13") || tid.startsWith("g12t14")) return "g12c2";
     if (tid.startsWith("g11t1")) return "g11c1";
     if (tid.startsWith("g11t2")) return "g11c4";
 
