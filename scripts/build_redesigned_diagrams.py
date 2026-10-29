@@ -1,0 +1,835 @@
+#!/usr/bin/env python3
+"""Build publication-grade, LaTeX/ChemFig quality vector SVGs for all 18 exam diagrams."""
+
+import json
+import re
+import sys
+from pathlib import Path
+
+# Force UTF-8 output
+sys.stdout.reconfigure(encoding="utf-8")
+
+ROOT = Path(__file__).resolve().parent.parent
+DIAG_JS = ROOT / "js" / "diagrams.js"
+
+COMMON_STYLE = """
+<defs>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.06"/>
+  </filter>
+  <style>
+    .chem-bg { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 12px; }
+    .txt { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 600; fill: #0f172a; }
+    .txt-sub { font-size: 11px; }
+    .txt-sup { font-size: 11px; }
+    .tag { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 700; fill: #0369a1; }
+    .sublbl { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 12px; fill: #64748b; }
+    .bond { stroke: #1e293b; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .bond-thin { stroke: #475569; stroke-width: 1.6; stroke-linecap: round; }
+    .bond-bold { stroke: #0f172a; stroke-width: 3.6; stroke-linecap: round; }
+    .bond-double { stroke: #1e293b; stroke-width: 2.0; stroke-linecap: round; }
+    .atom-o { fill: #dc2626; font-weight: 700; }
+    .atom-n { fill: #2563eb; font-weight: 700; }
+    .atom-s { fill: #d97706; font-weight: 700; }
+    .atom-na { fill: #059669; font-weight: 700; }
+    .atom-cl { fill: #059669; font-weight: 700; }
+    .num-pill { fill: #e0f2fe; stroke: #0284c7; stroke-width: 1.2; }
+    .num-txt { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: #0369a1; text-anchor: middle; }
+    .ring { fill: none; stroke: #1e293b; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .ring-circle { fill: none; stroke: #64748b; stroke-width: 1.5; stroke-dasharray: 4,3; }
+    .opt-box { fill: #f8fafc; stroke: #e2e8f0; stroke-width: 1.2; rx: 8px; }
+    .opt-badge { fill: #0284c7; font-weight: 800; font-size: 14px; }
+    @media (prefers-color-scheme: dark) {
+      .chem-bg { fill: #1e293b; stroke: #334155; }
+      .txt { fill: #f8fafc; }
+      .bond { stroke: #cbd5e1; }
+      .bond-thin { stroke: #94a3b8; }
+      .bond-bold { stroke: #ffffff; }
+      .bond-double { stroke: #cbd5e1; }
+      .ring { stroke: #cbd5e1; }
+      .ring-circle { stroke: #94a3b8; }
+      .sublbl { fill: #94a3b8; }
+      .opt-box { fill: #0f172a; stroke: #334155; }
+    }
+  </style>
+</defs>
+"""
+
+diagrams = {}
+
+# 1. amine_2_methylbutan_1_amine
+diagrams["amine_2_methylbutan_1_amine"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 145" width="100%" height="100%">{COMMON_STYLE}
+<rect width="490" height="145" class="chem-bg"/>
+<text x="24" y="26" class="tag">Công thức cấu tạo của amine:</text>
+<!-- Numbers above carbons with elegant badge styling -->
+<circle cx="65" cy="46" r="11" class="num-pill"/><text x="65" y="50" class="num-txt">4</text>
+<circle cx="160" cy="46" r="11" class="num-pill"/><text x="160" y="50" class="num-txt">3</text>
+<circle cx="255" cy="46" r="11" class="num-pill"/><text x="255" y="50" class="num-txt">2</text>
+<circle cx="345" cy="46" r="11" class="num-pill"/><text x="345" y="50" class="num-txt">1</text>
+<!-- Main chain atoms -->
+<text x="65" y="80" class="txt" text-anchor="middle">CH<tspan class="txt-sub" dy="4">3</tspan></text>
+<line x1="94" y1="76" x2="132" y2="76" class="bond"/>
+<text x="160" y="80" class="txt" text-anchor="middle">CH<tspan class="txt-sub" dy="4">2</tspan></text>
+<line x1="189" y1="76" x2="234" y2="76" class="bond"/>
+<text x="255" y="80" class="txt" text-anchor="middle">CH</text>
+<line x1="277" y1="76" x2="317" y2="76" class="bond"/>
+<text x="345" y="80" class="txt" text-anchor="middle">CH<tspan class="txt-sub" dy="4">2</tspan></text>
+<line x1="374" y1="76" x2="408" y2="76" class="bond"/>
+<text x="438" y="80" class="txt atom-n" text-anchor="middle">NH<tspan class="txt-sub" dy="4">2</tspan></text>
+<!-- Branch at C2 -->
+<line x1="255" y1="88" x2="255" y2="108" class="bond"/>
+<text x="255" y="128" class="txt" text-anchor="middle">CH<tspan class="txt-sub" dy="4">3</tspan></text>
+</svg>"""
+
+# 2. saponification_experiment
+diagrams["saponification_experiment"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 330" width="100%" height="100%">{COMMON_STYLE}
+<defs>
+  <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+    <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.8"/>
+    <stop offset="30%" stop-color="#f97316"/>
+    <stop offset="70%" stop-color="#facc15"/>
+    <stop offset="100%" stop-color="#ffffff"/>
+  </linearGradient>
+  <linearGradient id="oilGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#fef08a"/>
+    <stop offset="100%" stop-color="#f59e0b"/>
+  </linearGradient>
+  <linearGradient id="soapCakeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#ffffff"/>
+    <stop offset="100%" stop-color="#fef3c7"/>
+  </linearGradient>
+</defs>
+<rect width="710" height="330" class="chem-bg"/>
+<!-- Left Panel: Đun cách thủy / đun nhẹ xà phòng hóa trong bát sứ -->
+<g transform="translate(30, 20)">
+  <text x="140" y="20" class="tag" text-anchor="middle">Bước 1 &amp; 2: Đun hỗn hợp trong bát sứ</text>
+  <!-- Tripod Stand (Giá kiềng sắt) -->
+  <path d="M 90,215 L 50,290 M 190,215 L 230,290 M 140,215 L 140,290" stroke="#475569" stroke-width="3.5" stroke-linecap="round"/>
+  <ellipse cx="140" cy="215" rx="55" ry="12" fill="none" stroke="#64748b" stroke-width="4"/>
+  <!-- Wire Gauze with ceramic center -->
+  <ellipse cx="140" cy="213" rx="50" ry="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <ellipse cx="140" cy="213" rx="28" ry="6" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/>
+  <!-- Spirit Lamp (Đèn cồn) -->
+  <path d="M 115,285 L 165,285 L 160,250 L 120,250 Z" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+  <rect x="134" y="240" width="12" height="10" fill="#b45309" rx="2"/>
+  <!-- Flame -->
+  <path d="M 140,240 C 128,220 132,198 140,188 C 148,198 152,220 140,240 Z" fill="url(#flameGrad)"/>
+  <!-- Ceramic evaporating dish (Bát sứ) -->
+  <path d="M 75,175 Q 140,230 205,175 Q 140,165 75,175 Z" fill="#ffffff" stroke="#475569" stroke-width="2.5"/>
+  <!-- Liquid in dish -->
+  <path d="M 88,180 Q 140,215 192,180 Q 140,173 88,180 Z" fill="url(#oilGrad)" opacity="0.9"/>
+  <!-- Glass stirring rod -->
+  <line x1="180" y1="95" x2="135" y2="190" stroke="#0284c7" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
+  <!-- Dropper pipette adding water -->
+  <g transform="translate(60, 45)">
+    <rect x="25" y="10" width="8" height="42" fill="#bae6fd" stroke="#0284c7" stroke-width="1.5" rx="2"/>
+    <path d="M 23,52 L 29,75 L 35,52 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="1"/>
+    <ellipse cx="29" cy="8" rx="8" ry="6" fill="#ef4444"/>
+    <circle cx="29" cy="88" r="3" fill="#38bdf8"/>
+    <circle cx="29" cy="100" r="3.5" fill="#38bdf8"/>
+    <text x="42" y="32" class="txt" font-size="12">Nước cất</text>
+    <text x="42" y="48" class="sublbl" font-size="11">(thêm định kỳ giữ thể tích)</text>
+  </g>
+  <!-- Labels -->
+  <text x="200" y="110" class="txt" font-size="12">Đũa thuỷ tinh</text>
+  <text x="200" y="126" class="sublbl" font-size="11">khuấy đều liên tục</text>
+  <line x1="195" y1="115" x2="165" y2="130" stroke="#94a3b8" stroke-dasharray="2,2"/>
+  <text x="215" y="175" class="txt" font-size="13" font-weight="700" fill="#0369a1">Bát sứ chứa:</text>
+  <text x="215" y="193" class="txt" font-size="12">• 1g mỡ/dầu thực vật</text>
+  <text x="215" y="210" class="txt" font-size="12">• 2 – 2,5 mL dd NaOH 40%</text>
+</g>
+<!-- Vertical divider -->
+<line x1="395" y1="25" x2="395" y2="305" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4"/>
+<!-- Right Panel: Thêm NaCl bão hoà & tách lớp -->
+<g transform="translate(425, 20)">
+  <text x="135" y="20" class="tag" text-anchor="middle">Bước 3: Thêm dd NaCl bão hoà &amp; để nguội</text>
+  <!-- Pouring test tube -->
+  <g transform="translate(30, 40) rotate(32)">
+    <rect x="0" y="0" width="18" height="65" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.8"/>
+    <line x1="9" y1="40" x2="9" y2="80" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="4,2"/>
+  </g>
+  <text x="105" y="60" class="txt" font-size="12">Rót 4–5 mL dd NaCl bão hoà</text>
+  <!-- Beaker (Cốc thuỷ tinh) -->
+  <path d="M 65,100 L 65,245 Q 65,260 80,260 L 175,260 Q 190,260 190,245 L 190,100" fill="none" stroke="#475569" stroke-width="2.5"/>
+  <line x1="60" y1="100" x2="70" y2="100" stroke="#475569" stroke-width="2.5"/>
+  <line x1="185" y1="100" x2="195" y2="100" stroke="#475569" stroke-width="2.5"/>
+  <!-- Graduation marks on beaker -->
+  <line x1="65" y1="150" x2="78" y2="150" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="65" y1="180" x2="82" y2="180" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="65" y1="210" x2="78" y2="210" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- Bottom layer Y: Glycerol + dd NaCl -->
+  <path d="M 67,175 L 67,245 Q 67,258 80,258 L 175,258 Q 188,258 188,245 L 188,175 Z" fill="#e0f2fe" opacity="0.8"/>
+  <text x="127" y="215" class="txt" font-size="13" font-weight="700" fill="#0369a1" text-anchor="middle">Lớp Y</text>
+  <text x="127" y="233" class="sublbl" font-size="11" text-anchor="middle">(Glycerol + dd NaCl bão hoà)</text>
+  <!-- Top layer X: Bánh xà phòng đóng nổi lên trên -->
+  <rect x="67" y="142" width="121" height="32" rx="4" fill="url(#soapCakeGrad)" stroke="#d97706" stroke-width="1.8"/>
+  <text x="127" y="163" class="txt" font-size="12" font-weight="700" fill="#92400e" text-anchor="middle">Lớp X: Bánh xà phòng</text>
+  <!-- Pointers -->
+  <line x1="195" y1="158" x2="225" y2="158" stroke="#d97706" stroke-width="1.8"/>
+  <text x="230" y="162" class="txt" font-weight="700" fill="#b45309">Lớp X</text>
+  <text x="230" y="177" class="sublbl">Muối Na của acid béo</text>
+  <line x1="195" y1="220" x2="225" y2="220" stroke="#0284c7" stroke-width="1.8"/>
+  <text x="230" y="224" class="txt" font-weight="700" fill="#0369a1">Lớp Y</text>
+  <text x="230" y="239" class="sublbl">Chứa glycerol &amp; NaCl</text>
+</g>
+</svg>"""
+
+# 3. electrophoresis_amino_acids
+diagrams["electrophoresis_amino_acids"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 320" width="100%" height="100%">{COMMON_STYLE}
+<rect width="710" height="320" class="chem-bg"/>
+<!-- Left: Ban đầu -->
+<g transform="translate(35, 20)">
+  <text x="145" y="22" class="tag" text-anchor="middle">Ban đầu (pH đệm = 6,0)</text>
+  <!-- Power supply -->
+  <rect x="100" y="42" width="90" height="32" rx="6" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+  <text x="145" y="63" class="txt" text-anchor="middle" font-size="12">Nguồn điện</text>
+  <!-- Wires -->
+  <path d="M 100,58 L 45,58 L 45,115" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <path d="M 190,58 L 245,58 L 245,115" fill="none" stroke="#dc2626" stroke-width="2"/>
+  <text x="45" y="105" class="txt atom-n" text-anchor="middle">(-)</text>
+  <text x="245" y="105" class="txt atom-o" text-anchor="middle">(+)</text>
+  <!-- Tank -->
+  <rect x="30" y="115" width="230" height="110" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+  <rect x="45" y="130" width="12" height="80" rx="2" fill="#2563eb"/>
+  <text x="51" y="226" class="txt atom-n" font-size="11" text-anchor="middle">Cathode</text>
+  <rect x="233" y="130" width="12" height="80" rx="2" fill="#dc2626"/>
+  <text x="239" y="226" class="txt atom-o" font-size="11" text-anchor="middle">Anode</text>
+  <!-- Initial sample spot -->
+  <rect x="135" y="135" width="20" height="70" rx="4" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+  <line x1="145" y1="210" x2="145" y2="245" stroke="#d97706" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="145" y="262" class="txt" text-anchor="middle" font-weight="700">Vệt mẫu ban đầu</text>
+  <text x="145" y="280" class="sublbl" text-anchor="middle">(hỗn hợp gồm Ala, Lys, Glu)</text>
+</g>
+<!-- Divider -->
+<line x1="355" y1="25" x2="355" y2="300" stroke="#cbd5e1" stroke-dasharray="4,4"/>
+<!-- Right: Sau điện di -->
+<g transform="translate(375, 20)">
+  <text x="145" y="22" class="tag" text-anchor="middle">Sau quá trình điện di</text>
+  <!-- Power supply -->
+  <rect x="100" y="42" width="90" height="32" rx="6" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+  <text x="145" y="63" class="txt" text-anchor="middle" font-size="12">Nguồn điện</text>
+  <!-- Wires -->
+  <path d="M 100,58 L 45,58 L 45,115" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <path d="M 190,58 L 245,58 L 245,115" fill="none" stroke="#dc2626" stroke-width="2"/>
+  <text x="45" y="105" class="txt atom-n" text-anchor="middle">(-)</text>
+  <text x="245" y="105" class="txt atom-o" text-anchor="middle">(+)</text>
+  <!-- Tank -->
+  <rect x="30" y="115" width="230" height="110" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+  <rect x="45" y="130" width="12" height="80" rx="2" fill="#2563eb"/>
+  <text x="51" y="226" class="txt atom-n" font-size="11" text-anchor="middle">Cathode</text>
+  <rect x="233" y="130" width="12" height="80" rx="2" fill="#dc2626"/>
+  <text x="239" y="226" class="txt atom-o" font-size="11" text-anchor="middle">Anode</text>
+  <!-- Three bands -->
+  <!-- Band 1: Lysine (+) -> Cathode (-) -->
+  <rect x="85" y="135" width="16" height="70" rx="3" fill="#16a34a" stroke="#15803d" stroke-width="1.5"/>
+  <text x="93" y="224" class="txt" font-weight="700" fill="#16a34a" text-anchor="middle">(1)</text>
+  <!-- Band 2: Alanine (neutral) -> Center -->
+  <rect x="137" y="135" width="16" height="70" rx="3" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+  <text x="145" y="224" class="txt" font-weight="700" fill="#d97706" text-anchor="middle">(2)</text>
+  <!-- Band 3: Glutamic acid (-) -> Anode (+) -->
+  <rect x="188" y="135" width="16" height="70" rx="3" fill="#9333ea" stroke="#7e22ce" stroke-width="1.5"/>
+  <text x="196" y="224" class="txt" font-weight="700" fill="#9333ea" text-anchor="middle">(3)</text>
+  <!-- Summary note -->
+  <text x="145" y="258" class="txt" text-anchor="middle" font-weight="700">Thứ tự vệt tách (1), (2), (3):</text>
+  <text x="145" y="278" class="txt" text-anchor="middle">
+    <tspan fill="#16a34a" font-weight="700">Lys (1)</tspan>
+    <tspan fill="#64748b"> → </tspan>
+    <tspan fill="#d97706" font-weight="700">Ala (2)</tspan>
+    <tspan fill="#64748b"> → </tspan>
+    <tspan fill="#9333ea" font-weight="700">Glu (3)</tspan>
+  </text>
+</g>
+</svg>"""
+
+# 4. sdbs_structure
+diagrams["sdbs_structure"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 570 180" width="100%" height="100%">{COMMON_STYLE}
+<rect width="570" height="180" class="chem-bg"/>
+<text x="24" y="28" class="tag">Sodium dodecylbenzenesulfonate (SDBS):</text>
+<!-- Hydrophobic tail: 12-Carbon zigzag chain -->
+<g transform="translate(35, 95)">
+  <path d="M 0,0 L 15,-15 L 30,0 L 45,-15 L 60,0 L 75,-15 L 90,0 L 105,-15 L 120,0 L 135,-15 L 150,0 L 165,-15 L 180,0 L 195,-15 L 210,0 L 225,-15 L 240,0" fill="none" stroke="#0284c7" stroke-width="2.6" stroke-linejoin="round"/>
+  <text x="120" y="32" class="tag" text-anchor="middle">Mạch hydrocarbon kị nước: C₁₂H₂₅–</text>
+</g>
+<!-- Benzene ring & Sulfonate head -->
+<g transform="translate(290, 95)">
+  <line x1="-15" y1="0" x2="0" y2="0" class="bond"/>
+  <!-- Benzene regular hexagon -->
+  <polygon points="0,0 20,-30 55,-30 75,0 55,30 20,30" class="ring"/>
+  <circle cx="37.5" cy="0" r="17" class="ring-circle"/>
+  <!-- Bond to SO3- Na+ -->
+  <line x1="75" y1="0" x2="105" y2="0" class="bond"/>
+  <!-- S atom -->
+  <text x="110" y="6" class="txt atom-s">S</text>
+  <!-- O double bonds -->
+  <line x1="117" y1="-8" x2="117" y2="-25" class="bond-double"/>
+  <line x1="122" y1="-8" x2="122" y2="-25" class="bond-double"/>
+  <text x="115" y="-30" class="txt atom-o">O</text>
+  <line x1="117" y1="12" x2="117" y2="29" class="bond-double"/>
+  <line x1="122" y1="12" x2="122" y2="29" class="bond-double"/>
+  <text x="115" y="45" class="txt atom-o">O</text>
+  <!-- O- Na+ -->
+  <line x1="128" y1="0" x2="148" y2="0" class="bond"/>
+  <text x="152" y="6" class="txt atom-o">O<tspan dy="-5" font-size="11">⁻</tspan></text>
+  <text x="175" y="6" class="txt atom-na">Na<tspan dy="-5" font-size="11">⁺</tspan></text>
+  <text x="145" y="70" class="txt" font-weight="700" fill="#059669" text-anchor="middle">Đầu ưa nước</text>
+</g>
+</svg>"""
+
+# 5. methyl_cinnamate
+diagrams["methyl_cinnamate"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 170" width="100%" height="100%">{COMMON_STYLE}
+<rect width="490" height="170" class="chem-bg"/>
+<text x="24" y="28" class="tag">Methyl cinnamate (mùi dâu tây đặc trưng):</text>
+<g transform="translate(50, 60)">
+  <!-- Benzene ring -->
+  <polygon points="40,30 20,65 40,100 80,100 100,65 80,30" class="ring"/>
+  <circle cx="60" cy="65" r="22" class="ring-circle"/>
+  <!-- Trans C=C chain -->
+  <line x1="100" y1="65" x2="135" y2="45" class="bond"/>
+  <line x1="135" y1="45" x2="175" y2="70" class="bond"/>
+  <line x1="138" y1="38" x2="174" y2="60" class="bond-double" stroke="#0284c7"/>
+  <!-- Bond to C=O -->
+  <line x1="175" y1="70" x2="215" y2="45" class="bond"/>
+  <!-- Carbonyl C=O -->
+  <line x1="213" y1="45" x2="213" y2="15" class="bond-double"/>
+  <line x1="218" y1="45" x2="218" y2="15" class="bond-double"/>
+  <text x="210" y="8" class="txt atom-o">O</text>
+  <!-- Bond to -OCH3 -->
+  <line x1="215" y1="45" x2="245" y2="62" class="bond"/>
+  <text x="250" y="72" class="txt atom-o">O</text>
+  <line x1="268" y1="66" x2="295" y2="66" class="bond"/>
+  <text x="300" y="72" class="txt">CH<tspan class="txt-sub" dy="4">3</tspan></text>
+</g>
+</svg>"""
+
+# 6. glucose_ring_chain_equilibrium
+diagrams["glucose_ring_chain_equilibrium"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 280" width="100%" height="100%">{COMMON_STYLE}
+<rect width="740" height="280" class="chem-bg"/>
+<!-- Left: alpha-D-glucopyranose -->
+<g transform="translate(30, 20)">
+  <text x="100" y="22" class="tag" text-anchor="middle">α-glucose (vòng 6 cạnh)</text>
+  <text x="145" y="52" class="txt" font-size="11" font-weight="700" fill="#d97706" text-anchor="middle">–OH hemiacetal (α)</text>
+  <path d="M 145,58 L 150,85" stroke="#d97706" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <!-- Pyranose Haworth Ring -->
+  <path d="M 60,110 L 105,95 L 150,110 L 135,160 L 75,160 Z" class="ring" fill="#f8fafc"/>
+  <line x1="75" y1="160" x2="135" y2="160" class="bond-bold"/>
+  <text x="105" y="93" class="txt atom-o" text-anchor="middle">O</text>
+  <!-- Substituents -->
+  <line x1="150" y1="110" x2="150" y2="85" class="bond-thin"/><text x="150" y="80" class="txt" text-anchor="middle" font-size="12">H</text>
+  <line x1="150" y1="110" x2="150" y2="140" class="bond-thin"/><text x="150" y="155" class="txt atom-o" text-anchor="middle" font-size="12">OH (α)</text>
+  <line x1="135" y1="160" x2="135" y2="185" class="bond-thin"/><text x="135" y="200" class="txt atom-o" text-anchor="middle" font-size="12">OH</text>
+  <line x1="105" y1="160" x2="105" y2="135" class="bond-thin"/><text x="105" y="130" class="txt atom-o" text-anchor="middle" font-size="12">OH</text>
+  <line x1="75" y1="160" x2="75" y2="185" class="bond-thin"/><text x="75" y="200" class="txt atom-o" text-anchor="middle" font-size="12">OH</text>
+  <line x1="60" y1="110" x2="60" y2="80" class="bond-thin"/><text x="60" y="75" class="txt" text-anchor="middle" font-size="11">CH₂OH</text>
+</g>
+<!-- Equilibrium arrow 1 -->
+<g transform="translate(250, 125)">
+  <line x1="0" y1="-4" x2="35" y2="-4" stroke="#1e293b" stroke-width="2"/>
+  <polygon points="35,-7 42,-4 35,-1" fill="#1e293b"/>
+  <line x1="42" y1="6" x2="7" y2="6" stroke="#1e293b" stroke-width="2"/>
+  <polygon points="7,3 0,6 7,9" fill="#1e293b"/>
+</g>
+<!-- Center: D-glucose mạch hở (Fischer) -->
+<g transform="translate(330, 20)">
+  <text x="40" y="22" class="tag" text-anchor="middle">Mạch hở (Fischer)</text>
+  <g transform="translate(40, 45)">
+    <text x="0" y="15" class="txt" text-anchor="middle" font-weight="700" fill="#0284c7">¹ CH=O</text>
+    <line x1="0" y1="20" x2="0" y2="40" class="bond-thin"/>
+    <text x="0" y="45" class="txt" text-anchor="middle" font-size="12">H—²—OH</text>
+    <line x1="0" y1="50" x2="0" y2="70" class="bond-thin"/>
+    <text x="0" y="75" class="txt" text-anchor="middle" font-size="12">HO—³—H</text>
+    <line x1="0" y1="80" x2="0" y2="100" class="bond-thin"/>
+    <text x="0" y="105" class="txt" text-anchor="middle" font-size="12">H—⁴—OH</text>
+    <line x1="0" y1="110" x2="0" y2="130" class="bond-thin"/>
+    <text x="0" y="135" class="txt" text-anchor="middle" font-size="12">H—⁵—OH</text>
+    <line x1="0" y1="140" x2="0" y2="160" class="bond-thin"/>
+    <text x="0" y="175" class="txt" text-anchor="middle" font-size="12">⁶ CH₂OH</text>
+  </g>
+</g>
+<!-- Equilibrium arrow 2 -->
+<g transform="translate(445, 125)">
+  <line x1="0" y1="-4" x2="35" y2="-4" stroke="#1e293b" stroke-width="2"/>
+  <polygon points="35,-7 42,-4 35,-1" fill="#1e293b"/>
+  <line x1="42" y1="6" x2="7" y2="6" stroke="#1e293b" stroke-width="2"/>
+  <polygon points="7,3 0,6 7,9" fill="#1e293b"/>
+</g>
+<!-- Right: beta-D-glucopyranose -->
+<g transform="translate(515, 20)">
+  <text x="100" y="22" class="tag" text-anchor="middle">β-glucose (vòng 6 cạnh)</text>
+  <text x="145" y="52" class="txt" font-size="11" font-weight="700" fill="#059669" text-anchor="middle">–OH hemiacetal (β)</text>
+  <path d="M 145,58 L 150,75" stroke="#059669" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <!-- Pyranose Ring -->
+  <path d="M 60,110 L 105,95 L 150,110 L 135,160 L 75,160 Z" class="ring" fill="#f8fafc"/>
+  <line x1="75" y1="160" x2="135" y2="160" class="bond-bold"/>
+  <text x="105" y="93" class="txt atom-o" text-anchor="middle">O</text>
+  <!-- Substituents -->
+  <line x1="150" y1="110" x2="150" y2="80" class="bond-thin"/><text x="150" y="75" class="txt atom-o" text-anchor="middle" font-size="12">OH (β)</text>
+  <line x1="150" y1="110" x2="150" y2="135" class="bond-thin"/><text x="150" y="145" class="txt" text-anchor="middle" font-size="12">H</text>
+  <line x1="135" y1="160" x2="135" y2="185" class="bond-thin"/><text x="135" y="200" class="txt atom-o" text-anchor="middle" font-size="12">OH</text>
+  <line x1="105" y1="160" x2="105" y2="135" class="bond-thin"/><text x="105" y="130" class="txt atom-o" text-anchor="middle" font-size="12">OH</text>
+  <line x1="75" y1="160" x2="75" y2="185" class="bond-thin"/><text x="75" y="200" class="txt atom-o" text-anchor="middle" font-size="12">OH</text>
+  <line x1="60" y1="110" x2="60" y2="80" class="bond-thin"/><text x="60" y="75" class="txt" text-anchor="middle" font-size="11">CH₂OH</text>
+</g>
+</svg>"""
+
+# 7. glutamic_acid_structure
+diagrams["glutamic_acid_structure"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 160" width="100%" height="100%">{COMMON_STYLE}
+<rect width="450" height="160" class="chem-bg"/>
+<text x="24" y="28" class="tag">Glutamic acid (axit 2-aminopentanedioic):</text>
+<g transform="translate(45, 45)">
+  <!-- Left COOH -->
+  <text x="10" y="55" class="txt atom-o">HO</text>
+  <line x1="38" y1="50" x2="65" y2="50" class="bond"/>
+  <line x1="63" y1="50" x2="63" y2="20" class="bond-double"/>
+  <line x1="68" y1="50" x2="68" y2="20" class="bond-double"/>
+  <text x="60" y="14" class="txt atom-o">O</text>
+  <!-- Chain C4 -> C3 -> C2 -->
+  <line x1="67" y1="50" x2="105" y2="75" class="bond"/>
+  <line x1="105" y1="75" x2="150" y2="50" class="bond"/>
+  <line x1="150" y1="50" x2="195" y2="75" class="bond"/>
+  <!-- Wedge NH2 at C2 -->
+  <polygon points="195,75 190,115 200,115" fill="#2563eb"/>
+  <text x="195" y="135" class="txt atom-n" text-anchor="middle">NH<tspan class="txt-sub" dy="4">2</tspan></text>
+  <!-- C2 to Right COOH -->
+  <line x1="195" y1="75" x2="240" y2="50" class="bond"/>
+  <line x1="238" y1="50" x2="238" y2="20" class="bond-double"/>
+  <line x1="243" y1="50" x2="243" y2="20" class="bond-double"/>
+  <text x="235" y="14" class="txt atom-o">O</text>
+  <line x1="240" y1="50" x2="270" y2="50" class="bond"/>
+  <text x="275" y="55" class="txt atom-o">OH</text>
+</g>
+</svg>"""
+
+# 8. alliin_structure
+diagrams["alliin_structure"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 170" width="100%" height="100%">{COMMON_STYLE}
+<rect width="480" height="170" class="chem-bg"/>
+<text x="24" y="28" class="tag">Alliin (hợp chất amino acid trong tỏi tươi):</text>
+<g transform="translate(45, 50)">
+  <!-- Allyl group: CH2=CH-CH2- -->
+  <line x1="15" y1="85" x2="45" y2="60" class="bond"/>
+  <line x1="18" y1="90" x2="48" y2="65" class="bond-double" stroke="#0284c7"/>
+  <line x1="45" y1="60" x2="80" y2="85" class="bond"/>
+  <!-- S(=O) atom -->
+  <line x1="80" y1="85" x2="110" y2="65" class="bond"/>
+  <text x="113" y="70" class="txt atom-s">S</text>
+  <!-- S=O double bond -->
+  <line x1="123" y1="75" x2="123" y2="105" class="bond-double"/>
+  <line x1="128" y1="75" x2="128" y2="105" class="bond-double"/>
+  <text x="120" y="125" class="txt atom-o">O</text>
+  <!-- S to -CH2-CH(NH2)-COOH -->
+  <line x1="130" y1="65" x2="165" y2="85" class="bond"/>
+  <line x1="165" y1="85" x2="205" y2="60" class="bond"/>
+  <!-- Wedge NH2 -->
+  <polygon points="205,60 200,98 210,98" fill="#2563eb"/>
+  <text x="205" y="120" class="txt atom-n" text-anchor="middle">NH<tspan class="txt-sub" dy="4">2</tspan></text>
+  <!-- -COOH -->
+  <line x1="205" y1="60" x2="238" y2="38" class="bond"/>
+  <text x="242" y="35" class="txt atom-o">COOH</text>
+</g>
+</svg>"""
+
+# 9. glucose_haworth_options
+diagrams["glucose_haworth_options"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 240" width="100%" height="100%">{COMMON_STYLE}
+<rect width="710" height="240" class="chem-bg"/>
+<!-- Option A: alpha-D-glucopyranose (ĐÚNG) -->
+<g transform="translate(25, 20)">
+  <rect width="150" height="200" class="opt-box"/>
+  <text x="75" y="26" class="tag" text-anchor="middle">Hình A (α-glucose)</text>
+  <g transform="translate(18, 50)">
+    <path d="M 20,40 L 55,28 L 90,40 L 80,80 L 30,80 Z" class="ring" fill="#ffffff"/>
+    <line x1="30" y1="80" x2="80" y2="80" class="bond-bold"/>
+    <text x="55" y="26" class="txt atom-o" text-anchor="middle">O</text>
+    <!-- C1: OH down (alpha) -->
+    <line x1="90" y1="40" x2="90" y2="65" class="bond-thin"/><text x="90" y="78" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="80" y1="80" x2="80" y2="100" class="bond-thin"/><text x="80" y="112" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="55" y1="80" x2="55" y2="62" class="bond-thin"/><text x="55" y="58" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="30" y1="80" x2="30" y2="100" class="bond-thin"/><text x="30" y="112" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="20" y1="40" x2="20" y2="18" class="bond-thin"/><text x="20" y="14" class="txt" font-size="11" text-anchor="middle">CH₂OH</text>
+  </g>
+</g>
+<!-- Option B: beta-D-glucose (C1 OH up) -->
+<g transform="translate(195, 20)">
+  <rect width="150" height="200" class="opt-box"/>
+  <text x="75" y="26" class="sublbl" font-weight="700" text-anchor="middle">Hình B (β-glucose)</text>
+  <g transform="translate(18, 50)">
+    <path d="M 20,40 L 55,28 L 90,40 L 80,80 L 30,80 Z" class="ring" fill="#ffffff"/>
+    <line x1="30" y1="80" x2="80" y2="80" class="bond-bold"/>
+    <text x="55" y="26" class="txt atom-o" text-anchor="middle">O</text>
+    <!-- C1: OH up (beta) -->
+    <line x1="90" y1="40" x2="90" y2="18" class="bond-thin"/><text x="90" y="14" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="80" y1="80" x2="80" y2="100" class="bond-thin"/><text x="80" y="112" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="55" y1="80" x2="55" y2="62" class="bond-thin"/><text x="55" y="58" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="30" y1="80" x2="30" y2="100" class="bond-thin"/><text x="30" y="112" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="20" y1="40" x2="20" y2="18" class="bond-thin"/><text x="20" y="14" class="txt" font-size="11" text-anchor="middle">CH₂OH</text>
+  </g>
+</g>
+<!-- Option C: Sai C3 OH down -->
+<g transform="translate(365, 20)">
+  <rect width="150" height="200" class="opt-box"/>
+  <text x="75" y="26" class="sublbl" font-weight="700" text-anchor="middle">Hình C</text>
+  <g transform="translate(18, 50)">
+    <path d="M 20,40 L 55,28 L 90,40 L 80,80 L 30,80 Z" class="ring" fill="#ffffff"/>
+    <line x1="30" y1="80" x2="80" y2="80" class="bond-bold"/>
+    <text x="55" y="26" class="txt atom-o" text-anchor="middle">O</text>
+    <line x1="90" y1="40" x2="90" y2="65" class="bond-thin"/><text x="90" y="78" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="80" y1="80" x2="80" y2="100" class="bond-thin"/><text x="80" y="112" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="55" y1="80" x2="55" y2="100" class="bond-thin"/><text x="55" y="112" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="30" y1="80" x2="30" y2="100" class="bond-thin"/><text x="30" y="112" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="20" y1="40" x2="20" y2="18" class="bond-thin"/><text x="20" y="14" class="txt" font-size="11" text-anchor="middle">CH₂OH</text>
+  </g>
+</g>
+<!-- Option D: Vòng 5 cạnh (Furanose) -->
+<g transform="translate(535, 20)">
+  <rect width="150" height="200" class="opt-box"/>
+  <text x="75" y="26" class="sublbl" font-weight="700" text-anchor="middle">Hình D</text>
+  <g transform="translate(18, 50)">
+    <path d="M 25,45 L 55,25 L 85,45 L 75,85 L 35,85 Z" class="ring" fill="#ffffff"/>
+    <line x1="35" y1="85" x2="75" y2="85" class="bond-bold"/>
+    <text x="55" y="23" class="txt atom-o" text-anchor="middle">O</text>
+    <line x1="85" y1="45" x2="85" y2="70" class="bond-thin"/><text x="85" y="82" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="75" y1="85" x2="75" y2="105" class="bond-thin"/><text x="75" y="117" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="35" y1="85" x2="35" y2="105" class="bond-thin"/><text x="35" y="117" class="txt atom-o" font-size="11" text-anchor="middle">OH</text>
+    <line x1="25" y1="45" x2="25" y2="20" class="bond-thin"/><text x="25" y="15" class="txt" font-size="11" text-anchor="middle">CH₂OH</text>
+  </g>
+</g>
+</svg>"""
+
+# 10. amine_skeletal_structure
+diagrams["amine_skeletal_structure"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 140" width="100%" height="100%">{COMMON_STYLE}
+<rect width="380" height="140" class="chem-bg"/>
+<text x="24" y="28" class="tag">Công thức khung phân tử của amine:</text>
+<g transform="translate(75, 45)">
+  <!-- Left ethyl: CH3-CH2- -->
+  <line x1="20" y1="65" x2="55" y2="35" class="bond"/>
+  <line x1="55" y1="35" x2="95" y2="60" class="bond"/>
+  <!-- Central NH in blue -->
+  <text x="110" y="66" class="txt atom-n" text-anchor="middle" font-size="17">NH</text>
+  <!-- Right ethyl: -CH2-CH3 -->
+  <line x1="125" y1="60" x2="165" y2="35" class="bond"/>
+  <line x1="165" y1="35" x2="200" y2="65" class="bond"/>
+</g>
+</svg>"""
+
+# 11. nicotin_structure
+diagrams["nicotin_structure"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 180" width="100%" height="100%">{COMMON_STYLE}
+<rect width="450" height="180" class="chem-bg"/>
+<text x="24" y="28" class="tag">Cấu trúc phân tử Nicotine:</text>
+<g transform="translate(80, 45)">
+  <!-- Pyridine ring (6-membered) -->
+  <g transform="translate(40, 20)">
+    <polygon points="35,0 70,20 70,60 35,80 0,60 0,20" class="ring"/>
+    <line x1="5" y1="23" x2="5" y2="57" class="bond-double" stroke="#0284c7"/>
+    <line x1="33" y1="75" x2="65" y2="57" class="bond-double" stroke="#0284c7"/>
+    <line x1="65" y1="23" x2="35" y2="5" class="bond-double" stroke="#0284c7"/>
+    <circle cx="35" cy="80" r="11" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="35" y="85" class="txt atom-n" text-anchor="middle" font-size="14">N</text>
+  </g>
+  <!-- Bond connecting Pyridine to Pyrrolidine -->
+  <line x1="110" y1="40" x2="145" y2="40" class="bond"/>
+  <!-- Pyrrolidine ring (5-membered) -->
+  <g transform="translate(145, 10)">
+    <polygon points="0,30 25,0 65,10 65,50 25,60" class="ring"/>
+    <circle cx="65" cy="30" r="11" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="65" y="35" class="txt atom-n" text-anchor="middle" font-size="14">N</text>
+    <!-- Methyl group -CH3 attached to N -->
+    <line x1="77" y1="30" x2="105" y2="30" class="bond"/>
+    <text x="110" y="35" class="txt">CH<tspan class="txt-sub" dy="4">3</tspan></text>
+  </g>
+</g>
+</svg>"""
+
+# 12. esterification_kinetics_graphs
+diagrams["esterification_kinetics_graphs"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 230" width="100%" height="100%">{COMMON_STYLE}
+<rect width="720" height="230" class="chem-bg"/>
+<!-- Graph A: Reversible equilibrium -> asymptotes above 0 (ĐÚNG) -->
+<g transform="translate(35, 25)">
+  <rect width="145" height="185" class="opt-box"/>
+  <text x="72" y="24" class="tag" text-anchor="middle">Đồ thị A (Đúng)</text>
+  <!-- Axes -->
+  <line x1="30" y1="150" x2="125" y2="150" class="bond-thin"/>
+  <polygon points="125,147 132,150 125,153" fill="#1e293b"/>
+  <line x1="30" y1="150" x2="30" y2="40" class="bond-thin"/>
+  <polygon points="27,40 30,33 33,40" fill="#1e293b"/>
+  <text x="135" y="154" class="txt" font-size="12">t</text>
+  <text x="22" y="36" class="txt" font-size="12">n</text>
+  <text x="24" y="65" class="txt" font-size="11" text-anchor="end">0,1</text>
+  <text x="24" y="154" class="sublbl" font-size="11" text-anchor="end">0</text>
+  <!-- Asymptote curve -->
+  <path d="M 30,60 C 55,105 80,118 120,118" fill="none" stroke="#16a34a" stroke-width="2.6" stroke-linecap="round"/>
+  <line x1="30" y1="118" x2="120" y2="118" stroke="#16a34a" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="75" y="175" class="txt" font-size="11" fill="#16a34a" text-anchor="middle">Thuận nghịch (n &gt; 0)</text>
+</g>
+<!-- Graph B: Linear straight drop to 0 -->
+<g transform="translate(205, 25)">
+  <rect width="145" height="185" class="opt-box"/>
+  <text x="72" y="24" class="sublbl" font-weight="700" text-anchor="middle">Đồ thị B</text>
+  <line x1="30" y1="150" x2="125" y2="150" class="bond-thin"/>
+  <polygon points="125,147 132,150 125,153" fill="#1e293b"/>
+  <line x1="30" y1="150" x2="30" y2="40" class="bond-thin"/>
+  <polygon points="27,40 30,33 33,40" fill="#1e293b"/>
+  <text x="135" y="154" class="txt" font-size="12">t</text>
+  <text x="22" y="36" class="txt" font-size="12">n</text>
+  <text x="24" y="65" class="txt" font-size="11" text-anchor="end">0,1</text>
+  <text x="24" y="154" class="sublbl" font-size="11" text-anchor="end">0</text>
+  <line x1="30" y1="60" x2="115" y2="150" stroke="#dc2626" stroke-width="2.6" stroke-linecap="round"/>
+  <text x="75" y="175" class="sublbl" font-size="11" text-anchor="middle">Giảm tuyến tính</text>
+</g>
+<!-- Graph C: Curve touching 0 -->
+<g transform="translate(375, 25)">
+  <rect width="145" height="185" class="opt-box"/>
+  <text x="72" y="24" class="sublbl" font-weight="700" text-anchor="middle">Đồ thị C</text>
+  <line x1="30" y1="150" x2="125" y2="150" class="bond-thin"/>
+  <polygon points="125,147 132,150 125,153" fill="#1e293b"/>
+  <line x1="30" y1="150" x2="30" y2="40" class="bond-thin"/>
+  <polygon points="27,40 30,33 33,40" fill="#1e293b"/>
+  <text x="135" y="154" class="txt" font-size="12">t</text>
+  <text x="22" y="36" class="txt" font-size="12">n</text>
+  <text x="24" y="65" class="txt" font-size="11" text-anchor="end">0,1</text>
+  <text x="24" y="154" class="sublbl" font-size="11" text-anchor="end">0</text>
+  <path d="M 30,60 Q 60,145 115,150" fill="none" stroke="#d97706" stroke-width="2.6" stroke-linecap="round"/>
+  <text x="75" y="175" class="sublbl" font-size="11" text-anchor="middle">Một chiều (về 0)</text>
+</g>
+<!-- Graph D: Curve rising -->
+<g transform="translate(545, 25)">
+  <rect width="145" height="185" class="opt-box"/>
+  <text x="72" y="24" class="sublbl" font-weight="700" text-anchor="middle">Đồ thị D</text>
+  <line x1="30" y1="150" x2="125" y2="150" class="bond-thin"/>
+  <polygon points="125,147 132,150 125,153" fill="#1e293b"/>
+  <line x1="30" y1="150" x2="30" y2="40" class="bond-thin"/>
+  <polygon points="27,40 30,33 33,40" fill="#1e293b"/>
+  <text x="135" y="154" class="txt" font-size="12">t</text>
+  <text x="22" y="36" class="txt" font-size="12">n</text>
+  <text x="24" y="65" class="txt" font-size="11" text-anchor="end">0,1</text>
+  <text x="24" y="154" class="sublbl" font-size="11" text-anchor="end">0</text>
+  <path d="M 30,150 Q 60,65 115,60" fill="none" stroke="#9333ea" stroke-width="2.6" stroke-linecap="round"/>
+  <text x="75" y="175" class="sublbl" font-size="11" text-anchor="middle">Đường tăng dần</text>
+</g>
+</svg>"""
+
+# 13. saponification_dish_experiment
+diagrams["saponification_dish_experiment"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 250" width="100%" height="100%">{COMMON_STYLE}
+<rect width="540" height="250" class="chem-bg"/>
+<!-- Left: Dish and mesh on tripod -->
+<g transform="translate(50, 40)">
+  <!-- Wire gauze grid -->
+  <ellipse cx="140" cy="115" rx="70" ry="15" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+  <path d="M 80,115 L 200,115 M 100,105 L 180,125 M 100,125 L 180,105" stroke="#cbd5e1" stroke-width="1.5"/>
+  <!-- Ceramic dish -->
+  <path d="M 75,95 Q 140,150 205,95 Q 140,85 75,95 Z" fill="#ffffff" stroke="#475569" stroke-width="2.5"/>
+  <path d="M 88,100 Q 140,135 192,100 Q 140,92 88,100 Z" fill="#fbbf24" opacity="0.85"/>
+  <!-- Stirring rod -->
+  <line x1="200" y1="20" x2="135" y2="115" stroke="#0284c7" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+  <!-- Rotation arrow -->
+  <path d="M 185,15 A 15 15 0 1 1 170,30" fill="none" stroke="#0284c7" stroke-width="2"/>
+  <polygon points="172,34 167,26 176,27" fill="#0284c7"/>
+</g>
+<!-- Right: Labels -->
+<g transform="translate(290, 50)">
+  <text x="0" y="24" class="tag" font-size="16">Thí nghiệm xà phòng hoá:</text>
+  <text x="0" y="60" class="txt">🔄 <tspan font-weight="700">Liên tục khuấy</tspan> bằng đũa thuỷ tinh</text>
+  <text x="0" y="90" class="txt">🧪 Hỗn hợp phản ứng gồm:</text>
+  <text x="20" y="115" class="txt">• 1 mL dầu ăn (hoặc mỡ lợn)</text>
+  <text x="20" y="138" class="txt">• 3 mL dung dịch NaOH 40% đặc</text>
+  <text x="0" y="170" class="txt" font-weight="700" fill="#16a34a">✓ Thỉnh thoảng thêm vài giọt nước cất</text>
+</g>
+</svg>"""
+
+# 14. papain_dipeptide_structure
+diagrams["papain_dipeptide_structure"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 200" width="100%" height="100%">{COMMON_STYLE}
+<rect width="480" height="200" class="chem-bg"/>
+<text x="24" y="28" class="tag">Cấu trúc chuỗi dipeptide trong Papain (đu đủ):</text>
+<g transform="translate(35, 45)">
+  <!-- Imidazole 5-membered ring -->
+  <g transform="translate(30, 70)">
+    <polygon points="0,20 20,-10 50,0 50,35 15,45" class="ring"/>
+    <text x="2" y="50" class="txt atom-n" font-size="13">NH</text>
+    <text x="45" y="10" class="txt atom-n" font-size="13">N</text>
+    <line x1="22" y1="-5" x2="44" y2="3" class="bond-double" stroke="#0284c7"/>
+  </g>
+  <!-- Sidechain connecting to backbone -->
+  <line x1="80" y1="88" x2="120" y2="88" class="bond"/>
+  <line x1="120" y1="88" x2="145" y2="55" class="bond"/>
+  <!-- Backbone Carboxyl branch -COOH -->
+  <line x1="145" y1="55" x2="175" y2="75" class="bond"/>
+  <line x1="173" y1="75" x2="173" y2="105" class="bond-double"/>
+  <line x1="178" y1="75" x2="178" y2="105" class="bond-double"/>
+  <text x="170" y="125" class="txt atom-o">O</text>
+  <line x1="175" y1="75" x2="205" y2="60" class="bond"/>
+  <text x="210" y="65" class="txt atom-o">OH</text>
+  <!-- Peptide link -HN-CO- -->
+  <line x1="145" y1="55" x2="145" y2="25" class="bond"/>
+  <text x="135" y="18" class="txt atom-n">HN</text>
+  <line x1="158" y1="12" x2="190" y2="12" class="bond"/>
+  <text x="195" y="18" class="txt">C</text>
+  <line x1="198" y1="20" x2="198" y2="45" class="bond-double"/>
+  <line x1="203" y1="20" x2="203" y2="45" class="bond-double"/>
+  <text x="195" y="62" class="txt atom-o">O</text>
+  <!-- N-terminus -->
+  <line x1="210" y1="12" x2="245" y2="12" class="bond"/>
+  <line x1="245" y1="12" x2="270" y2="38" class="bond"/>
+  <line x1="270" y1="38" x2="300" y2="12" class="bond"/>
+  <text x="305" y="18" class="txt atom-n">H₂N</text>
+</g>
+</svg>"""
+
+# 15. alpha_glucose_numbered_ring
+diagrams["alpha_glucose_numbered_ring"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 225" width="100%" height="100%">{COMMON_STYLE}
+<rect width="460" height="225" class="chem-bg"/>
+<text x="24" y="28" class="tag">Vòng Haworth của α-glucose (đánh số 1 → 6):</text>
+<g transform="translate(115, 45)">
+  <!-- Pyranose ring -->
+  <path d="M 40,45 L 105,25 L 170,45 L 150,110 L 60,110 Z" class="ring" fill="#f8fafc"/>
+  <line x1="60" y1="110" x2="150" y2="110" class="bond-bold"/>
+  <text x="105" y="23" class="txt atom-o" text-anchor="middle">O</text>
+  <!-- Carbon numbers with colored badges -->
+  <circle cx="185" cy="42" r="11" class="num-pill"/><text x="185" y="46" class="num-txt">1</text>
+  <circle cx="165" cy="115" r="11" class="num-pill"/><text x="165" y="119" class="num-txt">2</text>
+  <circle cx="105" cy="128" r="11" class="num-pill"/><text x="105" y="132" class="num-txt">3</text>
+  <circle cx="45" cy="115" r="11" class="num-pill"/><text x="45" y="119" class="num-txt">4</text>
+  <circle cx="25" cy="45" r="11" class="num-pill"/><text x="25" y="49" class="num-txt">5</text>
+  <circle cx="25" cy="10" r="11" class="num-pill"/><text x="25" y="14" class="num-txt">6</text>
+  <!-- C1: OH down (alpha) -->
+  <line x1="170" y1="45" x2="170" y2="80" class="bond-thin"/>
+  <text x="170" y="95" class="txt atom-o" text-anchor="middle" font-size="12">OH (α)</text>
+  <!-- C2: OH down -->
+  <line x1="150" y1="110" x2="150" y2="135" class="bond-thin"/>
+  <text x="150" y="150" class="txt atom-o" text-anchor="middle" font-size="12">OH</text>
+  <!-- C3: OH up -->
+  <line x1="105" y1="110" x2="105" y2="85" class="bond-thin"/>
+  <text x="105" y="80" class="txt atom-o" text-anchor="middle" font-size="12">OH</text>
+  <!-- C4: OH down -->
+  <line x1="60" y1="110" x2="60" y2="135" class="bond-thin"/>
+  <text x="60" y="150" class="txt atom-o" text-anchor="middle" font-size="12">OH</text>
+  <!-- C5: CH2OH (C6) up -->
+  <line x1="40" y1="45" x2="40" y2="15" class="bond-thin"/>
+  <text x="40" y="10" class="txt" text-anchor="middle" font-size="12">CH₂OH</text>
+</g>
+</svg>"""
+
+# 16. epa_dha_structures
+diagrams["epa_dha_structures"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 240" width="100%" height="100%">{COMMON_STYLE}
+<rect width="710" height="240" class="chem-bg"/>
+<text x="24" y="26" class="tag">Cấu trúc các axit béo không no omega-3 (EPA và DHA):</text>
+<!-- EPA: 20 carbons, 5 double bonds -->
+<g transform="translate(35, 50)">
+  <text x="0" y="22" class="txt" font-weight="700" fill="#0369a1">EPA (C20:5, ω-3):</text>
+  <!-- Polyunsaturated zigzag chain -->
+  <path d="M 130,18 L 150,5 L 170,18 L 190,5 L 210,18 L 230,5 L 250,18 L 270,5 L 290,18 L 310,5 L 330,18 L 350,5 L 370,18 L 390,5 L 410,18 L 430,5 L 450,18 L 470,5 L 490,18 L 515,5" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Double bond indicators -->
+  <line x1="212" y1="13" x2="228" y2="2" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="272" y1="13" x2="288" y2="2" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="332" y1="13" x2="348" y2="2" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="392" y1="13" x2="408" y2="2" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="452" y1="13" x2="468" y2="2" stroke="#dc2626" stroke-width="1.8"/>
+  <!-- COOH head -->
+  <line x1="515" y1="5" x2="540" y2="5" class="bond"/>
+  <text x="545" y="9" class="txt atom-o">COOH</text>
+  <text x="635" y="9" class="sublbl">(5 liên kết C=C cis)</text>
+</g>
+<!-- DHA: 22 carbons, 6 double bonds -->
+<g transform="translate(35, 130)">
+  <text x="0" y="22" class="txt" font-weight="700" fill="#0369a1">DHA (C22:6, ω-3):</text>
+  <path d="M 130,18 L 148,5 L 166,18 L 184,5 L 202,18 L 220,5 L 238,18 L 256,5 L 274,18 L 292,5 L 310,18 L 328,5 L 346,18 L 364,5 L 382,18 L 400,5 L 418,18 L 436,5 L 454,18 L 472,5 L 490,18 L 515,5" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- 6 double bond indicators -->
+  <line x1="186" y1="13" x2="200" y2="2" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="240" y1="13" x2="254" y2="2" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="294" y1="13" x2="308" y2="2" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="348" y1="13" x2="362" y2="2" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="402" y1="13" x2="416" y2="2" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="456" y1="13" x2="470" y2="2" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="515" y1="5" x2="540" y2="5" class="bond"/>
+  <text x="545" y="9" class="txt atom-o">COOH</text>
+  <text x="635" y="9" class="sublbl">(6 liên kết C=C cis)</text>
+</g>
+</svg>"""
+
+# 17. sodium_lauryl_sulfate_head
+diagrams["sodium_lauryl_sulfate_head"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 160" width="100%" height="100%">{COMMON_STYLE}
+<rect width="460" height="160" class="chem-bg"/>
+<text x="24" y="28" class="tag">Sodium lauryl sulfate (SLS):</text>
+<g transform="translate(35, 75)">
+  <!-- Tail text -->
+  <text x="15" y="6" class="txt" font-weight="700" fill="#0284c7">CH₃–(CH₂)₁₁–</text>
+  <line x1="120" y1="0" x2="150" y2="0" class="bond"/>
+  <!-- Ester Oxygen -->
+  <text x="155" y="6" class="txt atom-o">O</text>
+  <line x1="172" y1="0" x2="198" y2="0" class="bond"/>
+  <!-- Central S atom -->
+  <text x="202" y="6" class="txt atom-s">S</text>
+  <!-- O double bonds -->
+  <line x1="209" y1="-8" x2="209" y2="-25" class="bond-double"/>
+  <line x1="214" y1="-8" x2="214" y2="-25" class="bond-double"/>
+  <text x="207" y="-30" class="txt atom-o">O</text>
+  <line x1="209" y1="12" x2="209" y2="29" class="bond-double"/>
+  <line x1="214" y1="12" x2="214" y2="29" class="bond-double"/>
+  <text x="207" y="45" class="txt atom-o">O</text>
+  <!-- O- Na+ -->
+  <line x1="220" y1="0" x2="242" y2="0" class="bond"/>
+  <text x="246" y="6" class="txt atom-o">O<tspan dy="-5" font-size="11">⁻</tspan></text>
+  <text x="270" y="6" class="txt atom-na">Na<tspan dy="-5" font-size="11">⁺</tspan></text>
+</g>
+</svg>"""
+
+# 18. triglyceride_x_chains
+diagrams["triglyceride_x_chains"] = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 230" width="100%" height="100%">{COMMON_STYLE}
+<rect width="520" height="230" class="chem-bg"/>
+<text x="24" y="28" class="tag">Công thức tổng quát của triglyceride (chất béo):</text>
+<g transform="translate(60, 45)">
+  <!-- Glycerol Backbone -->
+  <text x="40" y="45" class="txt">CH₂</text>
+  <line x1="52" y1="52" x2="52" y2="78" class="bond"/>
+  <text x="40" y="95" class="txt">CH</text>
+  <line x1="52" y1="102" x2="52" y2="128" class="bond"/>
+  <text x="40" y="145" class="txt">CH₂</text>
+  <!-- Ester link 1 -->
+  <line x1="75" y1="40" x2="105" y2="40" class="bond"/>
+  <text x="110" y="45" class="txt atom-o">O</text>
+  <line x1="126" y1="40" x2="155" y2="40" class="bond"/>
+  <!-- C=O -->
+  <text x="160" y="45" class="txt">C</text>
+  <line x1="163" y1="30" x2="163" y2="10" class="bond-double"/>
+  <line x1="168" y1="30" x2="168" y2="10" class="bond-double"/>
+  <text x="160" y="5" class="txt atom-o">O</text>
+  <line x1="175" y1="40" x2="205" y2="40" class="bond"/>
+  <text x="210" y="45" class="txt" font-weight="700" fill="#0284c7">R₁</text>
+  <!-- Ester link 2 -->
+  <line x1="68" y1="90" x2="105" y2="90" class="bond"/>
+  <text x="110" y="95" class="txt atom-o">O</text>
+  <line x1="126" y1="90" x2="155" y2="90" class="bond"/>
+  <text x="160" y="95" class="txt">C</text>
+  <line x1="163" y1="80" x2="163" y2="60" class="bond-double"/>
+  <line x1="168" y1="80" x2="168" y2="60" class="bond-double"/>
+  <text x="160" y="55" class="txt atom-o">O</text>
+  <line x1="175" y1="90" x2="205" y2="90" class="bond"/>
+  <text x="210" y="95" class="txt" font-weight="700" fill="#0284c7">R₂</text>
+  <!-- Ester link 3 -->
+  <line x1="75" y1="140" x2="105" y2="140" class="bond"/>
+  <text x="110" y="145" class="txt atom-o">O</text>
+  <line x1="126" y1="140" x2="155" y2="140" class="bond"/>
+  <text x="160" y="145" class="txt">C</text>
+  <line x1="163" y1="130" x2="163" y2="110" class="bond-double"/>
+  <line x1="168" y1="130" x2="168" y2="110" class="bond-double"/>
+  <text x="160" y="105" class="txt atom-o">O</text>
+  <line x1="175" y1="140" x2="205" y2="140" class="bond"/>
+  <text x="210" y="145" class="txt" font-weight="700" fill="#0284c7">R₃</text>
+  <!-- Side bracket annotation -->
+  <path d="M 20,30 L 10,30 L 10,90 L 0,90 L 10,90 L 10,150 L 20,150" fill="none" stroke="#64748b" stroke-width="1.5"/>
+  <text x="-10" y="95" class="txt" font-size="12" fill="#64748b" text-anchor="end">Gốc glycerol</text>
+</g>
+</svg>"""
+
+print(f"Generated {len(diagrams)} redesigned diagrams.")
+
+# Clean minification / string format for js/diagrams.js
+out_lines = ["var DIAGRAMS = window.DIAGRAMS = {"]
+for idx, (k, svg) in enumerate(diagrams.items()):
+    clean_svg = " ".join(svg.split())
+    # JSON-escape quotes
+    escaped_svg = clean_svg.replace('"', '\\"')
+    comma = "," if idx < len(diagrams) - 1 else ""
+    out_lines.append(f'  "{k}": "{escaped_svg}"{comma}')
+out_lines.append("};")
+out_lines.append("")
+
+output_text = "\n".join(out_lines)
+DIAG_JS.write_text(output_text, encoding="utf-8")
+print(f"Wrote all {len(diagrams)} redesigned diagrams to {DIAG_JS}")

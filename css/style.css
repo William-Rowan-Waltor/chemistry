@@ -638,9 +638,30 @@ tbody td.col0{font-weight:600;white-space:nowrap}
 .q-prog i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .3s var(--ease-standard)}
 .q-kind{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:4px 11px;margin:0 0 10px}
 .q-text{font-family:var(--font-display);font-size:1.1rem;font-weight:500;letter-spacing:.004em;line-height:1.64;margin:6px 0 20px;font-optical-sizing:auto}
-.q-diagram-wrap{margin:12px 0 20px;padding:12px;background:var(--surface-2,rgba(255,255,255,0.03));border:1px solid var(--line-soft,rgba(255,255,255,0.08));border-radius:14px;display:flex;justify-content:center;align-items:center;overflow:hidden;max-width:100%}
-.q-diagram-wrap svg{max-width:100%;height:auto;display:block;border-radius:10px}
-.q-diagram-wrap.q-diagram-review{max-width:540px;margin:8px 0 14px;padding:8px}
+.q-diagram-wrap {
+  margin: 16px auto 24px;
+  padding: 14px;
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--line-soft, #e2e8f0);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  max-width: 760px;
+}
+.q-diagram-wrap svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+.q-diagram-wrap.q-diagram-review {
+  max-width: 580px;
+  margin: 12px auto 18px;
+  padding: 10px;
+}
 .mcq-opts{display:grid;gap:9px}
 .mcq-opt{
   text-align:left;border:1px solid var(--line-soft);background:var(--surface);border-radius:12px;
@@ -7508,4 +7529,46 @@ html[data-theme="dark"] .mol-pill-tag {
   .tm-feynman-card, .tm-note-card {
     padding: 12px 14px;
   }
+}
+
+/* Publication-grade chemical diagram theme support */
+html[data-theme="dark"] .q-diagram-wrap {
+  background: var(--surface, #1e2022);
+  border-color: var(--line-soft, #333a42);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+html[data-theme="dark"] .q-diagram-wrap svg .chem-bg {
+  fill: #1e293b !important;
+  stroke: #334155 !important;
+}
+html[data-theme="dark"] .q-diagram-wrap svg .txt {
+  fill: #f8fafc !important;
+}
+html[data-theme="dark"] .q-diagram-wrap svg .bond,
+html[data-theme="dark"] .q-diagram-wrap svg .bond-thin,
+html[data-theme="dark"] .q-diagram-wrap svg .bond-double {
+  stroke: #cbd5e1 !important;
+}
+html[data-theme="dark"] .q-diagram-wrap svg .bond-bold {
+  stroke: #ffffff !important;
+}
+html[data-theme="dark"] .q-diagram-wrap svg .ring {
+  stroke: #cbd5e1 !important;
+}
+html[data-theme="dark"] .q-diagram-wrap svg .ring-circle {
+  stroke: #94a3b8 !important;
+}
+html[data-theme="dark"] .q-diagram-wrap svg .sublbl {
+  fill: #94a3b8 !important;
+}
+html[data-theme="dark"] .q-diagram-wrap svg .opt-box {
+  fill: #0f172a !important;
+  stroke: #334155 !important;
+}
+html[data-theme="dark"] .q-diagram-wrap svg .num-pill {
+  fill: #0c4a6e !important;
+  stroke: #0284c7 !important;
+}
+html[data-theme="dark"] .q-diagram-wrap svg .num-txt {
+  fill: #38bdf8 !important;
 }
