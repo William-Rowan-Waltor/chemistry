@@ -3193,7 +3193,14 @@
     return bankQuestionHTML(bs, it);
   }
   function bankKindBadge(k) {
-    var m = { m: [ico("choose"), "Trắc nghiệm"], tf: [ico("scale"), "Đúng / Sai"], n: [ico("type"), "Điền số"] }[k] || [k, k];
+    var m = {
+      m: [ico("choose"), "Trắc nghiệm"],
+      mc: [ico("choose"), "Trắc nghiệm"],
+      tf: [ico("scale"), "Đúng / Sai"],
+      n: [ico("type"), "Điền số"],
+      num: [ico("type"), "Điền số"],
+      sa: [ico("type"), "Điền số"]
+    }[k] || [ico("type"), k];
     return '<span class="q-kind">' + m[0] + " " + m[1] + "</span>";
   }
   function bankQuestionHTML(bs, it) {
@@ -3211,7 +3218,7 @@
         '<span class="q-prog"><i style="width:' + Math.round((idx / total) * 100) + '%"></i></span>' +
       "</div>" + bankKindBadge(it.k);
     var body = "";
-    if (it.k === "m") {
+    if (it.k === "m" || it.k === "mc") {
       body = '<div class="mcq-opts">' + opts.map(function (o) {
         return '<button class="mcq-opt" data-act="bankPick" data-p="' + esc(o.k) + '"><span class="opt-key">' + esc(o.k) + '.</span><span class="opt-text">' + fmt(o.t) + '</span></button>';
       }).join("") + "</div>";
@@ -3244,7 +3251,7 @@
     var it = bs.items[bs.i];
     var fb = $("#qFeedback");
     var correct = false;
-    if (it.k === "m" || it.k === "tf") {
+    if (it.k === "m" || it.k === "mc" || it.k === "tf") {
       correct = (pick === it.a) || (it.k === "tf" && String(pick) === String(it.a));
     } else {
       if (pick === "submit") {
@@ -3265,7 +3272,7 @@
       btn.disabled = true;
     });
 
-    if (it.k === "m" || it.k === "tf") {
+    if (it.k === "m" || it.k === "mc" || it.k === "tf") {
       $(".mcq-opt, .tf-opt").forEach(function(btn) {
         var p = btn.getAttribute("data-p");
         if (p === String(it.a)) {
@@ -3294,8 +3301,8 @@
       : '<div class="fb bad">' +
           '<div class="fb-header"><span class="fb-badge bad">' + ico("close") + ' Chưa chính xác</span> <b>Phân tích lỗi sai:</b></div>' +
           '<div class="fb-comparison">' +
-            '<div class="fb-comp-row correct"><span class="fb-comp-label">' + ico("check") + ' Đáp án đúng:</span><span class="fb-comp-val"><b>' + esc(it.a) + (it.k === "m" ? '. ' + fmt(correctObj.t) : '') + '</b></span></div>' +
-            '<div class="fb-comp-row wrong"><span class="fb-comp-label">' + ico("close") + ' Bạn đã chọn:</span><span class="fb-comp-val"><b>' + esc(pick) + (it.k === "m" ? '. ' + fmt(pickedObj.t) : '') + '</b></span></div>' +
+            '<div class="fb-comp-row correct"><span class="fb-comp-label">' + ico("check") + ' Đáp án đúng:</span><span class="fb-comp-val"><b>' + esc(it.a) + ((it.k === "m" || it.k === "mc") ? '. ' + fmt(correctObj.t) : '') + '</b></span></div>' +
+            '<div class="fb-comp-row wrong"><span class="fb-comp-label">' + ico("close") + ' Bạn đã chọn:</span><span class="fb-comp-val"><b>' + esc(pick) + ((it.k === "m" || it.k === "mc") ? '. ' + fmt(pickedObj.t) : '') + '</b></span></div>' +
           '</div>' +
           (it.e ? '<div class="fb-section-box exp"><div class="fb-sec-title">' + ico("bulb") + ' <b>Phân tích & Lỗi sai cần tránh:</b></div><div class="fb-sec-desc">' + fmt(it.e) + '</div></div>' : '') +
         '</div>';
@@ -3438,7 +3445,7 @@
           '</div>';
         }).join("") +
       '</div>';
-    } else if (it.k === "m") {
+    } else if (it.k === "m" || it.k === "mc") {
       body = '<div class="mcq-opts">' + opts.map(function (o) {
         return '<button class="mcq-opt' + (ans === o.k ? " picked" : "") + '" data-act="testPick" data-p="' + esc(o.k) + '"><span class="opt-key">' + esc(o.k) + '.</span><span class="opt-text">' + fmt(o.t) + '</span></button>';
       }).join("") + "</div>";
@@ -3528,7 +3535,7 @@
         rawScore += earnedPts;
         maxScore += 1.0;
         details.push({ it: it, ans: subAns, ok: ok, subDetails: subDetails, earnedPts: earnedPts });
-      } else if (it.k === "n" || it.k === "num") {
+      } else if (it.k === "n" || it.k === "num" || it.k === "sa") {
         ok = checkNum(ans, it);
         var qWeight = (total === 28 ? 0.25 : 1);
         if (ok) rawScore += qWeight;
@@ -3571,7 +3578,7 @@
           }).join("") +
         '</div>';
       } else if (!d.ok) {
-        if (d.it.k === "m") yourAns = "Bạn chọn: " + (d.ans || "—") + "<br>Đáp án đúng: " + esc(d.it.a) + ". " + fmt(optionText(d.it, d.it.a));
+        if (d.it.k === "m" || d.it.k === "mc") yourAns = "Bạn chọn: " + (d.ans || "—") + "<br>Đáp án đúng: " + esc(d.it.a) + ". " + fmt(optionText(d.it, d.it.a));
         else if (d.it.k === "tf") yourAns = "Bạn chọn: " + (d.ans === "true" ? "Đúng" : d.ans === "false" ? "Sai" : "—") + "<br>Đáp án: " + (d.it.a === "true" ? "Đúng" : "Sai");
         else yourAns = "Bạn gõ: " + esc(d.ans || "—") + "<br>Đáp án đúng: " + fmt(d.it.a) + (d.it.u ? " " + esc(d.it.u) : "");
       }
@@ -4459,10 +4466,11 @@
         '<button class="' + tCls + '" data-act="coachPickTF" data-p="true" ' + (isSubmitted ? 'disabled' : '') + '>ĐÚNG</button>' +
         '<button class="' + fCls + '" data-act="coachPickTF" data-p="false" ' + (isSubmitted ? 'disabled' : '') + '>SAI</button>' +
       '</div>';
-    } else if (cur.k === "n" || cur.k === "num") {
+    } else if (cur.k === "n" || cur.k === "num" || cur.k === "sa") {
       var nVal = ans ? ans.picked : "";
       optsHtml = '<div class="short-ans-box">' +
         '<input type="text" id="coachShortAnsInput" class="short-ans-input" placeholder="Nhập đáp số (số hoặc chữ)..." value="' + esc(nVal || "") + '" ' + (isSubmitted ? 'disabled' : '') + '>' +
+        (cur.u ? '<span class="num-unit">' + esc(cur.u) + '</span>' : '') +
         (!isSubmitted ? '<button class="btn primary" data-act="coachPickN">Kiểm tra kết quả</button>' : '') +
       '</div>';
     } else {
@@ -4562,7 +4570,7 @@
         '<div class="fb-point-card p1-result">' +
           '<div class="fb-point-title">' + ico("target") + ' <b>1. Kết quả & Đáp án chuẩn xác:</b></div>' +
           '<div class="fb-point-content result-val">' +
-            (cur.sub ? cur.sub.map(function(s){ return '<b>' + esc(s.id) + ':</b> ' + (s.a === 'true' ? 'ĐÚNG' : 'SAI'); }).join(' · ') : ('<b>' + esc(cur.a) + '</b>' + (cur.k === "m" ? ' — ' + fmt((opts.find(function(o){ return o.k === String(cur.a).trim(); }) || {}).t || "") : ''))) +
+            (cur.sub ? cur.sub.map(function(s){ return '<b>' + esc(s.id) + ':</b> ' + (s.a === 'true' ? 'ĐÚNG' : 'SAI'); }).join(' · ') : ('<b>' + esc(cur.a) + '</b>' + ((cur.k === "m" || cur.k === "mc") ? ' — ' + fmt((opts.find(function(o){ return o.k === String(cur.a).trim(); }) || {}).t || "") : ''))) +
           '</div>' +
         '</div>' +
 
