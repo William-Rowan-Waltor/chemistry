@@ -4113,8 +4113,8 @@
   function resolveCoachChapter(q, test) {
     if (q && q.ch) return q.ch;
     var tid = test ? test.id : "";
-    if (tid.startsWith("g12t1") || tid.startsWith("g12t2") || tid.startsWith("g12t3") || tid.startsWith("g12t4") || tid.startsWith("g12t15")) return "g12c1";
-    if (tid.startsWith("g12t5") || tid.startsWith("g12t11") || tid.startsWith("g12t12") || tid.startsWith("g12t13") || tid.startsWith("g12t14")) return "g12c2";
+    if (tid === "g12t1" || tid === "g12t2" || tid === "g12t3" || tid === "g12t4" || tid === "g12t15") return "g12c1";
+    if (tid === "g12t5" || tid === "g12t11" || tid === "g12t12" || tid === "g12t13" || tid === "g12t14") return "g12c2";
     if (tid.startsWith("g11t1")) return "g11c1";
     if (tid.startsWith("g11t2")) return "g11c4";
 
@@ -6133,7 +6133,7 @@
         var filtered = allTests.filter(function (t) {
           if (curGrade !== "all" && t.grade !== curGrade) return false;
           if (query) {
-            var str = (t.title + " " + (t.desc || "") + " " + (t.grade || "")).toLowerCase();
+            var str = (t.title + " " + (t.desc || "") + " " + (t.author || "") + " " + (t.grade || "")).toLowerCase();
             if (!str.includes(query)) return false;
           }
           return true;
@@ -6149,6 +6149,7 @@
               '<div class="cec-icon">' + ico("target") + '</div>' +
               '<div class="cec-meta">' +
                 gradeBadge +
+                (t.author ? '<span class="author-pill">' + ico("user") + ' ' + esc(t.author) + '</span>' : '') +
                 '<span class="cec-count">' + qCount + ' câu hỏi</span>' +
                 '<span class="cec-time">' + ico("clock") + ' ~' + (t.timeMin || 45) + ' phút</span>' +
               '</div>' +

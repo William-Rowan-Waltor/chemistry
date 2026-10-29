@@ -237,9 +237,9 @@ qs_101 = [
 
 test_19 = {
     "id": "g12t19",
+    "grade": "g12",
     "title": "Đề 19 · GHK1 Hoá 12 — THPT Chuyên Lê Quý Đôn (Bà Rịa – Vũng Tàu) 2024–2025 (Mã đề 101)",
-    "grade": "12",
-    "ch": "g12c1",
+    "desc": "Đề kiểm tra giữa kì 1 Hoá 12 THPT Chuyên Lê Quý Đôn (Bà Rịa – Vũng Tàu) năm học 2024–2025 theo đúng ma trận cấu trúc Bộ GD&ĐT (28 câu: 18 MCQ, 4 Đúng/Sai, 6 Trả lời ngắn).",
     "author": "THPT Chuyên Lê Quý Đôn (Bà Rịa – Vũng Tàu)",
     "timeMin": 50,
     "qs": qs_101
@@ -468,9 +468,9 @@ qs_102 = [
 
 test_20 = {
     "id": "g12t20",
+    "grade": "g12",
     "title": "Đề 20 · GHK1 Hoá 12 — THPT Chuyên Lê Quý Đôn (Bà Rịa – Vũng Tàu) 2024–2025 (Mã đề 102)",
-    "grade": "12",
-    "ch": "g12c1",
+    "desc": "Đề kiểm tra giữa kì 1 Hoá 12 THPT Chuyên Lê Quý Đôn (Bà Rịa – Vũng Tàu) năm học 2024–2025 theo đúng ma trận cấu trúc Bộ GD&ĐT (28 câu: 18 MCQ, 4 Đúng/Sai, 6 Trả lời ngắn).",
     "author": "THPT Chuyên Lê Quý Đôn (Bà Rịa – Vũng Tàu)",
     "timeMin": 50,
     "qs": qs_102

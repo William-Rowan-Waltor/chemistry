@@ -92,6 +92,14 @@ def run_verification() -> int:
         title = t.get("title", "Untitled")
         qs = t.get("qs", [])
 
+        grade = t.get("grade")
+        if grade not in ("g11", "g12"):
+            errors.append(f"Test {tid} has invalid or missing grade: '{grade}' (must be 'g11' or 'g12')")
+        if not title or title == "Untitled":
+            errors.append(f"Test {tid} has missing or default title: '{title}'")
+        if not author or author == "Unknown Author":
+            errors.append(f"Test {tid} has missing author: '{author}'")
+
         if not qs:
             errors.append(f"Test {tid} has no questions!")
             continue
