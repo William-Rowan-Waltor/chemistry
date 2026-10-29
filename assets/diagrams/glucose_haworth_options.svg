@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 240" width="100%" height="100%">
+  <defs>
+    <style>
+      .optKey { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 16px; font-weight: 700; fill: #58a6ff; }
+      .txt { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11px; fill: #e6edf3; }
+      .ring { fill: #161b22; stroke: #8b949e; stroke-width: 1.5; }
+      .boldB { stroke: #e6edf3; stroke-width: 2.8; stroke-linecap: round; }
+      .oh { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 700; fill: #7ee787; }
+    </style>
+  </defs>
+  <rect width="680" height="240" rx="12" fill="#0d1117" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- Option A: alpha-D-glucopyranose (ĐÚNG) -->
+  <g transform="translate(30, 20)">
+    <text x="65" y="25" class="optKey" text-anchor="middle">A (Đúng)</text>
+    <g transform="translate(10, 45)">
+      <path d="M 20,40 L 55,28 L 90,40 L 80,80 L 30,80 Z" class="ring"/>
+      <line x1="30" y1="80" x2="80" y2="80" class="boldB"/>
+      <text x="55" y="27" class="txt" fill="#ff7b72" font-weight="700">O</text>
+      <!-- C1: OH down (alpha) -->
+      <line x1="90" y1="40" x2="90" y2="65" stroke="#8b949e"/><text x="90" y="78" class="oh" text-anchor="middle">OH</text>
+      <!-- C2: OH down -->
+      <line x1="80" y1="80" x2="80" y2="100" stroke="#8b949e"/><text x="80" y="112" class="oh" text-anchor="middle">OH</text>
+      <!-- C3: OH up -->
+      <line x1="55" y1="80" x2="55" y2="62" stroke="#8b949e"/><text x="55" y="58" class="oh" text-anchor="middle">OH</text>
+      <!-- C4: OH down -->
+      <line x1="30" y1="80" x2="30" y2="100" stroke="#8b949e"/><text x="30" y="112" class="oh" text-anchor="middle">OH</text>
+      <!-- C5: CH2OH up -->
+      <line x1="20" y1="40" x2="20" y2="18" stroke="#8b949e"/><text x="20" y="14" class="txt" text-anchor="middle">CH2OH</text>
+    </g>
+  </g>
+
+  <!-- Option B: beta-D-glucose (C1 OH up) -->
+  <g transform="translate(195, 20)">
+    <text x="65" y="25" class="optKey" text-anchor="middle" fill="#8b949e">B</text>
+    <g transform="translate(10, 45)">
+      <path d="M 20,40 L 55,28 L 90,40 L 80,80 L 30,80 Z" class="ring"/>
+      <line x1="30" y1="80" x2="80" y2="80" class="boldB"/>
+      <text x="55" y="27" class="txt" fill="#ff7b72" font-weight="700">O</text>
+      <!-- C1: OH up (beta) -->
+      <line x1="90" y1="40" x2="90" y2="18" stroke="#8b949e"/><text x="90" y="14" class="oh" text-anchor="middle">OH</text>
+      <line x1="80" y1="80" x2="80" y2="100" stroke="#8b949e"/><text x="80" y="112" class="oh" text-anchor="middle">OH</text>
+      <line x1="55" y1="80" x2="55" y2="62" stroke="#8b949e"/><text x="55" y="58" class="oh" text-anchor="middle">OH</text>
+      <line x1="30" y1="80" x2="30" y2="100" stroke="#8b949e"/><text x="30" y="112" class="oh" text-anchor="middle">OH</text>
+      <line x1="20" y1="40" x2="20" y2="18" stroke="#8b949e"/><text x="20" y="14" class="txt" text-anchor="middle">CH2OH</text>
+    </g>
+  </g>
+
+  <!-- Option C: Sai C3 OH down -->
+  <g transform="translate(360, 20)">
+    <text x="65" y="25" class="optKey" text-anchor="middle" fill="#8b949e">C</text>
+    <g transform="translate(10, 45)">
+      <path d="M 20,40 L 55,28 L 90,40 L 80,80 L 30,80 Z" class="ring"/>
+      <line x1="30" y1="80" x2="80" y2="80" class="boldB"/>
+      <text x="55" y="27" class="txt" fill="#ff7b72" font-weight="700">O</text>
+      <line x1="90" y1="40" x2="90" y2="65" stroke="#8b949e"/><text x="90" y="78" class="oh" text-anchor="middle">OH</text>
+      <line x1="80" y1="80" x2="80" y2="100" stroke="#8b949e"/><text x="80" y="112" class="oh" text-anchor="middle">OH</text>
+      <!-- C3 OH down (sai) -->
+      <line x1="55" y1="80" x2="55" y2="100" stroke="#8b949e"/><text x="55" y="112" class="oh" text-anchor="middle">OH</text>
+      <line x1="30" y1="80" x2="30" y2="100" stroke="#8b949e"/><text x="30" y="112" class="oh" text-anchor="middle">OH</text>
+      <line x1="20" y1="40" x2="20" y2="18" stroke="#8b949e"/><text x="20" y="14" class="txt" text-anchor="middle">CH2OH</text>
+    </g>
+  </g>
+
+  <!-- Option D: Vòng furanose 5 cạnh -->
+  <g transform="translate(525, 20)">
+    <text x="65" y="25" class="optKey" text-anchor="middle" fill="#8b949e">D</text>
+    <g transform="translate(10, 45)">
+      <path d="M 25,45 L 55,25 L 85,45 L 75,85 L 35,85 Z" class="ring"/>
+      <line x1="35" y1="85" x2="75" y2="85" class="boldB"/>
+      <text x="55" y="24" class="txt" fill="#ff7b72" font-weight="700">O</text>
+      <line x1="85" y1="45" x2="85" y2="70" stroke="#8b949e"/><text x="85" y="82" class="oh" text-anchor="middle">OH</text>
+      <line x1="75" y1="85" x2="75" y2="105" stroke="#8b949e"/><text x="75" y="117" class="oh" text-anchor="middle">OH</text>
+      <line x1="35" y1="85" x2="35" y2="105" stroke="#8b949e"/><text x="35" y="117" class="oh" text-anchor="middle">OH</text>
+      <line x1="25" y1="45" x2="25" y2="20" stroke="#8b949e"/><text x="25" y="15" class="txt" text-anchor="middle">CH2OH</text>
+    </g>
+  </g>
+</svg>

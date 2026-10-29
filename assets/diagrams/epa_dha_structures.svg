@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 230" width="100%" height="100%">
+  <defs>
+    <style>
+      .hdr { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; font-weight: 700; fill: #58a6ff; }
+      .tag { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 12px; font-weight: 600; fill: #8b949e; }
+      .bond { stroke: #79c0ff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .db { stroke: #e3b341; stroke-width: 2.8; stroke-linecap: round; }
+      .cooh { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; font-weight: 700; fill: #7ee787; }
+    </style>
+  </defs>
+  <rect width="680" height="230" rx="12" fill="#0d1117" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- EPA: 20 Carbon, 5 double bonds -->
+  <g transform="translate(30, 20)">
+    <text x="0" y="20" class="hdr">Eicosapentaenoic acid (EPA) – 20:5 (n-3):</text>
+    <g transform="translate(20, 45)">
+      <!-- Zigzag chain with 5 double bonds -->
+      <path d="M 0,15 L 20,0 L 40,15 L 60,0 L 80,15 L 100,0 L 120,15 L 140,0 L 160,15 L 180,0 L 200,15 L 220,0 L 240,15 L 260,0 L 280,15 L 300,0 L 320,15 L 340,0 L 360,15 L 380,0" class="bond"/>
+      <!-- Highlight 5 double bonds in gold -->
+      <line x1="20" y1="0" x2="40" y2="15" class="db"/>
+      <line x1="80" y1="15" x2="100" y2="0" class="db"/>
+      <line x1="140" y1="0" x2="160" y2="15" class="db"/>
+      <line x1="200" y1="15" x2="220" y2="0" class="db"/>
+      <line x1="260" y1="0" x2="280" y2="15" class="db"/>
+      <text x="390" y="6" class="cooh">COOH</text>
+      <!-- Annotation -->
+      <text x="150" y="35" class="tag">[5 liên kết đôi C=C dạng cis]</text>
+    </g>
+  </g>
+
+  <!-- DHA: 22 Carbon, 6 double bonds -->
+  <g transform="translate(30, 125)">
+    <text x="0" y="20" class="hdr">Docosahexaenoic acid (DHA) – 22:6 (n-3):</text>
+    <g transform="translate(20, 45)">
+      <!-- Zigzag chain with 6 double bonds -->
+      <path d="M 0,15 L 18,0 L 36,15 L 54,0 L 72,15 L 90,0 L 108,15 L 126,0 L 144,15 L 162,0 L 180,15 L 198,0 L 216,15 L 234,0 L 252,15 L 270,0 L 288,15 L 306,0 L 324,15 L 342,0 L 360,15 L 378,0 L 396,15" class="bond"/>
+      <!-- Highlight 6 double bonds -->
+      <line x1="18" y1="0" x2="36" y2="15" class="db"/>
+      <line x1="72" y1="15" x2="90" y2="0" class="db"/>
+      <line x1="126" y1="0" x2="144" y2="15" class="db"/>
+      <line x1="180" y1="15" x2="198" y2="0" class="db"/>
+      <line x1="234" y1="0" x2="252" y2="15" class="db"/>
+      <line x1="288" y1="15" x2="306" y2="0" class="db"/>
+      <text x="406" y="21" class="cooh">COOH</text>
+      <!-- Annotation -->
+      <text x="160" y="35" class="tag">[6 liên kết đôi C=C dạng cis]</text>
+    </g>
+  </g>
+</svg>

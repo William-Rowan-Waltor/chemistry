@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 160" width="100%" height="100%">
+  <defs>
+    <style>
+      .atom { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 15px; font-weight: 700; fill: #e6edf3; }
+      .bond { stroke: #8b949e; stroke-width: 2.2; stroke-linecap: round; }
+      .tag { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; font-weight: 600; fill: #58a6ff; }
+    </style>
+  </defs>
+  <rect width="420" height="160" rx="10" fill="#0d1117" stroke="#30363d" stroke-width="1.5"/>
+  <text x="20" y="28" class="tag">Glutamic acid (axit 2-aminopentanedioic):</text>
+
+  <g transform="translate(40, 45)">
+    <!-- Left COOH -->
+    <text x="10" y="55" class="atom" fill="#7ee787">HO</text>
+    <line x1="38" y1="50" x2="65" y2="50" class="bond"/>
+    
+    <line x1="65" y1="50" x2="65" y2="20" class="bond"/>
+    <line x1="69" y1="50" x2="69" y2="20" class="bond"/>
+    <text x="61" y="15" class="atom" fill="#ff7b72">O</text>
+
+    <!-- Chain C4 -> C3 -> C2 -->
+    <line x1="67" y1="50" x2="105" y2="75" class="bond"/>
+    <line x1="105" y1="75" x2="150" y2="50" class="bond"/>
+    <line x1="150" y1="50" x2="195" y2="75" class="bond"/>
+
+    <!-- Wedge NH2 at C2 -->
+    <polygon points="195,75 190,115 200,115" fill="#58a6ff"/>
+    <text x="180" y="135" class="atom" fill="#79c0ff">NH<tspan font-size="11" dy="3">2</tspan></text>
+
+    <!-- C2 to Right COOH -->
+    <line x1="195" y1="75" x2="240" y2="50" class="bond"/>
+    <line x1="238" y1="50" x2="238" y2="20" class="bond"/>
+    <line x1="242" y1="50" x2="242" y2="20" class="bond"/>
+    <text x="234" y="15" class="atom" fill="#ff7b72">O</text>
+
+    <line x1="240" y1="50" x2="270" y2="50" class="bond"/>
+    <text x="275" y="55" class="atom" fill="#7ee787">OH</text>
+  </g>
+</svg>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 230" width="100%" height="100%">
+  <defs>
+    <style>
+      .ax { stroke: #8b949e; stroke-width: 1.8; stroke-linecap: round; }
+      .curve { stroke: #58a6ff; stroke-width: 2.8; fill: none; stroke-linecap: round; }
+      .lbl { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; font-weight: 700; fill: #e6edf3; }
+      .sub { font-size: 11px; fill: #8b949e; }
+      .graphTitle { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 15px; font-weight: 700; fill: #58a6ff; }
+    </style>
+  </defs>
+  <rect width="680" height="230" rx="12" fill="#0d1117" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- Graph A: Reversible equilibrium -> asymptotes above 0 (ĐÚNG) -->
+  <g transform="translate(35, 30)">
+    <text x="70" y="15" class="graphTitle" text-anchor="middle">A (Đúng)</text>
+    <line x1="25" y1="160" x2="135" y2="160" class="ax"/> <!-- t-axis -->
+    <line x1="25" y1="160" x2="25" y2="40" class="ax"/>  <!-- n-axis -->
+    <text x="140" y="164" class="lbl">t</text>
+    <text x="18" y="35" class="lbl">n</text>
+    <text x="20" y="65" class="lbl" fill="#58a6ff" text-anchor="end">0,1</text>
+    <text x="18" y="165" class="lbl" text-anchor="end">0</text>
+    <!-- Smooth curve approaching equilibrium > 0 -->
+    <path d="M 25,60 C 50,110 75,125 125,125" class="curve" stroke="#7ee787"/>
+    <line x1="25" y1="125" x2="125" y2="125" stroke="#7ee787" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="80" y="185" class="sub" text-anchor="middle">Thuận nghịch (n &gt; 0)</text>
+  </g>
+
+  <!-- Graph B: Linear drop to 0 -->
+  <g transform="translate(195, 30)">
+    <text x="70" y="15" class="graphTitle" text-anchor="middle" fill="#8b949e">B</text>
+    <line x1="25" y1="160" x2="135" y2="160" class="ax"/>
+    <line x1="25" y1="160" x2="25" y2="40" class="ax"/>
+    <text x="140" y="164" class="lbl">t</text>
+    <text x="18" y="35" class="lbl">n</text>
+    <text x="20" y="65" class="lbl" text-anchor="end">0,1</text>
+    <text x="18" y="165" class="lbl" text-anchor="end">0</text>
+    <!-- Linear straight line to 0 -->
+    <line x1="25" y1="60" x2="125" y2="160" class="curve" stroke="#f85149"/>
+    <text x="80" y="185" class="sub" text-anchor="middle">Giảm tuyến tính</text>
+  </g>
+
+  <!-- Graph C: Exponential drop to 0 -->
+  <g transform="translate(355, 30)">
+    <text x="70" y="15" class="graphTitle" text-anchor="middle" fill="#8b949e">C</text>
+    <line x1="25" y1="160" x2="135" y2="160" class="ax"/>
+    <line x1="25" y1="160" x2="25" y2="40" class="ax"/>
+    <text x="140" y="164" class="lbl">t</text>
+    <text x="18" y="35" class="lbl">n</text>
+    <text x="20" y="65" class="lbl" text-anchor="end">0,1</text>
+    <text x="18" y="165" class="lbl" text-anchor="end">0</text>
+    <!-- Curve dropping all the way to 0 -->
+    <path d="M 25,60 Q 55,155 125,160" class="curve" stroke="#d29922"/>
+    <text x="80" y="185" class="sub" text-anchor="middle">Một chiều (chạm 0)</text>
+  </g>
+
+  <!-- Graph D: Curve increasing from 0 -->
+  <g transform="translate(515, 30)">
+    <text x="70" y="15" class="graphTitle" text-anchor="middle" fill="#8b949e">D</text>
+    <line x1="25" y1="160" x2="135" y2="160" class="ax"/>
+    <line x1="25" y1="160" x2="25" y2="40" class="ax"/>
+    <text x="140" y="164" class="lbl">t</text>
+    <text x="18" y="35" class="lbl">n</text>
+    <text x="20" y="65" class="lbl" text-anchor="end">0,1</text>
+    <text x="18" y="165" class="lbl" text-anchor="end">0</text>
+    <!-- Curve increasing from 0 to 0.1 -->
+    <path d="M 25,160 Q 55,65 125,60" class="curve" stroke="#a371f7"/>
+    <text x="80" y="185" class="sub" text-anchor="middle">Đường tăng dần</text>
+  </g>
+</svg>

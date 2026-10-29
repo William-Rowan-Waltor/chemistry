@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 180" width="100%" height="100%">
+  <defs>
+    <style>
+      .atom { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 15px; font-weight: 700; fill: #58a6ff; }
+      .ring { fill: none; stroke: #e6edf3; stroke-width: 2.2; stroke-linecap: round; }
+      .bond { stroke: #e6edf3; stroke-width: 2.2; stroke-linecap: round; }
+      .tag { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; font-weight: 600; fill: #58a6ff; }
+    </style>
+  </defs>
+  <rect width="420" height="180" rx="10" fill="#0d1117" stroke="#30363d" stroke-width="1.5"/>
+  <text x="20" y="28" class="tag">Cấu trúc phân tử Nicotine:</text>
+
+  <g transform="translate(60, 45)">
+    <!-- Pyridine ring (6-membered) -->
+    <g transform="translate(40, 20)">
+      <polygon points="35,0 70,20 70,60 35,80 0,60 0,20" class="ring"/>
+      <!-- Double bonds of pyridine -->
+      <line x1="5" y1="23" x2="5" y2="57" stroke="#58a6ff" stroke-width="2"/>
+      <line x1="33" y1="75" x2="65" y2="57" stroke="#58a6ff" stroke-width="2"/>
+      <line x1="65" y1="23" x2="35" y2="5" stroke="#58a6ff" stroke-width="2"/>
+      <!-- N atom in pyridine -->
+      <circle cx="35" cy="80" r="12" fill="#0d1117"/>
+      <text x="35" y="85" class="atom" text-anchor="middle">N</text>
+    </g>
+
+    <!-- Bond connecting Pyridine to Pyrrolidine -->
+    <line x1="110" y1="40" x2="145" y2="40" class="bond"/>
+
+    <!-- Pyrrolidine ring (5-membered) -->
+    <g transform="translate(145, 10)">
+      <polygon points="0,30 25,0 65,10 65,50 25,60" class="ring"/>
+      <!-- N atom in pyrrolidine -->
+      <circle cx="65" cy="30" r="12" fill="#0d1117"/>
+      <text x="65" y="35" class="atom" text-anchor="middle">N</text>
+      <!-- Methyl group -CH3 attached to N -->
+      <line x1="77" y1="30" x2="105" y2="30" class="bond"/>
+      <text x="110" y="35" class="atom" fill="#e6edf3">CH<tspan font-size="11" dy="3">3</tspan></text>
+    </g>
+  </g>
+</svg>

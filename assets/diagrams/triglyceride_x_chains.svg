@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 220" width="100%" height="100%">
+  <defs>
+    <style>
+      .txt { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; font-weight: 600; fill: #e6edf3; }
+      .lbl { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 15px; font-weight: 700; fill: #58a6ff; }
+      .bond { stroke: #79c0ff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .db { stroke: #e3b341; stroke-width: 2.8; stroke-linecap: round; }
+      .backbone { stroke: #8b949e; stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+  <rect width="620" height="220" rx="12" fill="#0d1117" stroke="#30363d" stroke-width="1.5"/>
+  <g transform="translate(30, 25)">
+    <text x="0" y="30" class="txt">H<tspan font-size="10" dy="3">2</tspan><tspan dy="-3">C — O</tspan></text>
+    <line x1="62" y1="26" x2="88" y2="26" class="backbone"/>
+    <text x="92" y="29" class="txt">C</text>
+    <line x1="97" y1="16" x2="97" y2="0" class="backbone"/>
+    <line x1="100" y1="16" x2="100" y2="0" class="backbone"/>
+    <text x="98" y="-4" class="txt" text-anchor="middle" fill="#ff7b72">O</text>
+    <line x1="25" y1="36" x2="25" y2="76" class="backbone"/>
+    <text x="0" y="90" class="txt">HC — O</text>
+    <line x1="58" y1="86" x2="88" y2="86" class="backbone"/>
+    <text x="92" y="89" class="txt">C</text>
+    <line x1="97" y1="76" x2="97" y2="60" class="backbone"/>
+    <line x1="100" y1="76" x2="100" y2="60" class="backbone"/>
+    <text x="98" y="56" class="txt" text-anchor="middle" fill="#ff7b72">O</text>
+    <line x1="25" y1="96" x2="25" y2="136" class="backbone"/>
+    <text x="0" y="150" class="txt">H<tspan font-size="10" dy="3">2</tspan><tspan dy="-3">C — O</tspan></text>
+    <line x1="62" y1="146" x2="88" y2="146" class="backbone"/>
+    <text x="92" y="149" class="txt">C</text>
+    <line x1="97" y1="136" x2="97" y2="120" class="backbone"/>
+    <line x1="100" y1="136" x2="100" y2="120" class="backbone"/>
+    <text x="98" y="116" class="txt" text-anchor="middle" fill="#ff7b72">O</text>
+
+    <!-- Chain (1): Saturated -->
+    <g transform="translate(108, 26)">
+      <path d="M 0,0 L 20,-14 L 40,0 L 60,-14 L 80,0 L 100,-14 L 120,0 L 140,-14 L 160,0 L 180,-14 L 200,0 L 220,-14 L 240,0 L 260,-14 L 280,0 L 300,-14 L 320,0 L 340,-14 L 360,0 L 380,-14" class="bond"/>
+      <text x="420" y="4" class="lbl">(1)</text>
+    </g>
+
+    <!-- Chain (2): Monounsaturated (1 double bond cis) -->
+    <g transform="translate(108, 86)">
+      <path d="M 0,0 L 20,-14 L 40,0 L 60,-14 L 80,0 L 100,-14 L 120,0 L 140,-14 L 160,0 L 180,-14 L 200,0 L 220,0 L 240,-14 L 260,0 L 280,-14 L 300,0 L 320,-14 L 340,0 L 360,-14 L 380,0" class="bond"/>
+      <line x1="200" y1="0" x2="220" y2="0" class="db"/>
+      <text x="420" y="4" class="lbl">(2)</text>
+    </g>
+
+    <!-- Chain (3): Diunsaturated (2 double bonds cis) -->
+    <g transform="translate(108, 146)">
+      <path d="M 0,0 L 20,-14 L 40,0 L 60,-14 L 80,0 L 100,-14 L 120,0 L 140,-14 L 160,0 L 180,0 L 200,-14 L 220,-14 L 240,0 L 260,-14 L 280,0 L 300,-14 L 320,0 L 340,-14 L 360,0 L 380,-14" class="bond"/>
+      <line x1="160" y1="0" x2="180" y2="0" class="db"/>
+      <line x1="200" y1="-14" x2="220" y2="-14" class="db"/>
+      <text x="420" y="4" class="lbl">(3)</text>
+    </g>
+  </g>
+</svg>

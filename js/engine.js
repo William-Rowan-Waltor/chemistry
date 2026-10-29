@@ -200,9 +200,24 @@
   var fmt = function (s) {
     return emphasize(esc(String(s == null ? "" : s).replace(/->/g, "→").replace(/=>/g, "→"))).replace(/\n/g, "<br>");
   };
+  var getSvg = function (q, isReview) {
+    if (!q) return "";
+    var s = q.svg || (q.svgKey && typeof DIAGRAMS !== "undefined" && DIAGRAMS[q.svgKey] ? DIAGRAMS[q.svgKey] : "");
+    if (!s) return "";
+    var cls = "q-diagram-wrap" + (isReview ? " q-diagram-review" : "");
+    return '<div class="' + cls + '">' + s + '</div>';
+  };
   var num = function (s) {
     s = String(s == null ? "" : s).trim().replace(/\s/g, "").replace(/,/g, ".");
     if (s === "" || s === "-" || s === ".") return null;
+    if (s.indexOf("/") !== -1) {
+      var parts = s.split("/");
+      if (parts.length === 2) {
+        var n = parseFloat(parts[0]);
+        var d = parseFloat(parts[1]);
+        if (!isNaN(n) && !isNaN(d) && d !== 0) return n / d;
+      }
+    }
     var f = parseFloat(s);
     return isNaN(f) ? null : f;
   };
@@ -3216,7 +3231,7 @@
       '<button class="btn ghost" data-act="bankNext"' + (idx + 1 >= total ? ' disabled' : '') + '>Câu sau →</button>' +
     '</div>';
     return '<div class="bank-q">' + head +
-      "<p class='q-text'>" + fmt(it.q) + "</p>" + body +
+      "<p class='q-text'>" + fmt(it.q) + "</p>" + getSvg(it) + body +
       '<div class="q-feedback" id="qFeedback"></div>' +
       navBar +
     "</div>";
@@ -3330,6 +3345,11 @@
   }
 
   function checkNum(val, it) {
+    if (val == null || it == null || it.a == null) return false;
+    var sVal = String(val).trim().replace(/,/g, ".").replace(/\s+/g, "");
+    var sAns = String(it.a).trim().replace(/,/g, ".").replace(/\s+/g, "");
+    if (sVal.toLowerCase() === sAns.toLowerCase()) return true;
+
     var v = num(val);
     if (v === null) return false;
     var t = num(it.a);
@@ -3339,9 +3359,13 @@
     }
     if (it.ac) {
       var accepts = String(it.ac).split("|");
-      for (var i = 0; i < accepts.length; i++) { var av = num(accepts[i]); if (av !== null && Math.abs(v - av) < 1e-6) return true; }
+      for (var i = 0; i < accepts.length; i++) {
+        var av = num(accepts[i]);
+        if (av !== null && Math.abs(v - av) < 0.02) return true;
+        if (String(accepts[i]).trim().replace(/,/g, ".").replace(/\s+/g, "").toLowerCase() === sVal.toLowerCase()) return true;
+      }
     }
-    return Math.abs(v - t) < 1e-6;
+    return Math.abs(v - t) < 0.02;
   }
 
   /* ---------- TESTS (BỘ ĐỀ THI) ---------- */
@@ -3360,7 +3384,7 @@
       return '<div class="test-card">' +
         '<div class="tc-left"><span class="tc-icon">' + ico("clock") + "</span>" +
           "<div><h3>" + esc(t.title) + "</h3>" +
-          '<p class="muted small">' + (t.qs ? t.qs.length : 0) + " câu · gợi ý " + t.timeMin + " phút · tự động chấm</p>" +
+          '<p class="muted small">' + (t.author ? '<span class="author-pill">' + ico("user") + ' ' + esc(t.author) + '</span> · ' : '') + (t.qs ? t.qs.length : 0) + " câu · gợi ý " + t.timeMin + " phút · tự động chấm</p>" +
           editBtns +
           '</div></div>' +
         '<div class="tc-right">' +
@@ -3398,7 +3422,23 @@
       editQBtns +
       '<span class="timer ' + (left < 60 ? "late" : "") + '">' + ico("clock") + " <b>" + mm + ":" + ss + "</b></span></div>" + bankKindBadge(it.k);
     var body = "";
-    if (it.k === "m") {
+    if (it.sub && it.sub.length) {
+      var clusterAns = (typeof ans === "object" && ans !== null) ? ans : {};
+      body = '<div class="tf-cluster-container">' +
+        it.sub.map(function (sItem) {
+          var sVal = clusterAns[sItem.id];
+          var truePicked = (sVal === "true");
+          var falsePicked = (sVal === "false");
+          return '<div class="tf-cluster-row">' +
+            '<div class="tfc-statement"><span class="tfc-label">' + esc(sItem.id) + ')</span> <span class="tfc-desc">' + fmt(sItem.q) + '</span></div>' +
+            '<div class="tfc-buttons">' +
+              '<button type="button" class="tf-opt' + (truePicked ? ' picked' : '') + '" data-act="testPickCluster" data-sub="' + esc(sItem.id) + '" data-p="true">' + ico("ok") + ' Đúng</button>' +
+              '<button type="button" class="tf-opt' + (falsePicked ? ' picked' : '') + '" data-act="testPickCluster" data-sub="' + esc(sItem.id) + '" data-p="false">' + ico("no") + ' Sai</button>' +
+            '</div>' +
+          '</div>';
+        }).join("") +
+      '</div>';
+    } else if (it.k === "m") {
       body = '<div class="mcq-opts">' + opts.map(function (o) {
         return '<button class="mcq-opt' + (ans === o.k ? " picked" : "") + '" data-act="testPick" data-p="' + esc(o.k) + '"><span class="opt-key">' + esc(o.k) + '.</span><span class="opt-text">' + fmt(o.t) + '</span></button>';
       }).join("") + "</div>";
@@ -3409,8 +3449,8 @@
         }).join("") + "</div>";
     } else {
       var v = ans || "";
-      body = '<div class="num-row">' +
-        '<input class="num-in" data-act="testNum" value="' + esc(v) + '" placeholder="Gõ đáp án…" autocomplete="off">' +
+      body = '<div class="short-ans-box num-row">' +
+        '<input class="num-in short-ans-input" data-act="testNum" value="' + esc(v) + '" placeholder="Nhập đáp số (số hoặc chữ)…" autocomplete="off">' +
         (it.u ? '<span class="num-unit">' + esc(it.u) + "</span>" : "") +
         '<button class="btn primary" data-act="testPick" data-p="save">Lưu</button></div>';
     }
@@ -3421,7 +3461,7 @@
     var submitBtn = '<button class="btn good" data-act="testSubmit">Nộp bài</button>';
 
     return '<div class="test-q">' + head +
-      "<p class='q-text'>" + fmt(it.q) + "</p>" + body +
+      "<p class='q-text'>" + fmt(it.q) + "</p>" + getSvg(it) + body +
       '<div class="q-nav">' +
         prevBtn +
         '<div style="display:flex;gap:8px;align-items:center">' +
@@ -3468,17 +3508,41 @@
   function testSubmit() {
     var T = state.test;
     var total = T.t.qs.length;
-    var correct = 0;
+    var rawScore = 0;
+    var maxScore = 0;
     var details = [];
     T.t.qs.forEach(function (it, i) {
       var ans = T.answers[i];
-      var ok;
-      if (it.k === "n") ok = checkNum(ans, it);
-      else ok = (String(ans) === String(it.a));
-      if (ok) correct++;
-      details.push({ it: it, ans: ans, ok: ok });
+      var ok = false;
+      if (it.sub && it.sub.length) {
+        var subAns = (typeof ans === "object" && ans !== null) ? ans : {};
+        var subCorrectCount = 0;
+        var subDetails = it.sub.map(function (sItem) {
+          var sPicked = subAns[sItem.id];
+          var sOk = (String(sPicked) === String(sItem.a));
+          if (sOk) subCorrectCount++;
+          return { id: sItem.id, q: sItem.q, picked: sPicked, a: sItem.a, ok: sOk, e: sItem.e };
+        });
+        var earnedPts = subCorrectCount === 4 ? 1.0 : subCorrectCount === 3 ? 0.5 : subCorrectCount === 2 ? 0.25 : subCorrectCount === 1 ? 0.1 : 0.0;
+        ok = (subCorrectCount === it.sub.length);
+        rawScore += earnedPts;
+        maxScore += 1.0;
+        details.push({ it: it, ans: subAns, ok: ok, subDetails: subDetails, earnedPts: earnedPts });
+      } else if (it.k === "n") {
+        ok = checkNum(ans, it);
+        var qWeight = (total === 28 ? 0.25 : 1);
+        if (ok) rawScore += qWeight;
+        maxScore += qWeight;
+        details.push({ it: it, ans: ans, ok: ok });
+      } else {
+        ok = (String(ans) === String(it.a));
+        var qWeight = (total === 28 ? 0.25 : 1);
+        if (ok) rawScore += qWeight;
+        maxScore += qWeight;
+        details.push({ it: it, ans: ans, ok: ok });
+      }
     });
-    var score = total ? Math.round((correct / total) * 100) / 10 : 0;
+    var score = maxScore ? Math.round((rawScore / maxScore) * 100) / 10 : 0;
     var s = profile();
     s.tests[T.t.id] = Math.round(score * 10) / 10;
     save(s);
@@ -3493,7 +3557,20 @@
     var rows = T.details.map(function (d, i) {
       var badge = d.ok ? '<span class="rst-badge ok">' + ico("ok") + "</span>" : '<span class="rst-badge bad">' + ico("no") + "</span>";
       var yourAns = "";
-      if (!d.ok) {
+      if (d.subDetails) {
+        yourAns = '<div class="tfc-review-box">' +
+          d.subDetails.map(function (sd) {
+            var sBadge = sd.ok ? '<span class="rst-badge ok tiny">' + ico("ok") + ' Đúng</span>' : '<span class="rst-badge bad tiny">' + ico("no") + ' Sai</span>';
+            var pickedStr = sd.picked === "true" ? "Đúng" : sd.picked === "false" ? "Sai" : "Chưa chọn";
+            var ansStr = sd.a === "true" ? "Đúng" : "Sai";
+            return '<div class="tfc-review-row ' + (sd.ok ? 'is-ok' : 'is-bad') + '">' +
+              '<div class="tfc-rev-head"><b>' + esc(sd.id) + ')</b> ' + fmt(sd.q) + ' ' + sBadge + '</div>' +
+              '<div class="tfc-rev-ans">Bạn chọn: <b>' + pickedStr + '</b> · Đáp án đúng: <b>' + ansStr + '</b></div>' +
+              (sd.e ? '<div class="tfc-rev-exp">' + fmt(sd.e) + '</div>' : '') +
+            '</div>';
+          }).join("") +
+        '</div>';
+      } else if (!d.ok) {
         if (d.it.k === "m") yourAns = "Bạn chọn: " + (d.ans || "—") + "<br>Đáp án đúng: " + esc(d.it.a) + ". " + fmt(optionText(d.it, d.it.a));
         else if (d.it.k === "tf") yourAns = "Bạn chọn: " + (d.ans === "true" ? "Đúng" : d.ans === "false" ? "Sai" : "—") + "<br>Đáp án: " + (d.it.a === "true" ? "Đúng" : "Sai");
         else yourAns = "Bạn gõ: " + esc(d.ans || "—") + "<br>Đáp án đúng: " + fmt(d.it.a) + (d.it.u ? " " + esc(d.it.u) : "");
@@ -3502,6 +3579,7 @@
       return "<details class='rst-row'" + openAttr + ">" +
         "<summary>" + badge + " Câu " + (i + 1) + " — " + (d.ok ? "đúng" : "sai") + "</summary>" +
         "<p class='small'>" + fmt(d.it.q) + "</p>" +
+        getSvg(d.it, true) +
         (yourAns ? "<p class='small'>" + yourAns + "</p>" : "") +
         (d.it.e ? "<p class='small exp'>" + fmt(d.it.e) + "</p>" : "") +
         ((d.it.ch || T.t.ch) ? "<div style='margin-top:8px'><button class='btn ghost tiny' data-act='jumpToTheory' data-ch='" + (d.it.ch || T.t.ch) + "'>" + ico("bookOpen") + " Xem trong lý thuyết →</button></div>" : "") +
@@ -4148,7 +4226,9 @@
     var notesText = "";
     if (ch.notes && ch.notes.length) {
       notesText = ch.notes.slice(0, 3).map(function (n) {
-        return '• <b>' + esc(n.title || n.t) + ':</b> ' + fmt(n.text || n.b || "").slice(0, 180) + '...';
+        var raw = String(n.text || n.b || "").replace(/<[^>]+>/g, "");
+        var snippet = raw.length > 170 ? raw.slice(0, 170) + "..." : raw;
+        return '• <b>' + esc(n.title || n.t) + ':</b> ' + fmt(snippet);
       }).join("<br>");
     }
 
@@ -4156,6 +4236,40 @@
       feynman: ch.feynman || ch.hook || "",
       keyNotes: notesText
     };
+  }
+
+  function openTheoryModal(chId) {
+    var chObj = (DATA.chapters || []).find(function (c) { return c.id === chId; }) || { title: chId };
+    var chData = DATA[chId] || {};
+    var notes = chData.notes || [];
+    var feynman = chData.feynman || chData.hook || "";
+
+    var bodyHtml = '<div class="theory-modal-wrapper">';
+    if (feynman) {
+      bodyHtml += '<div class="tm-feynman-card">' +
+        '<div class="tm-sec-badge">' + ico("sparkles") + ' Trực giác đời sống (Feynman Technique)</div>' +
+        '<p>' + fmt(feynman) + '</p>' +
+      '</div>';
+    }
+    if (notes.length) {
+      bodyHtml += '<div class="tm-notes-list">' +
+        notes.map(function (n, idx) {
+          return '<div class="tm-note-card">' +
+            '<h4><span class="tm-note-idx">' + (idx + 1) + '</span> ' + esc(n.title || n.t) + '</h4>' +
+            '<div class="tm-note-body">' + fmt(n.text || n.b || "") + '</div>' +
+          '</div>';
+        }).join("") +
+      '</div>';
+    } else {
+      bodyHtml += '<p class="muted">Đang cập nhật nội dung chi tiết cho chuyên đề này.</p>';
+    }
+    bodyHtml += '</div>';
+
+    openModal({
+      title: "Lý thuyết trọng tâm: " + chObj.title,
+      icon: ico("bookOpen"),
+      html: bodyHtml
+    });
   }
 
   function renderCoachTest() {
@@ -4177,7 +4291,7 @@
     var filtered = allTests.filter(function (t) {
       if (curGrade !== "all" && t.grade !== curGrade) return false;
       if (query) {
-        var str = (t.title + " " + (t.desc || "") + " " + (t.grade || "")).toLowerCase();
+        var str = (t.title + " " + (t.desc || "") + " " + (t.author || "") + " " + (t.grade || "")).toLowerCase();
         if (!str.includes(query)) return false;
       }
       return true;
@@ -4202,6 +4316,7 @@
           '<div class="cec-icon">' + ico("target") + '</div>' +
           '<div class="cec-meta">' +
             gradeBadge +
+            (t.author ? '<span class="author-pill">' + ico("user") + ' ' + esc(t.author) + '</span>' : '') +
             '<span class="cec-count">' + qCount + ' câu hỏi</span>' +
             '<span class="cec-time">' + ico("clock") + ' ~' + (t.timeMin || 45) + ' phút</span>' +
           '</div>' +
@@ -4299,7 +4414,34 @@
     // Question options
     var opts = parseOpts(cur.o);
     var optsHtml = "";
-    if (cur.k === "tf") {
+    if (cur.sub && cur.sub.length) {
+      var clusterDraft = (state.coachTest.clusterDraft && state.coachTest.clusterDraft[idx]) || (ans && ans.picked) || {};
+      optsHtml = '<div class="tf-cluster-container">' +
+        cur.sub.map(function (sItem) {
+          var sVal = clusterDraft[sItem.id];
+          var truePicked = (sVal === "true");
+          var falsePicked = (sVal === "false");
+          var isTrue = (String(sItem.a).toLowerCase() === "true");
+          var tCls = "tf-opt" + (truePicked ? " picked" : "");
+          var fCls = "tf-opt" + (falsePicked ? " picked" : "");
+          if (isSubmitted) {
+            if (isTrue) tCls += " reveal-correct";
+            else fCls += " reveal-correct";
+            if (truePicked && !isTrue) tCls += " warn";
+            if (falsePicked && isTrue) fCls += " warn";
+          }
+          return '<div class="tf-cluster-row">' +
+            '<div class="tfc-statement"><span class="tfc-label">' + esc(sItem.id) + ')</span> <span class="tfc-desc">' + fmt(sItem.q) + '</span></div>' +
+            '<div class="tfc-buttons">' +
+              '<button type="button" class="' + tCls + '" data-act="coachPickClusterTF" data-sub="' + esc(sItem.id) + '" data-p="true" ' + (isSubmitted ? 'disabled' : '') + '>ĐÚNG</button>' +
+              '<button type="button" class="' + fCls + '" data-act="coachPickClusterTF" data-sub="' + esc(sItem.id) + '" data-p="false" ' + (isSubmitted ? 'disabled' : '') + '>SAI</button>' +
+            '</div>' +
+          '</div>' +
+          (isSubmitted && sItem.e ? '<div class="tfc-coach-sub-exp ' + (sVal === sItem.a ? 'is-good' : 'is-warn') + '">' + ico("bulb") + ' <b>Phân tích mệnh đề ' + esc(sItem.id) + ':</b> ' + fmt(sItem.e) + '</div>' : '');
+        }).join("") +
+        (!isSubmitted ? '<div style="margin-top:14px;text-align:center"><button class="btn primary" data-act="coachSubmitCluster">Kiểm tra kết quả cụm mệnh đề</button></div>' : '') +
+      '</div>';
+    } else if (cur.k === "tf") {
       var tfPicked = ans ? ans.picked : null;
       var tfA = String(cur.a).trim().toLowerCase();
       var isTrue = tfA === "true" || tfA === "đ";
@@ -4413,8 +4555,7 @@
         '<div class="fb-point-card p1-result">' +
           '<div class="fb-point-title">' + ico("target") + ' <b>1. Kết quả & Đáp án chuẩn xác:</b></div>' +
           '<div class="fb-point-content result-val">' +
-            '<b>' + esc(cur.a) + '</b>' +
-            (cur.k === "m" ? ' — ' + fmt((opts.find(function(o){ return o.k === String(cur.a).trim(); }) || {}).t || "") : '') +
+            (cur.sub ? cur.sub.map(function(s){ return '<b>' + esc(s.id) + ':</b> ' + (s.a === 'true' ? 'ĐÚNG' : 'SAI'); }).join(' · ') : ('<b>' + esc(cur.a) + '</b>' + (cur.k === "m" ? ' — ' + fmt((opts.find(function(o){ return o.k === String(cur.a).trim(); }) || {}).t || "") : ''))) +
           '</div>' +
         '</div>' +
 
@@ -4473,6 +4614,7 @@
           '<span class="cq-num-badge">Câu hỏi ' + (idx + 1) + ' / ' + total + '</span>' +
         '</div>' +
         '<p class="q-text">' + fmt(cur.q) + '</p>' +
+        getSvg(cur) +
         optsHtml +
         helpBtnHtml +
         diagnosticHtml +
@@ -4652,6 +4794,49 @@
     render(false);
   }
 
+  function coachPickClusterTF(subId, p) {
+    if (!state.coachTest.t) return;
+    var idx = state.coachTest.i;
+    if (state.coachTest.answers[idx] && state.coachTest.answers[idx].submitted) return;
+
+    state.coachTest.clusterDraft = state.coachTest.clusterDraft || {};
+    state.coachTest.clusterDraft[idx] = state.coachTest.clusterDraft[idx] || {};
+    state.coachTest.clusterDraft[idx][subId] = p;
+    render(false);
+  }
+
+  function coachSubmitCluster() {
+    if (!state.coachTest.t) return;
+    var idx = state.coachTest.i;
+    var cur = state.coachTest.t.qs[idx];
+    if (!cur.sub) return;
+
+    var draft = (state.coachTest.clusterDraft && state.coachTest.clusterDraft[idx]) || {};
+    var unpicked = cur.sub.filter(function (s) { return !draft[s.id]; });
+    if (unpicked.length > 0) {
+      alert("Vui lòng lựa chọn Đúng hoặc Sai cho tất cả " + cur.sub.length + " mệnh đề (a, b, c, d)!");
+      return;
+    }
+
+    var correctCount = 0;
+    cur.sub.forEach(function (s) {
+      if (String(draft[s.id]).toLowerCase() === String(s.a).toLowerCase()) correctCount++;
+    });
+
+    var ok = (correctCount === cur.sub.length);
+    state.coachTest.answers[idx] = {
+      q: cur,
+      picked: draft,
+      ok: ok,
+      correctCount: correctCount,
+      submitted: true,
+      helped: false,
+      time: Date.now()
+    };
+    if (ok) addXP(profile(), resolveCoachChapter(cur, state.coachTest.t), 20);
+    render(false);
+  }
+
   function coachPickN() {
     if (!state.coachTest.t) return;
     var idx = state.coachTest.i;
@@ -4664,7 +4849,7 @@
       alert("Vui lòng nhập đáp số trước khi kiểm tra!");
       return;
     }
-    var ok = String(val).replace(/,/g, ".").toLowerCase() === String(cur.a).replace(/,/g, ".").toLowerCase();
+    var ok = checkNum(val, cur);
     state.coachTest.answers[idx] = { q: cur, picked: val, ok: ok, helped: false, time: Date.now() };
     if (ok) addXP(profile(), resolveCoachChapter(cur, state.coachTest.t), 15);
     render(false);
@@ -4770,6 +4955,20 @@
 
   function renderModal(m) {
     var title = m.title || "Chỉnh sửa";
+    if (m.html) {
+      return '<div class="modal-overlay" data-act="modalBgClick">' +
+        '<div class="modal-box modal-theory-box" onclick="event.stopPropagation()">' +
+          '<div class="modal-header-row">' +
+            '<h3>' + (m.icon || ico("bookOpen")) + ' ' + esc(title) + '</h3>' +
+            '<button type="button" class="btn ghost tiny modal-close-btn" data-act="modalCancel" title="Đóng">✕</button>' +
+          '</div>' +
+          '<div class="modal-content-scroll">' + m.html + '</div>' +
+          '<div class="modal-actions" style="margin-top:14px;justify-content:flex-end">' +
+            '<button type="button" class="btn primary" data-act="modalCancel">Đã hiểu, quay lại làm bài</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }
     var fieldsHtml = (m.fields || []).map(function (f) {
       var val = esc(f.val != null ? f.val : "");
       var inputHtml = "";
@@ -5215,17 +5414,21 @@
       case "tab": setTab(el.getAttribute("data-t")); break;
       case "jumpToTheory": {
         var chId = el.getAttribute("data-ch") || "g12c1";
-        state.mode = "theory";
-        state.chapter = chId;
-        render();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        setTimeout(function() {
-          var feyn = document.querySelector(".feynman");
-          if (feyn) {
-            feyn.classList.add("highlight-pulse");
-            setTimeout(function() { feyn.classList.remove("highlight-pulse"); }, 2000);
-          }
-        }, 120);
+        if (state.test || (state.coachTest && state.coachTest.t && !state.coachTest.done)) {
+          openTheoryModal(chId);
+        } else {
+          state.mode = "theory";
+          state.chapter = chId;
+          render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          setTimeout(function() {
+            var feyn = document.querySelector(".feynman");
+            if (feyn) {
+              feyn.classList.add("highlight-pulse");
+              setTimeout(function() { feyn.classList.remove("highlight-pulse"); }, 2000);
+            }
+          }, 120);
+        }
         break;
       }
       case "toggleEditMode": toggleEditMode(); break;
@@ -5355,8 +5558,22 @@
       case "coachSetGrade": coachSetGrade(el.getAttribute("data-g")); break;
       case "startCoachExam": startCoachExam(el.getAttribute("data-tid")); break;
       case "quitCoachExam": quitCoachExam(); break;
+      case "testPickCluster": {
+        var subId = el.getAttribute("data-sub");
+        var p = el.getAttribute("data-p");
+        if (state.test && subId) {
+          var curA = state.test.answers[state.test.i];
+          if (typeof curA !== "object" || curA === null) curA = {};
+          curA[subId] = p;
+          state.test.answers[state.test.i] = curA;
+          renderPracticeOnly();
+        }
+        break;
+      }
       case "coachPick": coachPick(el.getAttribute("data-p")); break;
       case "coachPickTF": coachPickTF(el.getAttribute("data-p")); break;
+      case "coachPickClusterTF": coachPickClusterTF(el.getAttribute("data-sub"), el.getAttribute("data-p")); break;
+      case "coachSubmitCluster": coachSubmitCluster(); break;
       case "coachPickN": coachPickN(); break;
       case "coachHelp": coachHelp(); break;
       case "coachPrev": coachPrev(); break;
