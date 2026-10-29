@@ -4232,18 +4232,22 @@
     }
     if (!ch) return null;
 
-    var notesText = "";
+    var notesItems = [];
     if (ch.notes && ch.notes.length) {
-      notesText = ch.notes.slice(0, 3).map(function (n) {
-        var raw = String(n.text || n.b || "").replace(/<[^>]+>/g, "");
-        var snippet = raw.length > 170 ? raw.slice(0, 170) + "..." : raw;
-        return '• <b>' + esc(n.title || n.t) + ':</b> ' + fmt(snippet);
-      }).join("<br>");
+      notesItems = ch.notes.slice(0, 4).map(function (n) {
+        var raw = String(n.text || n.b || "").replace(/<[^>]+>/g, "").trim();
+        var snippet = raw.length > 180 ? raw.slice(0, 175) + "…" : raw;
+        return {
+          title: n.title || n.t || "Trọng tâm",
+          body: snippet
+        };
+      });
     }
 
     return {
+      title: ch.title || chId,
       feynman: ch.feynman || ch.hook || "",
-      keyNotes: notesText
+      notes: notesItems
     };
   }
 
@@ -4547,10 +4551,22 @@
       // Quick Theory Peek Drawer
       var theoryPeekHtml = "";
       if (state.coachTest.showTheoryPeek && quickTheory) {
+        var notesListHtml = "";
+        if (quickTheory.notes && quickTheory.notes.length) {
+          notesListHtml = '<div class="qtp-notes-list">' +
+            quickTheory.notes.map(function (n) {
+              return '<div class="qtp-note-item">' +
+                '<span class="qtp-note-dot">•</span> ' +
+                '<b>' + esc(n.title) + ':</b> ' +
+                '<span class="qtp-note-text">' + fmt(n.body) + '</span>' +
+              '</div>';
+            }).join("") +
+          '</div>';
+        }
         theoryPeekHtml = '<div class="quick-theory-peek">' +
           '<div class="qtp-head">' + ico("bookOpen") + ' <b>Tóm tắt lý thuyết trọng tâm: ' + esc(chObj.title) + '</b></div>' +
           (quickTheory.feynman ? '<div class="qtp-feynman"><b>Trực giác Feynman:</b> ' + fmt(quickTheory.feynman) + '</div>' : '') +
-          (quickTheory.keyNotes ? '<div class="qtp-notes">' + fmt(quickTheory.keyNotes) + '</div>' : '') +
+          notesListHtml +
         '</div>';
       }
 
