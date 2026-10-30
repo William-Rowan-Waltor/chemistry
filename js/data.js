@@ -2334,9 +2334,9 @@ var DATA = window.DATA = {
         {
           "k": "m",
           "q": "(SGK – Cánh Diều) Cho các ester: C2H5COOCH3 (1); CH3CH2CH2COOC2H5 (2); CH3COOCH3 (3); C2H5COOC2H5 (4). Thứ tự tăng dần độ tan trong nước là",
-          "o": "A=(1);(2);(3);(4);B=(3);(1);(2);(4);C=(2);(4);(1);(3);D=(2);(1);(3);(4)",
+          "o": "A=(1) < (2) < (3) < (4);B=(3) < (1) < (2) < (4);C=(2) < (4) < (1) < (3);D=(2) < (1) < (3) < (4)",
           "a": "C",
-          "e": "Độ tan giảm khi M tăng; M(2) = 116 > M(4) = 102 > M(1) = 88 > M(3) = 74 nên thứ tự tăng dần là (2);(4);(1);(3)."
+          "e": "Độ tan giảm khi phân tử khối M tăng (gốc hydrocarbon kị nước càng lớn); M(2) = 116 > M(4) = 102 > M(1) = 88 > M(3) = 74 nên thứ tự tăng dần độ tan trong nước là (2) < (4) < (1) < (3)."
         },
         {
           "k": "m",
@@ -2578,7 +2578,7 @@ var DATA = window.DATA = {
           "q": "Ester X có CTPT C9H10O2 (chứa vòng benzene). X tác dụng với NaOH dư thu được C2H5COONa và chất hữu cơ Y. Xác định phân tử khối của Y?",
           "o": "",
           "a": "116",
-          "u": "",
+          "u": "g",
           "tol": "",
           "e": "X = C2H5COOC6H5 (ester của phenol); X + 2NaOH -> C2H5COONa + C6H5ONa + H2O; Y = C6H5ONa có M = 116."
         },
@@ -2636,9 +2636,9 @@ var DATA = window.DATA = {
         {
           "k": "m",
           "q": "(SGK – Cánh Diều) Cho các chất mạch không phân nhánh: C4H9OH (1), C3H7COOH (2), CH3COOC2H5 (3). Thứ tự nhiệt độ sôi tăng dần là",
-          "o": "A=(1);(2);(3);B=(3);(1);(2);C=(2);(3);(1);D=(2);(1);(3)",
+          "o": "A=(1) < (2) < (3);B=(3) < (1) < (2);C=(2) < (3) < (1);D=(2) < (1) < (3)",
           "a": "B",
-          "e": "Ester không có liên kết hydrogen nên sôi thấp nhất; liên kết hydrogen của acid bền hơn alcohol nên thứ tự ester < alcohol < acid."
+          "e": "Ester không có liên kết hydrogen liên phân tử nên sôi thấp nhất; liên kết hydrogen của carboxylic acid bền hơn alcohol nên thứ tự tăng dần nhiệt độ sôi là: ester (3) < alcohol (1) < acid (2)."
         },
         {
           "k": "m",
@@ -2889,7 +2889,7 @@ var DATA = window.DATA = {
           "q": "Xà phòng hóa hoàn toàn triglyceride X trong NaOH dư thu được glycerol, sodium oleate, sodium stearate và sodium palmitate. Phân tử khối của X là bao nhiêu?",
           "o": "",
           "a": "860",
-          "u": "",
+          "u": "g/mol",
           "tol": "",
           "e": "X = (C17H33COO)(C17H35COO)(C15H31COO)C3H5; M = 41 + 281 + 283 + 255 = 860."
         },
@@ -3210,7 +3210,7 @@ var DATA = window.DATA = {
           "q": "Hydrogen hoá hoàn toàn 0,1 mol triglyceride X cần dùng 0,3 mol H2 (Ni, to) thu được chất hữu cơ Y. Đun nóng Y với dung dịch NaOH vừa đủ, thu được hỗn hợp muối gồm sodium stearate và 27,8 gam sodium palmitate. Số nguyên tử hydrogen (H) trong X là bao nhiêu?",
           "o": "",
           "a": "100",
-          "u": "",
+          "u": "gam",
           "tol": "",
           "e": "n(C15H31COONa) = 27,8/278 = 0,1 mol ⇒ Y có 1 gốc palmitate và 2 gốc stearate ⇒ Y = C55H106O6. X cộng 3 H2 (mất 6 H) ⇒ X = C55H100O6, số H là 100."
         }
@@ -3820,7 +3820,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "0,1",
           "e": "Tỉ lệ 2 fructose : 1 Cu(OH)2 => b = 0,2 / 2 = 0,1 mol.",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "mol"
         },
         {
           "k": "sa",
@@ -3836,7 +3837,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "1,62",
           "e": "n(sac pứ) = (1,71 / 342) × 75% = 0,00375 mol => n(Ag) = 0,00375 × 4 = 0,015 mol => m = 0,015 × 108 = 1,62 gam.",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "gam"
         },
         {
           "k": "sa",
@@ -3844,7 +3846,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "3,6",
           "e": "m(ancol) = 2,3 × 40% × 0,8 = 0,736 kg = 736 g => n(ancol) = 16 mol => m(glucose lt) = 8 × 180 = 1,44 kg. m(tt) = 1,44 / 0,8 = 1,8 kg => m(nguyên liệu) = 1,8 / 50% = 3,6 kg.",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "kg"
         }
       ],
       "time": 50,
@@ -4158,7 +4161,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "1",
           "e": "Tỉ lệ phản ứng 2 glucose : 1 Cu(OH)2 => a = 0,5 × 2 = 1 mol.",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "mol"
         },
         {
           "k": "sa",
@@ -4166,7 +4170,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "60",
           "e": "n(sac) = 0,02 mol. 1 sac pứ cho 4 Ag. n(Ag) = 0,048 mol => n(sac pứ) = 0,012 mol. H = (0,012 / 0,02) × 100% = 60%.",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "%"
         },
         {
           "k": "sa",
@@ -4174,7 +4179,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "426",
           "e": "m(cellulose) = 600 kg. m(ancol tt) = 600 × 92/162 × 70% = 238,52 kg. V(ancol nc) = 238,52 / 0,8 = 298,15 L. V(rượu 70°) = 298,15 / 0,7 ≈ 426 lít.",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "L"
         }
       ],
       "author": "Tổ Hoá THPT"
@@ -4495,7 +4501,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "4",
           "e": "Glucose, fructose, aldehyde acetic, formic acid (4 chất; saccharose không tham gia cả 2 phản ứng này).",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "%"
         },
         {
           "k": "sa",
@@ -4503,7 +4510,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "160",
           "e": "n(sac pứ) = (34,2 / 342) × 80% = 0,08 mol => n(glucose) = 0,08 mol. Chỉ glucose làm mất màu nước Br2: n(Br2) = 0,08 mol => V = 0,08 / 0,5 = 0,16 L = 160 mL.",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "gam"
         }
       ],
       "author": "Tổ Hoá THPT"
@@ -4824,7 +4832,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "2,2",
           "e": "C6H7O2(OH)3 (162) -> C6H7O2(ONO2)3 (297). m(lt) = 2 × 297 / 162 = 3,667 tấn. m(tt) = 3,667 × 60% = 2,20 tấn.",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "kg"
         },
         {
           "k": "sa",
@@ -4832,7 +4841,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "3,6",
           "e": "V(ancol nc) = 2,3 × 40% = 0,92 L => m(ancol) = 0,92 × 0,8 = 0,736 kg = 736 g => n(ancol) = 16 mol. n(glucose lt) = 8 mol => m(glucose lt) = 8 × 180 = 1440 g = 1,44 kg. m(glucose tt) = 1,44 / 0,8 = 1,8 kg => m(nguyên liệu) = 1,8 / 50% = 3,6 kg.",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "tấn"
         }
       ],
       "author": "Tổ Hoá THPT"
@@ -5145,7 +5155,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "1",
           "e": "n(Ag) = 21,6 / 108 = 0,2 mol => n(glucose) = 0,1 mol => a = 0,1 / 0,1 L = 1,0 M.",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "mol"
         },
         {
           "k": "sa",
@@ -5153,7 +5164,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "180",
           "e": "m(cellulose lt) = 80 × 162/180 = 72 kg => m(cellulose tt) = 72 / 0,8 = 90 kg => m(mùn cưa) = 90 / 50% = 180 kg.",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "%"
         },
         {
           "k": "sa",
@@ -5161,7 +5173,8 @@ var DATA = window.DATA = {
           "o": "",
           "a": "4,5",
           "e": "V(ancol nc) = 5 × 46% = 2,3 L => m(ancol) = 2,3 × 0,8 = 1,84 kg = 1840 g => n(ancol) = 40 mol => m(tinh bột lt) = 20 × 162 = 3240 g = 3,24 kg. m(tinh bột tt) = 3,24 / 0,72 = 4,5 kg.",
-          "ch": "g12c2"
+          "ch": "g12c2",
+          "u": "gam"
         }
       ],
       "author": "Tổ Hoá THPT"
@@ -7148,21 +7161,24 @@ var DATA = window.DATA = {
           "q": "Câu 3: Alliin là một amino acid có trong tỏi tươi, khi đập dập hay nghiền, enzyme alliinase sẽ chuyển hoá alliin thành allicin tạo mùi đặc trưng của tỏi. Cấu trúc phân tử Alliin được mô tả dưới đây:\nPhân tử khối của Alliin là bao nhiêu amu?",
           "svgKey": "alliin_structure",
           "a": "177",
-          "e": "Công thức phân tử của alliin là C6H11NO3S: M = 6×12 + 11×1 + 14 + 3×16 + 32 = 177 amu."
+          "e": "Công thức phân tử của alliin là C6H11NO3S: M = 6×12 + 11×1 + 14 + 3×16 + 32 = 177 amu.",
+          "u": "kg"
         },
         {
           "k": "n",
           "ch": "g12c1",
           "q": "Câu 4: Cho các chất: CH3[CH2]14COONa, CH3[CH2]10CH2OSO3Na, CH3[CH2]16COOK, CH3[CH2]7CH=CH[CH2]7COONa, CH3COONa, (C15H31COO)3C3H5. Có bao nhiêu chất có thể là thành phần chính của xà phòng?",
           "a": "3",
-          "e": "Xà phòng là muối sodium hoặc potassium của các acid béo (mạch cacbon dài ≥ 12C): CH3[CH2]14COONa (sodium palmitate), CH3[CH2]16COOK (potassium stearate) và CH3[CH2]7CH=CH[CH2]7COONa (sodium oleate) → Có 3 chất."
+          "e": "Xà phòng là muối sodium hoặc potassium của các acid béo (mạch cacbon dài ≥ 12C): CH3[CH2]14COONa (sodium palmitate), CH3[CH2]16COOK (potassium stearate) và CH3[CH2]7CH=CH[CH2]7COONa (sodium oleate) → Có 3 chất.",
+          "u": "gam"
         },
         {
           "k": "n",
           "ch": "g12c2",
           "q": "Câu 5: Để tráng một số lượng gương soi có diện tích bề mặt 0,35 m² với độ dày 0,1 µm người ta đun nóng dung dịch chứa 30,6 gam glucose với một lượng dung dịch AgNO3 trong amoniac. Biết khối lượng riêng của silver là 10,49 g/cm³, hiệu suất phản ứng tráng gương là 80% (tính theo glucose). Có tối đa bao nhiêu chiếc gương soi được sản xuất ra? (Kết quả làm tròn đến hàng đơn vị)",
           "a": "80",
-          "e": "n(glucose) = 30,6/180 = 0,17 mol → n(Ag thực tế) = 0,17 × 2 × 80% = 0,272 mol → m(Ag) = 0,272 × 108 = 29,376 g → V(Ag) = 29,376 / 10,49 ≈ 2,8004 cm³ = 2,8004×10⁻⁶ m³. Thể tích Ag trên 1 gương = 0,35 × 0,1×10⁻⁶ = 3,5×10⁻⁸ m³ = 0,035 cm³ → Số gương = 2,8004 / 0,035 ≈ 80 chiếc."
+          "e": "n(glucose) = 30,6/180 = 0,17 mol → n(Ag thực tế) = 0,17 × 2 × 80% = 0,272 mol → m(Ag) = 0,272 × 108 = 29,376 g → V(Ag) = 29,376 / 10,49 ≈ 2,8004 cm³ = 2,8004×10⁻⁶ m³. Thể tích Ag trên 1 gương = 0,35 × 0,1×10⁻⁶ = 3,5×10⁻⁸ m³ = 0,035 cm³ → Số gương = 2,8004 / 0,035 ≈ 80 chiếc.",
+          "u": "%"
         },
         {
           "k": "n",
@@ -7491,14 +7507,16 @@ var DATA = window.DATA = {
           "ch": "g12c2",
           "q": "Câu 3: Cho các chất: saccharose, glucose, fructose, ethyl formate, formic acid và acetic aldehyde. Trong các chất trên, có bao nhiêu chất vừa có khả năng tham gia phản ứng tráng bạc vừa có khả năng phản ứng với Cu(OH)2 ở điều kiện thường?",
           "a": "3",
-          "e": "Có 3 chất thoả mãn: Glucose (tráng bạc + tạo phức Cu(OH)2 xanh lam), Fructose (đồng phân hoá thành glucose tráng bạc + tạo phức Cu(OH)2 xanh lam), Formic acid HCOOH (chứa nhóm -CHO tráng bạc + là acid tác dụng với Cu(OH)2 tạo dung dịch xanh lam). Saccharose không tráng bạc; ethyl formate và acetic aldehyde không phản ứng Cu(OH)2 ở nhiệt độ thường."
+          "e": "Có 3 chất thoả mãn: Glucose (tráng bạc + tạo phức Cu(OH)2 xanh lam), Fructose (đồng phân hoá thành glucose tráng bạc + tạo phức Cu(OH)2 xanh lam), Formic acid HCOOH (chứa nhóm -CHO tráng bạc + là acid tác dụng với Cu(OH)2 tạo dung dịch xanh lam). Saccharose không tráng bạc; ethyl formate và acetic aldehyde không phản ứng Cu(OH)2 ở nhiệt độ thường.",
+          "u": "kg"
         },
         {
           "k": "n",
           "ch": "g12c3",
           "q": "Câu 4: Valine là một loại amino acid thiết yếu, cần được cung cấp từ nguồn thực phẩm bên ngoài, cơ thể không tự tổng hợp được. Cho 1,404 gam valine hòa tan trong nước được dung dịch. Dung dịch này phản ứng vừa đủ với 12 mL dung dịch NaOH có nồng độ C (mol/L), thu được 1,668 gam muối. Tính giá trị của C?",
           "a": "1",
-          "e": "Valine C5H11NO2 có M = 117 g/mol. n(valine) = 1,404 / 117 = 0,012 mol. Do valine có 1 nhóm -COOH nên n(NaOH) = n(valine) = 0,012 mol → C = 0,012 / 0,012 = 1 mol/L."
+          "e": "Valine C5H11NO2 có M = 117 g/mol. n(valine) = 1,404 / 117 = 0,012 mol. Do valine có 1 nhóm -COOH nên n(NaOH) = n(valine) = 0,012 mol → C = 0,012 / 0,012 = 1 mol/L.",
+          "u": "gam"
         },
         {
           "k": "n",
@@ -7506,7 +7524,8 @@ var DATA = window.DATA = {
           "q": "Câu 5: Mỗi viên dầu cá Now Ultra Omega-3 chứa 180 mg EPA và 120 mg DHA (cấu trúc hình bên). Hãy tính tổng số mol EPA và DHA có trong một lọ Now Ultra Omega-3 Fish Oil 90 (chứa 90 viên dầu cá)? (Làm tròn đến 3 chữ số thập phân)",
           "svgKey": "epa_dha_structures",
           "a": "0.087",
-          "e": "M(EPA C20H30O2) = 302 g/mol; M(DHA C22H32O2) = 328 g/mol. Trong 90 viên: m(EPA) = 90 × 0,18 = 16,2 g → n(EPA) = 16,2 / 302 ≈ 0,05364 mol. m(DHA) = 90 × 0,12 = 10,8 g → n(DHA) = 10,8 / 328 ≈ 0,03293 mol → Tổng số mol = 0,05364 + 0,03293 = 0,08657 mol ≈ 0,087 mol."
+          "e": "M(EPA C20H30O2) = 302 g/mol; M(DHA C22H32O2) = 328 g/mol. Trong 90 viên: m(EPA) = 90 × 0,18 = 16,2 g → n(EPA) = 16,2 / 302 ≈ 0,05364 mol. m(DHA) = 90 × 0,12 = 10,8 g → n(DHA) = 10,8 / 328 ≈ 0,03293 mol → Tổng số mol = 0,05364 + 0,03293 = 0,08657 mol ≈ 0,087 mol.",
+          "u": "%"
         },
         {
           "k": "n",
@@ -7830,21 +7849,24 @@ var DATA = window.DATA = {
           "ch": "g12c2",
           "q": "Câu 3: Củ sắn khô chứa 38% khối lượng là tinh bột, còn lại là các chất không có khả năng lên men thành ethyl alcohol. Lên men 1 tấn sắn khô với hiệu suất cả quá trình là 81%. Toàn bộ lượng alcohol ethylic sinh ra để điều chế xăng E5 (có chứa 5% thể tích ethyl alcohol). Biết khối lượng riêng của ethyl alcohol là 0,8 g/mL, thể tích xăng E5 thu được là bao nhiêu lít?",
           "a": "4370",
-          "e": "m(tinh bột) = 1000 × 38% = 380 kg. Theo sơ đồ: (C6H10O5)n → 2 C2H5OH. m(C2H5OH) = (380 × 92 / 162) × 81% = 174,8 kg. V(C2H5OH) = 174,8 / 0,8 = 218,5 L. Vì xăng E5 chứa 5% cồn → V(xăng E5) = 218,5 / 5% = 4370 L."
+          "e": "m(tinh bột) = 1000 × 38% = 380 kg. Theo sơ đồ: (C6H10O5)n → 2 C2H5OH. m(C2H5OH) = (380 × 92 / 162) × 81% = 174,8 kg. V(C2H5OH) = 174,8 / 0,8 = 218,5 L. Vì xăng E5 chứa 5% cồn → V(xăng E5) = 218,5 / 5% = 4370 L.",
+          "u": "kg"
         },
         {
           "k": "n",
           "ch": "g12c2",
           "q": "Câu 4: Cho dãy các chất sau: glucose, fructose, saccharose và cellulose. Có bao nhiêu chất có phản ứng với thuốc thử Tollens?",
           "a": "2",
-          "e": "Có 2 chất tham gia phản ứng tráng bạc là glucose (có nhóm -CHO) và fructose (chuyển hoá thành glucose trong môi trường kiềm của thuốc thử Tollens)."
+          "e": "Có 2 chất tham gia phản ứng tráng bạc là glucose (có nhóm -CHO) và fructose (chuyển hoá thành glucose trong môi trường kiềm của thuốc thử Tollens).",
+          "u": "gam"
         },
         {
           "k": "n",
           "ch": "g12c3",
           "q": "Câu 5: Có bao nhiêu công thức cấu tạo amine bậc một có công thức phân tử C3H9N?",
           "a": "2",
-          "e": "Có 2 amine bậc 1 ứng với C3H9N: CH3-CH2-CH2-NH2 (propan-1-amine) và CH3-CH(NH2)-CH3 (propan-2-amine)."
+          "e": "Có 2 amine bậc 1 ứng với C3H9N: CH3-CH2-CH2-NH2 (propan-1-amine) và CH3-CH(NH2)-CH3 (propan-2-amine).",
+          "u": "%"
         },
         {
           "k": "n",
@@ -8380,7 +8402,8 @@ var DATA = window.DATA = {
           "q": "Cho dung dịch glucose vào ống nghiệm chứa dung dịch AgNO3 trong NH3 dư được ngâm trong cốc nước nóng, thu được sản phẩm hữu cơ X và bạc kim loại. Tên gọi của X là",
           "o": "A=glycerol; B=fructose; C=ammonium gluconate; D=gluconic acid",
           "a": "C",
-          "e": "Phương trình phản ứng: CH2OH[CHOH]4CHO + 2[Ag(NH3)2]OH -(t°)-> CH2OH[CHOH]4COONH4 + 2Ag↓ + 3NH3 + H2O. Do phản ứng diễn ra trong môi trường NH3 dư nên nhóm carboxyl -COOH tạo thành sẽ tác dụng ngay với NH3 để tạo muối ammonium gluconate (CH2OH[CHOH]4COONH4)."
+          "e": "Phương trình phản ứng: CH2OH[CHOH]4CHO + 2[Ag(NH3)2]OH -(t°)-> CH2OH[CHOH]4COONH4 + 2Ag↓ + 3NH3 + H2O. Do phản ứng diễn ra trong môi trường NH3 dư nên nhóm carboxyl -COOH tạo thành sẽ tác dụng ngay với NH3 để tạo muối ammonium gluconate (CH2OH[CHOH]4COONH4).",
+          "ch": "g12c2"
         },
         {
           "id": "g12t19_q2",
@@ -8389,7 +8412,8 @@ var DATA = window.DATA = {
           "q": "Polycaproamide được tổng hợp theo phản ứng sau: n H2N-[CH2]5-COOH -(t°)-> -[HN-[CH2]5-CO]-n + n H2O. Polycaproamide được điều chế bằng phản ứng",
           "o": "A=trùng ngưng; B=phân hủy; C=trùng hợp; D=thế",
           "a": "A",
-          "e": "Phản ứng tổng hợp polycaproamide (nylon-6) từ 6-aminohexanoic acid (ε-aminocaproic acid) là phản ứng trùng ngưng vì các monomer kết hợp với nhau đồng thời giải phóng các phân tử nhỏ (H2O)."
+          "e": "Phản ứng tổng hợp polycaproamide (nylon-6) từ 6-aminohexanoic acid (ε-aminocaproic acid) là phản ứng trùng ngưng vì các monomer kết hợp với nhau đồng thời giải phóng các phân tử nhỏ (H2O).",
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q3",
@@ -8397,7 +8421,8 @@ var DATA = window.DATA = {
           "q": "Cho các chất sau: triolein, cellulose, saccharose, tinh bột. Số chất bị thuỷ phân trong môi trường acid là",
           "o": "A=4; B=2; C=1; D=3",
           "a": "A",
-          "e": "Cả 4 chất đều bị thuỷ phân trong môi trường acid:\n- Triolein (chất béo/ester) thuỷ phân tạo glycerol và oleic acid.\n- Cellulose (polysaccharide) thuỷ phân tạo glucose.\n- Saccharose (disaccharide) thuỷ phân tạo glucose và fructose.\n- Tinh bột (polysaccharide) thuỷ phân tạo glucose."
+          "e": "Cả 4 chất đều bị thuỷ phân trong môi trường acid:\n- Triolein (chất béo/ester) thuỷ phân tạo glycerol và oleic acid.\n- Cellulose (polysaccharide) thuỷ phân tạo glucose.\n- Saccharose (disaccharide) thuỷ phân tạo glucose và fructose.\n- Tinh bột (polysaccharide) thuỷ phân tạo glucose.",
+          "ch": "g12c2"
         },
         {
           "id": "g12t19_q4",
@@ -8405,7 +8430,8 @@ var DATA = window.DATA = {
           "q": "Ester được tạo thành từ formic acid và ethyl alcohol có công thức cấu tạo là",
           "o": "A=CH3COOCH3; B=C2H5COOCH3; C=HCOOC2H5; D=HCOOCH3",
           "a": "C",
-          "e": "Phản ứng ester hoá giữa formic acid (HCOOH) và ethyl alcohol (C2H5OH): HCOOH + C2H5OH <=(H2SO4 đặc, t°)=> HCOOC2H5 + H2O. Ester thu được là ethyl formate (HCOOC2H5)."
+          "e": "Phản ứng ester hoá giữa formic acid (HCOOH) và ethyl alcohol (C2H5OH): HCOOH + C2H5OH <=(H2SO4 đặc, t°)=> HCOOC2H5 + H2O. Ester thu được là ethyl formate (HCOOC2H5).",
+          "ch": "g12c1"
         },
         {
           "id": "g12t19_q5",
@@ -8413,7 +8439,8 @@ var DATA = window.DATA = {
           "q": "Trong công nghiệp, để chuyển hóa chất béo lỏng thành chất béo rắn, người ta dùng phương pháp nào sau đây?",
           "o": "A=Phản ứng oxi hóa; B=Phản ứng xà phòng hóa; C=Phản ứng ester hóa; D=Phản ứng hydrogen hóa",
           "a": "D",
-          "e": "Chất béo lỏng chứa các gốc acid béo không no (như triolein), khi cho tác dụng với hydrogen (xúc tác Ni, đun nóng) sẽ xảy ra phản ứng cộng H2 vào các nối đôi C=C (hydrogen hoá) tạo thành chất béo no ở thể rắn (như tristearin) thuận tiện cho việc vận chuyển và sản xuất bơ nhân tạo."
+          "e": "Chất béo lỏng chứa các gốc acid béo không no (như triolein), khi cho tác dụng với hydrogen (xúc tác Ni, đun nóng) sẽ xảy ra phản ứng cộng H2 vào các nối đôi C=C (hydrogen hoá) tạo thành chất béo no ở thể rắn (như tristearin) thuận tiện cho việc vận chuyển và sản xuất bơ nhân tạo.",
+          "ch": "g12c1"
         },
         {
           "id": "g12t19_q6",
@@ -8421,7 +8448,8 @@ var DATA = window.DATA = {
           "q": "X là một loại disaccharide có nhiều trong mạch nha. Chất X là",
           "o": "A=glucose; B=maltose; C=saccharose; D=fructose",
           "a": "B",
-          "e": "Maltose (còn gọi là đường mạch nha) là một disaccharide được tạo nên từ 2 gốc α-glucose liên kết với nhau qua liên kết α-1,4-glycoside, có nhiều trong mầm lúa mạch, kẹo mạch nha."
+          "e": "Maltose (còn gọi là đường mạch nha) là một disaccharide được tạo nên từ 2 gốc α-glucose liên kết với nhau qua liên kết α-1,4-glycoside, có nhiều trong mầm lúa mạch, kẹo mạch nha.",
+          "ch": "g12c2"
         },
         {
           "id": "g12t19_q7",
@@ -8429,7 +8457,8 @@ var DATA = window.DATA = {
           "q": "Chất nào sau đây là amino acid?",
           "o": "A=HOCH2COOH; B=H2NCH2COOH; C=CH3NH2; D=CH3COOH",
           "a": "B",
-          "e": "Amino acid là hợp chất hữu cơ tạp chức phân tử chứa đồng thời nhóm amino (-NH2) và nhóm carboxyl (-COOH). Chất thoả mãn là H2NCH2COOH (glycine)."
+          "e": "Amino acid là hợp chất hữu cơ tạp chức phân tử chứa đồng thời nhóm amino (-NH2) và nhóm carboxyl (-COOH). Chất thoả mãn là H2NCH2COOH (glycine).",
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q8",
@@ -8437,7 +8466,8 @@ var DATA = window.DATA = {
           "q": "Mỗi chuỗi polypeptide gồm các đơn vị ...(1)... liên kết với nhau qua ...(2)... theo một trật tự nhất định. Các cụm từ phù hợp cho mỗi khoảng trống trong câu trên lần lượt là",
           "o": "A=α-amino acid và liên kết glycoside; B=monosaccharide và liên kết peptide; C=monosaccharide và liên kết glycoside; D=α-amino acid và liên kết peptide",
           "a": "D",
-          "e": "Theo định nghĩa SGK Hoá học 12: Chuỗi polypeptide gồm các đơn vị α-amino acid liên kết với nhau qua liên kết peptide (-CO-NH-) theo một trật tự xác định."
+          "e": "Theo định nghĩa SGK Hoá học 12: Chuỗi polypeptide gồm các đơn vị α-amino acid liên kết với nhau qua liên kết peptide (-CO-NH-) theo một trật tự xác định.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q9",
@@ -8445,7 +8475,8 @@ var DATA = window.DATA = {
           "q": "Cho từ từ đến dư ethylamine vào dung dịch FeCl3, hiện tượng quan sát được là",
           "o": "A=không có kết tủa xuất hiện; B=tạo kết tủa nâu đỏ không tan; C=tạo kết tủa nâu đỏ sau đó kết tủa tan ra; D=tạo dung dịch phức chất có màu xanh lam",
           "a": "B",
-          "e": "Ethylamine tan trong nước tạo môi trường base yếu: C2H5NH2 + H2O <=> C2H5NH3+ + OH-. Khi cho vào dung dịch FeCl3: Fe3+ + 3OH- -> Fe(OH)3↓ (kết tủa nâu đỏ). Vì amine không có khả năng tạo phức tan với Fe(OH)3 nên kết tủa nâu đỏ không tan khi amine dư."
+          "e": "Ethylamine tan trong nước tạo môi trường base yếu: C2H5NH2 + H2O <=> C2H5NH3+ + OH-. Khi cho vào dung dịch FeCl3: Fe3+ + 3OH- -> Fe(OH)3↓ (kết tủa nâu đỏ). Vì amine không có khả năng tạo phức tan với Fe(OH)3 nên kết tủa nâu đỏ không tan khi amine dư.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q10",
@@ -8453,7 +8484,8 @@ var DATA = window.DATA = {
           "q": "Trong môi trường base, protein có phản ứng màu biuret với chất nào sau đây?",
           "o": "A=HNO3; B=NaCl; C=Mg(OH)2; D=Cu(OH)2",
           "a": "D",
-          "e": "Trong môi trường kiềm (base), các peptide có từ 2 liên kết peptide trở lên và protein phản ứng với Cu(OH)2 tạo phức chất màu tím đặc trưng gọi là phản ứng màu biuret."
+          "e": "Trong môi trường kiềm (base), các peptide có từ 2 liên kết peptide trở lên và protein phản ứng với Cu(OH)2 tạo phức chất màu tím đặc trưng gọi là phản ứng màu biuret.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q11",
@@ -8461,7 +8493,8 @@ var DATA = window.DATA = {
           "q": "Thành phần nguyên tố có trong phân tử carbohydrate là",
           "o": "A=C, H, O, S; B=C, H, O, N; C=C, H, S, N; D=C, H, O",
           "a": "D",
-          "e": "Carbohydrate là hợp chất hữu cơ tạp chức có công thức chung Cn(H2O)m, thành phần chỉ gồm 3 nguyên tố: Carbon (C), Hydrogen (H) và Oxygen (O)."
+          "e": "Carbohydrate là hợp chất hữu cơ tạp chức có công thức chung Cn(H2O)m, thành phần chỉ gồm 3 nguyên tố: Carbon (C), Hydrogen (H) và Oxygen (O).",
+          "ch": "g12c2"
         },
         {
           "id": "g12t19_q12",
@@ -8469,7 +8502,8 @@ var DATA = window.DATA = {
           "q": "Kết quả phân tích nguyên tố trong phân tử chất X như sau: %C = 46,60%; %H = 8,74%; %N = 13,59% (về khối lượng); còn lại là oxygen. Từ phổ khối lượng (MS), xác định được phân tử khối của X bằng 103. Thuỷ phân X thấy thu được một α-amino acid Y và chất Z có công thức phân tử CH4O. Phát biểu nào sau đây là không đúng?",
           "o": "A=Công thức phân tử của X là C4H9O2N; B=Công thức cấu tạo phân tử của X là H2NCH(CH3)COOCH3; C=Có thể điều chế chất X bằng phản ứng của α-amino acid với alcohol tương ứng; D=Tên gọi thay thế của Y là 2-aminopropionic acid",
           "a": "D",
-          "e": "1. Xác định CTPT của X: M = 103.\nSố C = 103 * 46,60% / 12 = 4.\nSố H = 103 * 8,74% / 1 = 9.\nSố N = 103 * 13,59% / 14 = 1.\n%O = 100% - (46,6% + 8,74% + 13,59%) = 31,07% => Số O = 103 * 31,07% / 16 = 2.\n=> CTPT của X là C4H9O2N (A đúng).\n2. Z có CTPT CH4O => Z là CH3OH. Thuỷ phân X tạo α-amino acid Y và CH3OH => X là H2N-CH(CH3)-COOCH3 (methyl alaninate) (B đúng, C đúng).\n3. Y là CH3-CH(NH2)-COOH (alanine). Tên thay thế theo danh pháp IUPAC là 2-aminopropanoic acid (gốc no -an-). Tên 2-aminopropionic acid là tên bán hệ thống, do đó D không đúng."
+          "e": "1. Xác định CTPT của X: M = 103.\nSố C = 103 * 46,60% / 12 = 4.\nSố H = 103 * 8,74% / 1 = 9.\nSố N = 103 * 13,59% / 14 = 1.\n%O = 100% - (46,6% + 8,74% + 13,59%) = 31,07% => Số O = 103 * 31,07% / 16 = 2.\n=> CTPT của X là C4H9O2N (A đúng).\n2. Z có CTPT CH4O => Z là CH3OH. Thuỷ phân X tạo α-amino acid Y và CH3OH => X là H2N-CH(CH3)-COOCH3 (methyl alaninate) (B đúng, C đúng).\n3. Y là CH3-CH(NH2)-COOH (alanine). Tên thay thế theo danh pháp IUPAC là 2-aminopropanoic acid (gốc no -an-). Tên 2-aminopropionic acid là tên bán hệ thống, do đó D không đúng.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q13",
@@ -8478,7 +8512,8 @@ var DATA = window.DATA = {
           "q": "Amphetamine là chất kích thích (mạnh hơn caffeine) làm tăng sự tỉnh táo và giảm cảm giác thèm ăn. Nó được sử dụng rộng rãi trong thế chiến thứ hai để ngăn chặn sự mệt mỏi khi chiến đấu. Amphetamine có công thức cấu tạo như hình bên. Công thức phân tử của amphetamine là",
           "o": "A=C9H12N; B=C8H11N; C=C9H13N; D=C10H13N",
           "a": "C",
-          "e": "Phân tử amphetamine gồm:\n- Vòng benzene (gốc phenyl C6H5-): 6 nguyên tử C, 5 nguyên tử H.\n- Mạch nhánh -CH2-CH(NH2)-CH3: 3 nguyên tử C, 8 nguyên tử H, 1 nguyên tử N.\nTổng số C: 6 + 3 = 9.\nTổng số H: 5 + 8 = 13.\nTổng số N: 1.\n=> Công thức phân tử là C9H13N."
+          "e": "Phân tử amphetamine gồm:\n- Vòng benzene (gốc phenyl C6H5-): 6 nguyên tử C, 5 nguyên tử H.\n- Mạch nhánh -CH2-CH(NH2)-CH3: 3 nguyên tử C, 8 nguyên tử H, 1 nguyên tử N.\nTổng số C: 6 + 3 = 9.\nTổng số H: 5 + 8 = 13.\nTổng số N: 1.\n=> Công thức phân tử là C9H13N.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q14",
@@ -8486,7 +8521,8 @@ var DATA = window.DATA = {
           "q": "Tính chất vật lí nào sau đây là không phải là của amino acid?",
           "o": "A=Là chất rắn ở nhiệt độ phòng; B=Có độc tính rất cao; C=Tan tốt trong nước; D=Nhiệt độ nóng chảy cao",
           "a": "B",
-          "e": "Các amino acid ở điều kiện thường là chất rắn kết tinh, không màu, có nhiệt độ nóng chảy cao, dễ tan trong nước vì tồn tại ở dạng ion lưỡng cực (H3N+-CHR-COO-). Các amino acid thiên nhiên cấu thành cơ thể sống và không có độc tính cao."
+          "e": "Các amino acid ở điều kiện thường là chất rắn kết tinh, không màu, có nhiệt độ nóng chảy cao, dễ tan trong nước vì tồn tại ở dạng ion lưỡng cực (H3N+-CHR-COO-). Các amino acid thiên nhiên cấu thành cơ thể sống và không có độc tính cao.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q15",
@@ -8494,7 +8530,8 @@ var DATA = window.DATA = {
           "q": "Các amine ở thể khí tan nhiều trong nước. Nguyên nhân là do các amine này",
           "o": "A=hình thành lực tương tác Van der Waals lớn giữa các phân tử; B=tạo được liên kết hydrogen liên phân tử với nhau; C=đều ở thể khí nên dễ phân tán vào nước; D=tạo được liên kết hydrogen với nước",
           "a": "D",
-          "e": "Các amine đầu dãy (methylamine, dimethylamine, trimethylamine, ethylamine) ở thể khí tan rất tốt trong nước nhờ khả năng tạo liên kết hydrogen mạnh với các phân tử nước giữa nguyên tử N (còn cặp electron tự do) và nguyên tử H của nước."
+          "e": "Các amine đầu dãy (methylamine, dimethylamine, trimethylamine, ethylamine) ở thể khí tan rất tốt trong nước nhờ khả năng tạo liên kết hydrogen mạnh với các phân tử nước giữa nguyên tử N (còn cặp electron tự do) và nguyên tử H của nước.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q16",
@@ -8502,7 +8539,8 @@ var DATA = window.DATA = {
           "q": "Hợp chất nào sau đây thuộc loại dipeptide?",
           "o": "A=H2NCH2CH2CONHCH2COOH; B=H2NCH2CONHCH(CH3)COOH; C=H2NCH2CH2CONHCH2CH2COOH; D=H2NCH2CONHCH2CONHCH2COOH",
           "a": "B",
-          "e": "Dipeptide là hợp chất chứa 1 liên kết peptide tạo bởi 2 gốc α-amino acid:\n- A và C chứa gốc β-alanine (không phải α-amino acid).\n- D chứa 2 liên kết peptide nên là tripeptide.\n- B tạo bởi Glycine (α) và Alanine (α), chứa 1 liên kết peptide (-CO-NH-) nên là dipeptide Gly-Ala."
+          "e": "Dipeptide là hợp chất chứa 1 liên kết peptide tạo bởi 2 gốc α-amino acid:\n- A và C chứa gốc β-alanine (không phải α-amino acid).\n- D chứa 2 liên kết peptide nên là tripeptide.\n- B tạo bởi Glycine (α) và Alanine (α), chứa 1 liên kết peptide (-CO-NH-) nên là dipeptide Gly-Ala.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q17",
@@ -8510,7 +8548,8 @@ var DATA = window.DATA = {
           "q": "Thủy phân hoàn toàn 1 mol pentapeptide X thì thu được 2 mol Alanine, 2 mol Glycine và 1 mol Valine. Khi thủy phân không hoàn toàn X thì trong hỗn hợp sản phẩm thấy có dipeptide Ala-Gly, Gly-Gly và tripeptide Gly-Ala-Val. Công thức của X là",
           "o": "A=Gly-Ala-Val-Ala-Gly; B=Gly-Ala-Gly-Ala-Val; C=Ala-Gly-Gly-Ala-Val; D=Gly-Gly-Ala-Ala-Val",
           "a": "C",
-          "e": "1. Pentapeptide X gồm 2 gốc Ala, 2 gốc Gly và 1 gốc Val.\n2. Phân tích các mảnh thủy phân dở dang:\n- Có tripeptide: Gly-Ala-Val\n- Có dipeptide: Ala-Gly\n- Có dipeptide: Gly-Gly\nGhép nối các đoạn: Đoạn Ala-Gly và Gly-Gly liên kết tạo chuỗi Ala-Gly-Gly. Nối chuỗi này với mảnh Gly-Ala-Val ta được: Ala-Gly-Gly-Ala-Val.\nKiểm tra lại: Chứa Ala-Gly (1-2), Gly-Gly (2-3), Gly-Ala-Val (3-4-5). Phù hợp hoàn toàn."
+          "e": "1. Pentapeptide X gồm 2 gốc Ala, 2 gốc Gly và 1 gốc Val.\n2. Phân tích các mảnh thủy phân dở dang:\n- Có tripeptide: Gly-Ala-Val\n- Có dipeptide: Ala-Gly\n- Có dipeptide: Gly-Gly\nGhép nối các đoạn: Đoạn Ala-Gly và Gly-Gly liên kết tạo chuỗi Ala-Gly-Gly. Nối chuỗi này với mảnh Gly-Ala-Val ta được: Ala-Gly-Gly-Ala-Val.\nKiểm tra lại: Chứa Ala-Gly (1-2), Gly-Gly (2-3), Gly-Ala-Val (3-4-5). Phù hợp hoàn toàn.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q18",
@@ -8518,7 +8557,8 @@ var DATA = window.DATA = {
           "q": "Polysaccharide X là chất rắn, màu trắng, dạng sợi. Trong bông nõn có gần 98% chất X. Thủy phân X, thu được monosaccharide Y. Phát biểu nào sau đây đúng?",
           "o": "A=X dễ tan trong nước Schweizer; B=Phân tử khối của X bằng 162; C=X có cấu tạo xoắn và phản ứng màu với iodine; D=X, Y đều tham gia phản ứng tráng bạc",
           "a": "A",
-          "e": "X là cellulose (chiếm ~98% bông nõn), Y là glucose.\n- A đúng: Cellulose tan tốt trong nước Schweizer (dung dịch [Cu(NH3)4](OH)2).\n- B sai: Cellulose là polymer (C6H10O5)n có phân tử khối rất lớn (162n), không phải 162.\n- C sai: Tinh bột mới có cấu trúc xoắn tạo màu với iodine, cellulose có cấu trúc mạch kéo dài dạng sợi.\n- D sai: Cellulose không tham gia phản ứng tráng bạc (chỉ Y là glucose tráng bạc)."
+          "e": "X là cellulose (chiếm ~98% bông nõn), Y là glucose.\n- A đúng: Cellulose tan tốt trong nước Schweizer (dung dịch [Cu(NH3)4](OH)2).\n- B sai: Cellulose là polymer (C6H10O5)n có phân tử khối rất lớn (162n), không phải 162.\n- C sai: Tinh bột mới có cấu trúc xoắn tạo màu với iodine, cellulose có cấu trúc mạch kéo dài dạng sợi.\n- D sai: Cellulose không tham gia phản ứng tráng bạc (chỉ Y là glucose tráng bạc).",
+          "ch": "g12c2"
         },
         {
           "id": "g12t19_q19",
@@ -8549,7 +8589,8 @@ var DATA = window.DATA = {
               "a": "false",
               "e": "Sai. X là C4H8O2 (M = 88). Phần trăm khối lượng carbon là: %C = (4 * 12 / 88) * 100% ≈ 54,55% ≠ 60%."
             }
-          ]
+          ],
+          "ch": "g12c1"
         },
         {
           "id": "g12t19_q20",
@@ -8581,7 +8622,8 @@ var DATA = window.DATA = {
               "a": "false",
               "e": "Sai. Dung dịch kiềm sử dụng là KOH nên muối carboxylate thu được là muối potassium (như potassium stearate/palmitate), không phải muối sodium."
             }
-          ]
+          ],
+          "ch": "g12c1"
         },
         {
           "id": "g12t19_q21",
@@ -8612,7 +8654,8 @@ var DATA = window.DATA = {
               "a": "false",
               "e": "Sai. Enzyme có bản chất là protein nên ở nhiệt độ cao sẽ bị biến tính và mất hoàn toàn hoạt tính xúc tác. Nhiệt độ tối ưu của đa số enzyme chỉ trong khoảng 37°C - 45°C."
             }
-          ]
+          ],
+          "ch": "g12c2"
         },
         {
           "id": "g12t19_q22",
@@ -8643,21 +8686,24 @@ var DATA = window.DATA = {
               "a": "true",
               "e": "Đúng. Cấu tạo HOOC-CH2-CH2-CH(NH2)-COOH có nhóm -NH2 ở vị trí số 2 (α) so với carboxyl, gồm 1 nhóm -NH2, 2 nhóm -COOH và có công thức phân tử là C5H9NO4."
             }
-          ]
+          ],
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q23",
           "k": "n",
           "q": "Nhỏ dung dịch của mỗi chất methylamine, glycine, aniline, lysine vào các mẩu giấy quỳ tím riêng rẽ. Có bao nhiêu dung dịch làm giấy quỳ tím chuyển thành màu xanh?",
           "a": "2",
-          "e": "(1) Phân tích dữ kiện: Tính chất acid-base của các amine và amino acid trên giấy quỳ tím phụ thuộc vào cấu tạo nhóm chức.\n(2) Đánh giá từng chất:\n- Methylamine (CH3NH2): amine béo có tính base mạnh hơn NH3 -> làm quỳ tím chuyển xanh.\n- Glycine (H2N-CH2-COOH): có 1 nhóm -NH2 và 1 nhóm -COOH (pH ≈ 6) -> không đổi màu quỳ tím.\n- Aniline (C6H5NH2): có gốc phenyl hút e làm giảm mật độ electron trên N -> tính base rất yếu, không đổi màu quỳ tím.\n- Lysine (H2N-[CH2]4-CH(NH2)-COOH): có 2 nhóm -NH2 và 1 nhóm -COOH -> môi trường base (pH ≈ 9,7) -> làm quỳ tím chuyển xanh.\n(3) Kết luận: Có 2 dung dịch làm quỳ tím hóa xanh (methylamine và lysine)."
+          "e": "(1) Phân tích dữ kiện: Tính chất acid-base của các amine và amino acid trên giấy quỳ tím phụ thuộc vào cấu tạo nhóm chức.\n(2) Đánh giá từng chất:\n- Methylamine (CH3NH2): amine béo có tính base mạnh hơn NH3 -> làm quỳ tím chuyển xanh.\n- Glycine (H2N-CH2-COOH): có 1 nhóm -NH2 và 1 nhóm -COOH (pH ≈ 6) -> không đổi màu quỳ tím.\n- Aniline (C6H5NH2): có gốc phenyl hút e làm giảm mật độ electron trên N -> tính base rất yếu, không đổi màu quỳ tím.\n- Lysine (H2N-[CH2]4-CH(NH2)-COOH): có 2 nhóm -NH2 và 1 nhóm -COOH -> môi trường base (pH ≈ 9,7) -> làm quỳ tím chuyển xanh.\n(3) Kết luận: Có 2 dung dịch làm quỳ tím hóa xanh (methylamine và lysine).",
+          "ch": "g12c3"
         },
         {
           "id": "g12t19_q24",
           "k": "n",
           "q": "Cho các carbohydrate sau: saccharose, maltose, glucose, fructose và cellulose. Có bao nhiêu chất có thể làm mất màu dung dịch bromine?",
           "a": "2",
-          "e": "(1) Phân tích phản ứng: Dung dịch nước bromine oxi hoá nhóm chức aldehyde (-CHO) thành carboxylic acid (-COOH), làm mất màu dung dịch nước bromine da cam.\n(2) Khảo sát các carbohydrate:\n- Glucose: có nhóm -CHO ở dạng mạch hở -> làm mất màu nước bromine.\n- Maltose: còn nhóm -OH hemiacetal tự do có thể mở vòng tạo nhóm -CHO -> làm mất màu nước bromine.\n- Fructose: trong môi trường nước bromine có tính acid nhẹ, fructose không chuyển hoá thành glucose -> không làm mất màu nước bromine.\n- Saccharose: liên kết glycoside khoá cả 2 nhóm anomer, không mở vòng tạo -CHO -> không làm mất màu.\n- Cellulose: polysaccharide mạch dài, không có -CHO tự do -> không làm mất màu.\n(3) Kết luận: Có 2 chất làm mất màu dung dịch bromine (glucose và maltose)."
+          "e": "(1) Phân tích phản ứng: Dung dịch nước bromine oxi hoá nhóm chức aldehyde (-CHO) thành carboxylic acid (-COOH), làm mất màu dung dịch nước bromine da cam.\n(2) Khảo sát các carbohydrate:\n- Glucose: có nhóm -CHO ở dạng mạch hở -> làm mất màu nước bromine.\n- Maltose: còn nhóm -OH hemiacetal tự do có thể mở vòng tạo nhóm -CHO -> làm mất màu nước bromine.\n- Fructose: trong môi trường nước bromine có tính acid nhẹ, fructose không chuyển hoá thành glucose -> không làm mất màu nước bromine.\n- Saccharose: liên kết glycoside khoá cả 2 nhóm anomer, không mở vòng tạo -CHO -> không làm mất màu.\n- Cellulose: polysaccharide mạch dài, không có -CHO tự do -> không làm mất màu.\n(3) Kết luận: Có 2 chất làm mất màu dung dịch bromine (glucose và maltose).",
+          "ch": "g12c2"
         },
         {
           "id": "g12t19_q25",
@@ -8665,7 +8711,8 @@ var DATA = window.DATA = {
           "q": "Chỉ số xà phòng hoá là số miligam KOH cần để xà phòng hoá 1 g chất béo. Theo TCVN 6044:2013, CODEX STAN 211-1999, chỉ số xà phòng hoá trung bình của chất béo trong mỡ lợn là 198. Khi xà phòng hoàn toàn m kg mỡ lợn (chứa 92% chất béo) thu được trong quá trình chế biến thực phẩm để nấu xà phòng, lượng NaOH cần lấy ít nhất 80 kg. Tìm m? Biết các tạp chất trong mỡ lợn không tác dụng với NaOH. (Kết quả làm tròn đến hàng đơn vị).",
           "a": "615",
           "u": "kg",
-          "e": "(1) Tóm tắt dữ kiện: Lượng NaOH cần dùng tối thiểu = 80 kg. Chỉ số xà phòng hoá = 198 mg KOH / 1 g chất béo. Độ tinh khiết chất béo trong mỡ lợn = 92%.\n(2) Phương trình và tương đương mol:\n1 mol NaOH tương đương 1 mol KOH về số mol nhóm -OH- xà phòng hoá:\nn_KOH = n_NaOH = (80 * 10^3 g) / (40 g/mol) = 2000 mol.\nKhối lượng KOH tương đương:\nm_KOH = 2000 mol * 56 g/mol = 112 000 g = 112 * 10^6 mg.\n(3) Tính khối lượng mỡ lợn:\nKhối lượng chất béo nguyên chất:\nm_chất béo = (112 * 10^6 mg) / (198 mg/g) = 565 656,57 g ≈ 565,66 kg.\nKhối lượng mỡ lợn m (chứa 92% chất béo):\nm = 565,65657 kg / 0,92 ≈ 614,84 kg.\nLàm tròn đến hàng đơn vị: 615."
+          "e": "(1) Tóm tắt dữ kiện: Lượng NaOH cần dùng tối thiểu = 80 kg. Chỉ số xà phòng hoá = 198 mg KOH / 1 g chất béo. Độ tinh khiết chất béo trong mỡ lợn = 92%.\n(2) Phương trình và tương đương mol:\n1 mol NaOH tương đương 1 mol KOH về số mol nhóm -OH- xà phòng hoá:\nn_KOH = n_NaOH = (80 * 10^3 g) / (40 g/mol) = 2000 mol.\nKhối lượng KOH tương đương:\nm_KOH = 2000 mol * 56 g/mol = 112 000 g = 112 * 10^6 mg.\n(3) Tính khối lượng mỡ lợn:\nKhối lượng chất béo nguyên chất:\nm_chất béo = (112 * 10^6 mg) / (198 mg/g) = 565 656,57 g ≈ 565,66 kg.\nKhối lượng mỡ lợn m (chứa 92% chất béo):\nm = 565,65657 kg / 0,92 ≈ 614,84 kg.\nLàm tròn đến hàng đơn vị: 615.",
+          "ch": "g12c1"
         },
         {
           "id": "g12t19_q26",
@@ -8673,7 +8720,8 @@ var DATA = window.DATA = {
           "q": "Thủy phân 4,275 g saccharose trong dung dịch H2SO4 loãng. Trung hòa dung dịch thu được sau phản ứng bằng dung dịch NaOH thu được dung dịch Y. Cho Y tác dụng với lượng dư thuốc thử Tollens thu được bao nhiêu gam Ag? Biết hiệu suất phản ứng thủy phân saccharose là 80%, hiệu suất phản ứng tráng gương 100%.",
           "a": "4.32",
           "u": "g",
-          "e": "(1) Tóm tắt dữ kiện: m_saccharose = 4,275 g (M = 342 g/mol) => n_saccharose = 4,275 / 342 = 0,0125 mol. Hiệu suất thuỷ phân H = 80%.\n(2) Phương trình phản ứng:\nC12H22O11 + H2O -(H+, t°)-> C6H12O6 (glucose) + C6H12O6 (fructose)\nn_saccharose phản ứng = 0,0125 * 80% = 0,01 mol.\n=> n_glucose = 0,01 mol; n_fructose = 0,01 mol.\nTrong môi trường kiềm (thuốc thử Tollens), cả glucose và fructose đều tham gia phản ứng tráng bạc:\n1 mol glucose -> 2 mol Ag\n1 mol fructose -> 2 mol Ag\n=> n_Ag = 2 * (n_glucose + n_fructose) = 2 * (0,01 + 0,01) = 0,04 mol.\n(3) Khối lượng Ag thu được:\nm_Ag = 0,04 mol * 108 g/mol = 4,32 g."
+          "e": "(1) Tóm tắt dữ kiện: m_saccharose = 4,275 g (M = 342 g/mol) => n_saccharose = 4,275 / 342 = 0,0125 mol. Hiệu suất thuỷ phân H = 80%.\n(2) Phương trình phản ứng:\nC12H22O11 + H2O -(H+, t°)-> C6H12O6 (glucose) + C6H12O6 (fructose)\nn_saccharose phản ứng = 0,0125 * 80% = 0,01 mol.\n=> n_glucose = 0,01 mol; n_fructose = 0,01 mol.\nTrong môi trường kiềm (thuốc thử Tollens), cả glucose và fructose đều tham gia phản ứng tráng bạc:\n1 mol glucose -> 2 mol Ag\n1 mol fructose -> 2 mol Ag\n=> n_Ag = 2 * (n_glucose + n_fructose) = 2 * (0,01 + 0,01) = 0,04 mol.\n(3) Khối lượng Ag thu được:\nm_Ag = 0,04 mol * 108 g/mol = 4,32 g.",
+          "ch": "g12c2"
         },
         {
           "id": "g12t19_q27",
@@ -8681,16 +8729,19 @@ var DATA = window.DATA = {
           "q": "Hiện nay công nghệ sản xuất giấm bằng phương pháp lên men từ các loại tinh bột đang được sử dụng rộng rãi theo sơ đồ sản xuất như sau: Tinh bột -> glucose -> ethanol -> acetic acid (thành phần chính của giấm). Từ 16,875 tấn bột sắn chứa 90% tinh bột sản xuất được 200 tấn dung dịch acetic acid có nồng độ a%. Biết hiệu suất chung của cả quá trình sản xuất là 80%. Giá trị a bằng bao nhiêu? (Làm tròn đến hàng phần mười).",
           "a": "4.5",
           "u": "%",
-          "e": "(1) Tóm tắt dữ kiện: m_bột sắn = 16,875 tấn, %tinh bột = 90% => m_tinh bột nguyên chất = 16,875 * 90% = 15,1875 tấn. m_dd giấm = 200 tấn, H_chung = 80%.\n(2) Sơ đồ phản ứng theo mắt xích:\n(C6H10O5)n -> n C6H12O6 -> 2n C2H5OH -> 2n CH3COOH\n162 g tinh bột  -------------------------> 2 * 60 = 120 g CH3COOH\nKhối lượng CH3COOH theo lý thuyết:\nm_acid_lt = 15,1875 * (120 / 162) = 11,25 tấn.\nKhối lượng CH3COOH thực tế thu được (H = 80%):\nm_acid_tt = 11,25 * 80% = 9,0 tấn.\n(3) Tính nồng độ a%:\na% = (m_acid_tt / m_dd) * 100% = (9,0 / 200) * 100% = 4,5%."
+          "e": "(1) Tóm tắt dữ kiện: m_bột sắn = 16,875 tấn, %tinh bột = 90% => m_tinh bột nguyên chất = 16,875 * 90% = 15,1875 tấn. m_dd giấm = 200 tấn, H_chung = 80%.\n(2) Sơ đồ phản ứng theo mắt xích:\n(C6H10O5)n -> n C6H12O6 -> 2n C2H5OH -> 2n CH3COOH\n162 g tinh bột  -------------------------> 2 * 60 = 120 g CH3COOH\nKhối lượng CH3COOH theo lý thuyết:\nm_acid_lt = 15,1875 * (120 / 162) = 11,25 tấn.\nKhối lượng CH3COOH thực tế thu được (H = 80%):\nm_acid_tt = 11,25 * 80% = 9,0 tấn.\n(3) Tính nồng độ a%:\na% = (m_acid_tt / m_dd) * 100% = (9,0 / 200) * 100% = 4,5%.",
+          "ch": "g12c2"
         },
         {
           "id": "g12t19_q28",
           "k": "n",
           "q": "Có bao nhiêu amino acid đồng phân cấu tạo của nhau có cùng công thức phân tử C4H9O2N?",
           "a": "5",
-          "e": "(1) Phân tích dạng phân tử: C4H9O2N có k = (2*4 + 2 + 1 - 9)/2 = 1 (1 nhóm -COOH). Đây là amino acid no, đơn chức, mạch hở C3H6(NH2)COOH.\n(2) Xét các mạch carbon của gốc acid:\n* Trường hợp 1: Mạch 4C không phân nhánh C-C-C-COOH (butanoic acid), nhóm -NH2 có thể gắn vào 3 vị trí:\n  (1) Vị trí C2 (α): CH3-CH2-CH(NH2)-COOH (2-aminobutanoic acid)\n  (2) Vị trí C3 (β): CH3-CH(NH2)-CH2-COOH (3-aminobutanoic acid)\n  (3) Vị trí C4 (γ): H2N-CH2-CH2-CH2-COOH (4-aminobutanoic acid)\n* Trường hợp 2: Mạch 4C có nhánh C-C(CH3)-COOH (2-methylpropanoic acid), nhóm -NH2 có thể gắn vào 2 vị trí:\n  (4) Vị trí C2 (α): CH3-C(CH3)(NH2)-COOH (2-amino-2-methylpropanoic acid)\n  (5) Vị trí C3 (β): H2N-CH2-CH(CH3)-COOH (3-amino-2-methylpropanoic acid)\n(3) Kết luận: Có tất cả 5 đồng phân amino acid cấu tạo thỏa mãn."
+          "e": "(1) Phân tích dạng phân tử: C4H9O2N có k = (2*4 + 2 + 1 - 9)/2 = 1 (1 nhóm -COOH). Đây là amino acid no, đơn chức, mạch hở C3H6(NH2)COOH.\n(2) Xét các mạch carbon của gốc acid:\n* Trường hợp 1: Mạch 4C không phân nhánh C-C-C-COOH (butanoic acid), nhóm -NH2 có thể gắn vào 3 vị trí:\n  (1) Vị trí C2 (α): CH3-CH2-CH(NH2)-COOH (2-aminobutanoic acid)\n  (2) Vị trí C3 (β): CH3-CH(NH2)-CH2-COOH (3-aminobutanoic acid)\n  (3) Vị trí C4 (γ): H2N-CH2-CH2-CH2-COOH (4-aminobutanoic acid)\n* Trường hợp 2: Mạch 4C có nhánh C-C(CH3)-COOH (2-methylpropanoic acid), nhóm -NH2 có thể gắn vào 2 vị trí:\n  (4) Vị trí C2 (α): CH3-C(CH3)(NH2)-COOH (2-amino-2-methylpropanoic acid)\n  (5) Vị trí C3 (β): H2N-CH2-CH(CH3)-COOH (3-amino-2-methylpropanoic acid)\n(3) Kết luận: Có tất cả 5 đồng phân amino acid cấu tạo thỏa mãn.",
+          "ch": "g12c3"
         }
-      ]
+      ],
+      "ch": "g12c1"
     },
     {
       "id": "g12t20",
@@ -8706,7 +8757,8 @@ var DATA = window.DATA = {
           "q": "Kết quả phân tích nguyên tố trong phân tử chất X như sau: %C = 46,60%; %H = 8,74%; %N = 13,59% (về khối lượng); còn lại là oxygen. Từ phổ khối lượng (MS), xác định được phân tử khối của X bằng 103. Thuỷ phân X thấy thu được một α-amino acid Y và chất Z có công thức phân tử CH4O. Phát biểu nào sau đây là không đúng?",
           "o": "A=Công thức phân tử của X là C4H9O2N; B=Công thức cấu tạo phân tử của X là H2NCH(CH3)COOCH3; C=Có thể điều chế chất X bằng phản ứng của α-amino acid với alcohol tương ứng; D=Tên gọi thay thế của Y là 2-aminopropionic acid",
           "a": "D",
-          "e": "1. Xác định CTPT của X: M = 103.\nSố C = 103 * 46,60% / 12 = 4.\nSố H = 103 * 8,74% / 1 = 9.\nSố N = 103 * 13,59% / 14 = 1.\n%O = 100% - (46,6% + 8,74% + 13,59%) = 31,07% => Số O = 103 * 31,07% / 16 = 2.\n=> CTPT của X là C4H9O2N (A đúng).\n2. Z có CTPT CH4O => Z là CH3OH. Thuỷ phân X tạo α-amino acid Y và CH3OH => X là H2N-CH(CH3)-COOCH3 (methyl alaninate) (B đúng, C đúng).\n3. Y là CH3-CH(NH2)-COOH (alanine). Tên thay thế theo danh pháp IUPAC là 2-aminopropanoic acid (gốc no -an-). Tên 2-aminopropionic acid là tên bán hệ thống, do đó D không đúng."
+          "e": "1. Xác định CTPT của X: M = 103.\nSố C = 103 * 46,60% / 12 = 4.\nSố H = 103 * 8,74% / 1 = 9.\nSố N = 103 * 13,59% / 14 = 1.\n%O = 100% - (46,6% + 8,74% + 13,59%) = 31,07% => Số O = 103 * 31,07% / 16 = 2.\n=> CTPT của X là C4H9O2N (A đúng).\n2. Z có CTPT CH4O => Z là CH3OH. Thuỷ phân X tạo α-amino acid Y và CH3OH => X là H2N-CH(CH3)-COOCH3 (methyl alaninate) (B đúng, C đúng).\n3. Y là CH3-CH(NH2)-COOH (alanine). Tên thay thế theo danh pháp IUPAC là 2-aminopropanoic acid (gốc no -an-). Tên 2-aminopropionic acid là tên bán hệ thống, do đó D không đúng.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q2",
@@ -8714,7 +8766,8 @@ var DATA = window.DATA = {
           "q": "Mỗi chuỗi polypeptide gồm các đơn vị ...(1)... liên kết với nhau qua ...(2)... theo một trật tự nhất định. Các cụm từ phù hợp cho mỗi khoảng trống trong câu trên lần lượt là",
           "o": "A=α-amino acid và liên kết peptide; B=monosaccharide và liên kết peptide; C=α-amino acid và liên kết glycoside; D=monosaccharide và liên kết glycoside",
           "a": "A",
-          "e": "Theo định nghĩa SGK Hoá học 12: Chuỗi polypeptide gồm các đơn vị α-amino acid liên kết với nhau qua liên kết peptide (-CO-NH-) theo một trật tự xác định."
+          "e": "Theo định nghĩa SGK Hoá học 12: Chuỗi polypeptide gồm các đơn vị α-amino acid liên kết với nhau qua liên kết peptide (-CO-NH-) theo một trật tự xác định.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q3",
@@ -8722,7 +8775,8 @@ var DATA = window.DATA = {
           "q": "Polysaccharide X là chất rắn, màu trắng, dạng sợi. Trong bông nõn có gần 98% chất X. Thủy phân X, thu được monosaccharide Y. Phát biểu nào sau đây đúng?",
           "o": "A=X có cấu tạo xoắn và phản ứng màu với iodine; B=X dễ tan trong nước Schweizer; C=Phân tử khối của X bằng 162; D=X, Y đều tham gia phản ứng tráng bạc",
           "a": "B",
-          "e": "X là cellulose (chiếm ~98% bông nõn), Y là glucose.\n- A đúng: Cellulose tan tốt trong nước Schweizer (dung dịch [Cu(NH3)4](OH)2).\n- B sai: Cellulose là polymer (C6H10O5)n có phân tử khối rất lớn (162n), không phải 162.\n- C sai: Tinh bột mới có cấu trúc xoắn tạo màu với iodine, cellulose có cấu trúc mạch kéo dài dạng sợi.\n- D sai: Cellulose không tham gia phản ứng tráng bạc (chỉ Y là glucose tráng bạc)."
+          "e": "X là cellulose (chiếm ~98% bông nõn), Y là glucose.\n- B đúng: Cellulose tan tốt trong nước Schweizer (dung dịch [Cu(NH3)4](OH)2).\n- A sai: Tinh bột mới có cấu tạo xoắn và phản ứng màu với iodine; cellulose có cấu trúc mạch kéo dài dạng sợi không phân nhánh.\n- C sai: Cellulose là polymer (C6H10O5)n có phân tử khối rất lớn (162n), không phải 162.\n- D sai: Cellulose không tham gia phản ứng tráng bạc (chỉ Y là glucose tráng bạc).",
+          "ch": "g12c2"
         },
         {
           "id": "g12t20_q4",
@@ -8730,7 +8784,8 @@ var DATA = window.DATA = {
           "q": "Cho các chất sau: triolein, cellulose, saccharose, tinh bột. Số chất bị thuỷ phân trong môi trường acid là",
           "o": "A=2; B=1; C=4; D=3",
           "a": "C",
-          "e": "Cả 4 chất đều bị thuỷ phân trong môi trường acid:\n- Triolein (chất béo/ester) thuỷ phân tạo glycerol và oleic acid.\n- Cellulose (polysaccharide) thuỷ phân tạo glucose.\n- Saccharose (disaccharide) thuỷ phân tạo glucose và fructose.\n- Tinh bột (polysaccharide) thuỷ phân tạo glucose."
+          "e": "Cả 4 chất đều bị thuỷ phân trong môi trường acid:\n- Triolein (chất béo/ester) thuỷ phân tạo glycerol và oleic acid.\n- Cellulose (polysaccharide) thuỷ phân tạo glucose.\n- Saccharose (disaccharide) thuỷ phân tạo glucose và fructose.\n- Tinh bột (polysaccharide) thuỷ phân tạo glucose.",
+          "ch": "g12c2"
         },
         {
           "id": "g12t20_q5",
@@ -8738,7 +8793,8 @@ var DATA = window.DATA = {
           "q": "Các amine ở thể khí tan nhiều trong nước. Nguyên nhân là do các amine này",
           "o": "A=tạo được liên kết hydrogen với nước; B=tạo được liên kết hydrogen liên phân tử với nhau; C=đều ở thể khí nên dễ phân tán vào nước; D=hình thành lực tương tác Van der Waals lớn giữa các phân tử",
           "a": "A",
-          "e": "Các amine đầu dãy (methylamine, dimethylamine, trimethylamine, ethylamine) ở thể khí tan rất tốt trong nước nhờ khả năng tạo liên kết hydrogen mạnh với các phân tử nước giữa nguyên tử N (còn cặp electron tự do) và nguyên tử H của nước."
+          "e": "Các amine đầu dãy (methylamine, dimethylamine, trimethylamine, ethylamine) ở thể khí tan rất tốt trong nước nhờ khả năng tạo liên kết hydrogen mạnh với các phân tử nước giữa nguyên tử N (còn cặp electron tự do) và nguyên tử H của nước.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q6",
@@ -8746,7 +8802,8 @@ var DATA = window.DATA = {
           "q": "Hợp chất nào sau đây thuộc loại dipeptide?",
           "o": "A=H2NCH2CH2CONHCH2COOH; B=H2NCH2CONHCH(CH3)COOH; C=H2NCH2CH2CONHCH2CH2COOH; D=H2NCH2CONHCH2CONHCH2COOH",
           "a": "B",
-          "e": "Dipeptide là hợp chất chứa 1 liên kết peptide tạo bởi 2 gốc α-amino acid:\n- A và C chứa gốc β-alanine (không phải α-amino acid).\n- D chứa 2 liên kết peptide nên là tripeptide.\n- B tạo bởi Glycine (α) và Alanine (α), chứa 1 liên kết peptide (-CO-NH-) nên là dipeptide Gly-Ala."
+          "e": "Dipeptide là hợp chất chứa 1 liên kết peptide tạo bởi 2 gốc α-amino acid:\n- A và C chứa gốc β-alanine (không phải α-amino acid).\n- D chứa 2 liên kết peptide nên là tripeptide.\n- B tạo bởi Glycine (α) và Alanine (α), chứa 1 liên kết peptide (-CO-NH-) nên là dipeptide Gly-Ala.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q7",
@@ -8754,7 +8811,8 @@ var DATA = window.DATA = {
           "q": "Chất nào sau đây là amino acid?",
           "o": "A=H2NCH2COOH; B=CH3NH2; C=HOCH2COOH; D=CH3COOH",
           "a": "A",
-          "e": "Amino acid là hợp chất hữu cơ tạp chức phân tử chứa đồng thời nhóm amino (-NH2) và nhóm carboxyl (-COOH). Chất thoả mãn là H2NCH2COOH (glycine)."
+          "e": "Amino acid là hợp chất hữu cơ tạp chức phân tử chứa đồng thời nhóm amino (-NH2) và nhóm carboxyl (-COOH). Chất thoả mãn là H2NCH2COOH (glycine).",
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q8",
@@ -8762,7 +8820,8 @@ var DATA = window.DATA = {
           "q": "Trong công nghiệp, để chuyển hóa chất béo lỏng thành chất béo rắn, người ta dùng phương pháp nào sau đây?",
           "o": "A=Phản ứng ester hóa; B=Phản ứng hydrogen hóa; C=Phản ứng xà phòng hóa; D=Phản ứng oxi hóa",
           "a": "B",
-          "e": "Chất béo lỏng chứa các gốc acid béo không no (như triolein), khi cho tác dụng với hydrogen (xúc tác Ni, đun nóng) sẽ xảy ra phản ứng cộng H2 vào các nối đôi C=C (hydrogen hoá) tạo thành chất béo no ở thể rắn (như tristearin) thuận tiện cho việc vận chuyển và sản xuất bơ nhân tạo."
+          "e": "Chất béo lỏng chứa các gốc acid béo không no (như triolein), khi cho tác dụng với hydrogen (xúc tác Ni, đun nóng) sẽ xảy ra phản ứng cộng H2 vào các nối đôi C=C (hydrogen hoá) tạo thành chất béo no ở thể rắn (như tristearin) thuận tiện cho việc vận chuyển và sản xuất bơ nhân tạo.",
+          "ch": "g12c1"
         },
         {
           "id": "g12t20_q9",
@@ -8770,7 +8829,8 @@ var DATA = window.DATA = {
           "q": "Cho từ từ đến dư ethylamine vào dung dịch FeCl3, hiện tượng quan sát được là",
           "o": "A=tạo kết tủa nâu đỏ sau đó kết tủa tan ra; B=tạo dung dịch phức chất có màu xanh lam; C=tạo kết tủa nâu đỏ không tan; D=không có kết tủa xuất hiện",
           "a": "C",
-          "e": "Ethylamine tan trong nước tạo môi trường base yếu: C2H5NH2 + H2O <=> C2H5NH3+ + OH-. Khi cho vào dung dịch FeCl3: Fe3+ + 3OH- -> Fe(OH)3↓ (kết tủa nâu đỏ). Vì amine không có khả năng tạo phức tan với Fe(OH)3 nên kết tủa nâu đỏ không tan khi amine dư."
+          "e": "Ethylamine tan trong nước tạo môi trường base yếu: C2H5NH2 + H2O <=> C2H5NH3+ + OH-. Khi cho vào dung dịch FeCl3: Fe3+ + 3OH- -> Fe(OH)3↓ (kết tủa nâu đỏ). Vì amine không có khả năng tạo phức tan với Fe(OH)3 nên kết tủa nâu đỏ không tan khi amine dư.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q10",
@@ -8778,7 +8838,8 @@ var DATA = window.DATA = {
           "q": "Thành phần nguyên tố có trong phân tử carbohydrate là",
           "o": "A=C, H, O, N; B=C, H, O, S; C=C, H, S, N; D=C, H, O",
           "a": "D",
-          "e": "Carbohydrate là hợp chất hữu cơ tạp chức có công thức chung Cn(H2O)m, thành phần chỉ gồm 3 nguyên tố: Carbon (C), Hydrogen (H) và Oxygen (O)."
+          "e": "Carbohydrate là hợp chất hữu cơ tạp chức có công thức chung Cn(H2O)m, thành phần chỉ gồm 3 nguyên tố: Carbon (C), Hydrogen (H) và Oxygen (O).",
+          "ch": "g12c2"
         },
         {
           "id": "g12t20_q11",
@@ -8787,7 +8848,8 @@ var DATA = window.DATA = {
           "q": "Polycaproamide được tổng hợp theo phản ứng sau: n H2N-[CH2]5-COOH -(t°)-> -[HN-[CH2]5-CO]-n + n H2O. Polycaproamide được điều chế bằng phản ứng",
           "o": "A=trùng hợp; B=trùng ngưng; C=thế; D=phân hủy",
           "a": "B",
-          "e": "Phản ứng tổng hợp polycaproamide (nylon-6) từ 6-aminohexanoic acid (ε-aminocaproic acid) là phản ứng trùng ngưng vì các monomer kết hợp với nhau đồng thời giải phóng các phân tử nhỏ (H2O)."
+          "e": "Phản ứng tổng hợp polycaproamide (nylon-6) từ 6-aminohexanoic acid (ε-aminocaproic acid) là phản ứng trùng ngưng vì các monomer kết hợp với nhau đồng thời giải phóng các phân tử nhỏ (H2O).",
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q12",
@@ -8795,7 +8857,8 @@ var DATA = window.DATA = {
           "q": "Ester được tạo thành từ formic acid và ethyl alcohol có công thức cấu tạo là",
           "o": "A=HCOOC2H5; B=C2H5COOCH3; C=HCOOCH3; D=CH3COOCH3",
           "a": "A",
-          "e": "Phản ứng ester hoá giữa formic acid (HCOOH) và ethyl alcohol (C2H5OH): HCOOH + C2H5OH <=(H2SO4 đặc, t°)=> HCOOC2H5 + H2O. Ester thu được là ethyl formate (HCOOC2H5)."
+          "e": "Phản ứng ester hoá giữa formic acid (HCOOH) và ethyl alcohol (C2H5OH): HCOOH + C2H5OH <=(H2SO4 đặc, t°)=> HCOOC2H5 + H2O. Ester thu được là ethyl formate (HCOOC2H5).",
+          "ch": "g12c1"
         },
         {
           "id": "g12t20_q13",
@@ -8803,7 +8866,8 @@ var DATA = window.DATA = {
           "q": "Tính chất vật lí nào sau đây là không phải là của amino acid?",
           "o": "A=Là chất rắn ở nhiệt độ phòng; B=Có độc tính rất cao; C=Tan tốt trong nước; D=Nhiệt độ nóng chảy cao",
           "a": "B",
-          "e": "Các amino acid ở điều kiện thường là chất rắn kết tinh, không màu, có nhiệt độ nóng chảy cao, dễ tan trong nước vì tồn tại ở dạng ion lưỡng cực (H3N+-CHR-COO-). Các amino acid thiên nhiên cấu thành cơ thể sống và không có độc tính cao."
+          "e": "Các amino acid ở điều kiện thường là chất rắn kết tinh, không màu, có nhiệt độ nóng chảy cao, dễ tan trong nước vì tồn tại ở dạng ion lưỡng cực (H3N+-CHR-COO-). Các amino acid thiên nhiên cấu thành cơ thể sống và không có độc tính cao.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q14",
@@ -8811,7 +8875,8 @@ var DATA = window.DATA = {
           "q": "X là một loại disaccharide có nhiều trong mạch nha. Chất X là",
           "o": "A=glucose; B=saccharose; C=fructose; D=maltose",
           "a": "D",
-          "e": "Maltose (còn gọi là đường mạch nha) là một disaccharide được tạo nên từ 2 gốc α-glucose liên kết với nhau qua liên kết α-1,4-glycoside, có nhiều trong mầm lúa mạch, kẹo mạch nha."
+          "e": "Maltose (còn gọi là đường mạch nha) là một disaccharide được tạo nên từ 2 gốc α-glucose liên kết với nhau qua liên kết α-1,4-glycoside, có nhiều trong mầm lúa mạch, kẹo mạch nha.",
+          "ch": "g12c2"
         },
         {
           "id": "g12t20_q15",
@@ -8819,7 +8884,8 @@ var DATA = window.DATA = {
           "q": "Cho dung dịch glucose vào ống nghiệm chứa dung dịch AgNO3 trong NH3 dư được ngâm trong cốc nước nóng, thu được sản phẩm hữu cơ X và bạc kim loại. Tên gọi của X là",
           "o": "A=ammonium gluconate; B=fructose; C=glycerol; D=gluconic acid",
           "a": "A",
-          "e": "Phương trình phản ứng: CH2OH[CHOH]4CHO + 2[Ag(NH3)2]OH -(t°)-> CH2OH[CHOH]4COONH4 + 2Ag↓ + 3NH3 + H2O. Do phản ứng diễn ra trong môi trường NH3 dư nên nhóm carboxyl -COOH tạo thành sẽ tác dụng ngay với NH3 để tạo muối ammonium gluconate (CH2OH[CHOH]4COONH4)."
+          "e": "Phương trình phản ứng: CH2OH[CHOH]4CHO + 2[Ag(NH3)2]OH -(t°)-> CH2OH[CHOH]4COONH4 + 2Ag↓ + 3NH3 + H2O. Do phản ứng diễn ra trong môi trường NH3 dư nên nhóm carboxyl -COOH tạo thành sẽ tác dụng ngay với NH3 để tạo muối ammonium gluconate (CH2OH[CHOH]4COONH4).",
+          "ch": "g12c2"
         },
         {
           "id": "g12t20_q16",
@@ -8827,7 +8893,8 @@ var DATA = window.DATA = {
           "q": "Trong môi trường base, protein có phản ứng màu biuret với chất nào sau đây?",
           "o": "A=HNO3; B=Cu(OH)2; C=Mg(OH)2; D=NaCl",
           "a": "B",
-          "e": "Trong môi trường kiềm (base), các peptide có từ 2 liên kết peptide trở lên và protein phản ứng với Cu(OH)2 tạo phức chất màu tím đặc trưng gọi là phản ứng màu biuret."
+          "e": "Trong môi trường kiềm (base), các peptide có từ 2 liên kết peptide trở lên và protein phản ứng với Cu(OH)2 tạo phức chất màu tím đặc trưng gọi là phản ứng màu biuret.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q17",
@@ -8836,7 +8903,8 @@ var DATA = window.DATA = {
           "q": "Amphetamine là chất kích thích (mạnh hơn caffeine) làm tăng sự tỉnh táo và giảm cảm giác thèm ăn. Nó được sử dụng rộng rãi trong thế chiến thứ hai để ngăn chặn sự mệt mỏi khi chiến đấu. Amphetamine có công thức cấu tạo như hình bên. Công thức phân tử của amphetamine là",
           "o": "A=C9H12N; B=C8H11N; C=C9H13N; D=C10H13N",
           "a": "C",
-          "e": "Phân tử amphetamine gồm:\n- Vòng benzene (gốc phenyl C6H5-): 6 nguyên tử C, 5 nguyên tử H.\n- Mạch nhánh -CH2-CH(NH2)-CH3: 3 nguyên tử C, 8 nguyên tử H, 1 nguyên tử N.\nTổng số C: 6 + 3 = 9.\nTổng số H: 5 + 8 = 13.\nTổng số N: 1.\n=> Công thức phân tử là C9H13N."
+          "e": "Phân tử amphetamine gồm:\n- Vòng benzene (gốc phenyl C6H5-): 6 nguyên tử C, 5 nguyên tử H.\n- Mạch nhánh -CH2-CH(NH2)-CH3: 3 nguyên tử C, 8 nguyên tử H, 1 nguyên tử N.\nTổng số C: 6 + 3 = 9.\nTổng số H: 5 + 8 = 13.\nTổng số N: 1.\n=> Công thức phân tử là C9H13N.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q18",
@@ -8844,7 +8912,8 @@ var DATA = window.DATA = {
           "q": "Thủy phân hoàn toàn 1 mol pentapeptide X thì thu được 2 mol Alanine, 2 mol Glycine và 1 mol Valine. Khi thủy phân không hoàn toàn X thì trong hỗn hợp sản phẩm thấy có dipeptide Ala-Gly, Gly-Gly và tripeptide Gly-Ala-Val. Công thức của X là",
           "o": "A=Gly-Ala-Val-Ala-Gly; B=Gly-Ala-Gly-Ala-Val; C=Ala-Gly-Gly-Ala-Val; D=Gly-Gly-Ala-Ala-Val",
           "a": "C",
-          "e": "1. Pentapeptide X gồm 2 gốc Ala, 2 gốc Gly và 1 gốc Val.\n2. Phân tích các mảnh thủy phân dở dang:\n- Có tripeptide: Gly-Ala-Val\n- Có dipeptide: Ala-Gly\n- Có dipeptide: Gly-Gly\nGhép nối các đoạn: Đoạn Ala-Gly và Gly-Gly liên kết tạo chuỗi Ala-Gly-Gly. Nối chuỗi này với mảnh Gly-Ala-Val ta được: Ala-Gly-Gly-Ala-Val.\nKiểm tra lại: Chứa Ala-Gly (1-2), Gly-Gly (2-3), Gly-Ala-Val (3-4-5). Phù hợp hoàn toàn."
+          "e": "1. Pentapeptide X gồm 2 gốc Ala, 2 gốc Gly và 1 gốc Val.\n2. Phân tích các mảnh thủy phân dở dang:\n- Có tripeptide: Gly-Ala-Val\n- Có dipeptide: Ala-Gly\n- Có dipeptide: Gly-Gly\nGhép nối các đoạn: Đoạn Ala-Gly và Gly-Gly liên kết tạo chuỗi Ala-Gly-Gly. Nối chuỗi này với mảnh Gly-Ala-Val ta được: Ala-Gly-Gly-Ala-Val.\nKiểm tra lại: Chứa Ala-Gly (1-2), Gly-Gly (2-3), Gly-Ala-Val (3-4-5). Phù hợp hoàn toàn.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q19",
@@ -8876,12 +8945,13 @@ var DATA = window.DATA = {
               "a": "false",
               "e": "Sai. Dung dịch kiềm sử dụng là KOH nên muối carboxylate thu được là muối potassium (như potassium stearate/palmitate), không phải muối sodium."
             }
-          ]
+          ],
+          "ch": "g12c1"
         },
         {
           "id": "g12t20_q20",
           "k": "tf",
-          "q": "Glutacid acid là một amino acid có vai trò quan trọng trong việc trao đổi chất của cơ thể động vật. Glutamic acid thuộc loại hợp chất hữu cơ tạp chức có công thức cấu tạo như sau: HOOC-CH2-CH2-CH(NH2)-COOH.",
+          "q": "Glutamic acid là một amino acid có vai trò quan trọng trong việc trao đổi chất của cơ thể động vật. Glutamic acid thuộc loại hợp chất hữu cơ tạp chức có công thức cấu tạo như sau: HOOC-CH2-CH2-CH(NH2)-COOH.",
           "sub": [
             {
               "id": "a",
@@ -8907,7 +8977,8 @@ var DATA = window.DATA = {
               "a": "true",
               "e": "Đúng. Cấu tạo HOOC-CH2-CH2-CH(NH2)-COOH có nhóm -NH2 ở vị trí số 2 (α) so với carboxyl, gồm 1 nhóm -NH2, 2 nhóm -COOH và có công thức phân tử là C5H9NO4."
             }
-          ]
+          ],
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q21",
@@ -8938,7 +9009,8 @@ var DATA = window.DATA = {
               "a": "false",
               "e": "Sai. X là C4H8O2 (M = 88). Phần trăm khối lượng carbon là: %C = (4 * 12 / 88) * 100% ≈ 54,55% ≠ 60%."
             }
-          ]
+          ],
+          "ch": "g12c1"
         },
         {
           "id": "g12t20_q22",
@@ -8969,7 +9041,8 @@ var DATA = window.DATA = {
               "a": "false",
               "e": "Sai. Enzyme có bản chất là protein nên ở nhiệt độ cao sẽ bị biến tính và mất hoàn toàn hoạt tính xúc tác. Nhiệt độ tối ưu của đa số enzyme chỉ trong khoảng 37°C - 45°C."
             }
-          ]
+          ],
+          "ch": "g12c2"
         },
         {
           "id": "g12t20_q23",
@@ -8977,7 +9050,8 @@ var DATA = window.DATA = {
           "q": "Hiện nay công nghệ sản xuất giấm bằng phương pháp lên men từ các loại tinh bột đang được sử dụng rộng rãi theo sơ đồ sản xuất như sau: Tinh bột -> glucose -> ethanol -> acetic acid (thành phần chính của giấm). Từ 16,875 tấn bột sắn chứa 90% tinh bột sản xuất được 200 tấn dung dịch acetic acid có nồng độ a%. Biết hiệu suất chung của cả quá trình sản xuất là 80%. Giá trị a bằng bao nhiêu? (Làm tròn đến hàng phần mười).",
           "a": "4.5",
           "u": "%",
-          "e": "(1) Tóm tắt dữ kiện: m_bột sắn = 16,875 tấn, %tinh bột = 90% => m_tinh bột nguyên chất = 16,875 * 90% = 15,1875 tấn. m_dd giấm = 200 tấn, H_chung = 80%.\n(2) Sơ đồ phản ứng theo mắt xích:\n(C6H10O5)n -> n C6H12O6 -> 2n C2H5OH -> 2n CH3COOH\n162 g tinh bột  -------------------------> 2 * 60 = 120 g CH3COOH\nKhối lượng CH3COOH theo lý thuyết:\nm_acid_lt = 15,1875 * (120 / 162) = 11,25 tấn.\nKhối lượng CH3COOH thực tế thu được (H = 80%):\nm_acid_tt = 11,25 * 80% = 9,0 tấn.\n(3) Tính nồng độ a%:\na% = (m_acid_tt / m_dd) * 100% = (9,0 / 200) * 100% = 4,5%."
+          "e": "(1) Tóm tắt dữ kiện: m_bột sắn = 16,875 tấn, %tinh bột = 90% => m_tinh bột nguyên chất = 16,875 * 90% = 15,1875 tấn. m_dd giấm = 200 tấn, H_chung = 80%.\n(2) Sơ đồ phản ứng theo mắt xích:\n(C6H10O5)n -> n C6H12O6 -> 2n C2H5OH -> 2n CH3COOH\n162 g tinh bột  -------------------------> 2 * 60 = 120 g CH3COOH\nKhối lượng CH3COOH theo lý thuyết:\nm_acid_lt = 15,1875 * (120 / 162) = 11,25 tấn.\nKhối lượng CH3COOH thực tế thu được (H = 80%):\nm_acid_tt = 11,25 * 80% = 9,0 tấn.\n(3) Tính nồng độ a%:\na% = (m_acid_tt / m_dd) * 100% = (9,0 / 200) * 100% = 4,5%.",
+          "ch": "g12c2"
         },
         {
           "id": "g12t20_q24",
@@ -8985,14 +9059,16 @@ var DATA = window.DATA = {
           "q": "Chỉ số xà phòng hoá là số miligam KOH cần để xà phòng hoá 1 g chất béo. Theo TCVN 6044:2013, CODEX STAN 211-1999, chỉ số xà phòng hoá trung bình của chất béo trong mỡ lợn là 198. Khi xà phòng hoàn toàn m kg mỡ lợn (chứa 92% chất béo) thu được trong quá trình chế biến thực phẩm để nấu xà phòng, lượng NaOH cần lấy ít nhất 80 kg. Tìm m? Biết các tạp chất trong mỡ lợn không tác dụng với NaOH. (Kết quả làm tròn đến hàng đơn vị).",
           "a": "615",
           "u": "kg",
-          "e": "(1) Tóm tắt dữ kiện: Lượng NaOH cần dùng tối thiểu = 80 kg. Chỉ số xà phòng hoá = 198 mg KOH / 1 g chất béo. Độ tinh khiết chất béo trong mỡ lợn = 92%.\n(2) Phương trình và tương đương mol:\n1 mol NaOH tương đương 1 mol KOH về số mol nhóm -OH- xà phòng hoá:\nn_KOH = n_NaOH = (80 * 10^3 g) / (40 g/mol) = 2000 mol.\nKhối lượng KOH tương đương:\nm_KOH = 2000 mol * 56 g/mol = 112 000 g = 112 * 10^6 mg.\n(3) Tính khối lượng mỡ lợn:\nKhối lượng chất béo nguyên chất:\nm_chất béo = (112 * 10^6 mg) / (198 mg/g) = 565 656,57 g ≈ 565,66 kg.\nKhối lượng mỡ lợn m (chứa 92% chất béo):\nm = 565,65657 kg / 0,92 ≈ 614,84 kg.\nLàm tròn đến hàng đơn vị: 615."
+          "e": "(1) Tóm tắt dữ kiện: Lượng NaOH cần dùng tối thiểu = 80 kg. Chỉ số xà phòng hoá = 198 mg KOH / 1 g chất béo. Độ tinh khiết chất béo trong mỡ lợn = 92%.\n(2) Phương trình và tương đương mol:\n1 mol NaOH tương đương 1 mol KOH về số mol nhóm -OH- xà phòng hoá:\nn_KOH = n_NaOH = (80 * 10^3 g) / (40 g/mol) = 2000 mol.\nKhối lượng KOH tương đương:\nm_KOH = 2000 mol * 56 g/mol = 112 000 g = 112 * 10^6 mg.\n(3) Tính khối lượng mỡ lợn:\nKhối lượng chất béo nguyên chất:\nm_chất béo = (112 * 10^6 mg) / (198 mg/g) = 565 656,57 g ≈ 565,66 kg.\nKhối lượng mỡ lợn m (chứa 92% chất béo):\nm = 565,65657 kg / 0,92 ≈ 614,84 kg.\nLàm tròn đến hàng đơn vị: 615.",
+          "ch": "g12c1"
         },
         {
           "id": "g12t20_q25",
           "k": "n",
           "q": "Có bao nhiêu amino acid đồng phân cấu tạo của nhau có cùng công thức phân tử C4H9O2N?",
           "a": "5",
-          "e": "(1) Phân tích dạng phân tử: C4H9O2N có k = (2*4 + 2 + 1 - 9)/2 = 1 (1 nhóm -COOH). Đây là amino acid no, đơn chức, mạch hở C3H6(NH2)COOH.\n(2) Xét các mạch carbon của gốc acid:\n* Trường hợp 1: Mạch 4C không phân nhánh C-C-C-COOH (butanoic acid), nhóm -NH2 có thể gắn vào 3 vị trí:\n  (1) Vị trí C2 (α): CH3-CH2-CH(NH2)-COOH (2-aminobutanoic acid)\n  (2) Vị trí C3 (β): CH3-CH(NH2)-CH2-COOH (3-aminobutanoic acid)\n  (3) Vị trí C4 (γ): H2N-CH2-CH2-CH2-COOH (4-aminobutanoic acid)\n* Trường hợp 2: Mạch 4C có nhánh C-C(CH3)-COOH (2-methylpropanoic acid), nhóm -NH2 có thể gắn vào 2 vị trí:\n  (4) Vị trí C2 (α): CH3-C(CH3)(NH2)-COOH (2-amino-2-methylpropanoic acid)\n  (5) Vị trí C3 (β): H2N-CH2-CH(CH3)-COOH (3-amino-2-methylpropanoic acid)\n(3) Kết luận: Có tất cả 5 đồng phân amino acid cấu tạo thỏa mãn."
+          "e": "(1) Phân tích dạng phân tử: C4H9O2N có k = (2*4 + 2 + 1 - 9)/2 = 1 (1 nhóm -COOH). Đây là amino acid no, đơn chức, mạch hở C3H6(NH2)COOH.\n(2) Xét các mạch carbon của gốc acid:\n* Trường hợp 1: Mạch 4C không phân nhánh C-C-C-COOH (butanoic acid), nhóm -NH2 có thể gắn vào 3 vị trí:\n  (1) Vị trí C2 (α): CH3-CH2-CH(NH2)-COOH (2-aminobutanoic acid)\n  (2) Vị trí C3 (β): CH3-CH(NH2)-CH2-COOH (3-aminobutanoic acid)\n  (3) Vị trí C4 (γ): H2N-CH2-CH2-CH2-COOH (4-aminobutanoic acid)\n* Trường hợp 2: Mạch 4C có nhánh C-C(CH3)-COOH (2-methylpropanoic acid), nhóm -NH2 có thể gắn vào 2 vị trí:\n  (4) Vị trí C2 (α): CH3-C(CH3)(NH2)-COOH (2-amino-2-methylpropanoic acid)\n  (5) Vị trí C3 (β): H2N-CH2-CH(CH3)-COOH (3-amino-2-methylpropanoic acid)\n(3) Kết luận: Có tất cả 5 đồng phân amino acid cấu tạo thỏa mãn.",
+          "ch": "g12c3"
         },
         {
           "id": "g12t20_q26",
@@ -9000,23 +9076,27 @@ var DATA = window.DATA = {
           "q": "Thủy phân 4,275 g saccharose trong dung dịch H2SO4 loãng. Trung hòa dung dịch thu được sau phản ứng bằng dung dịch NaOH thu được dung dịch Y. Cho Y tác dụng với lượng dư thuốc thử Tollens thu được bao nhiêu gam Ag? Biết hiệu suất phản ứng thủy phân saccharose là 80%, hiệu suất phản ứng tráng gương 100%.",
           "a": "4.32",
           "u": "g",
-          "e": "(1) Tóm tắt dữ kiện: m_saccharose = 4,275 g (M = 342 g/mol) => n_saccharose = 4,275 / 342 = 0,0125 mol. Hiệu suất thuỷ phân H = 80%.\n(2) Phương trình phản ứng:\nC12H22O11 + H2O -(H+, t°)-> C6H12O6 (glucose) + C6H12O6 (fructose)\nn_saccharose phản ứng = 0,0125 * 80% = 0,01 mol.\n=> n_glucose = 0,01 mol; n_fructose = 0,01 mol.\nTrong môi trường kiềm (thuốc thử Tollens), cả glucose và fructose đều tham gia phản ứng tráng bạc:\n1 mol glucose -> 2 mol Ag\n1 mol fructose -> 2 mol Ag\n=> n_Ag = 2 * (n_glucose + n_fructose) = 2 * (0,01 + 0,01) = 0,04 mol.\n(3) Khối lượng Ag thu được:\nm_Ag = 0,04 mol * 108 g/mol = 4,32 g."
+          "e": "(1) Tóm tắt dữ kiện: m_saccharose = 4,275 g (M = 342 g/mol) => n_saccharose = 4,275 / 342 = 0,0125 mol. Hiệu suất thuỷ phân H = 80%.\n(2) Phương trình phản ứng:\nC12H22O11 + H2O -(H+, t°)-> C6H12O6 (glucose) + C6H12O6 (fructose)\nn_saccharose phản ứng = 0,0125 * 80% = 0,01 mol.\n=> n_glucose = 0,01 mol; n_fructose = 0,01 mol.\nTrong môi trường kiềm (thuốc thử Tollens), cả glucose và fructose đều tham gia phản ứng tráng bạc:\n1 mol glucose -> 2 mol Ag\n1 mol fructose -> 2 mol Ag\n=> n_Ag = 2 * (n_glucose + n_fructose) = 2 * (0,01 + 0,01) = 0,04 mol.\n(3) Khối lượng Ag thu được:\nm_Ag = 0,04 mol * 108 g/mol = 4,32 g.",
+          "ch": "g12c2"
         },
         {
           "id": "g12t20_q27",
           "k": "n",
           "q": "Cho các carbohydrate sau: saccharose, maltose, glucose, fructose và cellulose. Có bao nhiêu chất có thể làm mất màu dung dịch bromine?",
           "a": "2",
-          "e": "(1) Phân tích phản ứng: Dung dịch nước bromine oxi hoá nhóm chức aldehyde (-CHO) thành carboxylic acid (-COOH), làm mất màu dung dịch nước bromine da cam.\n(2) Khảo sát các carbohydrate:\n- Glucose: có nhóm -CHO ở dạng mạch hở -> làm mất màu nước bromine.\n- Maltose: còn nhóm -OH hemiacetal tự do có thể mở vòng tạo nhóm -CHO -> làm mất màu nước bromine.\n- Fructose: trong môi trường nước bromine có tính acid nhẹ, fructose không chuyển hoá thành glucose -> không làm mất màu nước bromine.\n- Saccharose: liên kết glycoside khoá cả 2 nhóm anomer, không mở vòng tạo -CHO -> không làm mất màu.\n- Cellulose: polysaccharide mạch dài, không có -CHO tự do -> không làm mất màu.\n(3) Kết luận: Có 2 chất làm mất màu dung dịch bromine (glucose và maltose)."
+          "e": "(1) Phân tích phản ứng: Dung dịch nước bromine oxi hoá nhóm chức aldehyde (-CHO) thành carboxylic acid (-COOH), làm mất màu dung dịch nước bromine da cam.\n(2) Khảo sát các carbohydrate:\n- Glucose: có nhóm -CHO ở dạng mạch hở -> làm mất màu nước bromine.\n- Maltose: còn nhóm -OH hemiacetal tự do có thể mở vòng tạo nhóm -CHO -> làm mất màu nước bromine.\n- Fructose: trong môi trường nước bromine có tính acid nhẹ, fructose không chuyển hoá thành glucose -> không làm mất màu nước bromine.\n- Saccharose: liên kết glycoside khoá cả 2 nhóm anomer, không mở vòng tạo -CHO -> không làm mất màu.\n- Cellulose: polysaccharide mạch dài, không có -CHO tự do -> không làm mất màu.\n(3) Kết luận: Có 2 chất làm mất màu dung dịch bromine (glucose và maltose).",
+          "ch": "g12c2"
         },
         {
           "id": "g12t20_q28",
           "k": "n",
           "q": "Nhỏ dung dịch của mỗi chất methylamine, glycine, aniline, lysine vào các mẩu giấy quỳ tím riêng rẽ. Có bao nhiêu dung dịch làm giấy quỳ tím chuyển thành màu xanh?",
           "a": "2",
-          "e": "(1) Phân tích dữ kiện: Tính chất acid-base của các amine và amino acid trên giấy quỳ tím phụ thuộc vào cấu tạo nhóm chức.\n(2) Đánh giá từng chất:\n- Methylamine (CH3NH2): amine béo có tính base mạnh hơn NH3 -> làm quỳ tím chuyển xanh.\n- Glycine (H2N-CH2-COOH): có 1 nhóm -NH2 và 1 nhóm -COOH (pH ≈ 6) -> không đổi màu quỳ tím.\n- Aniline (C6H5NH2): có gốc phenyl hút e làm giảm mật độ electron trên N -> tính base rất yếu, không đổi màu quỳ tím.\n- Lysine (H2N-[CH2]4-CH(NH2)-COOH): có 2 nhóm -NH2 và 1 nhóm -COOH -> môi trường base (pH ≈ 9,7) -> làm quỳ tím chuyển xanh.\n(3) Kết luận: Có 2 dung dịch làm quỳ tím hóa xanh (methylamine và lysine)."
+          "e": "(1) Phân tích dữ kiện: Tính chất acid-base của các amine và amino acid trên giấy quỳ tím phụ thuộc vào cấu tạo nhóm chức.\n(2) Đánh giá từng chất:\n- Methylamine (CH3NH2): amine béo có tính base mạnh hơn NH3 -> làm quỳ tím chuyển xanh.\n- Glycine (H2N-CH2-COOH): có 1 nhóm -NH2 và 1 nhóm -COOH (pH ≈ 6) -> không đổi màu quỳ tím.\n- Aniline (C6H5NH2): có gốc phenyl hút e làm giảm mật độ electron trên N -> tính base rất yếu, không đổi màu quỳ tím.\n- Lysine (H2N-[CH2]4-CH(NH2)-COOH): có 2 nhóm -NH2 và 1 nhóm -COOH -> môi trường base (pH ≈ 9,7) -> làm quỳ tím chuyển xanh.\n(3) Kết luận: Có 2 dung dịch làm quỳ tím hóa xanh (methylamine và lysine).",
+          "ch": "g12c3"
         }
-      ]
+      ],
+      "ch": "g12c1"
     }
   ],
   "g11c1": {
@@ -10984,7 +11064,7 @@ var DATA = window.DATA = {
       "title": "Chương 3 · Hợp chất chứa Nitrogen · Amine",
       "desc": "Khái niệm, phân loại theo gốc hydrocarbon và theo bậc, đồng phân, danh pháp, tính chất vật lí, tính chất hoá học (tính base, phản ứng với acid, muối Fe, phản ứng thế bromine ở nhân thơm, phản ứng với nitrous acid) và điều chế amine."
     },
-    "feynman": "Amine giống như ammonia (NH₃) nhưng có 1, 2 hoặc cả 3 nguyên tử H được thay thế bằng gốc hydrocarbon. Vì nguyên tử N vẫn còn cặp electron tự do chưa liên kết nên amine có tính base (nhận proton H⁺) và có mùi khai/tanh đặc trưng (như mùi tanh của cá mè do trimethylamine). Lưu ý cốt tử: Bậc của amine được tính bằng số gốc hydrocarbon gắn vào N (bậc 1: R-NH₂, bậc 2: R-NH-R', bậc 3: R-N(R')-R''), hoàn toàn khác với bậc của alcohol (tính theo bậc C mang nhóm OH)!",
+    "feynman": "Hợp chất hữu cơ chứa nitrogen là nền tảng của sự sống. Amine giống như ammonia có tính base và mùi tanh khai. Khi nhóm amino (-NH₂) kết hợp cùng nhóm carboxyl (-COOH) trên cùng một phân tử, ta có Amino acid — những 'viên gạch' lưỡng tính thần kì. Các amino acid nối lại với nhau qua liên kết peptide (-CO-NH-) tạo thành chuỗi Peptide và Protein cấu tạo nên cơ bắp, kháng thể và enzyme xúc tác mọi phản ứng sinh học trong tế bào.",
     "notes": [
       {
         "id": "g12c3_n1",
@@ -11068,6 +11148,46 @@ var DATA = window.DATA = {
         "text": "• Điều chế aniline trong công nghiệp: Khử nitrobenzene bằng hydrogen mới sinh (Fe + HCl đặc):\n  C₆H₅NO₂ + 6[H] (Fe, HCl, t°) → C₆H₅NH₂ + 2H₂O\n• Điều chế alkylamine: Alkyl hoá ammonia bằng alkyl halide:\n  NH₃ + CH₃I → CH₃NH₂ + HI\n• Ứng dụng quan trọng:\n  - Hexamethylenediamine H₂N-(CH₂)₆-NH₂ dùng để trùng ngưng với adipic acid sản xuất tơ nylon-6,6.\n  - Sản xuất phẩm nhuộm azo, thuốc kháng khuẩn sulfamid.",
         "t": "8. Ứng dụng & Điều chế Amine",
         "b": "• Điều chế aniline trong công nghiệp: Khử nitrobenzene bằng hydrogen mới sinh (Fe + HCl đặc):\n  C₆H₅NO₂ + 6[H] (Fe, HCl, t°) → C₆H₅NH₂ + 2H₂O\n• Điều chế alkylamine: Alkyl hoá ammonia bằng alkyl halide:\n  NH₃ + CH₃I → CH₃NH₂ + HI\n• Ứng dụng quan trọng:\n  - Hexamethylenediamine H₂N-(CH₂)₆-NH₂ dùng để trùng ngưng với adipic acid sản xuất tơ nylon-6,6.\n  - Sản xuất phẩm nhuộm azo, thuốc kháng khuẩn sulfamid."
+      },
+      {
+        "t": "9. Khái niệm, Cấu tạo & Danh pháp Amino acid",
+        "b": "• Khái niệm: Amino acid là hợp chất hữu cơ tạp chức, phân tử chứa đồng thời nhóm amino (-NH₂) và nhóm carboxyl (-COOH).\n• Cấu tạo ion lưỡng cực: Trong dung dịch và tinh thể, nhóm -COOH chuyển proton H⁺ sang nhóm -NH₂ tạo ion lưỡng cực: H₃N⁺-CH(R)-COO⁻. Vì vậy amino acid ở điều kiện thường là chất rắn kết tinh, không màu, nhiệt độ nóng chảy cao và tan tốt trong nước.\n• Danh pháp thay thế: Tên acid tương ứng + tiền tố amino có chỉ số vị trí C (đánh số 1 từ nhóm -COOH). Ví dụ: CH₃-CH(NH₂)-COOH là 2-aminopropanoic acid.\n• Tên bán hệ thống: Dùng chữ cái Hy Lạp (α, β, γ...) chỉ vị trí nhóm -NH₂ so với -COOH. Ví dụ: α-aminopropionic acid (alanine).",
+        "kind": "rule"
+      },
+      {
+        "t": "10. Tính chất axit – bazơ & Tính lưỡng tính của Amino acid",
+        "b": "• Tính chất lưỡng tính: Phân tử chứa nhóm -COOH (tính acid) và nhóm -NH₂ (tính base) nên tác dụng được với cả acid mạnh và base mạnh:\n  + Tác dụng acid: H₂N-CH₂-COOH + HCl → ClH₃N-CH₂-COOH\n  + Tác dụng base: H₂N-CH₂-COOH + NaOH → H₂N-CH₂-COONa + H₂O\n• Tác dụng lên giấy quỳ tím:\n  + Số nhóm -NH₂ = Số nhóm -COOH (như Gly, Ala, Val): pH ≈ 6, không đổi màu quỳ tím.\n  + Số nhóm -NH₂ > Số nhóm -COOH (như Lysine: 2 nhóm -NH₂, 1 nhóm -COOH): pH ≈ 9,7, làm quỳ tím chuyển xanh.\n  + Số nhóm -NH₂ < Số nhóm -COOH (như Glutamic acid: 1 nhóm -NH₂, 2 nhóm -COOH): pH ≈ 3,2, làm quỳ tím chuyển đỏ hồng.\n• Phản ứng ester hoá: H₂N-CH₂-COOH + C₂H₅OH <=(HCl khí, t°)=> ClH₃N-CH₂-COOC₂H₅ + H₂O.",
+        "kind": "rule"
+      },
+      {
+        "t": "11. 5 Amino acid tiêu biểu cấu thành sự sống",
+        "b": "Tên gọi | Kí hiệu | Công thức cấu tạo | M (g/mol) | Quỳ tím\nGlycine | Gly | H₂N-CH₂-COOH | 75 | Không đổi màu\nAlanine | Ala | CH₃-CH(NH₂)-COOH | 89 | Không đổi màu\nValine | Val | (CH₃)₂CH-CH(NH₂)-COOH | 117 | Không đổi màu\nGlutamic acid | Glu | HOOC-[CH₂]₂-CH(NH₂)-COOH | 147 | Quỳ hoá đỏ hồng\nLysine | Lys | H₂N-[CH₂]₄-CH(NH₂)-COOH | 146 | Quỳ hoá xanh",
+        "kind": "table"
+      },
+      {
+        "t": "12. Khái niệm & Cấu trúc Peptide",
+        "b": "• Liên kết peptide: Là liên kết amide (-CO-NH-) giữa nhóm α-amino của đơn vị amino acid này với nhóm α-carboxyl của đơn vị amino acid khác.\n• Định nghĩa peptide: Chuỗi gồm từ 2 đến 50 gốc α-amino acid liên kết qua liên kết peptide. Phân loại:\n  + Oligopeptide: gồm 2 đến 10 gốc (dipeptide có 1 liên kết peptide; tripeptide có 2 liên kết; tetrapeptide có 3 liên kết).\n  + Polypeptide: gồm 11 đến 50 gốc.\n• Quy ước đầu chuỗi: Đầu N (chứa nhóm -NH₂ tự do) viết bên trái, đầu C (chứa nhóm -COOH tự do) viết bên phải. Ví dụ: H₂N-CH₂-CO-NH-CH(CH₃)-COOH là Gly-Ala (khác với Ala-Gly).",
+        "kind": "rule"
+      },
+      {
+        "t": "13. Phản ứng thuỷ phân Peptide & Phương pháp ghép chuỗi",
+        "b": "• Thuỷ phân hoàn toàn: Dưới tác dụng của acid, base hoặc enzyme, peptide thuỷ phân hoàn toàn thành các α-amino acid:\n  Peptide n gốc + (n - 1) H₂O -(H⁺, t°)-> n α-amino acid\n• Thuỷ phân dở dang: Thu được hỗn hợp các peptide ngắn hơn và amino acid. Phương pháp giải bài toán xác định thứ tự chuỗi peptide:\n  Ví dụ: Thuỷ phân chuỗi X thu được Gly-Ala, Ala-Val, Val-Gly. Ghép nối các mảnh chồng lấn: Gly-Ala + Ala-Val → Gly-Ala-Val; nối tiếp Val-Gly → Gly-Ala-Val-Gly.",
+        "kind": "rule"
+      },
+      {
+        "t": "14. Phản ứng màu Biuret đặc trưng",
+        "b": "• Hiện tượng: Trong môi trường kiềm, các peptide có từ 2 liên kết peptide trở lên (tức từ tripeptide trở lên) và protein tác dụng với Cu(OH)₂ tạo phức chất màu tím đặc trưng.\n• Lưu ý cốt tử:\n  + Dipeptide CHỈ CÓ 1 liên kết peptide nên KHÔNG có phản ứng màu biuret!\n  + Dùng phản ứng biuret để phân biệt dipeptide với tripeptide và protein.",
+        "kind": "rule"
+      },
+      {
+        "t": "15. Cấu trúc & Tính chất của Protein",
+        "b": "• Khái niệm: Protein là những polypeptide cao phân tử có phân tử khối từ vài vạn đến vài triệu đvC (gồm hơn 50 gốc α-amino acid).\n• Cấu trúc: Có 4 bậc cấu trúc (Bậc 1: trật tự chuỗi polypeptide; Bậc 2: xoắn α hoặc gấp nếp β; Bậc 3: cấu trúc không gian 3 chiều cuộn lại; Bậc 4: tổ hợp của nhiều chuỗi polypeptide).\n• Sự đông tụ protein: Dưới tác dụng của nhiệt độ, acid, base hoặc ion kim loại nặng, cấu trúc không gian của protein bị phá vỡ khiến protein kết tụ lại và tách ra khỏi dung dịch (Ví dụ: nấu canh cua nổi gạch, luộc trứng chín, vắt chanh vào sữa đậu nành).",
+        "kind": "rule"
+      },
+      {
+        "t": "16. Enzyme & Tơ Polyamide tổng hợp",
+        "b": "• Enzyme: Hầu hết enzyme là protein có tính xúc tác sinh học cực kì cao và có tính chọn lọc rất nghiêm ngặt (mỗi enzyme chỉ xúc tác cho 1 hoặc một số phản ứng nhất định ở điều kiện êm dịu 37°C, pH trung tính).\n• Polyamide liên quan: Phản ứng trùng ngưng 6-aminohexanoic acid (ε-aminocaproic acid) tạo Polycaproamide (Tơ nilon-6):\n  n H₂N-[CH₂]₅-COOH -(t°, xt)-> -[HN-[CH₂]₅-CO]-ₙ + n H₂O\n  Phản ứng trùng ngưng hexamethylenediamine và adipic acid tạo Tơ nilon-6,6.",
+        "kind": "rule"
       }
     ],
     "exercises": [
@@ -11108,7 +11228,7 @@ var DATA = window.DATA = {
         "n": 3
       }
     ],
-    "title": "Chương 3 · Hợp chất chứa Nitrogen · Amine",
+    "title": "Chương 3 · Hợp chất chứa Nitrogen (Amine – Amino acid – Peptide – Protein)",
     "tagline": "Khái niệm · Bậc amine · Đồng phân & danh pháp · Tính base & Aniline",
     "color": "#8b5cf6",
     "icon": "🧬",

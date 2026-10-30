@@ -223,9 +223,16 @@
   };
   var parseOpts = function (o) {
     if (!o) return [];
+    var re = /(?:^|;\s*)([A-Da-d0-9])\s*=\s*(.*?)(?=(?:;\s*[A-Da-d0-9]\s*=|$))/gs;
+    var matches = [];
+    var m;
+    while ((m = re.exec(o)) !== null) {
+      matches.push({ k: m[1].trim().toUpperCase(), t: m[2].trim() });
+    }
+    if (matches.length > 0) return matches;
     return o.split(";").map(function (part) {
       var i = part.indexOf("=");
-      return { k: part.slice(0, i).trim(), t: part.slice(i + 1) };
+      return { k: part.slice(0, i).trim().toUpperCase(), t: part.slice(i + 1).trim() };
     });
   };
   var ICONS = {
@@ -4217,12 +4224,29 @@
   }
 
   function getDistractorAnalysis(q, test, picked) {
-    var opts = parseOpts(q.o);
-    var correctKey = String(q.a).trim();
+    // 1. Handle True/False Clusters (sub-statements a, b, c, d)
+    if (q && q.sub && Array.isArray(q.sub) && q.sub.length) {
+      return q.sub.map(function (s) {
+        var isTrue = (String(s.a).toLowerCase() === "true" || String(s.a).toLowerCase() === "đ");
+        var userDraft = (state.coachTest && state.coachTest.clusterDraft && state.coachTest.clusterDraft[state.coachTest.i]) || {};
+        var userPick = userDraft[s.id];
+        return {
+          k: "Ý (" + s.id + ")",
+          t: s.q,
+          isCorrect: isTrue,
+          wasPicked: userPick != null,
+          note: s.e ? s.e : (isTrue ? "Mệnh đề này hoàn toàn chính xác theo chuẩn SGK Hoá học 12." : "Mệnh đề này sai lệch bản chất hoá học.")
+        };
+      });
+    }
 
+    var opts = parseOpts(q.o);
+    var correctKey = String(q.a).trim().toUpperCase();
+
+    // 2. Handle Single True/False
     if (!opts.length) {
-      if (q.k === "tf" || correctKey === "true" || correctKey === "false" || correctKey === "đ" || correctKey === "s") {
-        var isTrue = correctKey.toLowerCase() === "true" || correctKey.toLowerCase() === "đ";
+      if (q.k === "tf" || correctKey === "TRUE" || correctKey === "FALSE" || correctKey === "Đ" || correctKey === "S") {
+        var isTrue = correctKey === "TRUE" || correctKey === "Đ";
         var userPickedTrue = picked === "true" || picked === "đ" || picked === "ĐÚNG";
         var userPickedFalse = picked === "false" || picked === "s" || picked === "SAI";
         return [{
@@ -4230,7 +4254,7 @@
           t: isTrue ? "Nhận định hoàn toàn chính xác theo chuẩn hoá học" : "Nhận định này sai lệch bản chất",
           isCorrect: true,
           wasPicked: isTrue ? userPickedTrue : userPickedFalse,
-          note: "ĐÁP ÁN CHUẨN XÁC: Được khẳng định và chứng minh rõ trong sách giáo khoa và thực nghiệm hoá học."
+          note: q.e ? q.e : "ĐÁP ÁN CHUẨN XÁC: Được khẳng định và chứng minh rõ trong sách giáo khoa và thực nghiệm hoá học."
         }, {
           k: isTrue ? "SAI" : "ĐÚNG",
           t: isTrue ? "Bẫy nhận định đảo ngược" : "Bẫy ngộ nhận thường gặp",
@@ -4242,15 +4266,33 @@
       return [];
     }
 
+    // 3. Handle MCQ (extract per-option explanation from q.oe or q.e if available)
+    var expLines = String(q.e || "").split("\n");
+    var optExpMap = {};
+    if (q.oe && typeof q.oe === "object") {
+      optExpMap = q.oe;
+    } else {
+      expLines.forEach(function (line) {
+        var clean = line.trim();
+        var mOpt = clean.match(/^[-*•]?\s*\(?([A-Da-d0-9])\)?[\s:.-]+(.*)/);
+        if (mOpt) {
+          optExpMap[mOpt[1].toUpperCase()] = mOpt[2].trim();
+        }
+      });
+    }
+
     return opts.map(function (o) {
       var isCorrect = o.k === correctKey;
       var wasPicked = picked === o.k;
       var note = "";
-      if (isCorrect) {
-        note = "ĐÁP ÁN CHÍNH XÁC: Thoả mãn toàn bộ các điều kiện, cơ chế và danh pháp hoá học của đề bài.";
+
+      if (optExpMap[o.k]) {
+        note = (isCorrect ? "ĐÁP ÁN CHÍNH XÁC: " : "PHÂN TÍCH PHƯƠNG ÁN: ") + optExpMap[o.k];
+      } else if (isCorrect) {
+        note = q.e ? q.e : "ĐÁP ÁN CHÍNH XÁC: Thoả mãn toàn bộ các điều kiện, cơ chế và danh pháp hoá học của đề bài.";
       } else {
         var tLower = o.t.toLowerCase();
-        var qLower = q.q.toLowerCase();
+        var qLower = (q.q || "").toLowerCase();
         if (qLower.includes("este") || qLower.includes("ester")) {
           if (tLower.includes("formate") || tLower.includes("hcoo")) {
             note = "Bẫy gốc formate (HCOO-): Đây là dẫn xuất của formic acid, học sinh hay nhầm với acetate hoặc propionate.";
@@ -4273,6 +4315,7 @@
           note = "Phương án gây nhiễu: Sai lệch về bản chất cấu tạo, điều kiện phản ứng hoặc sản phẩm phản ứng so với yêu cầu đề bài.";
         }
       }
+
       return {
         k: o.k,
         t: o.t,
@@ -4292,12 +4335,11 @@
 
     var notesItems = [];
     if (ch.notes && ch.notes.length) {
-      notesItems = ch.notes.slice(0, 4).map(function (n) {
-        var raw = String(n.text || n.b || "").replace(/<[^>]+>/g, "").trim();
-        var snippet = raw.length > 180 ? raw.slice(0, 175) + "…" : raw;
+      notesItems = ch.notes.slice(0, 5).map(function (n) {
+        var raw = String(n.b || n.text || "").trim();
         return {
           title: n.title || n.t || "Trọng tâm",
-          body: snippet
+          body: raw
         };
       });
     }
@@ -4327,7 +4369,7 @@
         notes.map(function (n, idx) {
           return '<div class="tm-note-card">' +
             '<h4><span class="tm-note-idx">' + (idx + 1) + '</span> ' + esc(n.title || n.t) + '</h4>' +
-            '<div class="tm-note-body">' + fmt(n.text || n.b || "") + '</div>' +
+            '<div class="tm-note-body">' + noteBody(n) + '</div>' +
           '</div>';
         }).join("") +
       '</div>';
@@ -5627,7 +5669,24 @@
         }
         break;
       case "testSubmit": testSubmit(); break;
-      case "testAgain": state.test.done = null; startTest(state.test.t.id); break;
+      case "testAgain":
+        if (state.test && state.test.t) {
+          if (String(state.test.t.id).endsWith("_wrong")) {
+            state.test = {
+              t: state.test.t,
+              i: 0,
+              answers: {},
+              t0: Date.now(),
+              limit: (state.test.t.timeMin || 15) * 60
+            };
+            renderPracticeOnly();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          } else {
+            state.test.done = null;
+            startTest(state.test.t.id);
+          }
+        }
+        break;
       case "testWrong": testWrong(); break;
       case "testQuit": state.test = null; render(); break;
 

@@ -390,7 +390,7 @@ qs_102 = [
     # 2 (was Câu 22 in 101, reordered sub-statements as seen in Image 7)
     {
         "id": "g12t20_q20", "k": "tf",
-        "q": "Glutacid acid là một amino acid có vai trò quan trọng trong việc trao đổi chất của cơ thể động vật. Glutamic acid thuộc loại hợp chất hữu cơ tạp chức có công thức cấu tạo như sau: HOOC-CH2-CH2-CH(NH2)-COOH.",
+        "q": "Glutamic acid là một amino acid có vai trò quan trọng trong việc trao đổi chất của cơ thể động vật. Glutamic acid thuộc loại hợp chất hữu cơ tạp chức có công thức cấu tạo như sau: HOOC-CH2-CH2-CH(NH2)-COOH.",
         "sub": [
             {"id": "a", "q": "Cho a mol glutamic acid tác dụng với a mol methanol khi có mặt xúc tác acid mạnh, đun nóng thu được hợp chất hữu cơ có chứa 2 nhóm chức ester và 1 nhóm amino.", "a": "false", "e": "Sai. Tỉ lệ mol giữa glutamic acid (có 2 nhóm -COOH) và methanol CH3OH (có 1 nhóm -OH) là 1 : 1 nên chỉ ester hoá được 1 nhóm carboxyl, tạo thành monoester chứa 1 nhóm ester, 1 nhóm -COOH và 1 nhóm -NH2, không thể chứa 2 nhóm ester."},
             {"id": "b", "q": "Glutamic acid có tên thay thế là α-aminoglutaric acid.", "a": "false", "e": "Sai. α-aminoglutaric acid là tên bán hệ thống. Tên thay thế theo IUPAC chuẩn của glutamic acid là 2-aminopentanedioic acid."},

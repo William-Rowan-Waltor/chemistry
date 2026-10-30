@@ -64,11 +64,15 @@ def parse_opts(opts_str: str) -> dict[str, str]:
     """Parse 'A=...;B=...;C=...;D=...' options into a dictionary."""
     if not opts_str:
         return {}
+    re_opt = re.compile(r'(?:^|;\s*)([A-Da-d0-9])\s*=\s*(.*?)(?=(?:;\s*[A-Da-d0-9]\s*=|$))', re.DOTALL)
+    matches = re_opt.findall(opts_str)
+    if matches:
+        return {k.strip().upper(): v.strip() for k, v in matches}
     res = {}
     for part in opts_str.split(";"):
         if "=" in part:
             k, v = part.split("=", 1)
-            res[k.strip()] = v.strip()
+            res[k.strip().upper()] = v.strip()
     return res
 
 
@@ -136,9 +140,9 @@ def run_verification() -> int:
             if k in ("m", "mc"):
                 opts_raw = q.get("o", "")
                 opts_dict = parse_opts(opts_raw)
-                if len(opts_dict) < 2:
-                    errors.append(f"{q_label}: Invalid MCQ options format (needs >= 2 options): '{opts_raw}'")
-                ans_key = str(q.get("a", "")).strip()
+                if set(opts_dict.keys()) != {"A", "B", "C", "D"}:
+                    errors.append(f"{q_label}: MCQ must have exactly 4 options (A, B, C, D), got {list(opts_dict.keys())} in '{opts_raw}'")
+                ans_key = str(q.get("a", "")).strip().upper()
                 if ans_key not in opts_dict:
                     errors.append(f"{q_label}: MCQ answer key '{ans_key}' not found in options {list(opts_dict.keys())}")
 
@@ -199,7 +203,10 @@ def run_verification() -> int:
     print(f"  - Total tests audited:        {len(tests)}")
     print(f"  - Total questions calculated: {total_questions} (must be exactly 705)")
     print(f"  - Questions by kind:          {kinds_count}")
-    print(f"  - Total flashcards audited:   {total_flashcards}")
+    print(f"  - Total flashcards audited:   {total_flashcards} (must be exactly 50)")
+
+    if total_flashcards != 50:
+        errors.append(f"Total flashcards count mismatch: expected 50, got {total_flashcards}")
 
     if total_questions != 705:
         errors.append(f"Total questions count mismatch: expected 705, got {total_questions}")
