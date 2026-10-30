@@ -295,7 +295,7 @@
 
   /* ---------- storage & custom data layer ---------- */
   var LS_KEY = "hoa11-12.v1";
-  var CUSTOM_DATA_KEY = "hoa11_12_custom_data_v2";
+  var CUSTOM_DATA_KEY = "hoa11_12_custom_data_v3";
   var ORIGINAL_DATA = null;
 
   var cloudSyncTimer = null;
@@ -394,6 +394,7 @@
             if (!localCustomRaw) {
               localStorage.setItem(CUSTOM_DATA_KEY, JSON.stringify(cloudData.customData));
               Object.assign(DATA, cloudData.customData);
+              ensureOfficialTestsPreserved();
               updated = true;
             }
           }
@@ -465,16 +466,39 @@
     save(s);
   }
 
+  function ensureOfficialTestsPreserved() {
+    if (ORIGINAL_DATA && Array.isArray(ORIGINAL_DATA.tests)) {
+      DATA.tests = DATA.tests || [];
+      var existingIds = {};
+      for (var i = 0; i < DATA.tests.length; i++) {
+        if (DATA.tests[i] && DATA.tests[i].id) {
+          existingIds[DATA.tests[i].id] = true;
+        }
+      }
+      for (var j = 0; j < ORIGINAL_DATA.tests.length; j++) {
+        var ot = ORIGINAL_DATA.tests[j];
+        if (ot && ot.id && !existingIds[ot.id]) {
+          DATA.tests.push(ot);
+          existingIds[ot.id] = true;
+        }
+      }
+    }
+  }
+
   function initCustomData() {
     try {
       ORIGINAL_DATA = JSON.parse(JSON.stringify(DATA));
       var raw = localStorage.getItem(CUSTOM_DATA_KEY);
+      if (!raw) {
+        raw = localStorage.getItem("hoa11_12_custom_data_v2") || localStorage.getItem("hoa11_12_custom_data_v1");
+      }
       if (raw) {
         var parsed = JSON.parse(raw);
         if (parsed && parsed.chapters) {
           Object.assign(DATA, parsed);
         }
       }
+      ensureOfficialTestsPreserved();
     } catch (e) {
       console.warn("initCustomData error", e);
     }
