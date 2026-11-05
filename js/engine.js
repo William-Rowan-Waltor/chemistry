@@ -437,6 +437,22 @@
     return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
   }
 
+  /* ═══ SYSTEM NOTE: G12 MOLE RATIOS & STOICHIOMETRIC RELATIONS (CT GDPT 2018) ═══ */
+  var SYSTEM_NOTE_MOLE_RATIO = {
+    id: "sys_note_mole_ratios_g12",
+    t: "⚡ CẨM NANG TỈ LỆ MOL & QUAN HỆ LƯỢNG CHẤT HOÁ HỌC 12 (TOÀN TẬP - GDPT 2018)",
+    b: "═════════════════════════════════════════════════════════════════════\n📖 CẨM NANG TỈ LỆ MOL & QUAN HỆ LƯỢNG CHẤT HOÁ HỌC 12 (TOÀN TẬP)\nBiên soạn chuẩn Chương trình GDPT 2018 (Cánh Diều, Kết Nối Tri Thức, Chân Trời Sáng Tạo)\nTổng hợp đầy đủ lý thuyết, bài tập định lượng và 20 đề thi trắc nghiệm trên hệ thống.\n═════════════════════════════════════════════════════════════════════\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📌 PHẦN I: ESTER – LIPID – XÀ PHÒNG & CHẤT GIẶT RỬA (CHƯƠNG 1)\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n1. PHẢN ỨNG ESTER HOÁ & THUỶ PHÂN TRONG MÔI TRƯỜNG ACID (Thuận nghịch, xúc tác H₂SO₄ đặc, t°):\n   • Ester đơn chức:\n     RCOOH + R'OH ⇌ RCOOR' + H₂O\n     Tỉ lệ mol: n(acid) : n(alcohol) : n(ester) : n(H₂O) = 1 : 1 : 1 : 1\n     Hằng số cân bằng: Kc = [RCOOR'][H₂O] / ([RCOOH][R'OH])\n   • Acid đa chức (x chức) + Alcohol đơn chức:\n     R(COOH)x + x R'OH ⇌ R(COOR')x + x H₂O\n     Tỉ lệ mol: 1 : x : 1 : x  ⇒  n(alcohol) = n(H₂O) = x · n(ester)\n   • Alcohol đa chức (y chức) + Acid đơn chức:\n     y RCOOH + R'(OH)y ⇌ (RCOO)yR' + y H₂O\n     Tỉ lệ mol: y : 1 : 1 : y  ⇒  n(acid) = n(H₂O) = y · n(ester)\n\n2. THUỶ PHÂN TRONG MÔI TRƯỜNG KIỀM (XÀ PHÒNG HOÁ – Phản ứng 1 chiều):\n   • Ester đơn chức thông thường (gốc alcohol no, bền):\n     RCOOR' + NaOH → RCOONa + R'OH\n     Tỉ lệ mol: n(ester) : n(NaOH) : n(muối) : n(alcohol) = 1 : 1 : 1 : 1\n     Bảo toàn khối lượng: m(ester) + m(NaOH) = m(muối) + m(alcohol)\n     (Nếu dùng KOH: thay 40 g/mol NaOH bằng 56 g/mol KOH)\n   • Ester của phenol (Bẫy kinh điển đề thi):\n     RCOOC₆H₄R' + 2 NaOH → RCOONa + R'C₆H₄ONa + H₂O\n     Tỉ lệ mol: n(ester) : n(NaOH) : n(hỗn hợp muối) : n(H₂O) = 1 : 2 : 2 : 1\n     Dấu hiệu: n(NaOH) / n(ester) = 2; tạo 2 muối, KHÔNG sinh ra alcohol, sinh ra 1 H₂O!\n     Bảo toàn khối lượng: m(ester) + 2 · 40 · n(ester) = m(muối) + 18 · n(ester)\n   • Ester vinyl (thủy phân sinh Aldehyde):\n     RCOOCH=CH-R' + NaOH → RCOONa + R'-CH₂-CHO\n     Tỉ lệ mol: 1 : 1 : 1 : 1. Aldehyde sinh ra tráng bạc: 1 aldehyde → 2 Ag↓.\n   • Ester isopropenyl (thủy phân sinh Ketone):\n     RCOOC(CH₃)=CH₂ + NaOH → RCOONa + CH₃COCH₃\n     Tỉ lệ mol: 1 : 1 : 1 : 1\n\n3. TRIGLYCERIDE (CHẤT BÉO) – XÀ PHÒNG HOÁ & HYDROGEN HOÁ:\n   • Công thức tổng quát: (RCOO)₃C₃H₅ (M: Triolein=884, Tristearin=890, Tripalmitin=806, Trilinolein=878)\n   • Phản ứng xà phòng hoá với NaOH:\n     (RCOO)₃C₃H₅ + 3 NaOH → 3 RCOONa + C₃H₅(OH)₃ (glycerol)\n     Tỉ lệ vàng:\n       n(NaOH) = 3 · n(chất béo) = 3 · n(glycerol) = n(muối xà phòng)\n       n(glycerol) = 1/3 · n(NaOH) = n(chất béo)\n     Bảo toàn khối lượng:\n       m(chất béo) + m(NaOH) = m(muối) + m(glycerol)\n       m(muối) = m(chất béo) + 28 · n(chất béo)\n       (Nếu dùng KOH: m(muối) = m(chất béo) + 76 · n(chất béo))\n       m(xà phòng thương phẩm) = m(muối xà phòng) / (% muối)\n   • Hydrogen hoá chất béo lỏng (dầu thực vật) thành chất béo rắn (bơ nhân tạo):\n     (C₁₇H₃₃COO)₃C₃H₅ (Triolein, 3 nối đôi C=C) + 3 H₂ → (C₁₇H₃₅COO)₃C₃H₅ (Tristearin)\n       Tỉ lệ mol: n(triolein) : n(H₂) : n(tristearin) = 1 : 3 : 1\n     (C₁₇H₃₁COO)₃C₃H₅ (Trilinolein, 6 nối đôi C=C) + 6 H₂ → (C₁₇H₃₅COO)₃C₃H₅ (Tristearin)\n       Tỉ lệ mol: n(trilinolein) : n(H₂) : n(tristearin) = 1 : 6 : 1\n   • Phản ứng cộng dung dịch Bromine của chất béo:\n     n(Br₂) = k(C=C) · n(chất béo)  (Triolein ăn 3 Br₂; Trilinolein ăn 6 Br₂)\n\n4. ĐỐT CHÁY ESTER & LIPID:\n   • Ester no, đơn chức, mạch hở (CnH₂nO₂, n ≥ 2):\n     CnH₂nO₂ + (3n - 2)/2 O₂ → n CO₂ + n H₂O\n     Tỉ lệ quan trọng: n(CO₂) = n(H₂O)\n     Bảo toàn nguyên tố O: 2 · n(ester) + 2 · n(O₂) = 3 · n(CO₂)\n   • Ester không no, có 1 nối đôi C=C, đơn hở (CnH₂n₋₂O₂, n ≥ 3):\n     n(ester) = n(CO₂) - n(H₂O)\n   • Chất béo bất kì có độ bất bão hoà k (gồm 3 nhóm COO và k' nối đôi C=C):\n     n(chất béo) = [n(CO₂) - n(H₂O)] / (k - 1)\n     n(H₂ phản ứng cộng) = n(Br₂ cộng) = (k - 3) · n(chất béo) = [n(CO₂) - n(H₂O)] - 2 · n(chất béo)\n\n5. TRÁNG BẠC CỦA ESTER FORMATE:\n   HCOOR + 2 [Ag(NH₃)₂]OH → ROCOONH₄ + 2 Ag↓ + 3 NH₃ + H₂O\n   Tỉ lệ: 1 mol ester formate (HCOOR) → 2 mol Ag↓\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📌 PHẦN II: CARBOHYDRATE (CHƯƠNG 2)\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n1. GLUCOSE (C₆H₁₂O₆, M = 180):\n   • Phản ứng với Cu(OH)₂ ở t° thường (tính polyalcohol liền kề):\n     2 C₆H₁₂O₆ + Cu(OH)₂ → (C₆H₁₁O₆)₂Cu (phức xanh lam thẫm) + 2 H₂O\n     Tỉ lệ mol: 2 glucose : 1 Cu(OH)₂ : 1 phức Cu : 2 H₂O\n   • Phản ứng tráng bạc (thuốc thử Tollens):\n     CH₂OH[CHOH]₄CHO + 2 [Ag(NH₃)₂]OH → CH₂OH[CHOH]₄COONH₄ + 2 Ag↓ + 3 NH₃ + H₂O\n     Tỉ lệ mol: 1 glucose → 2 Ag↓  (180 gam glucose → 216 gam Ag)\n   • Phản ứng với Cu(OH)₂ trong kiềm đun nóng:\n     CH₂OH[CHOH]₄CHO + 2 Cu(OH)₂ + NaOH → CH₂OH[CHOH]₄COONa + Cu₂O↓ (đỏ gạch) + 3 H₂O\n     Tỉ lệ mol: 1 glucose : 2 Cu(OH)₂ : 1 Cu₂O↓  (180 g glucose → 144 g Cu₂O)\n   • Phản ứng với nước Bromine (nhận biết nhóm aldehyde):\n     CH₂OH[CHOH]₄CHO + Br₂ + H₂O → CH₂OH[CHOH]₄COOH (gluconic acid) + 2 HBr\n     Tỉ lệ mol: 1 glucose : 1 Br₂ : 1 gluconic acid : 2 HBr  (Làm mất màu nước Br₂)\n   • Phản ứng khử với H₂ (xúc tác Ni, t°):\n     C₆H₁₂O₆ + H₂ → C₆H₁₄O₆ (Sorbitol, M = 182)\n     Tỉ lệ mol: 1 glucose : 1 H₂ : 1 sorbitol\n   • Phản ứng lên men rượu (Ethanol):\n     C₆H₁₂O₆ → 2 C₂H₅OH + 2 CO₂↑  (men rượu, 30–35°C)\n     Tỉ lệ mol: 1 glucose → 2 ethanol + 2 CO₂\n     Tỉ lệ khối lượng: 180 gam glucose → 92 gam alcohol (2 × 46) + 88 gam CO₂ (2 × 44)\n     Nếu dẫn CO₂ vào dung dịch Ca(OH)₂ dư: n(CaCO₃↓) = n(CO₂) = 2 · n(glucose pứ)\n   • Phản ứng lên men giấm (2 giai đoạn):\n     C₆H₁₂O₆ → 2 C₂H₅OH → 2 CH₃COOH\n     Tỉ lệ: 1 glucose (180 g) → 2 acetic acid (120 g)\n   • Phản ứng lên men Lactic:\n     C₆H₁₂O₆ → 2 CH₃-CH(OH)-COOH (lactic acid)\n     Tỉ lệ: 1 glucose → 2 lactic acid\n\n2. FRUCTOSE (C₆H₁₂O₆, M = 180):\n   • Trong môi trường kiềm: Fructose ⇌ Glucose (đồng phân hoá thuận nghịch).\n   • Hoà tan Cu(OH)₂ ở t° thường: 2 fructose : 1 Cu(OH)₂ (dung dịch xanh lam thẫm).\n   • Phản ứng tráng bạc: 1 fructose → 2 Ag↓ (do chuyển thành glucose trong môi trường kiềm của NH₃).\n   • Nước Bromine: KHÔNG PHẢN ỨNG (không làm mất màu nước bromine vì không có môi trường base để chuyển hoá thành glucose).\n   • Khử bằng H₂ (Ni, t°): 1 fructose + 1 H₂ → 1 sorbitol.\n\n3. SACCHAROSE (C₁₂H₂₂O₁₁, M = 342 – ĐƯỜNG MÍA):\n   • Hoà tan Cu(OH)₂ ở t° thường: 2 saccharose : 1 Cu(OH)₂ (dung dịch xanh lam).\n   • Tráng bạc trực tiếp: KHÔNG tráng bạc (không có nhóm hemiacetal / aldehyde tự do).\n   • Thuỷ phân trong môi trường acid (H⁺, t°) hoặc enzyme sucrase:\n     C₁₂H₂₂O₁₁ + H₂O → C₆H₁₂O₆ (glucose) + C₆H₁₂O₆ (fructose)\n     Tỉ lệ mol: 1 saccharose + 1 H₂O → 1 glucose + 1 fructose\n     Tỉ lệ khối lượng: 342 gam saccharose + 18 gam H₂O → 180 gam glucose + 180 gam fructose\n   • Tráng bạc sản phẩm thuỷ phân (sau khi trung hoà acid):\n     1 saccharose → (1 glucose + 1 fructose) → 4 Ag↓\n     Tỉ lệ vàng kinh điển: 1 mol saccharose → 4 mol Ag↓  (342 gam saccharose → 432 gam Ag)\n     (Nếu hiệu suất thuỷ phân là H%: n(Ag) = 4 · n(saccharose) · H%)\n\n4. MALTOSE (C₁₂H₂₂O₁₁, M = 342 – ĐƯỜNG MẠCH NHA):\n   • Tráng bạc trực tiếp: 1 maltose → 2 Ag↓ (do còn 1 nhóm -OH hemiacetal mở vòng).\n   • Thuỷ phân trong acid: 1 maltose + 1 H₂O → 2 glucose.\n   • Tráng bạc sản phẩm thuỷ phân: 1 maltose → 2 glucose → 4 Ag↓.\n\n5. TINH BỘT ((C₆H₁₀O₅)n, M mắt xích = 162):\n   • Nhận biết bằng hồ tinh bột + dung dịch I₂ → Hợp chất bọc màu xanh tím (đun nóng mất màu, để nguội hiện lại).\n   • Thuỷ phân hoàn toàn:\n     (C₆H₁₀O₅)n + n H₂O → n C₆H₁₂O₆ (glucose)\n     Tỉ lệ: 1 mol mắt xích (162 gam) + 1 mol H₂O (18 gam) → 1 mol glucose (180 gam)\n   • Sản xuất cồn công nghiệp từ tinh bột qua lên men:\n     (C₆H₁₀O₅)n → n C₆H₁₂O₆ → 2n C₂H₅OH + 2n CO₂\n     Tỉ lệ then chốt: 162 gam tinh bột → 92 gam alcohol (2 × 46) + 88 gam CO₂ (2 × 44)\n   • Phản ứng quang hợp của cây xanh tạo tinh bột:\n     6n CO₂ + 5n H₂O → (C₆H₁₀O₅)n + 6n O₂  (ánh sáng, diệp lục)\n     Tỉ lệ: 6 mol CO₂ : 5 mol H₂O → 1 mol mắt xích tinh bột : 6 mol O₂\n\n6. CELLULOSE ([C₆H₇O₂(OH)₃]n, M mắt xích = 162):\n   • Thuỷ phân hoàn toàn: [C₆H₇O₂(OH)₃]n + n H₂O → n C₆H₁₂O₆ (162 g → 180 g).\n   • Điều chế thuốc súng không khói (Cellulose trinitrate):\n     [C₆H₇O₂(OH)₃]n + 3n HNO₃ → [C₆H₇O₂(ONO₂)₃]n + 3n H₂O  (H₂SO₄ đặc, t°)\n     Tỉ lệ mol: 1 mắt xích cellulose : 3 HNO₃ : 1 mắt xích trinitrate : 3 H₂O\n     Tỉ lệ khối lượng: 162 g cellulose + 189 g HNO₃ (3 × 63) → 297 g cellulose trinitrate + 54 g H₂O (3 × 18)\n   • Phản ứng điều chế Tơ Acetate (Cellulose triacetate):\n     [C₆H₇O₂(OH)₃]n + 3n (CH₃CO)₂O → [C₆H₇O₂(OCOCH₃)₃]n + 3n CH₃COOH\n     Tỉ lệ: 1 mắt xích cellulose (162 g) + 3 anhydride acetic (306 g) → 1 triacetate (288 g) + 3 acetic acid (180 g)\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📌 PHẦN III: HỢP CHẤT CHỨA NITROGEN (AMINE – AMINO ACID – PEPTIDE – PROTEIN)\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n1. AMINE:\n   • Amine đơn chức tác dụng acid vô cơ đơn chức (HCl, HNO₃):\n     R-NH₂ + HCl → R-NH₃Cl\n     Tỉ lệ: n(amine) = n(HCl) = n(muối) = n(N)\n     Tăng giảm khối lượng: Δm(muối tăng) = m(muối) - m(amine) = 36,5 · n(HCl)\n     ⇒ n(amine) = [m(muối) - m(amine)] / 36,5\n   • Amine đơn chức tác dụng H₂SO₄ loãng:\n     2 R-NH₂ + H₂SO₄ → (R-NH₃)₂SO₄\n     Tỉ lệ: n(amine) : n(H₂SO₄) = 2 : 1\n   • Amine đa chức (x chức):\n     R(NH₂)x + x HCl → R(NH₃Cl)x  ⇒  n(HCl) = x · n(amine) = n(N)\n   • Aniline (C₆H₅NH₂, M = 93) tác dụng với nước Bromine:\n     C₆H₅NH₂ + 3 Br₂ → C₆H₂Br₃NH₂↓ (2,4,6-tribromoaniline kết tủa trắng, M = 330) + 3 HBr\n     Tỉ lệ mol: 1 aniline : 3 Br₂ : 1 kết tủa trắng : 3 HBr\n     Tỉ lệ khối lượng: 93 gam aniline + 480 gam Br₂ (3 × 160) → 330 gam kết tủa + 243 gam HBr (3 × 81)\n   • Amine bậc 1 tác dụng Nitrous acid (HNO₂ / NaNO₂ + HCl):\n     R-NH₂ + HNO₂ → R-OH + N₂↑ + H₂O  ⇒  n(N₂) = n(amine)\n     Aniline (0–5°C): C₆H₅NH₂ + HNO₂ + HCl → [C₆H₅N₂]⁺Cl⁻ (muối diazonium) + 2 H₂O\n   • Đốt cháy amine no, đơn chức, mạch hở (CnH₂n₊₃N):\n     CnH₂n₊₃N + (6n + 3)/4 O₂ → n CO₂ + (2n + 3)/2 H₂O + 1/2 N₂\n     Hệ thức then chốt: n(H₂O) - n(CO₂) = 1,5 · n(amine)  ⇒  n(amine) = [n(H₂O) - n(CO₂)] / 1,5\n\n2. AMINO ACID ((H₂N)x-R-(COOH)y):\n   • Tác dụng với base mạnh (NaOH, KOH):\n     (H₂N)x-R-(COOH)y + y NaOH → (H₂N)x-R-(COONa)y + y H₂O\n     Tỉ lệ then chốt: n(NaOH) = n(-COOH) = n(H₂O) = y · n(amino acid)\n     Bảo toàn khối lượng: m(amino acid) + m(NaOH) = m(muối) + m(H₂O)\n     Tăng giảm khối lượng: Δm(muối tăng) = (23 - 1) · n(NaOH) = 22 · y · n(amino acid)\n   • Tác dụng với acid mạnh (HCl):\n     (H₂N)x-R-(COOH)y + x HCl → (ClH₃N)x-R-(COOH)y\n     Tỉ lệ then chốt: n(HCl) = n(-NH₂) = x · n(amino acid)\n     Tăng giảm khối lượng: Δm(muối tăng) = m(HCl) = 36,5 · x · n(amino acid)\n   • Tỉ lệ mol của 5 Amino acid tiêu chuẩn cần thuộc lòng:\n     ① Glycine (Gly, M = 75, H₂N-CH₂-COOH): 1 -NH₂, 1 -COOH. Tỉ lệ NaOH = 1 : 1; Tỉ lệ HCl = 1 : 1 (quỳ tím không đổi màu).\n     ② Alanine (Ala, M = 89, CH₃-CH(NH₂)-COOH): 1 -NH₂, 1 -COOH. Tỉ lệ NaOH = 1 : 1; Tỉ lệ HCl = 1 : 1 (quỳ tím không đổi màu).\n     ③ Valine (Val, M = 117, (CH₃)₂CH-CH(NH₂)-COOH): 1 -NH₂, 1 -COOH. Tỉ lệ NaOH = 1 : 1; Tỉ lệ HCl = 1 : 1 (quỳ tím không đổi màu).\n     ④ Glutamic acid (Glu, M = 147, HOOC-(CH₂)₂-CH(NH₂)-COOH): 1 -NH₂, 2 -COOH. Tỉ lệ NaOH = 1 : 2; Tỉ lệ HCl = 1 : 1 (quỳ tím chuyển đỏ/hồng).\n     ⑤ Lysine (Lys, M = 146, H₂N-(CH₂)₄-CH(NH₂)-COOH): 2 -NH₂, 1 -COOH. Tỉ lệ NaOH = 1 : 1; Tỉ lệ HCl = 1 : 2 (quỳ tím chuyển xanh).\n   • Phương pháp quy đổi phản ứng nối tiếp (X + HCl rồi + NaOH, hoặc X + NaOH rồi + HCl):\n     Coi như hỗn hợp {amino acid, HCl} cùng phản ứng đồng thời với NaOH:\n       n(NaOH) = n(-COOH) + n(HCl)\n     Coi như hỗn hợp {amino acid, NaOH} cùng phản ứng đồng thời với HCl:\n       n(HCl) = n(-NH₂) + n(NaOH)\n\n3. PEPTIDE & PROTEIN:\n   • Tạo chuỗi n-peptide từ các α-amino acid no (1 -NH₂, 1 -COOH):\n     n Amino acid → 1 n-peptide + (n - 1) H₂O\n     Số liên kết peptide: n - 1\n     Khối lượng mol peptide: M(peptide) = ∑ M(gốc amino acid) - 18 · (n - 1)\n   • Thuỷ phân hoàn toàn trong môi trường Acid (HCl):\n     1 n-peptide + (n - 1) H₂O + n HCl → n muối clorua\n     Tỉ lệ then chốt:\n       n(H₂O) = (n - 1) · n(peptide)\n       n(HCl) = n · n(peptide)\n       m(muối) = m(peptide) + 18 · (n - 1) · n(peptide) + 36,5 · n · n(peptide)\n   • Thuỷ phân hoàn toàn trong môi trường Kiềm (NaOH) – QUY TẮC VÀNG ĐỀ THI:\n     1 n-peptide + n NaOH → n muối natri + 1 H₂O\n     LƯU Ý CỐT LÕI: Phản ứng chỉ sinh ra DUY NHẤT 1 mol H₂O từ đầu C tự do (-COOH)!\n     Tỉ lệ then chốt:\n       n(NaOH) = n · n(peptide)\n       n(H₂O) = n(peptide)  (chỉ bằng đúng số mol peptide!)\n       m(muối) = m(peptide) + 40 · n · n(peptide) - 18 · n(peptide) = m(peptide) + (40n - 18) · n(peptide)\n     (Nếu trong chuỗi có gốc Glu: mỗi gốc Glu ăn thêm 1 NaOH và sinh thêm 1 H₂O).\n   • Phản ứng màu Biuret:\n     Điều kiện: Phải từ Tripeptide trở lên (n ≥ 3, có ít nhất 2 liên kết peptide) hoặc Protein.\n     Dipeptide TUYỆT ĐỐI KHÔNG CÓ phản ứng Biuret!\n     Tỉ lệ tạo phức với Cu(OH)₂ trong kiềm: 1 chuỗi peptide : 1 Cu(OH)₂ (dung dịch phức màu tím đặc trưng).\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📌 PHẦN IV: POLYMER & VẬT LIỆU POLYMER LỚP 12\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n1. TƠ NILON-6 (Polycaproamide):\n   • Phương pháp trùng ngưng từ ε-aminocaproic acid:\n     n H₂N-(CH₂)₅-COOH → -[HN-(CH₂)₅-CO]n- + n H₂O\n     Tỉ lệ: 1 mol acid (131 g) → 1 mol mắt xích (113 g) + 1 mol H₂O (18 g)\n   • Phương pháp trùng hợp mở vòng Caprolactam:\n     n C₆H₁₁NO → -[HN-(CH₂)₅-CO]n-\n     Tỉ lệ: 1 mol monomer (113 g) → 1 mol mắt xích (113 g)  (KHÔNG sinh H₂O!)\n\n2. TƠ NILON-6,6 (Poly(hexamethylene adipamide)):\n   n H₂N-(CH₂)₆-NH₂ + n HOOC-(CH₂)₄-COOH → -[HN-(CH₂)₆-NH-CO-(CH₂)₄-CO]n- + 2n H₂O\n   Tỉ lệ: 1 diamine (116 g) : 1 diacid (146 g) → 1 mắt xích Nilon-6,6 (226 g) : 2 H₂O (36 g)\n\n3. TƠ LAPSAN / POLYESTER (Poly(ethylene terephthalate) – PET):\n   n p-HOOC-C₆H₄-COOH + n HO-CH₂-CH₂-OH → -[CO-C₆H₄-COO-CH₂-CH₂-O]n- + 2n H₂O\n   Tỉ lệ: 1 terephthalic acid (166 g) : 1 ethylene glycol (62 g) → 1 mắt xích lapsan (192 g) : 2 H₂O (36 g)\n\n4. POLY(METHYL METHACRYLATE) (Plexiglas / Thuỷ tinh hữu cơ):\n   n CH₂=C(CH₃)-COOCH₃ → -[CH₂-C(CH₃)(COOCH₃)]n-\n   Tỉ lệ: 1 monomer (100 g/mol) → 1 mắt xích polymer (100 g/mol)\n\n5. CAO SU BUNA, BUNA-S, BUNA-N:\n   • Cao su Buna: n CH₂=CH-CH=CH₂ → -[CH₂-CH=CH-CH₂]n- (Tỉ lệ 1 : 1, M mắt xích = 54)\n   • Cao su Buna-S: n buta-1,3-diene + m styrene → -[C₄H₆]n-[C₈H₈]m- (Tỉ lệ mol mắt xích n : m)\n   • Cao su Buna-N: n buta-1,3-diene + m acrylonitrile → -[C₄H₆]n-[C₃H₃N]m- (Tỉ lệ mol mắt xích n : m)\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📌 PHẦN V: CÁC QUAN HỆ MOL & CÔNG THỨC GIẢI NHANH ĐỊNH LƯỢNG KINH ĐIỂN\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n1. CÔNG THỨC ĐỘ BẤT BÃO HOÀ k (Liên kết π + Vòng) KHI ĐỐT CHÁY HỢP CHẤT HỮU CƠ:\n   n(chất hữu cơ) = [n(CO₂) - n(H₂O)] / (k - 1)  (với k ≠ 1)\n   n(H₂ hoặc Br₂ phản ứng cộng) = (k - π_chức) · n(chất hữu cơ)\n\n2. BẢO TOÀN NGUYÊN TỐ OXI KHI ĐỐT CHÁY:\n   x · n(hợp chất CxHyOz) + 2 · n(O₂) = 2 · n(CO₂) + n(H₂O)\n\n3. BÀI TOÁN DẪN KHÍ CO₂ VÀO DUNG DỊCH NƯỚC VÔI TRONG Ca(OH)₂ / Ba(OH)₂:\n   • Nếu kiềm dư: n(CO₂) = n(kết tủa) = n(CaCO₃↓)\n   • Nếu kiềm không dư (tạo 2 muối): n(CO₂) = n(OH⁻) - n(kết tủa)\n   • Khối lượng bình tăng: m(bình tăng) = m(CO₂) + m(H₂O)\n   • Độ biến thiên khối lượng dung dịch:\n     Δm(dung dịch) = [m(CO₂) + m(H₂O)] - m(kết tủa)\n     (Nếu Δm > 0: dung dịch tăng; Nếu Δm < 0: dung dịch giảm).\n═════════════════════════════════════════════════════════════════════",
+    ts: 1730000000000
+  };
+
+  function ensureDefaultNotes(s) {
+    if (!s || !Array.isArray(s.notes)) return;
+    var hasSysNote = s.notes.some(function (n) { return n.id === SYSTEM_NOTE_MOLE_RATIO.id; });
+    if (!hasSysNote && !s.deletedSysMoleNote) {
+      s.notes.unshift(SYSTEM_NOTE_MOLE_RATIO);
+    }
+  }
+
   function profile() {
     var s = store.get();
     s.streak = s.streak || { last: "", days: 0 };
@@ -448,6 +464,7 @@
     s.fav = s.fav || {};
     s.notes = s.notes || [];
     s.guidedPredictions = s.guidedPredictions || {};
+    ensureDefaultNotes(s);
     return s;
   }
   function save(s) { store.set(s); }
@@ -5272,20 +5289,30 @@
   function renderLibNotes() {
     var s = profile();
     var notes = s.notes || [];
-    var list = notes.slice().sort(function (a, b) { return b.ts - a.ts; }).map(function (n) {
+    var list = notes.slice().sort(function (a, b) {
+      if (a.id === SYSTEM_NOTE_MOLE_RATIO.id) return -1;
+      if (b.id === SYSTEM_NOTE_MOLE_RATIO.id) return 1;
+      return b.ts - a.ts;
+    }).map(function (n) {
       var d = new Date(n.ts);
       var ds = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
-      return '<div class="note-item">' +
-        "<h4>" + esc(n.t || "Ghi chú") + "</h4>" +
-        '<div class="ni-meta">' + ico("pen") + " Lưu lúc " + ds + "</div>" +
+      var isSys = (n.id === SYSTEM_NOTE_MOLE_RATIO.id);
+      var badge = isSys ? '<span class="badge g12" style="margin-left:6px;font-size:0.72rem;padding:2px 7px">📌 Hệ thống · GDPT 2018</span>' : "";
+      return '<div class="note-item' + (isSys ? " sys-note" : "") + '">' +
+        "<h4>" + esc(n.t || "Ghi chú") + badge + "</h4>" +
+        '<div class="ni-meta">' + ico("pen") + " " + (isSys ? "Biên soạn chuẩn bộ đề &amp; SGK Hoá 12" : "Lưu lúc " + ds) + "</div>" +
         '<div class="ni-body">' + esc(n.b || "") + "</div>" +
         '<div class="ni-actions">' +
+          '<button class="btn ghost tiny" data-act="copyNote" data-id="' + n.id + '">' + ico("cards") + " Sao chép</button>" +
           '<button class="btn warn tiny del-btn" data-act="noteDel" data-id="' + n.id + '">Xoá</button>' +
         "</div>" +
       "</div>";
     }).join("");
     return '<div class="notes-editor">' +
-      "<h3>" + ico("pen") + " Ghi chú nhanh cá nhân</h3>" +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px">' +
+        '<h3 style="margin:0">' + ico("pen") + " Ghi chú nhanh cá nhân</h3>" +
+        '<button class="btn ghost tiny" data-act="restoreMoleNotes" title="Khôi phục lại cẩm nang tỉ lệ mol nếu bạn lỡ xoá">⚡ Khôi phục cẩm nang tỉ lệ mol</button>' +
+      '</div>' +
       '<input id="nt" placeholder="Tiêu đề ghi chú…" style="width:100%;margin-bottom:8px;padding:8px 12px;border:1px solid var(--line);border-radius:8px">' +
       '<textarea id="nb" rows="3" placeholder="Viết điều bạn muốn ghi nhớ…" style="width:100%;padding:8px 12px;border:1px solid var(--line);border-radius:8px"></textarea>' +
       '<button class="btn primary" style="margin-top:8px" data-act="noteSave">Lưu ghi chú</button>' +
@@ -5747,9 +5774,43 @@
       case "noteDel":
         var s = profile();
         var id = el.getAttribute("data-id");
+        if (id === SYSTEM_NOTE_MOLE_RATIO.id) {
+          s.deletedSysMoleNote = true;
+        }
         s.notes = (s.notes || []).filter(function (n) { return n.id !== id; });
         save(s);
         renderLibraryOnly(); break;
+      case "copyNote":
+        (function () {
+          var id = el.getAttribute("data-id");
+          var s = profile();
+          var target = (s.notes || []).find(function (n) { return n.id === id; });
+          if (target && target.b) {
+            var fullText = (target.t || "") + "\n\n" + (target.b || "");
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(fullText).then(function () {
+                showMiniToast("✓ Đã sao chép nội dung ghi chú vào clipboard!");
+              }).catch(function () {
+                showMiniToast("Không thể sao chép tự động");
+              });
+            } else {
+              showMiniToast("Trình duyệt không hỗ trợ clipboard API");
+            }
+          }
+        })();
+        break;
+      case "restoreMoleNotes":
+        (function () {
+          var s = profile();
+          delete s.deletedSysMoleNote;
+          s.notes = s.notes || [];
+          var exists = s.notes.some(function (n) { return n.id === SYSTEM_NOTE_MOLE_RATIO.id; });
+          if (!exists) s.notes.unshift(SYSTEM_NOTE_MOLE_RATIO);
+          save(s);
+          renderLibraryOnly();
+          showMiniToast("⚡ Đã nạp lại Cẩm nang Tỉ lệ Mol Hoá 12 vào ghi chú!");
+        })();
+        break;
       case "libTab": setLib(el.getAttribute("data-t")); break;
 
       /* EDIT ACTIONS */

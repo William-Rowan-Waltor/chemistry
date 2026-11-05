@@ -799,7 +799,33 @@ footer b{color:var(--muted);font-weight:600}
 .note-item h4{margin:0 0 4px;font-size:.98rem;font-weight:650;color:var(--fg)}
 .note-item .ni-meta{font-size:.72rem;color:var(--muted);letter-spacing:.04em;margin-bottom:8px}
 .note-item .ni-body{font-size:.93rem;color:#4a4138;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
-.note-item .ni-actions{display:flex;gap:8px;margin-top:12px}
+.note-item .ni-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.note-item.sys-note{
+  border-left:3px solid #2f81f7;
+  background:rgba(47,129,247,0.035);
+  box-shadow:0 4px 16px rgba(47,129,247,0.06), var(--shadow);
+}
+.note-item.sys-note .ni-body{
+  font-family:var(--font-mono, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace);
+  font-size:.87rem;
+  line-height:1.65;
+  background:rgba(255,255,255,0.65);
+  padding:14px 16px;
+  border-radius:8px;
+  border:1px solid rgba(47,129,247,0.12);
+  max-height:550px;
+  overflow-y:auto;
+}
+html[data-theme="dark"] .note-item.sys-note{
+  border-left-color:#58a6ff;
+  background:rgba(56,139,253,0.06);
+  box-shadow:0 4px 16px rgba(0,0,0,0.3);
+}
+html[data-theme="dark"] .note-item.sys-note .ni-body{
+  background:rgba(13,17,23,0.6);
+  border-color:rgba(88,166,255,0.2);
+  color:#c9d1d9;
+}
 
 /* ═══ knowledge graph — constellation parchment ═══
    taste-skill dials: VARIANCE 7 · MOTION 6 · DENSITY 4
