@@ -5297,6 +5297,9 @@
       var d = new Date(n.ts);
       var ds = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
       var isSys = (n.id === SYSTEM_NOTE_MOLE_RATIO.id);
+      if (isSys && window.MoleGuide) {
+        return window.MoleGuide.render();
+      }
       var badge = isSys ? '<span class="badge g12" style="margin-left:6px;font-size:0.72rem;padding:2px 7px">📌 Hệ thống · GDPT 2018</span>' : "";
       return '<div class="note-item' + (isSys ? " sys-note" : "") + '">' +
         "<h4>" + esc(n.t || "Ghi chú") + badge + "</h4>" +
@@ -5529,6 +5532,12 @@
   }
 
   /* ═══════════ GLOBAL CLICK DELEGATION & ACTION HANDLERS ═══════════ */
+  document.addEventListener("input", function (ev) {
+    if (ev.target && ev.target.id === "moleSearchInput") {
+      if (window.MoleGuide) window.MoleGuide.setSearch(ev.target.value);
+    }
+  });
+
   document.addEventListener("blur", function (ev) {
     var el = ev.target;
     if (!el || !el.hasAttribute || !el.hasAttribute("data-inline-edit")) return;
@@ -5810,6 +5819,24 @@
           renderLibraryOnly();
           showMiniToast("⚡ Đã nạp lại Cẩm nang Tỉ lệ Mol Hoá 12 vào ghi chú!");
         })();
+        break;
+      case "moleFilter":
+        if (window.MoleGuide) window.MoleGuide.setFilter(el.getAttribute("data-cat"));
+        break;
+      case "moleToggleView":
+        if (window.MoleGuide) window.MoleGuide.toggleViewMode();
+        break;
+      case "moleToggleCard":
+        if (window.MoleGuide) window.MoleGuide.toggleCard(el.getAttribute("data-id"));
+        break;
+      case "moleToggleAll":
+        if (window.MoleGuide) window.MoleGuide.toggleAll();
+        break;
+      case "moleCopyAll":
+        if (window.MoleGuide) window.MoleGuide.copyAllText();
+        break;
+      case "moleClearSearch":
+        if (window.MoleGuide) window.MoleGuide.setSearch("");
         break;
       case "libTab": setLib(el.getAttribute("data-t")); break;
 
